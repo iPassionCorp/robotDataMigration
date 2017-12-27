@@ -11,103 +11,68 @@
 		<version>1.5</version>
 	</parent>
 
+	<properties>
+		<jspringbot.properties>${project.build.testOutputDirectory}/jspringbot.properties</jspringbot.properties>
+		<jspringbot.env.properties>${project.build.testOutputDirectory}/jspringbot.cloud.properties</jspringbot.env.properties>
+	</properties>
+
 	<profiles>
 		<profile>
 			<id>sit</id>
-			<build>
-				<sourceDirectory>src</sourceDirectory>
-				<plugins>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<tasks>
-										<delete
-											file="${project.build.outputDirectory}/jspringbot.properties" />
-										<copy file="src/test/resources/jspringbot.sit.properties"
-											tofile="${project.build.outputDirectory}/jspringbot.properties" />
-									</tasks>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<version>3.7.0</version>
-						<configuration>
-							<source>1.8</source>
-							<target>1.7</target>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.jspringbot</groupId>
-						<artifactId>jspringbot-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
+			<properties>
+                <jspringbot.env.properties>${project.build.testOutputDirectory}/jspringbot.sit.properties</jspringbot.env.properties>
+            </properties>
 		</profile>
-		
 		<profile>
 			<id>cloud</id>
-			<build>
-				<sourceDirectory>src</sourceDirectory>
-				<plugins>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<tasks>
-										<delete
-											file="${project.build.outputDirectory}/jspringbot.properties" />
-										<copy file="src/test/resources/jspringbot.cloud.properties"
-											tofile="${project.build.outputDirectory}/jspringbot.properties" />
-									</tasks>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<version>3.7.0</version>
-						<configuration>
-							<source>1.8</source>
-							<target>1.7</target>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.jspringbot</groupId>
-						<artifactId>jspringbot-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
+			<properties>
+                <jspringbot.env.properties>${project.build.testOutputDirectory}/jspringbot.cloud.properties</jspringbot.env.properties>
+            </properties>			
 		</profile>
 	</profiles>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<delete file="${jspringbot.properties}" />
+								<copy file="${jspringbot.env.properties}" tofile="${jspringbot.properties}" />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jspringbot</groupId>
+				<artifactId>jspringbot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
