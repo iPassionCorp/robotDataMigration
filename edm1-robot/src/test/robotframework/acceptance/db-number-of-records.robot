@@ -36,5 +36,5 @@ Check Number of Records for TLP.CustomerBalloon
     DB Begin
     Create DB Query    select count(0) from tlp.customerballoon
     Execute DB Query
-    DB Projected Count Should Be Equal    26578
+    DB Projected Count Should Be Equal    13289
     DB Rollback
