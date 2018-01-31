@@ -1,0 +1,206 @@
+*** Settings ***
+Library           BuiltIn
+Library           String
+Resource          ../keywords/edm1_sit.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM1_SIT_0006_0003
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
+    ...    - extratpdpremium = default "0000000000" \ \ \ \
+    connect to EDM1
+    @{default}=    Query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.appno <> \ '000000000000'
+    convert DB List to String and Compare result    @{default[0]}    0    default
+
+EDM1_SIT_0006_0004
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
+    connect to EDM1
+    @{reqdate}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.reqdate <> '00000000'
+    convert DB List to String and Compare result    @{reqdate[0]}    0    ReqDate
+
+EDM1_SIT_0006_0005
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
+    ...
+    ...    Expected Result
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{extrapremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.extrapremium <> '0000000000'
+    convert DB List to String and Compare result    @{extrapremium[0]}    0    Extrapremium
+
+EDM1_SIT_0006_0006
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
+    ...    - extratpdpremium = default "0000000000" \ \ \ \ \ \ \ \
+    ...    Expected Result
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{extratpdpremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.extratpdpremium <> '0000000000'
+    convert DB List to String and Compare result    @{extratpdpremium[0]}    0    Extratpdpremium
+
+EDM1_SIT_0006_0007
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer2 \ \ \ \ \ \ \ \ \ - statcer2 = default ค่า blank
+    ...
+    ...    Expected Result
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.extratpdpremium <> '0000000000'
+    convert DB List to String and Compare result    @{statcer2[0]}    0    Statcer
+
+EDM1_SIT_0006_0008
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statdate2 \ \ \ \ \ \ \ \ \ \ \ \ \ - statdate2 = default "00000000"
+    ...
+    ...    Expected Result
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statdate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.statdate2 <> '00000000'
+    convert DB List to String and Compare result    @{statdate2[0]}    0    Statdate2
+
+EDM1_SIT_0006_0009
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{endownmentyear}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.endownmentyear <> '0000000'
+    convert DB List to String and Compare result    @{endownmentyear[0]}    0    EndownmentYear
+
+EDM1_SIT_0006_0010
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{deadcause}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.deadcause <> '0000'
+    convert DB List to String and Compare result    @{deadcause[0]}    0    DeadCause
+
+EDM1_SIT_0006_0011
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{receiptflag}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.receiptflag <> 'N'
+    convert DB List to String and Compare result    @{receiptflag[0]}    0    ReceiptFlag
+
+EDM1_SIT_0006_0012
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+    connect to EDM1
+    @{referenceno}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.referenceno <> ''
+    convert DB List to String and Compare result    @{referenceno[0]}    0    ReferenceNo.
+
+EDM1_SIT_0006_0013
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล reserve
+    ...    - reserve = default ค่า blank
+    ...
+    ...    expected
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{reserve}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.reserve <> ''
+    convert DB List to String and Compare result    @{reserve[0]}    0    Reserve
+
+EDM1_SIT_0006_0014
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = 0
+    connect to EDM1
+    @{mappingRule}=    query    select count(*) from dm.cert a left join dm.certmapping b on a.certno = b.certno left join tlp.customerinfo c on b.rcertno = c.certificateno \ where \ (c.policyno = '00064001' and a.policyno <> 'LE29') or (c.policyno = '00064002' and a.policyno <> 'LE30') or (c.policyno = '00019008' and a.policyno <> 'LE33') or (c.policyno = '00019009' and a.policyno <> 'LE34') or (c.policyno = '00019010' and a.policyno <> 'LE35') or (c.policyno = '00019011' and a.policyno <> 'LE37') or (c.policyno = '00019012' and a.policyno <> 'LE36') or (c.policyno = '00019004' and a.policyno <> 'LE49') or (c.policyno = '00019005' and a.policyno <> 'LE50') or (c.policyno = '00019006' and a.policyno <> 'LE51') or (c.policyno = '00019007' and a.policyno <> 'LE52') or (c.policyno = '00029022' and a.policyno <> 'LE38') or (c.policyno = '00029023' and a.policyno <> 'LE39') or (c.policyno = '00029024' and a.policyno <> 'LE40') or (c.policyno = '00029025' and a.policyno <> 'LE41') or (c.policyno = '00029026' and a.policyno <> 'LE42') or (c.policyno = '00029032' and a.policyno <> 'LE43') or (c.policyno = '00029034' and a.policyno <> 'LE44') or (c.policyno = '00029035' and a.policyno <> 'LE45') or (c.policyno = '00029036' and a.policyno <> 'LE46') or (c.policyno = '00008039' and a.policyno <> 'ML40') or (c.policyno = '00008038' and a.policyno <> 'ML41') or (c.policyno = '00008018' and a.policyno <> 'ML42') or (c.policyno = '00008021' and a.policyno <> 'ML43') or (c.policyno = '00008029' and a.policyno <> 'ML44') or (c.policyno = '00008033' and a.policyno <> 'ML45') or (c.policyno = '00008030' and a.policyno <> 'ML46') or (c.policyno = '00008031' and a.policyno <> 'ML47') or (c.policyno = '00008034' and a.policyno <> 'ML48') or (c.policyno = '00008040' and a.policyno <> 'OD09') or (c.policyno = '00027004' and a.policyno <> 'OD10') or (c.policyno = '01027002' and a.policyno <> 'PL11') or (c.policyno = '00027006' and a.policyno <> 'PL12') or (c.policyno = '00032004' and a.policyno <> 'LE47') or (c.policyno = '00032001' and a.policyno <> 'LE48') or (c.policyno = '00053001' and a.policyno <> 'LE31') or (c.policyno = '00061002' and a.policyno <> 'LE32') or (c.policyno = '00063001' and a.policyno <> 'PL13') or (c.policyno = '00060001' and a.policyno <> 'PL14') or (c.policyno = '00037001' and a.policyno <> 'PL15') or (c.policyno = '00033002' and a.policyno <> 'PL16') or (c.policyno = '00035001' and a.policyno <> 'PL17') or (c.policyno = '00062001' and a.policyno <> 'PL18')
+    convert DB List to String and Compare result    @{mappingRule[0]}    0    MappingRule
+
+EDM1_SIT_0006_0015
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    connect to EDM1
+    @{certNo}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ group by a.certno having count(0) > 1;
+    convert DB List to String and Compare result    @{certNo[0]}    0    CertNo.
+
+EDM1_SIT_0006_0016
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"    #รอถามพี่เอ๋, พี่กบ
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...
+    ...    รอถามพี่เอ๋, พี่กบ
+    Comment    connect to EDM1
+    Comment    log    ${certNo}
+    Comment    Should Be Equal    ${deadcause}    [(0L,)]
+    log    รอถามพี่เอ๋, พี่กบ
+
+EDM1_SIT_0006_0017
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล age
+    ...    - age = tlp.CustomerInfo.Age
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    connect to EDM1
+    @{age}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.age <> c.age
+    convert DB List to String and Compare result    @{age[0]}    0    Age
+
+EDM1_SIT_0006_0018
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล smi
+    ...    - smi = tlp.CustomerInfo.SA
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{smi}=    query    select count (*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.smi <> lpad(c.sa,9,'0');
+    convert DB List to String and Compare result    @{smi[0]}    0    SIMI
+
+EDM1_SIT_0006_0019
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล lifeSum
+    ...    - lifeSum = tlp.CustomerSA.SA_Life
+    connect to EDM1
+    @{lifeSum}=    query    select count (0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.sa_life FROM tlp.customerinfo c \ join tlp.customersa p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.lifeSum <> lpad (tmp.sa_life, 9, '0');
+    convert DB List to String and Compare result    @{lifeSum[0]}    0    LifeSum
+
+EDM1_SIT_0006_0020
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล period
+    ...    - period = tlp.CustomerInfo.DurationInsurance
+    connect to EDM1
+    @{period}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.period <> lpad(c.durationinsurance,2,'0');
+    convert DB List to String and Compare result    @{period[0]}    0    Period
+
+EDM1_SIT_0006_0021
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล loan_term
+    ...    - loan_term = tlp.CustomerInfo.CustomerDuration
+    connect to EDM1
+    @{loan_term}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.loan_term <> lpad(c.customerduration,2,'0');
+    convert DB List to String and Compare result    @{loan_term[0]}    0    Loan_Term
+
+EDM1_SIT_0006_0022
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล lifepremium
+    ...    -lifepremium = tlp.SplitPremiumAmount.LifePremium
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{lifepremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.lifepremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.lifepremium <> lpad(cast(cast(cast(tmp.lifepremium as decimal)*100 as int) as text),10,'0');
+    convert DB List to String and Compare result    @{lifepremium[0]}    0    LifePremium
+
+EDM1_SIT_0006_0023
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล tpdpremium
+    ...    - tpdpremium = tlp.SplitPremiumAmount.TPDPremium
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{tpdpremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.tpdpremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.tpdpremium <> lpad(cast(cast(cast(tmp.tpdpremium as decimal)*100 as int) as text),10,'0');
+    convert DB List to String and Compare result    @{tpdpremium[0]}    0    TPDpremium
+
+EDM1_SIT_0006_0024
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล addpremium
+    ...    - addpremium = tlp.SplitPremiumAmount.ADDPremium
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{tpdpremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.addpremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.addpremium <> lpad(cast(cast(cast(tmp.addpremium as decimal)*100 as int) as text),10,'0');
+    convert DB List to String and Compare result    @{tpdpremium[0]}    0    TPDpremium
