@@ -3,6 +3,8 @@ Library           DatabaseLibrary
 Library           String
 Library           Selenium2Library
 Resource          ../Repositories/EDM1_SIT_Connection.txt
+Library           Collections
+Resource          ../Repositories/Cert_Column.txt
 
 *** Keywords ***
 connect to EDM1
@@ -15,3 +17,17 @@ convert DB List to String and Compare result
     ${Expectedfinal}    Convert To String    ${sqlresult}
     Should Be Equal    ${Expectedfinal}    ${expectedValue}    #Expected Result count = '0'
     log    ${fieldName} = ${Expectedfinal}
+
+Column Length Size
+    [Arguments]    ${TotalColumn}    ${Schema.TBname}
+    ${ColumnSize}    Get Variable Value    ${TotalColumn}
+    ${i}=    Set Variable    0
+    Comment    @{ColumnLengthResult}    Create List
+    : FOR    ${i}    IN RANGE    ${i}    ${ColumnSize}
+    \    ${length}=    query    SELECT DISTINCT(length(${Schema.TBname}.${Cert_ColumnName[${i}]})) FROM ${Schema.TBname}
+    \    @{lengthConvert}=    Convert To String    ${length[${i}]}
+    \    Log    ${Cert_ColumnName[${i}]} : ${lengthConvert[${i}]}}
+    \    Comment    Insert Into List    ${ColumnLengthResult}    ${i}    ${lengthConvert}
+    \    Comment    log    ${Cert_ColumnName[${i}]} : ${ColumnLengthResult[${i}]}
+    \    Comment    ${lengthConvert}    Set Variable    0
+    ${EMPTY}

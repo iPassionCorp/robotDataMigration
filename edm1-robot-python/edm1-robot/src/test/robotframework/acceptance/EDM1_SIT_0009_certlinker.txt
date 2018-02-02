@@ -1,0 +1,4 @@
+*** Settings ***
+Resource          ../keywords/db.robot
+
+*** Test Cases ***

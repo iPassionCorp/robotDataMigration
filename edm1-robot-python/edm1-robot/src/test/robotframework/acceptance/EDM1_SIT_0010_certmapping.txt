@@ -1,0 +1,65 @@
+*** Settings ***
+Documentation     TableName : CertMapping
+Library           String
+Library           BuiltIn
+Library           DatabaseLibrary
+Resource          ../keywords/edm1_sit.txt
+
+*** Variables ***
+
+*** Test Cases ***
+EDM1_SIT_0010_0002
+    [Documentation]    Run SQL Script policyno=4 certNo=8 \ rpolicyno=8 \ rCertNo=15
+    connect to EDM1    #Connect to postgres
+    ${policyno}=    Query    select distinct(length(policyno)) from dm.certmapping
+    ${certno}=    Query    select distinct(length(certno)) from dm.certmapping
+    ${rpolicyno}=    Query    select distinct(length(rpolicyno)) from dm.certmapping
+    ${rcertno}=    Query    select distinct(length(rcertno)) from dm.certmapping
+    Comment    Run Keyword If    ${policyno}='4'    log    ${policyno}
+    Comment    Should Be Equal    ${certno}    8
+    Comment    Should Be Equal    ${rpolicyno}    8
+    Comment    Should Be Equal    ${rcertno}    15
+
+EDM1_SIT_0010_0003_1
+    [Documentation]    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    1. count(*) = 43
+    ...    2. ต้องไม่แสดง customerinfo.policyno ที่ไม่มีอยู่ใน certmapping
+    connect to EDM1    #Connect to postgres
+    ${conuntrow}=    Query    select count(distinct(rpolicyno)) from dm.certmapping;
+    log    ${conuntrow}
+
+EDM1_SIT_0010_0003_2
+    [Documentation]    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    1. count(*) = 43
+    ...    2. ต้องไม่แสดง customerinfo.policyno ที่ไม่มีอยู่ใน certmapping
+    connect to EDM1    #Connect to postgres
+    ${compare}=    Query    select count(*) from \ (select distinct(policyno) from tlp.customerinfo) a where trim(a.policyno) not in (select trim(rpolicyno) from dm.certmapping);
+    log    ${compare}
+
+EDM1_SIT_0010_0004
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล \ rcertNo
+    #1
+    Run Script    select t.target - m.migrated as diff from (select count(0) as target from dm.certmapping) t, (select sum(target) as migrated from validate.numberofrecords where target<>0) m
+    sleep    3s
+    #2
+    Run Script    2. select count(0) from dm.certmapping group by rcertno having count(rcertno) > 1;
+
+EDM1_SIT_0010_0005
+    [Documentation]    Expected Result : หลัง run SQL Script ต้องไม่พบข้อมูลที่ mapping policy ไม่ถูกต้อง
+    connect to EDM1
+    ${Result}=    Query    SELECT count(tmpcertmapping.rpolicyno) FROM ( select distinct(rpolicyno),policyno from dm.certmapping where \ (rpolicyno = '00064001' and policyno <> 'LE29') or (rpolicyno = '00064002' and policyno <> 'LE30') or (rpolicyno = '00019008' and policyno <> 'LE33') or (rpolicyno = '00019009' and policyno <> 'LE34') or (rpolicyno = '00019010' and policyno <> 'LE35') or (rpolicyno = '00019011' and policyno <> 'LE37') or (rpolicyno = '00019012' and policyno <> 'LE36') or (rpolicyno = '00019004' and policyno <> 'LE49') or (rpolicyno = '00019005' and policyno <> 'LE50') or (rpolicyno = '00019006' and policyno <> 'LE51') or (rpolicyno = '00019007' and policyno <> 'LE52') or (rpolicyno = '00029022' and policyno <> 'LE38') or (rpolicyno = '00029023' and policyno <> 'LE39') or (rpolicyno = '00029024' and policyno <> 'LE40') or (rpolicyno = '00029025' and policyno <> 'LE41') or (rpolicyno = '00029026' and policyno <> 'LE42') or (rpolicyno = '00029032' and policyno <> 'LE43') or (rpolicyno = '00029034' and policyno <> 'LE44') or (rpolicyno = '00029035' and policyno <> 'LE45') or (rpolicyno = '00029036' and policyno <> 'LE46') or (rpolicyno = '00008039' and policyno <> 'ML40') or (rpolicyno = '00008038' and policyno <> 'ML41') or (rpolicyno = '00008018' and policyno <> 'ML42') or (rpolicyno = '00008021' and policyno <> 'ML43') or (rpolicyno = '00008029' and policyno <> 'ML44') or (rpolicyno = '00008033' and policyno <> 'ML45') or (rpolicyno = '00008030' and policyno <> 'ML46') or (rpolicyno = '00008031' and policyno <> 'ML47') or (rpolicyno = '00008034' and policyno <> 'ML48') or (rpolicyno = '00008040' and policyno <> 'OD09') or (rpolicyno = '00027004' and policyno <> 'OD10') or (rpolicyno = '01027002' and policyno <> 'PL11') or (rpolicyno = '00027006' and policyno <> 'PL12') or (rpolicyno = '00032004' and policyno <> 'LE47') or (rpolicyno = '00032001' and policyno <> 'LE48') or (rpolicyno = '00053001' and policyno <> 'LE31') or (rpolicyno = '00061002' and policyno <> 'LE32') or (rpolicyno = '00063001' and policyno <> 'PL13') or (rpolicyno = '00060001' and policyno <> 'PL14') or (rpolicyno = '00037001' and policyno <> 'PL15') or (rpolicyno = '00033002' and policyno <> 'PL16') or (rpolicyno = '00035001' and policyno <> 'PL17') or (rpolicyno = '00062001' and policyno <> 'PL18')) tmpcertmapping
+    log    ${Result}    #expected Result = 0
+
+EDM1_SIT_0010_0006
+    [Documentation]    Expected:
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    1. ต้องไม่มีค่าซ้ำ count(*) = 0
+    ...    2. ไม่พบข้อมูลที่ certNo เป็นค่า null หรือ blank
+    ...    3. ไม่พบข้อมูลที่ certNo = rcertno
+    connect to EDM1
+    ${countCertno}=    Query    select count(certno) from dm.certmapping group by certno having count(certno) > 1
+    ${checkNull}=    Query    select * from dm.certmapping where certno is null or trim(certno) = ''
+    ${notFoundData}=    Query    select * from dm.certmapping where trim(certno) = trim(rcertno)
+    log    ${countCertno}
+    log    ${checkNull}
+    log    ${notFoundData}

@@ -3,8 +3,24 @@ Library           BuiltIn
 Library           String
 Resource          ../keywords/edm1_sit.txt
 Library           DatabaseLibrary
+Library           Collections
+Resource          ../Repositories/Cert_Column.txt
 
 *** Test Cases ***
+EDM1_SIT_0006_0002
+    [Documentation]    Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
+    ...    - policyno = 4
+    ...    - certno = 8 \ \ \ \ \ \ \ \ \ \ \ - appno = 12 \ \ \ \ \ \ \ \ \ \ \ \ \ - reqdate = 8 \ \ \ \ \ \ \ \ \ \ - nameid = 13 \ \ \ \ \ \ \ \ \ \ \ \ \ - age = 2 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ - smi = 9 \ \ \ - lifesum = 9 \ \ \ \ \ \ - accidentsum = 9 \ \ \ \ \ - period = 2 \ \ \ \ \ \ \ - loan_term = 2 \ \ \ \ \ \ \ \ \ - lifepremium = 10
+    ...    - extrapremium = 10 \ \ - tpdpremium = 10
+    ...    - extratpdpremium = 10 \ \ \ \ - addpremium = 10 \ \ \ - em = 3 \ \ \ \ \ \ \ \ \ - tpd = 4 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ - effectivedate = 8 \ \ \ \ \ \ - maturedate = 8 \ \ \ \ \ \ \ \ \ - premiumdate = 8 \ \ \ \ \ \ \ - certyyyymm = 6 \ \ \ \ \ \ \ \ - statcer = 1 \ \ \ \ \ \ \ \ \ \ \ \ - statcer2 = 1 \ \ \ \ \ \ \ \ \ \ - statdate2 \ = 8 \ \ \ \ \ \ \ \ - informdate1 = 8 \ \ \ \ \ \ - paydate1 = 8 \ \ \ \ \ \ \ \ \ - amount1 \ = 10 \ \ \ \ \ \ \ \ \ - informdate2 \ = 8 \ \ \ \ - paydate2 \ = 8 \ \ \ \ \ \ \ \ \ - amount2 \ = 10 \ \ \ \ \ \ \ \ \ \ - deaddate = 8
+    ...    - endownmentyear = 7 \ \ \ - deadcause \ = 4 \ \ \ \ \ \ \ - receiptflag \ = 1 \ \ \ \ \ \ - referenceno \ = 20 \ \ \ \ \ \ - reserve = 2
+    connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    Column Length Size    ${TotalColumn}    dm.cert
+
 EDM1_SIT_0006_0003
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
     ...    - extratpdpremium = default "0000000000" \ \ \ \
@@ -30,8 +46,7 @@ EDM1_SIT_0006_0005
 
 EDM1_SIT_0006_0006
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
-    ...    - extratpdpremium = default "0000000000" \ \ \ \ \ \ \ \
-    ...    Expected Result
+    ...    - extratpdpremium = default "0000000000" \ \ \ \ \ \ \ \ Expected Result
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     connect to EDM1
@@ -119,8 +134,9 @@ EDM1_SIT_0006_0015
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     connect to EDM1
-    @{certNo}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ group by a.certno having count(0) > 1;
-    convert DB List to String and Compare result    @{certNo[0]}    0    CertNo.
+    ${certNo}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ group by a.certno having count(0) > 1;
+    ${certNo}=    Convert To String    ${certNo}
+    Should Be Equal    ${certNo}    None
 
 EDM1_SIT_0006_0016
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"    #รอถามพี่เอ๋, พี่กบ
@@ -204,3 +220,23 @@ EDM1_SIT_0006_0024
     connect to EDM1
     @{tpdpremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.addpremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.addpremium <> lpad(cast(cast(cast(tmp.addpremium as decimal)*100 as int) as text),10,'0');
     convert DB List to String and Compare result    @{tpdpremium[0]}    0    TPDpremium
+
+EDM1_SIT_0006_0025
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล em
+    ...    - em = tlp.CustomerInfo.ExtraRate
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{em}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.em <> trim (to_char(to_number(c.extrarate, '900'), '000'));
+    convert DB List to String and Compare result    @{em[0]}    0    EM
+
+EDM1_SIT_0006_0026
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล effectiveDate
+    ...    - effectiveDate = tlp.CustomerInfo.EffectiveDate
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{effectiveDate}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.em <> trim (to_char(to_number(c.extrarate, '900'), '000'));
+    convert DB List to String and Compare result    @{effectiveDate[0]}    0    EffectiveDate
