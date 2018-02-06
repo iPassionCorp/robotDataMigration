@@ -7,6 +7,14 @@ Library           Collections
 Resource          ../Repositories/Cert_Column.txt
 
 *** Test Cases ***
+EDM1_SIT_0006_0001
+    connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    Should Be Equal As Integers    ${TotalColumn}    37
+    log    Column of CERT table is ${TotalColumn}
+
 EDM1_SIT_0006_0002
     [Documentation]    Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
     ...    - policyno = 4
@@ -19,7 +27,10 @@ EDM1_SIT_0006_0002
     @{columnCount}=    Query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
     ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
     #----Get Column Size----
-    Column Length Size    ${TotalColumn}    dm.cert
+    ${i}=    Set Variable    0
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    ${lenList}=    query    SELECT DISTINCT(length(dm.cert.${Cert_ColumnName[${i}]})) FROM dm.cert
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
 EDM1_SIT_0006_0003
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
