@@ -2,7 +2,7 @@
 Library           DatabaseLibrary
 Library           String
 Library           Selenium2Library
-Resource          ../Repositories/EDM1_SIT_Connection.txt
+Resource          ../Repositories/EDM1_Cloud_Connection.txt
 Library           Collections
 Resource          ../Repositories/Cert_Column.txt
 

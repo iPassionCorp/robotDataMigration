@@ -24,12 +24,13 @@ EDM1_SIT_0006_0002
     ...    - endownmentyear = 7 \ \ \ - deadcause \ = 4 \ \ \ \ \ \ \ - receiptflag \ = 1 \ \ \ \ \ \ - referenceno \ = 20 \ \ \ \ \ \ - reserve = 2
     connect to EDM1
     #---- Get Total Column----
-    @{columnCount}=    Query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a \ WHERE a.table_name = 'cert' AND a.data_type = 'character varying'
     ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
     #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'cert' AND a.data_type = 'character varying'
     ${i}=    Set Variable    0
-    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
-    \    ${lenList}=    query    SELECT DISTINCT(length(dm.cert.${Cert_ColumnName[${i}]})) FROM dm.cert
+    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
 EDM1_SIT_0006_0003

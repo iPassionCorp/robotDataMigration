@@ -1,7 +1,7 @@
 *** Settings ***
 Library           DatabaseLibrary
 Resource          ../keywords/edm1_sit.txt
-Resource          ../Repositories/EDM1_SIT_Connection.txt
+Resource          ../Repositories/EDM1_Cloud_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0008_0004
