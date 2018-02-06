@@ -31,3 +31,5 @@ Column Length Size
     \    Comment    log    ${Cert_ColumnName[${i}]} : ${ColumnLengthResult[${i}]}
     \    Comment    ${lengthConvert}    Set Variable    0
     ${EMPTY}
+
+CountColumn
