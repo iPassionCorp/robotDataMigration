@@ -4,6 +4,48 @@ Resource          ../keywords/edm1_sit.txt
 Resource          ../Repositories/EDM1_Cloud_Connection.txt
 
 *** Test Cases ***
+EDM1_SIT_0008_0001
+    [Documentation]    ตรวจจำนวน column ที่เก็บใน Table "certrider" มีจำนวน 8 column ดังนี้
+    ...    - PolicyNo
+    ...    - certNo
+    ...    - riderType
+    ...    - sum
+    ...    - premium
+    ...    - extraPremium
+    ...    - riderStatus
+    ...    - riderStatusDate
+    ...    - reserve
+    connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'certrider' AND c.table_schema = 'dm'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    Should Be Equal As Integers    ${TotalColumn}    9
+    log    Column of CERTRIRDER table is ${TotalColumn}
+
+EDM1_SIT_0008_0002
+    [Documentation]    Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
+    ...    - productCode = 4
+    ...    - certNo = 8
+    ...    - riderType = 3
+    ...    - sum = 9
+    ...    - premium = 10,2
+    ...    - extraPremium = 10,2
+    ...    - riderStatus = 1
+    ...    - riderStatusDate = 8
+    connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a \ WHERE a.table_name = 'certrider' AND a.data_type = 'character varying'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'certrider' AND a.data_type = 'character varying'
+    ${i}=    Set Variable    0
+    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
+
+EDM1_SIT_0008_0003
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล productCode และ certno ต้องมีข้อมูลเท่ากับ Table "cert"
+
 EDM1_SIT_0008_0004
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล riderType
     ...    - แบบประกัน LE29: Rider Type = P11,E06,B06,M04
@@ -172,5 +214,105 @@ EDM1_SIT_0008_0016
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     connect to EDM1
-    @{Result}=    Query
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno left join lookup.migratedate d on c.policyno = d.policyno where to_date(d.migratedate, 'YYYYMMDD') < to_date(c.maturedate,'YYYYMMDD') and a.ridertype not in ('E01','M01') and a.riderstatus <> 'N'
     convert DB List to String and Compare result    @{Result[0]}    0    riderStatus
+
+EDM1_SIT_0008_0017
+    [Documentation]    ตรวจสอบ Rider Status ที่หมดระยะความคุ้มครอง (BusinessDate > cert.MatureDate), RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    SELECT count(0) FROM dm.certrider A \ \ JOIN dm.certmapping B ON a.policyno = b.policyno AND a.certno = b.certno \ \ JOIN dm.cert E ON a.policyno = e.policyno AND a.certno = e.certno \ \ \ JOIN( \ \ \ \ \ SELECT c.policyno, c.migratedate \ \ \ \ \ FROM lookup.migratedate c) tmplookup \ \ \ \ ON a.policyno = tmplookup.policyno WHERE to_date(tmplookup.migratedate,'YYYYMMDD') >= to_date(e.maturedate,'YYYYMMDD') \ \ AND a.ridertype NOT IN ('E01','M01') AND a.riderstatus <> 'A'
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0018
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ที่ยังไม่หมดระยะความคุ้มครอง
+    ...    และระยะความคุ้มครองของ RiderType E01 ไม่เกิน 10 ปี, RiderStatus = 'N'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno left join lookup.migratedate d on c.policyno = d.policyno where a.ridertype= 'E01' and (extract(year from to_date(c.maturedate,'YYYYMMDD')) - extract(year from to_date(c.effectivedate,'YYYYMMDD'))) <= 10 and to_date(d.migratedate, 'YYYYMMDD') < to_date(c.maturedate,'YYYYMMDD') and a.riderstatus <> 'N'
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0019
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno left join lookup.migratedate d on c.policyno = d.policyno where a.ridertype= 'M01' and (extract(year from to_date(c.maturedate,'YYYYMMDD')) - extract(year from to_date(c.effectivedate,'YYYYMMDD'))) > 7 and to_date(d.migratedate, 'YYYYMMDD') > to_date(extract(year from to_date(c.effectivedate,'YYYYMMDD'))+7||substring(c.effectivedate,5,4),'YYYYMMDD') and a.riderstatus <> 'A'
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0020
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno left join lookup.migratedate d on c.policyno = d.policyno where a.ridertype= 'M01' and (extract(year from to_date(c.maturedate,'YYYYMMDD')) - extract(year from to_date(c.effectivedate,'YYYYMMDD'))) <= 7 and to_date(d.migratedate, 'YYYYMMDD') < to_date(c.maturedate,'YYYYMMDD') and a.riderstatus <> 'N'
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0021
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno left join lookup.migratedate d on c.policyno = d.policyno where a.ridertype= 'M01' and (extract(year from to_date(c.maturedate,'YYYYMMDD')) - extract(year from to_date(c.effectivedate,'YYYYMMDD'))) <= 7 and to_date(d.migratedate, 'YYYYMMDD') < to_date(c.maturedate,'YYYYMMDD') and a.riderstatus <> 'N'
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0022
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno where a.ridertype not in ('E01','M01') and a.riderstatus = 'N' and a.riderstatusdate <> c.effectivedate
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0023
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno where a.ridertype not in ('E01','M01') and a.riderstatus = 'A' and a.riderstatusdate = c.maturedate
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0024
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno where a.ridertype not in ('E01','M01') and a.riderstatus = 'A' and a.riderstatusdate = c.maturedate
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0025
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    select count(0) from dm.certrider a \ inner join dm.certmapping b on a.policyno = b.policyno and \ a.certno = b.certno inner join dm.cert c on b.policyno = c.policyno and b.certno = c.certno where a.ridertype = 'M01' and a.riderstatus = 'N' and a.riderstatusdate <> c.effectivedate
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0026
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    SELECT --count(0) \ a.policyno, a.certno, e.statcer, a.ridertype, a.riderstatus, \ to_date(e.effectivedate,'YYYYMMDD') AS effective_date, \ to_date(e.maturedate,'YYYYMMDD') AS mature_date, \ --to_date(tmplookup.migratedate,'YYYYMMDD') AS business_date, \ TO_date(a.riderstatusdate,'YYYYMMDD') AS riderstatusdate, \ to_number(e.period,'99') AS period FROM dm.certrider A \ \ JOIN dm.certmapping B ON a.policyno = b.policyno AND a.certno = b.certno \ \ JOIN dm.cert E ON a.policyno = e.policyno AND a.certno = e.certno \ \ \ JOIN( \ \ \ \ \ SELECT c.policyno, c.migratedate \ \ \ \ \ FROM lookup.migratedate c) tmplookup \ \ \ \ ON a.policyno = tmplookup.policyno WHERE e.maturedate <> a.riderstatusdate \ \ \ AND to_date(tmplookup.migratedate,'YYYYMMDD') < to_date(e.maturedate,'YYYYMMDD') \ \ \ AND a.ridertype = 'E01' AND a.riderstatus = 'A' \ \ \ AND to_number(e.period,'99') > 10
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
+
+EDM1_SIT_0008_0027
+    [Documentation]    ตรวจสอบ Rider Status ของ RiderType 'E01' ระยะความคุ้มครองเกิน 10 ปี, RiderStatus = 'A'
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    connect to EDM1
+    @{Result}=    Query    SELECT count(0) FROM dm.certrider A \ \ JOIN dm.certmapping B ON a.policyno = b.policyno AND a.certno = b.certno \ \ JOIN dm.cert E ON a.policyno = e.policyno AND a.certno = e.certno \ \ \ JOIN( \ \ \ \ \ SELECT c.policyno, c.migratedate \ \ \ \ \ FROM lookup.migratedate c) tmplookup \ \ \ \ ON a.policyno = tmplookup.policyno WHERE e.maturedate <> a.riderstatusdate \ \ \ AND to_date(tmplookup.migratedate,'YYYYMMDD') < to_date(e.maturedate,'YYYYMMDD') \ \ \ AND a.ridertype = 'M01' AND a.riderstatus = 'A' \ \ \ AND to_number(e.period,'99') > 7
+    convert DB List to String and Compare result    @{Result[0]}    0    Expected Result
