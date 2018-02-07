@@ -29,7 +29,7 @@ EDM1_SIT_0006_0002
     #----Get Column Size----
     ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'cert' AND a.data_type = 'character varying'
     ${i}=    Set Variable    0
-    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
     \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
@@ -252,3 +252,199 @@ EDM1_SIT_0006_0026
     connect to EDM1
     @{effectiveDate}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.em <> trim (to_char(to_number(c.extrarate, '900'), '000'));
     convert DB List to String and Compare result    @{effectiveDate[0]}    0    EffectiveDate
+
+EDM1_SIT_0006_0027
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล matureDate
+    ...    - matureDate = tlp.CustomerInfo.ExpiredDate+1
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{matureDate}=    query    SELECT count(0) \ from dm.cert a \ inner join dm.certmapping b on (a.certno = b.certno) inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.expireddate FROM tlp.customerinfo c \ join tlp.customerinfo p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno WHERE (to_date(a.maturedate,'YYYYMMDD') - INTERVAL '543 year') \ <> (to_date(tmp.expireddate,'YYYYMMDD') - INTERVAL '543 year') + INTERVAL '1 day';
+    convert DB List to String and Compare result    @{matureDate[0]}    0    MatureDate
+
+EDM1_SIT_0006_0028
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล premiumDate
+    ...    - premiumDate = tlp.Payment.PaymentDate
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{premiumDate}=    query    select count(distinct(a.policyno)) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.paymentdate FROM tlp.customerinfo c \ join tlp.payment p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.premiumDate <> tmp.paymentdate
+    convert DB List to String and Compare result    @{premiumDate[0]}    0    PremiumDate
+
+EDM1_SIT_0006_0029
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate1
+    ...    - informDate1 = tlp.CustomerInfo.informDate1
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{informDate1}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate1 <> c.informDate1;
+    convert DB List to String and Compare result    @{informDate1[0]}    0    InformDate1
+
+EDM1_SIT_0006_0030
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล payDate1
+    ...    - payDate1 = tlp.CustomerInfo.payDate1
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{payDate1}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate1 <> c.informDate1;
+    convert DB List to String and Compare result    @{payDate1[0]}    0    PayDate1
+
+EDM1_SIT_0006_0031
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล effectiveDate
+    ...    - effectiveDate = tlp.CustomerInfo.EffectiveDate
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{amount1}=    query    select count(0) \ from dm.cert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.amount1 <> trim(to_char(to_number(c.amount1,'9999999900'),'0000000000'));
+    convert DB List to String and Compare result    @{amount1[0]}    0    amount1
+
+EDM1_SIT_0006_0032
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate2
+    ...    - informDate2 = tlp.CustomerInfo.informDate2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{informDate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
+    convert DB List to String and Compare result    @{informDate2[0]}    0    InformDate2
+
+EDM1_SIT_0006_0033
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate2
+    ...    - informDate2 = tlp.CustomerInfo.informDate2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{informDate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
+    convert DB List to String and Compare result    @{informDate2[0]}    0    InformDate2
+
+EDM1_SIT_0006_0034
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{amount2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
+    convert DB List to String and Compare result    @{amount2[0]}    0    Amount2
+
+EDM1_SIT_0006_0035
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{deadDate}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.deadDate <> c.deadDate;
+    convert DB List to String and Compare result    @{deadDate[0]}    0    DeadDate
+
+EDM1_SIT_0006_0036
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล tpd
+    ...    - tpd = em/100 เช่น em = 100, tpd = 1.00
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{tpd}=    query    select count(*) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno where a.tpd <> lpad(em,4,'0')
+    convert DB List to String and Compare result    @{tpd[0]}    0    TDP
+
+EDM1_SIT_0006_0037
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล certyyyymm
+    ...    - certyyyymm = CustomerInfo.EffectiveDate.substring(0,6)
+    ...    เช่น effectivedate = 25591021, certyyymm = 255910
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{certyyyymm}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where substring(c.EffectiveDate,1,6) <> a.certyyyymm;
+    convert DB List to String and Compare result    @{certyyyymm[0]}    0    certyyyymm
+
+EDM1_SIT_0006_0038
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Active
+    ...    - statcer = "I" (มีผลบังคับ)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Active' and a.statcer <> 'I'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer I-Active
+
+EDM1_SIT_0006_0039
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Death
+    ...    - statcer = "D" (มรณกรรม)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Death' and a.statcer <> 'D'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer D-Death
+
+EDM1_SIT_0006_0040
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel (Void)
+    ...    - statcer = "V" (บอกล้าง)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel (Void)' and a.statcer <> 'V'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer C-Cancel (Void)
+
+EDM1_SIT_0006_0041
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Expired
+    ...    - statcer = "M" (ครบกำหนดสัญญา)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Expired' and a.statcer <> 'M'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer M-Expired
+
+EDM1_SIT_0006_0042
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Surrender
+    ...    - statcer = "S" (เวนคืน)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Surrender' and a.statcer <> 'S'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer S-Surrender
+
+EDM1_SIT_0006_0043
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel (ไม่รับประกัน)
+    ...    - statcer = "C" (ยกเลิก)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel (ไม่รับประกัน)' and a.statcer <> 'C'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer C-Cancel (ไม่รับประกัน)
+
+EDM1_SIT_0006_0044
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel and Refund
+    ...    - statcer = "C" (ยกเลิก)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel and Refund' and a.statcer <> 'C'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer C-Cancel and Refund
+
+EDM1_SIT_0006_0045
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel By Customer
+    ...    - statcer = "C" (ยกเลิก)
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    connect to EDM1
+    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel By Customer' and a.statcer <> 'C'
+    convert DB List to String and Compare result    @{statcer[0]}    0    statcer C-Cancel By Customern
