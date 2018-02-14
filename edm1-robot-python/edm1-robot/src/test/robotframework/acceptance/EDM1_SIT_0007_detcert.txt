@@ -1,0 +1,288 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../keywords/edm1_sit.txt
+
+*** Test Cases ***
+EDM1_SIT_0007_0001
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล policyno และ certno ต้องมีข้อมูลเท่ากับ Table "cert"
+    ...    - หลัง run SQL Script จำนวน record ของ dm.detcert ต้องเท่ากับจำนวน record ของ dm.cert
+    EDM1_connect to EDM1
+    #---- Get Total Column----
+    ${TotalColumn}    EDM1_Count Record by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'detcert' AND c.table_schema = 'dm'
+    EDM1_Compare Result    ${TotalColumn}    22    Sum column of detCert
+
+EDM1_SIT_0007_0002
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล policyno และ certno ต้องมีข้อมูลเท่ากับ Table "cert"
+    ...    - หลัง run SQL Script จำนวน record ของ dm.detcert ต้องเท่ากับจำนวน record ของ dm.cert
+    EDM1_connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a \ WHERE a.table_name = 'detcert' AND a.data_type = 'character varying'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'detcert' AND a.data_type = 'character varying'
+    ${i}=    Set Variable    0
+    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
+
+EDM1_SIT_0007_0003
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล policyno และ certno ต้องมีข้อมูลเท่ากับ Table "cert"
+    ...    - หลัง run SQL Script จำนวน record ของ dm.detcert ต้องเท่ากับจำนวน record ของ dm.cert
+    EDM1_connect to EDM1
+    #---- Get record from detcert table----
+    ${detCertRecord}    EDM1_Count Record by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno
+    log    ${detCertRecord}
+    #---- Get record from cert table----
+    ${CertRecord}    EDM1_Count Record by query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno
+    log    ${CertRecord}
+    # Validate record
+    Run Keyword And Return Status    Should Be Equal    ${detCertRecord}    ${CertRecord}
+
+EDM1_SIT_0007_0004
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล code แสดงค่าถูกต้องตามที่ TLI Input
+    ...    - ถ้า policyno = LE29,LE30 (Partner: Orico), code = TORC000001
+    ...    - ถ้า policyno = LE33,LE34,LE35,LE36,LE37,LE49,LE50,LE51,LE52 (Partner: NISSAN), code = TNSN0HQ001
+    ...    - ถ้า policyno = LE38,LE39,LE40,LE41,LE42,LE43,LE44,LE45,LE46 (Partner: Toyota), code = TTLT0HQ001
+    ...    - ถ้า policyno = ML40,ML41,ML42,ML43,ML44,ML45,ML46,ML47,ML48,OD09 (Partner: TCRB), code = TTCRB00001
+    ...    - ถ้า policyno = OD10,PL11,PL12 (Partner: CIMB), code = TCIMB00001
+    ...    - ถ้า policyno = LE47,LE48 (Partner: AMANAH), code = TAMN000001
+    ...    - ถ้า policyno = LE31 (Partner: WLC), code = TWLC000001
+    ...    - ถ้า policyno = LE32 (Partner: BAF), code = TBAF000001
+    ...    - ถ้า policyno = PL13 (Partner: JMT), code = TJMT000001
+    ...    - ถ้า policyno = PL14,PL15,PL16,PL17,PL18 (Partner: COOP), code = TCOOP00001
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    SELECT count(distinct(tmp.policyno)) from (SELECT a.policyno, a.code from dm.detcert a where policyno in ('LE29','LE30') and code <> 'TORC000001' or policyno in ('LE33','LE34','LE35','LE36','LE37','LE49','LE50','LE51','LE52') and code <> 'TNSN0HQ001' or policyno in ('LE38','LE39','LE40','LE41','LE42','LE43','LE44','LE45','LE46') and code <> 'TTLT0HQ001' or policyno in ('ML40','ML41','ML42','ML43','ML44','ML45','ML46','ML47','ML48','OD09') and code <> 'TTCRB00001' or policyno in ('OD10','PL11','PL12') and code <> 'TCIMB00001' or policyno in ('LE47','LE48') and code <> 'TAMN000001' or policyno in ('LE31') and code <> 'TWLC000001' or policyno in ('LE32') and code <> 'TBAF000001' or policyno in ('PL13') and code <> 'TJMT000001' or policyno in ('PL14','PL15','PL16','PL17','PL18') and code <> 'TCOOP00001') tmp
+    EDM1_Compare Result    ${Result}    0    TLI Input
+
+EDM1_SIT_0007_0005.1
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล address1 และ address2 ตามเงือนไขดังนี้
+    ...    - tlp.customerinfo.address1 และ tlp.customerinfo.address2 มีค่า
+    ...    ดังนั้น
+    ...    - detCert.address1 = tlp.customerinfo.address1
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address1 <> rpad(c.address1, 70, ' ');
+    EDM1_Compare Result    ${Result}    0    detCert.address1
+
+EDM1_SIT_0007_0005.2
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล address1 และ address2 ตามเงือนไขดังนี้
+    ...    - tlp.customerinfo.address1 และ tlp.customerinfo.address2 มีค่า
+    ...    ดังนั้น
+    ...    - - detCert.address2 = tlp.customerinfo.address2
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address2 <> rpad(c.address2, 70, ' ');
+    EDM1_Compare Result    ${Result}    0    detCert.address2
+
+EDM1_SIT_0007_0006.1
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล address1 และ address2 ตามเงือนไขดังนี้
+    ...    - tlp.customerinfo.address1 และ tlp.customerinfo.address2 ไม่มีค่า
+    ...    ดังนั้น
+    ...    - detCert.address1 = tlp.customerinfo.addressoffice1
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address1) = '' or c.address1 is null) and (trim (c.addressoffice1) <> '' or c.addressoffice1 is not null) \ and a.address1 <> rpad (trim(c.addressoffice1), 70, ' ');(0)
+    EDM1_Compare Result    ${Result}    0    detCert.address1
+
+EDM1_SIT_0007_0006.2
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล address1 และ address2 ตามเงือนไขดังนี้
+    ...    - tlp.customerinfo.address1 และ tlp.customerinfo.address2 ไม่มีค่า
+    ...    ดังนั้น
+    ...    - detCert.address2 = tlp.customerinfo.addressoffice2
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address2) = '' or c.address2 is null) and (trim (c.addressoffice2) <> '' or c.addressoffice2 is not null) \ and a.address2 <> rpad (trim(c.addressoffice2), 70, ' ');
+    EDM1_Compare Result    ${Result}    0    detCert.address2
+
+EDM1_SIT_0007_0007
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล telephoneNo
+    ...    - telephoneNo = tlp.customerinfo.HomeTel
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where left((trim(concat(c.hometel,c.mobiletel,c.officetel))),60) <> trim(a.telephoneNo);
+    EDM1_Compare Result    ${Result}    0    detCert.address2
+
+EDM1_SIT_0007_0008
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = "1" (โสด)
+    ...    - mariageStatus = "1" (โสด)
+    ...    [อ้างอิง:common business rule No. 116]
+    ...    - ต้องแสดง result เท่ากับ 0 รายการ
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where c.status = '1' and (a.mariageStatus <> c.status)
+    EDM1_Compare Result    @{Result[0]}    0    mariageStatus
+
+EDM1_SIT_0007_0009
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = "2" (สมรส)
+    ...    - mariageStatus = "2" (สมรส)
+    ...    [อ้างอิง:common business rule No. 116]
+    ...
+    ...    - ต้องแสดง result เท่ากับ 0 รายการ
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count Record by query    select count (*) \ from dm.detcert a inner join dm.certmapping b on a.certno = b.certno \ and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where c.status = '2' and (a.mariageStatus <> c.status);
+    EDM1_Compare Result    ${Result}    0    mariageStatus
+
+EDM1_SIT_0007_0010
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = "3" (หย่าร้าง)
+    ...    - mariageStatus = "3" (หย่าร้าง)
+    ...    [อ้างอิง:common business rule No. 116]
+    ...    - ต้องแสดง result เท่ากับ 0 รายการ
+
+EDM1_SIT_0007_0011
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = "4" (หม้าย)
+    ...    - mariageStatus = "4" (หม้าย)
+    ...    [อ้างอิง:common business rule No. 116]
+    ...    - ต้องแสดง result เท่ากับ 0 รายการ
+
+EDM1_SIT_0007_0012
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = blank
+    ...    - mariageStatus = '5' (ไม่ระบุ)
+    ...    [อ้างอิง:common business rule No. 116]
+    ...    - ต้องแสดง result เท่ากับ 0 รายการ
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where c.status = '5' and (a.mariageStatus <> c.status)
+    EDM1_Compare Result    @{Result[0]}    0    mariageStatus
+
+EDM1_SIT_0007_0013
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล recName1
+    ...    - recName1 = tlp.CustomerInfo.NameOfBenefit2
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.recName1) <> trim(c.NameOfBenefit2)
+    EDM1_Compare Result    @{Result[0]}    0    recName1
+
+EDM1_SIT_0007_0014
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล percent1
+    ...    - percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
+    ...    ถ้ามี % %ของ3คนรวมกันต้องได้ 100% ถ้าไม่ครบ 100% ให้ใส่ 000.00 ทุกคน
+    ...
+    ...    - กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
+    ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
+
+EDM1_SIT_0007_0015
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล relationshipCode1
+    ...    - relationshipCode1 = tlp.CustomerInfo.Relationship2
+    ...    กรณีที่ 1 ข้อมูล Relationship2 <> '-'
+    ...    กรณีที่ 2 ข้อมูล Relationship2 = '-'
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where c.relationship2 <> '-' and a.relationshipcode1 <> lpad(c.relationship2,'2','0')
+    EDM1_Compare Result    @{Result[0]}    0    relationshipCode1
+
+EDM1_SIT_0007_0016
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล recName2
+    ...    - recName2 = tlp.CustomerInfo.NameOfBenefit3
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select a.policyno, a.certno, b.rpolicyno, b.rcertno, a.recName2, c.NameOfBenefit3 from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.recName2) <> trim(c.NameOfBenefit3)
+    EDM1_Compare Result    @{Result[0]}    0    recName2
+
+EDM1_SIT_0007_0017
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล percent2
+    ...    - percent2 = tlp.CustomerInfo.PercentOfBenefitciary3
+    ...    ถ้ามี % %ของ3คนรวมกันต้องได้ 100% ถ้าไม่ครบ 100% ให้ใส่ 000.00 ทุกคน
+    ...    - กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
+    ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
+    EDM1_connect to EDM1
+    @{Result}=    query
+
+EDM1_SIT_0007_0018
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล relationshipCode2
+    ...    - relationshipCode2 = tlp.CustomerInfo.Relationship3
+    ...    กรณีที่ 1 ข้อมูล Relationship2 <> '-', space
+    ...    กรณีที่ 2 ข้อมูล Relationship2 = '-', space
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) \ \ from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno WHERE (c.relationship3 <> '-'AND c.relationship3 <> '' AND c.relationship3 <> ' ') AND lpad(c.relationship3,2,'0') <> a.relationshipcode2 ;
+    EDM1_Compare Result    @{Result[0]}    0    relationshipCode2
+
+EDM1_SIT_0007_0019
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล recName3
+    ...    - recName3 = tlp.CustomerInfo.NameOfBenefit4
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) \ from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.recName3) <> trim(c.NameOfBenefit4)
+    EDM1_Compare Result    @{Result[0]}    0    recName3
+
+EDM1_SIT_0007_0020
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล percent3
+    ...    - percent3 = tlp.CustomerInfo.PercentOfBenefitciary4
+    ...    ถ้ามี % %ของ3คนรวมกันต้องได้ 100% ถ้าไม่ครบ 100% ให้ใส่ 000.00 ทุกคน
+    ...    -- กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
+    ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
+    EDM1_connect to EDM1
+    @{Result}=    query    select count(*) \ \ from dm.detcert a \ join dm.certmapping b on a.policyno = b.policyno and a.certno = b.certno join tlp.customerinfo c on b.rpolicyno = c.policyno and b.rcertno = c.certificateno where c.percentofbenefitciary2 <> '0' and a.percent1 = '00000'
+    EDM1_Compare Result    @{Result[0]}    0    relationshipCode3
+
+EDM1_SIT_0007_0021
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล relationshipCode3
+    ...    - relationshipCode3 = tlp.CustomerInfo.Relationship4
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    SELECT count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where (c.relationship4 <> '-' and c.relationship4 <> '') and a.relationshipcode3 <> lpad(c.relationship4,'2','0')
+    EDM1_Compare Result    @{Result[0]}    0    relationshipCode3
+
+EDM1_SIT_0007_0022
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล prmiseNo
+    ...    - prmiseNo = tlp.CustomerInfo.LoanNo
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    sELECT count (*) from dm.detcert a inner \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.prmiseNo) <> trim(substring(c.LoanNo,1,12))
+    EDM1_Compare Result    @{Result[0]}    0    prmiseNo
+
+EDM1_SIT_0007_0023
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล analist
+    ...    - analist = default ค่า Blank
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    SELECT count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno where trim(a.analist) <> ''
+    EDM1_Compare Result    @{Result[0]}    0    analist
+
+EDM1_SIT_0007_0024
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล prmiseNo2
+    ...    - prmiseNo2 = หลักที่ 13 ของ LoanNo
+    ...    -หลัง run SQL Script ต้องได้ 0 record
+    ...    โดยจะเก็บหลัก 13 ของ LoanNo
+    EDM1_connect to EDM1
+    @{Result}=    query    SELECT count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.prmiseNo2) <> trim(substring(c.LoanNo,13,1))
+    EDM1_Compare Result    @{Result[0]}    0    prmiseNo2
+
+EDM1_SIT_0007_0025
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล loanType
+    ...    - loanType = default "1"
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    SELECT count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno where a.loanType <> '1'
+    EDM1_Compare Result    @{Result[0]}    0    loan Type
+
+EDM1_SIT_0007_0026
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล reserve
+    ...    - reserve = default ค่า Blank
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno where trim(a.reserve) <> ''
+    EDM1_Compare Result    @{Result[0]}    0    reserve
+
+EDM1_SIT_0007_0027
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล med กรณี tlp.customerinfo.Med = "Y"
+    ...    - med = "Y"
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join \ tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where c.med = 'Y' and a.med <> 'Y'
+    EDM1_Compare Result    @{Result[0]}    0    med
+
+EDM1_SIT_0007_0028
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล med กรณี tlp.customerinfo.Med = "N"
+    ...    - med = "N"
+    ...    - หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    SELECT count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join \ tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where c.med = 'N' and a.med <> 'N'
+    EDM1_Compare Result    @{Result[0]}    0    med
+
+EDM1_SIT_0007_0029
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล med กรณี tlp.customerinfo.Med = Blank
+    ...    - med = "N"
+    ...    - \ หลัง run SQL Script ต้องได้ 0 record
+    EDM1_connect to EDM1
+    @{Result}=    query    select count (*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join \ tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where c.med = 'N' and a.med <> 'N'
+    EDM1_Compare Result    @{Result[0]}    0    med
