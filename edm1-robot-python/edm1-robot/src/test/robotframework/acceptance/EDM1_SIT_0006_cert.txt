@@ -10,7 +10,7 @@ Resource          ../Repositories/Cert_Column.txt
 EDM1_SIT_0006_0001
     EDM1_connect to EDM1
     #---- Get Total Column----
-    ${TotalColumn}    EDM1_Count Record by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
+    ${TotalColumn}    EDM1_Count by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
     Should Be Equal As Integers    ${TotalColumn}    37
     log    Column of CERT table is ${TotalColumn}
 
@@ -209,7 +209,7 @@ EDM1_SIT_0006_0022
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{lifepremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.lifepremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.lifepremium <> lpad(cast(cast(cast(tmp.lifepremium as decimal)*100 as int) as text),10,'0');
+    @{lifepremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.lifepremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno \ where a.policyno not in ('LE49', 'LE50', 'LE51') \ and a.lifepremium <> lpad(cast(cast(cast(tmp.lifepremium as decimal)*100 as int) as text),10,'0');
     EDM1_Compare Result    @{lifepremium[0]}    0    LifePremium
 
 EDM1_SIT_0006_0023
@@ -219,7 +219,7 @@ EDM1_SIT_0006_0023
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{tpdpremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.tpdpremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.tpdpremium <> lpad(cast(cast(cast(tmp.tpdpremium as decimal)*100 as int) as text),10,'0');
+    @{tpdpremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join (SELECT c.policyno, c.certificateno, c.customercode, p.tpdpremium FROM tlp.customerinfo c join tlp.splitpremiumamount p on c.policyno = p.grouppolicyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno \ where a.policyno not in ('LE49', 'LE50', 'LE51') \ and a.tpdpremium <> lpad(cast(cast(cast(tmp.tpdpremium as decimal)*100 as int) as text),10,'0');
     EDM1_Compare Result    @{tpdpremium[0]}    0    TPDpremium
 
 EDM1_SIT_0006_0024

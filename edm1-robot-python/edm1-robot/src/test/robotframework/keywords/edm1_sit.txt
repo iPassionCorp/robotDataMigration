@@ -7,18 +7,18 @@ Library           Collections
 Resource          ../Repositories/Cert_Column.txt
 
 *** Keywords ***
-connect to EDM1
+EDM1_connect to EDM1
     Connect To Database Using Custom Params    ${dbapi}    database='${databaseName}', user='${user}', password='${password}', host='${host}', port='${port}'
 
-convert DB List to String and Compare result
+EDM1_Compare Result
     [Arguments]    ${sqlresult}    ${expectedValue}    ${fieldName}
     [Documentation]    - 1 convert Query result from List/Tuple to String
     ...    - 2 compare with Expected Result (count = 0)
     ${Expectedfinal}    Convert To String    ${sqlresult}
-    Should Be Equal    ${Expectedfinal}    ${expectedValue}    #Expected Result count = '0'
+    Should Be Equal    ${Expectedfinal}    ${expectedValue}
     log    ${fieldName} = ${Expectedfinal}
 
-Column Length Size
+EDM1_Column Length Size
     [Arguments]    ${TotalColumn}    ${Schema.TBname}
     ${ColumnSize}    Get Variable Value    ${TotalColumn}
     ${i}=    Set Variable    0
@@ -32,4 +32,8 @@ Column Length Size
     \    Comment    ${lengthConvert}    Set Variable    0
     ${EMPTY}
 
-CountColumn
+EDM1_Count by query
+    [Arguments]    ${SQL}
+    @{count}=    Query    ${SQL}
+    ${Result}=    Convert To Integer    @{count[0]}
+    [Return]    ${Result}

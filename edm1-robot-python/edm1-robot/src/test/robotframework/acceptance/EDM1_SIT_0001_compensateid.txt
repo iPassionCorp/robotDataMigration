@@ -1,0 +1,37 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/EDM1_Cloud_Connection.txt
+
+*** Test Cases ***
+EDM1_SIT_0001_0001
+    [Documentation]    ตรวจจำนวน column ที่เก็บใน Table "compensateid" มีจำนวน 2 column ดังนี้
+    ...    - compensateID
+    ...    - referenceID
+    EDM1_connect to EDM1
+    #---- Get Total Column----
+    ${TotalColumn}    EDM1_Count by query    SELECT count (c.column_name) FROM information_schema.columns c WHERE c.table_name = 'compensateid' AND c.table_schema = 'dm'
+    Should Be Equal As Integers    ${TotalColumn}    2
+    log    Column of CERT table is ${TotalColumn}
+
+EDM1_SIT_0001_0002
+    [Documentation]    Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
+    ...    - compensateID = 13
+    ...    - referenceID = 13
+    EDM1_connect to EDM1
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a \ WHERE a.table_name = 'compensateid' AND a.data_type = 'character varying'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'compensateid' AND a.data_type = 'character varying'
+    ${i}=    Set Variable    0
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
+
+EDM1_SIT_0001_0003
+    [Documentation]    ตรวจสอบข้อมูล compensateID
+    ...    - ต้องไม่มี duplicate value
+    EDM1_connect to EDM1    #Connect to postgres
+    ${conuntrow}=    Query    select compensateid, count(*) from dm.compensateid group by compensateid having count(compensateid) > 1
+    log    ${conuntrow}

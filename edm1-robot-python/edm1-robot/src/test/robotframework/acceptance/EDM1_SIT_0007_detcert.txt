@@ -8,7 +8,7 @@ EDM1_SIT_0007_0001
     ...    - หลัง run SQL Script จำนวน record ของ dm.detcert ต้องเท่ากับจำนวน record ของ dm.cert
     EDM1_connect to EDM1
     #---- Get Total Column----
-    ${TotalColumn}    EDM1_Count Record by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'detcert' AND c.table_schema = 'dm'
+    ${TotalColumn}    EDM1_Count by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'detcert' AND c.table_schema = 'dm'
     EDM1_Compare Result    ${TotalColumn}    22    Sum column of detCert
 
 EDM1_SIT_0007_0002
@@ -21,7 +21,7 @@ EDM1_SIT_0007_0002
     #----Get Column Size----
     ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a \ WHERE a.table_name = 'detcert' AND a.data_type = 'character varying'
     ${i}=    Set Variable    0
-    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
     \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
@@ -30,10 +30,10 @@ EDM1_SIT_0007_0003
     ...    - หลัง run SQL Script จำนวน record ของ dm.detcert ต้องเท่ากับจำนวน record ของ dm.cert
     EDM1_connect to EDM1
     #---- Get record from detcert table----
-    ${detCertRecord}    EDM1_Count Record by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno
+    ${detCertRecord}    EDM1_Count by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno
     log    ${detCertRecord}
     #---- Get record from cert table----
-    ${CertRecord}    EDM1_Count Record by query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno
+    ${CertRecord}    EDM1_Count by query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno
     log    ${CertRecord}
     # Validate record
     Run Keyword And Return Status    Should Be Equal    ${detCertRecord}    ${CertRecord}
@@ -52,7 +52,7 @@ EDM1_SIT_0007_0004
     ...    - ถ้า policyno = PL14,PL15,PL16,PL17,PL18 (Partner: COOP), code = TCOOP00001
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    SELECT count(distinct(tmp.policyno)) from (SELECT a.policyno, a.code from dm.detcert a where policyno in ('LE29','LE30') and code <> 'TORC000001' or policyno in ('LE33','LE34','LE35','LE36','LE37','LE49','LE50','LE51','LE52') and code <> 'TNSN0HQ001' or policyno in ('LE38','LE39','LE40','LE41','LE42','LE43','LE44','LE45','LE46') and code <> 'TTLT0HQ001' or policyno in ('ML40','ML41','ML42','ML43','ML44','ML45','ML46','ML47','ML48','OD09') and code <> 'TTCRB00001' or policyno in ('OD10','PL11','PL12') and code <> 'TCIMB00001' or policyno in ('LE47','LE48') and code <> 'TAMN000001' or policyno in ('LE31') and code <> 'TWLC000001' or policyno in ('LE32') and code <> 'TBAF000001' or policyno in ('PL13') and code <> 'TJMT000001' or policyno in ('PL14','PL15','PL16','PL17','PL18') and code <> 'TCOOP00001') tmp
+    ${Result}    EDM1_Count by query    SELECT count(distinct(tmp.policyno)) from (SELECT a.policyno, a.code from dm.detcert a where policyno in ('LE29','LE30') and code <> 'TORC000001' or policyno in ('LE33','LE34','LE35','LE36','LE37','LE49','LE50','LE51','LE52') and code <> 'TNSN0HQ001' or policyno in ('LE38','LE39','LE40','LE41','LE42','LE43','LE44','LE45','LE46') and code <> 'TTLT0HQ001' or policyno in ('ML40','ML41','ML42','ML43','ML44','ML45','ML46','ML47','ML48','OD09') and code <> 'TTCRB00001' or policyno in ('OD10','PL11','PL12') and code <> 'TCIMB00001' or policyno in ('LE47','LE48') and code <> 'TAMN000001' or policyno in ('LE31') and code <> 'TWLC000001' or policyno in ('LE32') and code <> 'TBAF000001' or policyno in ('PL13') and code <> 'TJMT000001' or policyno in ('PL14','PL15','PL16','PL17','PL18') and code <> 'TCOOP00001') tmp
     EDM1_Compare Result    ${Result}    0    TLI Input
 
 EDM1_SIT_0007_0005.1
@@ -62,7 +62,7 @@ EDM1_SIT_0007_0005.1
     ...    - detCert.address1 = tlp.customerinfo.address1
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address1 <> rpad(c.address1, 70, ' ');
+    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address1 <> rpad(c.address1, 70, ' ');
     EDM1_Compare Result    ${Result}    0    detCert.address1
 
 EDM1_SIT_0007_0005.2
@@ -72,7 +72,7 @@ EDM1_SIT_0007_0005.2
     ...    - - detCert.address2 = tlp.customerinfo.address2
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address2 <> rpad(c.address2, 70, ' ');
+    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.address2 <> rpad(c.address2, 70, ' ');
     EDM1_Compare Result    ${Result}    0    detCert.address2
 
 EDM1_SIT_0007_0006.1
@@ -82,7 +82,7 @@ EDM1_SIT_0007_0006.1
     ...    - detCert.address1 = tlp.customerinfo.addressoffice1
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address1) = '' or c.address1 is null) and (trim (c.addressoffice1) <> '' or c.addressoffice1 is not null) \ and a.address1 <> rpad (trim(c.addressoffice1), 70, ' ');(0)
+    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address1) = '' or c.address1 is null) and (trim (c.addressoffice1) <> '' or c.addressoffice1 is not null) \ and a.address1 <> rpad (trim(c.addressoffice1), 70, ' ');(0)
     EDM1_Compare Result    ${Result}    0    detCert.address1
 
 EDM1_SIT_0007_0006.2
@@ -92,7 +92,7 @@ EDM1_SIT_0007_0006.2
     ...    - detCert.address2 = tlp.customerinfo.addressoffice2
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address2) = '' or c.address2 is null) and (trim (c.addressoffice2) <> '' or c.addressoffice2 is not null) \ and a.address2 <> rpad (trim(c.addressoffice2), 70, ' ');
+    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address2) = '' or c.address2 is null) and (trim (c.addressoffice2) <> '' or c.addressoffice2 is not null) \ and a.address2 <> rpad (trim(c.addressoffice2), 70, ' ');
     EDM1_Compare Result    ${Result}    0    detCert.address2
 
 EDM1_SIT_0007_0007
@@ -100,7 +100,7 @@ EDM1_SIT_0007_0007
     ...    - telephoneNo = tlp.customerinfo.HomeTel
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where left((trim(concat(c.hometel,c.mobiletel,c.officetel))),60) <> trim(a.telephoneNo);
+    ${Result}    EDM1_Count by query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where left((trim(concat(c.hometel,c.mobiletel,c.officetel))),60) <> trim(a.telephoneNo);
     EDM1_Compare Result    ${Result}    0    detCert.address2
 
 EDM1_SIT_0007_0008
@@ -119,7 +119,7 @@ EDM1_SIT_0007_0009
     ...
     ...    - ต้องแสดง result เท่ากับ 0 รายการ
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count Record by query    select count (*) \ from dm.detcert a inner join dm.certmapping b on a.certno = b.certno \ and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where c.status = '2' and (a.mariageStatus <> c.status);
+    ${Result}    EDM1_Count by query    select count (*) \ from dm.detcert a inner join dm.certmapping b on a.certno = b.certno \ and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where c.status = '2' and (a.mariageStatus <> c.status);
     EDM1_Compare Result    ${Result}    0    mariageStatus
 
 EDM1_SIT_0007_0010
