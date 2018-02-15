@@ -64,7 +64,7 @@ EDM1_SIT_0011_0006
     ...    tlp.claimRegisterDetail.RegDtlRegisterDate มีค่า "00000000"
     ...    - receiveDate = system date
     EDM1_connect to EDM1
-    ${result}    EDM1_Count by query     SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(d.regdtlregisterdate) = '00000000' AND (trim(m.receivedate) = '' OR trim(m.receivedate) = '00000000');
+    ${result}    EDM1_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(d.regdtlregisterdate) = '00000000' AND (trim(m.receivedate) = '' OR trim(m.receivedate) = '00000000');
     EDM1_Compare Result    ${result}    0    receiveDate
 
 EDM1_SIT_0011_0007
