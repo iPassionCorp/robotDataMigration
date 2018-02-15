@@ -1,5 +1,6 @@
 *** Settings ***
 Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/EDM1_Cloud_Connection.txt
 Library           DatabaseLibrary
 
 *** Test Cases ***

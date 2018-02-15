@@ -1,4 +1,4 @@
-*** Settings ***
+﻿*** Settings ***
 Library           DatabaseLibrary
 Resource          ../keywords/edm1_sit.txt
 Resource          ../Repositories/EDM1_Cloud_Connection.txt
