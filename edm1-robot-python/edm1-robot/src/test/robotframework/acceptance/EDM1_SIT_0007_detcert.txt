@@ -82,7 +82,7 @@ EDM1_SIT_0007_0006.1
     ...    - detCert.address1 = tlp.customerinfo.addressoffice1
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address1) = '' or c.address1 is null) and (trim (c.addressoffice1) <> '' or c.addressoffice1 is not null) \ and a.address1 <> rpad (trim(c.addressoffice1), 70, ' ');(0)
+    ${Result}    EDM1_Count by query    select count(0) \ from dm.detcert a \ inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where 1=1 and (trim (c.address1) = '' or c.address1 is null) and (trim (c.addressoffice1) <> '' or c.addressoffice1 is not null) \ and a.address1 <> rpad (trim(c.addressoffice1), 70, ' ');
     EDM1_Compare Result    ${Result}    0    detCert.address1
 
 EDM1_SIT_0007_0006.2
@@ -127,12 +127,18 @@ EDM1_SIT_0007_0010
     ...    - mariageStatus = "3" (หย่าร้าง)
     ...    [อ้างอิง:common business rule No. 116]
     ...    - ต้องแสดง result เท่ากับ 0 รายการ
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count by query    select count(0) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where c.status = '3' and (a.mariageStatus <> c.status)
+    EDM1_Compare Result    ${Result}    0    mariageStatus
 
 EDM1_SIT_0007_0011
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = "4" (หม้าย)
     ...    - mariageStatus = "4" (หม้าย)
     ...    [อ้างอิง:common business rule No. 116]
     ...    - ต้องแสดง result เท่ากับ 0 รายการ
+    EDM1_connect to EDM1
+    ${Result}    EDM1_Count by query    select count(0) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where c.status = '4' and (a.mariageStatus <> c.status)
+    EDM1_Compare Result    ${Result}    0    mariageStatus
 
 EDM1_SIT_0007_0012
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล mariageStatus กรณี tlp.customerinfo.status = blank
@@ -174,7 +180,7 @@ EDM1_SIT_0007_0016
     ...    - recName2 = tlp.CustomerInfo.NameOfBenefit3
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    @{Result}=    query    select a.policyno, a.certno, b.rpolicyno, b.rcertno, a.recName2, c.NameOfBenefit3 from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.recName2) <> trim(c.NameOfBenefit3)
+    @{Result}=    query    select count(0) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where trim(a.recName2) <> trim(c.NameOfBenefit3)
     EDM1_Compare Result    @{Result[0]}    0    recName2
 
 EDM1_SIT_0007_0017
@@ -183,8 +189,6 @@ EDM1_SIT_0007_0017
     ...    ถ้ามี % %ของ3คนรวมกันต้องได้ 100% ถ้าไม่ครบ 100% ให้ใส่ 000.00 ทุกคน
     ...    - กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
     ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
-    EDM1_connect to EDM1
-    @{Result}=    query
 
 EDM1_SIT_0007_0018
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล relationshipCode2
@@ -211,7 +215,7 @@ EDM1_SIT_0007_0020
     ...    -- กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
     ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
     EDM1_connect to EDM1
-    @{Result}=    query    select count(*) \ \ from dm.detcert a \ join dm.certmapping b on a.policyno = b.policyno and a.certno = b.certno join tlp.customerinfo c on b.rpolicyno = c.policyno and b.rcertno = c.certificateno where c.percentofbenefitciary2 <> '0' and a.percent1 = '00000'
+    Comment    @{Result}=    query    select count(*) \ \ from dm.detcert a \ join dm.certmapping b on a.policyno = b.policyno and a.certno = b.certno join tlp.customerinfo c on b.rpolicyno = c.policyno and b.rcertno = c.certificateno where c.percentofbenefitciary2 <> '0' and a.percent1 = '00000'
     EDM1_Compare Result    @{Result[0]}    0    relationshipCode3
 
 EDM1_SIT_0007_0021

@@ -114,7 +114,6 @@ EDM1_SIT_0008_0006
     ...
     ...    expect ::
     ...    - หลังจาก Run Script count = '0'
-    EDM1_connect to EDM1
     @{Result}=    Query    select count(*) from dm.certrider a \ \ join dm.certmapping b \ \ \ on a.certno = b.certno and a.policyno = b.policyno \ join (SELECT c.policyno, c.certificateno, p.sa_td \ \ \ FROM tlp.customerinfo c \ \ \ \ join tlp.customersa p \ \ \ \ on c.policyno = \ p.policyno \ \ \ \ and c.customercode = p.customercode) tmp \ \ on b.rcertno = tmp.certificateno \ \ join dm.cert d \ \ \ on a.certno = d.certno and a.policyno = d.policyno where a.ridertype = 'E01' and a.sum <> trim(to_char(ceiling(to_number(tmp.sa_td,'9999999900D99') / (to_number (d.period, '99')*12)), '000000000')) ;
     EDM1_Compare Result    @{Result[0]}    0    sum
 
