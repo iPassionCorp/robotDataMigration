@@ -1,10 +1,11 @@
-﻿*** Settings ***
+*** Settings ***
 Library           BuiltIn
 Library           String
 Library           DatabaseLibrary
 Library           Collections
 Resource          ../Repositories/Cert_Column.txt
 Resource          ../Repositories/EDM1_Cloud_Connection.txt
+Resource          ../keywords/edm1_sit.txt
 
 *** Test Cases ***
 EDM1_SIT_0006_0001

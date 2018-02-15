@@ -1,0 +1,468 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0003
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0029
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0038
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0005
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0003
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0024
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0016
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0009
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0011
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0004
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0018
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0032
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006.1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0022
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0006
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0004
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0014
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0012
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0022
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0009
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0037
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0008
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0027
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0011
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0043
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0017
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0025
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0034
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0029
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0003
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0024
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0020
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0012
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0014
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0028
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0039
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0018
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0027
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0017
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0008
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0006
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0010
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0018
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0045
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0019
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0033
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006.2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0023
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0005
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0025
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0017
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0013
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0021
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0030
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0020
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0006
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0042
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0010
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0024
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0035
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0006
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0025
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0023
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0013
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0019
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0015
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0003_1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0027
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005.2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0019
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0005
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0026
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0014
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0013
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0004
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0044
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0003_2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0004
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0041
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0016
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0020
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0031
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0021
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0005
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0015
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0011
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0023
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0008
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0036
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0009
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0026
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0022
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0010
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0040
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0016
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0026
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005.1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0028
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0004
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0021
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0015
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0003
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0012
