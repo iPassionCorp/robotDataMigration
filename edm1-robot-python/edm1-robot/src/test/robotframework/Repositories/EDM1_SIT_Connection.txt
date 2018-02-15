@@ -1,6 +1,8 @@
 *** Variables ***
 ${port}           5432
-${host}           jdbc:postgresql://206.1.2.61:5432/edm1pp
+${host}           206.1.2.61
 ${user}           postgres
 ${password}       123456
 ${driverClass}    org.postgresql.Driver
+${databaseName}    edm1
+${dbapi}          psycopg2
