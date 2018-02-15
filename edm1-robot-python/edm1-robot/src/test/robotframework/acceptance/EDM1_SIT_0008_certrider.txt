@@ -1,4 +1,4 @@
-﻿*** Settings ***
+*** Settings ***
 Library           DatabaseLibrary
 Resource          ../keywords/edm1_sit.txt
 Resource          ../Repositories/EDM1_Cloud_Connection.txt
@@ -45,7 +45,15 @@ EDM1_SIT_0008_0002
 
 EDM1_SIT_0008_0003
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล productCode และ certno ต้องมีข้อมูลเท่ากับ Table "cert"
-    #pending
+    EDM1_connect to EDM1
+    #---- Get record from detcert table----
+    ${detCertRecord}    EDM1_Count by query    select count(*) from dm.certrider a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno
+    log    ${detCertRecord}
+    #---- Get record from cert table----
+    ${CertRecord}    EDM1_Count by query    select count(*) from dm.certrider a inner join dm.certmapping b on a.certno = b.certno
+    log    ${CertRecord}
+    # Validate record
+    Run Keyword And Return Status    Should Be Equal    ${detCertRecord}    ${CertRecord}
 
 EDM1_SIT_0008_0004
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล riderType
