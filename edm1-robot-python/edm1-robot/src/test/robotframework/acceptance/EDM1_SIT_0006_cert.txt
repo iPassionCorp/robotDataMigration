@@ -294,8 +294,8 @@ EDM1_SIT_0006_0030
     EDM1_Compare Result    @{payDate1[0]}    0    PayDate1
 
 EDM1_SIT_0006_0031
-    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล effectiveDate
-    ...    - effectiveDate = tlp.CustomerInfo.EffectiveDate
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount1
+    ...    - amount1 = tlp.CustomerInfo.amount1
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
