@@ -49,11 +49,11 @@ EDM1_SIT_0012_0002
     #----Get Column Size----
     ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a WHERE a.table_name = 'mgorder' AND a.data_type = 'character varying'
     ${i}=    Set Variable    0
-    :FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
     \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
-EDM1_SIT_0012_0003
+EDM1_SIT_0012_0003_sectionCode
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล sectionCode
     ...    - sectionCode = default "95"
     EDM1_connect to EDM1
@@ -61,7 +61,7 @@ EDM1_SIT_0012_0003
     ${result}    EDM1_Count by query    select count(0) \ from dm.mgorder o JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) where o.sectioncode <> '95' or trim(o.sectioncode) <> '95'
     EDM1_Compare Result    ${result}    0    sectionCode
 
-EDM1_SIT_0012_0004
+EDM1_SIT_0012_0004_receivetime
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล receivetime
     ...    - receivetime = default "000000"
     EDM1_connect to EDM1
@@ -69,7 +69,7 @@ EDM1_SIT_0012_0004
     ${result}    EDM1_Count by query    select count(0) \ from dm.mgorder o JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) where o.receivetime <> '000000' or trim(o.receivetime) <> '000000';
     EDM1_Compare Result    ${result}    0    receivetime
 
-EDM1_SIT_0012_0005
+EDM1_SIT_0012_0005_billingorderno
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล billingorderno
     ...    - billingorderno = default blank
     EDM1_connect to EDM1
@@ -77,7 +77,7 @@ EDM1_SIT_0012_0005
     ${result}    EDM1_Count by query    select count(0) \ from dm.mgorder o JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where o.billingorderno <> '' or trim(o.billingorderno) <> '';
     EDM1_Compare Result    ${result}    0    billingorderno
 
-EDM1_SIT_0012_0006
+EDM1_SIT_0012_0006_interimflag
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล interimflag
     ...    - interimflag = default "N"
     EDM1_connect to EDM1
@@ -85,7 +85,7 @@ EDM1_SIT_0012_0006
     ${result}    EDM1_Count by query    select count(0) \ \ \ from dm.mgorder o JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where o.interimflag <> 'N' or trim(o.interimflag) <> 'N';
     EDM1_Compare Result    ${result}    0    interimflag
 
-EDM1_SIT_0012_0007
+EDM1_SIT_0012_0007_orderno
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล orderno
     ...    - orderno = tlp.claimRegisterDetail.RegDtlClaimNo
     EDM1_connect to EDM1
@@ -93,7 +93,7 @@ EDM1_SIT_0012_0007
     ${result}    EDM1_Count by query    SELECT count (0) \ FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) where o.orderno <> substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4);
     EDM1_Compare Result    ${result}    0    orderno
 
-EDM1_SIT_0012_0008
+EDM1_SIT_0012_0008_receiverid
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล receiverid
     ...    กรณีที่1: มีค่าและยาวไม่เกิน 7 หลัก
     ...    - receiverid = tlp.claimRegisterDetail.RegDtlRegister
@@ -107,7 +107,7 @@ EDM1_SIT_0012_0008
     ${result}    EDM1_Count by query    SELECT count(0) FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) = o.orderno) where (cd.regdtlregister = '' or length(cd.regdtlregister) > 7) and o.receiverid <> '0000000';
     EDM1_Compare Result    ${result}    0    receiverid_Default
 
-EDM1_SIT_0012_0009
+EDM1_SIT_0012_0009_considerid
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล considerid
     ...    กรณีที่1: มีค่าและยาวไม่เกิน 7 หลัก
     ...    - considerid = tlp.claimRegisterDetail.RegDtlApproval
@@ -121,14 +121,14 @@ EDM1_SIT_0012_0009
     ${result}    EDM1_Count by query    SELECT count(0) FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) = o.orderno) where (cd.regdtlapproval = '' or length(cd.regdtlapproval) > 7) and o.considerid <> '0000000';
     EDM1_Compare Result    ${result}    0    considerid_Default
 
-EDM1_SIT_0012_0010
+EDM1_SIT_0012_0010_admitdate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล admitdate
     ...    - admitdate = tlp.claimRegisterDetail.RegDtlDateOfAdmission
     EDM1_connect to EDM1
     ${result}    EDM1_Count by query    SELECT count(0) \ \ FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) = o.orderno) where o.admitdate <> cd.regdtldateofadmission ;
     EDM1_Compare Result    ${result}    0    admitdate
 
-EDM1_SIT_0012_0011
+EDM1_SIT_0012_0011_hospitalcode
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล hospitalcode
     ...    - hospitalcode = tlp.claimRegisterDetail.RegDtlHospitalCode
     ...
@@ -163,28 +163,28 @@ EDM1_SIT_0012_0015
     EDM1_connect to EDM1
     Log    causecode is "OUT OF SCOPE"
 
-EDM1_SIT_0012_0016
+EDM1_SIT_0012_0016admitflag_Y
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล admitflag กรณี admitdate <> blank (มีข้อมูล) TLI เก็บ 00000000
     ...    - admitflag = "Y"
     EDM1_connect to EDM1
     ${result}    EDM1_Count by query    SELECT count(0) FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where (trim (o.admitdate) <> '00000000' and o.admitflag <> 'Y')
-    EDM1_Compare Result    ${result}    0    admitflag
+    EDM1_Compare Result    ${result}    0    admitflag_Y
 
-EDM1_SIT_0012_0017
+EDM1_SIT_0012_0017admitflag_N
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล admitflag กรณี admitdate = blank (ไม่มีข้อมูล) TLI เก็บ 00000000
     ...    - admitflag = "N"
     EDM1_connect to EDM1
     ${result}    EDM1_Count by query    SELECT count(0) FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where (trim (o.admitdate) = '00000000' and o.admitflag <> 'N')
-    EDM1_Compare Result    ${result}    0    admitflag
+    EDM1_Compare Result    ${result}    0    admitflag_N
 
-EDM1_SIT_0012_0018
+EDM1_SIT_0012_0018_receivedocdate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล receivedocdate กรณี tlp.claimRegisterDetail.RegDtlInterest มีค่า > 0.00
     ...    - receivedocdate = tlp.claimRegisterDetail.RegDtlDateOfCompleteDoc
     EDM1_connect to EDM1
     ${result}    EDM1_Count by query    SELECT count(0) \ FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where trim (cd.regdtlinterest) <> '0.00' and o.receivedocdate <> cd.regdtldateofcompletedoc;
     EDM1_Compare Result    ${result}    0    receivedocdate
 
-EDM1_SIT_0012_0019
+EDM1_SIT_0012_0019_receivedocdate_default
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล receivedocdate กรณี tlp.claimRegisterDetail.RegDtlInterest มีค่า = 0.00
     ...    - receivedocdate = default "00000000"
     EDM1_connect to EDM1
@@ -192,7 +192,7 @@ EDM1_SIT_0012_0019
     ${result}    EDM1_Count by query    SELECT count(0) \ FROM dm.mgorder o \ JOIN dm.mgclaim mgc ON mgc.orderno = o.orderno and mgc.sectioncode = o.sectioncode JOIN dm.certmapping cm ON (cm.certno = mgc.certno) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4) \ = o.orderno) \ where trim (cd.regdtlinterest) = '0.00' and o.receivedocdate <> '00000000';
     EDM1_Compare Result    ${result}    0    receivedocdate_default
 
-EDM1_SIT_0012_0020
+EDM1_SIT_0012_0020_calsurdate_default
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล calsurdate
     ...    - calsurdate = default "00000000"
     EDM1_connect to EDM1

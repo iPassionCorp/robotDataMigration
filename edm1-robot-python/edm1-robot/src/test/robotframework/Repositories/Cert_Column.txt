@@ -1,7 +1,0 @@
-*** Variables ***
-@{Cert_ColumnName}    policyno    certno    appno    reqdate    nameid    age    smi
-...               lifesum    accidentsum    period    loan_term    lifepremium    extrapremium    tpdpremium
-...               extratpdpremium    addpremium    em    tpd    effectivedate    maturedate    premiumdate
-...               certyyyymm    statcer    statcer    statcer2    informdate1    paydate1    amount1
-...               informdate2    paydate2    amount2    deaddate    endownmentyear    deadcause    receiptflag
-...               referenceno    reserve
