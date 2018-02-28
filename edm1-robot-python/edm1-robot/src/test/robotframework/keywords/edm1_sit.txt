@@ -2,8 +2,8 @@
 Library           DatabaseLibrary
 Library           String
 Library           Selenium2Library
-Resource          ../Repositories/EDM1_Cloud_Connection.txt
 Library           Collections
+Resource          ../Repositories/EDM1_Connection.txt
 
 *** Keywords ***
 EDM1_connect to EDM1
