@@ -1,7 +1,7 @@
 *** Settings ***
 Library           DatabaseLibrary
-Resource          ../Repositories/EDM1_Cloud_Connection.txt
 Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/EDM1_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0011_0003_mg_cliam

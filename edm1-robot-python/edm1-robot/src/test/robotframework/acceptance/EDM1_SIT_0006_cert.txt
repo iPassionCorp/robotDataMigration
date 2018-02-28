@@ -3,8 +3,8 @@ Library           BuiltIn
 Library           String
 Library           DatabaseLibrary
 Library           Collections
-Resource          ../Repositories/EDM1_Cloud_Connection.txt
 Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/EDM1_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0006_0001
