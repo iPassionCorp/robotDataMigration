@@ -1,488 +1,484 @@
-﻿--suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0026_reserve
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0046_LE49 - Life Premium
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0003
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0023_VerifyAnalistDefault
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0007_Statcer
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0028_VerifyPremiumDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0048_VerifyLE50LifePremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006_1_VerifyDetCertAddress1Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0024_VerifyTPDPremiumMappingADDPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0037_VerifycertyyyymmMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0010_VerfiyMariageStatus_3
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0024_VerifyRiderStatusDate_E01_RiderStatus_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0012_VerfiyMariageStatus_5
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0020_VerifyPeriodMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0008_VerfiyMariageStatus_1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0001_VerifyCertRiderColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0027_VerifyRiderStatusDate_M01_RiderStatus_A
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0006_certnohp
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0006_VerifyCertNoHpMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0029_VerifyMedEqulaMapping_Blank
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0009_sum_Equal_tlp.customerinfo.SA_ME
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0014_VerifyPremiumMapping_AMEPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0008_VerifySumMapping_SATadb
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0013_VerifyRecName1Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0005
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0003_VerifyAmountOfPolicy
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0028_VerifyMedEqulaMapping_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0005_VerifySumMapping_SAtpd
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0022_VerifyLifePremiumMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0038_VerifyStatcerStatus_I
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0012_VerifyPremiumMapping_ADDPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005_1_VerifyDetCertAddress1NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0027_VerifyMedEqulaMapping_Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0035_VerifyDeadDateMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0005_policynocp
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0021_Loan_Term
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0004_VerifyPolicyNoHpMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0009_mariageStatusEqual2
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0003_VerifyDetCertReconciled
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0011_VerfiyMariageStatus_4
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0019_VerifyRecName3Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0010_VerifyDeadCauseDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0004_VerifyCertMappingReconcile
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0034_VerifyAmount2Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0013_VerifyPremiumMapping_ADBPremium
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0007_certnocp
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0030_PayDate1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0020_Period
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0004
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0035_DeadDate
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0014_MappingRule
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0044_statcer C-Cancel and Refund
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0007_telephoneNo
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0006
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0023_analist
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0019_LifeSum
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0027_medEqula_Y
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0003_VerifyCertLinkerReconcile
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0018_RiderStatus = 'N'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0031_amount1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0024_TPDpremium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0013_recName1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0029_InformDate1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0022_LifePremium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0019_VerifyRiderStatus_A_RiderType_E01_Over1Y
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0026_ตรวจสอบข้อมูล riderStatusDate \ กรณี RiderType = E01
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0004_VerifyRiderTypeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0006_VerifyExtraTPDPremiumDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0018_VerifySMIMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0011_VerifyReceiptFlagDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0024_VerifyPrmiseNo2Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0012_premium_Equal_tlp.SplitPremiumAmount.ADDPremium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0016_VerfiyRiderStatus_N_RiderNotExpired
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006.1_detCert.address1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0043_statcer C-Cancel (ไม่รับประกัน)
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0008_mariageStatusEqual1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0005_Extrapremium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0010_mariageStatusEqual3
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006_2_VerifyDetCertAddress2Null
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0003
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0007_VerifyCertNoCpMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0015_VerifyextraPremiumDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0002_VerifyLengthOfCertRiderColumn
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0039_statcer D-Death
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0001_VerifyColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0046_VerifyLE49LifePremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0003_VerifyExtraTPDPremiumDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0007_VerifySumMapping_SAadd
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0030_VerifyPayDate1Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0009_VerifySumMapping_SAme
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0003_VerifyCertRiderReconcile
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0031_Verifyamount1Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0040_VerifyStatcerStatus_V
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0026_VerifyRiderStatusDate_E01_RiderStatus_A
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0049_VerifyLE51TPDPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0009_VerifyEndownmentYearDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0021_VerifyLoanTermMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0006_VerifySumMapping_SAtd
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0023_VerifyRiderStatus_A_RiderTypeNotIn_E01M01
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0011_mariageStatusEqual4
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0002
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0001_VerifyDetCertColumn
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0048_LE50 - Life Premium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0050_VerifyLE51LifePremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0036_VerifyTDPMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0025_VerifyLoanTypeDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0043_VerifyStatcerStatus_C_Cancel
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0007_VerifyTelephoneNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0004_VerifyPolicyMappingWithTLI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0009_VerfiyMariageStatus_2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0022_VerifyPrmiseNoMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0020_RiderStatus = 'N'
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0022_VerifyRiderStatus_N_RiderTypeNotIn_E01M01
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0047_VerifyLE50TPDPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0015_VerifyRelationshipCode1Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0018_VerifyRelationshipCode2Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0017_VerifyAgeMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0002
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0006_VerifyCertNoMapping_AutoGenerated
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0002
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0016_VerifyAutoGenCertNo
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0047_LE50 - TPD Premium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0025_VerifyEmMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0034_Amount2
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0042_VerifyStatcerStatus_S
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0041_statcer M-Expired
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0013_VerifyReserveDefault
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0027_MatureDate
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0033_VerifypayDate2Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0004_policynohp
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0037_certyyyymm
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0001
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0020_percent3
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0006_sum_Equal_tlp.customerinfo.SA_TPD
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0022_prmiseNo
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0033_InformDate2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0029_medEqula_N
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0019_RiderStatus = 'A'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0008_sum_Equal_tlp.customerinfo.SA_ADB
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0017_RiderStatus = 'A'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0007_sum_Equal_tlp.customerinfo.SA_ADD
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0003_default
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0015_relationshipCode1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0012_ReferenceNo.
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0036_TDP
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0028_medEqula_N
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0019_recName3
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0004_riderType
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005.1_detCert.address1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0014_percent1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0001
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0032_InformDate2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0023_TPDpremium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0023_ตรวจสอบข้อมูล riderStatusDate \ กรณี riderStatus = A กรณี RiderType ไม่ใช่ E01, M01
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0001
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0022_riderStatus = N กรณี RiderType ไม่ใช่ E01, M01
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0013_Reserve
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0015_certNo
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0001
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0003_1
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0040_statcer C-Cancel (Void)
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0021_RiderStatus = 'A'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0011_premium_Equal_tlp.SplitPremiumAmount.TDPremium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0001_VerifyCertLinkerColumn
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0001
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0005_VerifyPolicyNoCpMaping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0045_VerifyLE49TPDPremium
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0016_recName2
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0014_VerifyPercent1Maping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0007_VerifyStatcerDefault
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0014_premium_Equal_ไม่มีข้อมูล mapping ในเอกสาร
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0021_VerifyRiderStatus_A_RiderType_M01_Over1Y
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0026_EffectiveDate
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0023_VerifyTPDPremiumMappingTPDPremium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0017_VerfiyRiderStatus_A_RiderExpired
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0042_statcer S-Surrender
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0019_VerifyLifeSumMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0004_VerifyReqdateDefault
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0002
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0021_VerifyRelationshipCode3Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0010_VerifyPremiumMapping_TPDPremium
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0003_2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0012_mariageStatusEqual5
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0005_VerifyCertMapping_PolicyNo_rPolicyNo
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0004
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0001_VerifyCertMappingColumn
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0038_statcer I-Active
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0039_VerifyStatcerStatus_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0011_VerifyPremiumMapping_TDPremium
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005.2_detCert.address2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0017_Age
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0026_VerifyReserveDefault
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0021_relationshipCode3
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0020_VerifyPercent3Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0024_prmiseNo2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0009_EndownmentYear
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0015_extraPremium_Equal_default "0000000000"
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0010_premium_Equal_tlp.SplitPremiumAmount.TPDPremium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0016_riderStatus = "A"
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0018_SMI
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0016_certNoEqualAuto Generate by TLI
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0049_LE51 - TPD Premium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0045_LE49 - TPD Premium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0025_EM
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0050_LE51 - Life Premium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0006_Extratpdpremium
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0010_DeadCause
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0005_2_VerifyDetCertAddress2NotNull
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0006.2_detCert.address2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0025_loan Type
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0025_ตรวจสอบข้อมูล riderStatusDate \ กรณี RiderType = \ M01 และ RiderStatus = 'N'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0027_ตรวจสอบข้อมูล riderStatusDate \ กรณี RiderType = M01
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0017_VerifyPercent2Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0008_Statdate2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0024_ตรวจสอบข้อมูล riderStatusDate \ กรณี RiderType = E01 และ RiderStatus = 'N'
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0005_sum_Equal_tlp.customerinfo.SA_TPD
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0032_VerifyInformDate2Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0002
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0009 certlinker.EDM1_SIT_0009_0002_VerifyLengthOfCertLinkerColumn
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0018_relationshipCode2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0004_ReqDate
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0016_VerifyRecName2Mapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0013_premium­­_Equal_tlp.SplitPremiumAmount.ADBPremium
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0018_VerifyRiderStatus_N_RiderType_E01_NotOver1Y
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0011_ReceiptFlag
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0012_VerifyReferenceNoDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0020_VerifyRiderStatus_N_RiderType_M01_NotOver1Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0044_VerifyStatcerStatus_C_CancelRefund
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0014_VerifyMappingRuleDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0026_VerifyEffectiveDateMapping
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0017_percent2
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0003
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0007 detcert.EDM1_SIT_0007_0002_VerifyLengthOfDetCertColunm
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0028_PremiumDate
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0005_VerifyExtraPremiumDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0029_VerifyInformDate1Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0010 certmapping.EDM1_SIT_0010_0002_VerifyLengthOfCertMappingColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0008 certrider.EDM1_SIT_0008_0025_VerifyRiderStatusDate_M01_RiderStatus_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0041_VerifyStatcerStatus_M
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0008_VerifyStatdate2Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0015_VerifyCertNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0002_VerifyLengthOfCertColoumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0006 cert.EDM1_SIT_0006_0027_VerifyMatureDateMapping
