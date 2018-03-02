@@ -168,8 +168,8 @@ EDM1_SIT_0007_0014_VerifyPercent1Maping
     ...    - กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
     ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
     EDM1_connect to EDM1
-    ${Result}=    EDM1_Count by query    select count(0) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno \ and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where trim(a.recName2) <> trim(c.NameOfBenefit3)
-    EDM1_Compare Result    ${Result[0]}    0    percent1
+    @{Result}=    query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno \ and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ and b.rpolicyno = c.policyno where trim(a.recName2) <> trim(c.NameOfBenefit3)
+    EDM1_Compare Result    @{Result[0]}    0    percent1
 
 EDM1_SIT_0007_0015_VerifyRelationshipCode1Mapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล relationshipCode1
@@ -186,8 +186,8 @@ EDM1_SIT_0007_0016_VerifyRecName2Mapping
     ...    - recName2 = tlp.CustomerInfo.NameOfBenefit3
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
-    @{Result}=    EDM1_Count by query    select count(0) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where trim(a.recName2) <> trim(c.NameOfBenefit3)
-    EDM1_Compare Result    @{Result[0]}    0    recName2
+    @{Result}=    query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where trim(a.recName2) <> trim(c.NameOfBenefit3)
+    EDM1_Compare Result    @{Result[0]}    '0'    recName2
 
 EDM1_SIT_0007_0017_VerifyPercent2Mapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล percent2
