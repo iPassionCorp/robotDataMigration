@@ -126,7 +126,7 @@ EDM1_SIT_0006_0013_VerifyReserveDefault
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{reserve}=    query    select count(0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.reserve <> ""
+    @{reserve}=    query    select count(0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.reserve <> "" \ and a.reserve not in ('N1', 'N2', 'N8', 'Na', 'Nb', 'Nh')
     EDM1_Compare Result    @{reserve[0]}    0    Reserve
 
 EDM1_SIT_0006_0014_VerifyMappingRuleDefault
@@ -375,7 +375,7 @@ EDM1_SIT_0006_0038_VerifyStatcerStatus_I
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Active' and a.statcer <> 'I'
+    @{statcer}=    query    select count(0) from dm.cert a inner join \ dm.certmapping b on a.certno = b.certno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno \ inner join lookup.migratedate m on a.policyno = m.policyno \ where c.customerstatus in ('Active', 'Renew') and a.statcer <> 'I' \ and a.maturedate >= \ m.migratedate;
     EDM1_Compare Result    @{statcer[0]}    0    statcer I-Active
 
 EDM1_SIT_0006_0039_VerifyStatcerStatus_D
@@ -405,7 +405,7 @@ EDM1_SIT_0006_0041_VerifyStatcerStatus_M
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Expired' and a.statcer <> 'M'
+    @{statcer}=    query    select count(0) \ from dm.cert a inner join dm.certmapping b on a.certno = b.certno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno \ inner join lookup.migratedate m on a.policyno = m.policyno \ where c.customerstatus in ('Expired', 'Laps') and a.statcer <> 'M' and a.maturedate < \ m.migratedate;
     EDM1_Compare Result    @{statcer[0]}    0    statcer M-Expired
 
 EDM1_SIT_0006_0042_VerifyStatcerStatus_S
