@@ -196,7 +196,7 @@ EDM1_SIT_0007_0017_VerifyPercent2Mapping
     ...    - กรณีที่1 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันเท่ากับ 100 ค่า percent1 = tlp.CustomerInfo.PercentOfBenefitciary2
     ...    กรณีที่2 PercentOfBenefitciary2+PercentOfBenefitciary3+PercentOfBenefitciary4 รวมกันไม่เท่ากับ 100 ค่า percent1 = 00000
     EDM1_connect to EDM1
-    @{Result}=    query    select count(0) from dm.detcert a join dm.certmapping b on a.policyno = b.policyno and a.certno = b.certno join tlp.customerinfo c on b.rpolicyno = c.policyno and b.rcertno = c.certificateno where c.percentofbenefitciary2 <> '0' and a.percent1 = '00000' order by b.policyno, b.rcertno
+    @{Result}=    query    select count(0) from dm.detcert a \ join dm.certmapping b on a.policyno = b.policyno and a.certno = b.certno \ join tlp.customerinfo c on b.rpolicyno = c.policyno and b.rcertno = c.certificateno \ where c.percentofbenefitciary2 <> '0' and a.percent1 = '00000'
     EDM1_Compare Result    @{Result[0]}    0    percent2
 
 EDM1_SIT_0007_0018_VerifyRelationshipCode2Mapping
