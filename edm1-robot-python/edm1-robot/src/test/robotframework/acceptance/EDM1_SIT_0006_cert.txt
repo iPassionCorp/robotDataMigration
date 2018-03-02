@@ -126,7 +126,7 @@ EDM1_SIT_0006_0013_VerifyReserveDefault
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{reserve}=    query    select count(0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.reserve <> "" \ and a.reserve not in ('N1', 'N2', 'N8', 'Na', 'Nb', 'Nh')
+    @{reserve}=    query    select count(0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.reserve <> '' \ and a.reserve not in ('N1', 'N2', 'N8', 'Na', 'Nb', 'Nh')
     EDM1_Compare Result    @{reserve[0]}    0    Reserve
 
 EDM1_SIT_0006_0014_VerifyMappingRuleDefault
