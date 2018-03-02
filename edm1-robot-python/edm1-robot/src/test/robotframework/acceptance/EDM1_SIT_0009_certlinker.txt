@@ -1,10 +1,10 @@
 *** Settings ***
 Library           DatabaseLibrary
 Resource          ../keywords/edm1_sit.txt
-Resource          ../Repositories/EDM1_Connection.txt
+Resource          ../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
-EDM1_SIT_0009_0001
+EDM1_SIT_0009_0001_VerifyCertLinkerColumn
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล certno ต้องมีข้อมูลเท่ากับ Table "cert"
     ...    - 'หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
@@ -15,7 +15,7 @@ EDM1_SIT_0009_0001
     Should Be Equal As Integers    ${TotalColumn}    4
     log    Column of CERTRIRDER table is ${TotalColumn}
 
-EDM1_SIT_0009_0002
+EDM1_SIT_0009_0002_VerifyLengthOfCertLinkerColumn
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล certno ต้องมีข้อมูลเท่ากับ Table "cert"
     ...    - 'หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
@@ -30,7 +30,7 @@ EDM1_SIT_0009_0002
     \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
-EDM1_SIT_0009_0003
+EDM1_SIT_0009_0003_VerifyCertLinkerReconcile
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล certno ต้องมีข้อมูลเท่ากับ Table "cert"
     ...    - 'หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
@@ -38,7 +38,7 @@ EDM1_SIT_0009_0003
     @{Result}=    query    select count(*) from ( \ \ select count(*) as totalcert \ \ from dm.cert a \ \ \ \ \ join dm.certmapping b \ \ \ \ \ on a.certno = b.certno and a.policyno = b.policyno \ \ where a.policyno in ('LE39','LE40') \ except all \ \ select count(*)*2 as totalcertlinker \ \ \ from dm.certlinker c \ \ where c.policynohp = 'LE39' and c.policynocp = 'LE40' \ ) total
     EDM1_Compare Result    @{Result[0]}    0    certno
 
-EDM1_SIT_0009_0004_policynohp
+EDM1_SIT_0009_0004_VerifyPolicyNoHpMapping
     [Documentation]    ตรวจสอบ dm.certlinker.policynohp เท่ากับ tlp.customerballoon.policyno
     ...    หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
@@ -46,21 +46,21 @@ EDM1_SIT_0009_0004_policynohp
     @{Result}=    query    select count(*) from dm.certlinker link \ \ join \ \ (select distinct(b.policyno)as newpolicy, a.policyno \ \ \ from tlp.customerballoon a \ \ \ join dm.certmapping b \ \ \ \ on a.policyno = b.rpolicyno and a.certno = b.rcertno) hpmapping on link.policynohp = hpmapping.newpolicy where link.policynohp = 'LE39' and hpmapping.policyno not in ('00029023') or link.policynohp = 'LE50' and hpmapping.policyno not in ('00019005') or link.policynohp = 'LE43' and hpmapping.policyno not in ('00019009') or link.policynohp = 'LE44' and hpmapping.policyno not in ('00029034')
     EDM1_Compare Result    @{Result[0]}    0    policynohp
 
-EDM1_SIT_0009_0005_policynocp
+EDM1_SIT_0009_0005_VerifyPolicyNoCpMaping
     [Documentation]    ตรวจสอบ dm.certlinker.policynocp เท่ากับ tlp.customerballoon.policynobollon หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
     EDM1_connect to EDM1
     @{Result}=    query    select count(*) from dm.certlinker link \ \ join \ \ (select distinct(b.policyno)as newpolicy, a.policyno \ \ \ from tlp.customerballoon a \ \ \ join dm.certmapping b \ \ \ \ on a.policynoballoon = b.rpolicyno and a.certnobolloon = b.rcertno) hpmapping on link.policynocp = hpmapping.newpolicy where link.policynohp = 'LE51' and hpmapping.policyno not in ('00019005') or \ link.policynohp = 'LE35' and hpmapping.policyno not in ('00019009') or link.policynohp = 'LE40' and hpmapping.policyno not in ('00029023') or link.policynohp = 'LE45' and hpmapping.policyno not in ('00029034')
     EDM1_Compare Result    @{Result[0]}    0    policynocp
 
-EDM1_SIT_0009_0006_certnohp
+EDM1_SIT_0009_0006_VerifyCertNoHpMapping
     [Documentation]    ตรวจสอบจำนวน Record ของ dm.certlinker.certnohp เท่ากับ dm.certmapping หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
     EDM1_connect to EDM1
     @{Result}=    query    SELECT count(*) FROM ( select policynohp, count(certnohp) \ from dm.certlinker \ where policynohp in ('LE34','LE39','LE44','LE50') \ group by policynohp EXCEPT ALL \ select policyno, count(certno) \ from dm.certmapping \ where policyno in ('LE34','LE39','LE44','LE50') \ group by policyno ) certhpdiff
     EDM1_Compare Result    @{Result[0]}    0    certnohp
 
-EDM1_SIT_0009_0007_certnocp
+EDM1_SIT_0009_0007_VerifyCertNoCpMapping
     [Documentation]    ตรวจสอบจำนวน Record ของ dm.certlinker.certnocp เท่ากับ dm.certmapping \ หลังจาก Run Script
     ...    ผลลัพธ์ Count = '0'
     EDM1_connect to EDM1

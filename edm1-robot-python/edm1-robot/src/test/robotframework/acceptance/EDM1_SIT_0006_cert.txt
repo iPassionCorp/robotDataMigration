@@ -4,17 +4,17 @@ Library           String
 Library           DatabaseLibrary
 Library           Collections
 Resource          ../keywords/edm1_sit.txt
-Resource          ../Repositories/EDM1_Connection.txt
+Resource          ../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
-EDM1_SIT_0006_0001
+EDM1_SIT_0006_0001_VerifyColumn
     EDM1_connect to EDM1
     #---- Get Total Column----
     ${TotalColumn}    EDM1_Count by query    SELECT count (c.column_name) FROM information_schema.columns c \ WHERE c.table_name = 'cert' AND c.table_schema = 'dm'
     Should Be Equal As Integers    ${TotalColumn}    37
     log    Column of CERT table is ${TotalColumn}
 
-EDM1_SIT_0006_0002
+EDM1_SIT_0006_0002_VerifyLengthOfCertColoumn
     [Documentation]    Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
     ...    - policyno = 4
     ...    - certno = 8 \ \ \ \ \ \ \ \ \ \ \ - appno = 12 \ \ \ \ \ \ \ \ \ \ \ \ \ - reqdate = 8 \ \ \ \ \ \ \ \ \ \ - nameid = 13 \ \ \ \ \ \ \ \ \ \ \ \ \ - age = 2 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ - smi = 9 \ \ \ - lifesum = 9 \ \ \ \ \ \ - accidentsum = 9 \ \ \ \ \ - period = 2 \ \ \ \ \ \ \ - loan_term = 2 \ \ \ \ \ \ \ \ \ - lifepremium = 10
@@ -32,20 +32,20 @@ EDM1_SIT_0006_0002
     \    Log Many    ${lenOfColumn[${i}]}
     \    Exit For Loop If    '${i}' == '${TotalColumn}'
 
-EDM1_SIT_0006_0003_default
+EDM1_SIT_0006_0003_VerifyExtraTPDPremiumDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
     ...    - extratpdpremium = default "0000000000" \ \ \ \
     EDM1_connect to EDM1
     @{default}=    Query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.appno <> \ '000000000000'
     EDM1_Compare Result    @{default[0]}    0    default
 
-EDM1_SIT_0006_0004_ReqDate
+EDM1_SIT_0006_0004_VerifyReqdateDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
     EDM1_connect to EDM1
     @{reqdate}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.reqdate <> '00000000'
     EDM1_Compare Result    @{reqdate[0]}    0    ReqDate
 
-EDM1_SIT_0006_0005_Extrapremium
+EDM1_SIT_0006_0005_VerifyExtraPremiumDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
     ...
     ...    Expected Result
@@ -55,7 +55,7 @@ EDM1_SIT_0006_0005_Extrapremium
     @{extrapremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.extrapremium <> '0000000000'
     EDM1_Compare Result    @{extrapremium[0]}    0    Extrapremium
 
-EDM1_SIT_0006_0006_Extratpdpremium
+EDM1_SIT_0006_0006_VerifyExtraTPDPremiumDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล extratpdpremium
     ...    - extratpdpremium = default "0000000000" \ \ \ \ \ \ \ \ Expected Result
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
@@ -64,7 +64,7 @@ EDM1_SIT_0006_0006_Extratpdpremium
     @{extratpdpremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.extratpdpremium <> '0000000000'
     EDM1_Compare Result    @{extratpdpremium[0]}    0    Extratpdpremium
 
-EDM1_SIT_0006_0007_Statcer
+EDM1_SIT_0006_0007_VerifyStatcerDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer2 \ \ \ \ \ \ \ \ \ - statcer2 = default ค่า blank
     ...
     ...    Expected Result
@@ -74,7 +74,7 @@ EDM1_SIT_0006_0007_Statcer
     @{statcer2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.extratpdpremium <> '0000000000'
     EDM1_Compare Result    @{statcer2[0]}    0    Statcer
 
-EDM1_SIT_0006_0008_Statdate2
+EDM1_SIT_0006_0008_VerifyStatdate2Default
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statdate2 \ \ \ \ \ \ \ \ \ \ \ \ \ - statdate2 = default "00000000"
     ...
     ...    Expected Result
@@ -84,7 +84,7 @@ EDM1_SIT_0006_0008_Statdate2
     @{statdate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.statdate2 <> '00000000'
     EDM1_Compare Result    @{statdate2[0]}    0    Statdate2
 
-EDM1_SIT_0006_0009_EndownmentYear
+EDM1_SIT_0006_0009_VerifyEndownmentYearDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
@@ -93,17 +93,17 @@ EDM1_SIT_0006_0009_EndownmentYear
     @{endownmentyear}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.endownmentyear <> '0000000'
     EDM1_Compare Result    @{endownmentyear[0]}    0    EndownmentYear
 
-EDM1_SIT_0006_0010_DeadCause
-    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
+EDM1_SIT_0006_0010_VerifyDeadCauseDefault
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default ""
     ...
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{deadcause}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.deadcause <> '0000'
+    @{deadcause}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.deadcause <> ''
     EDM1_Compare Result    @{deadcause[0]}    0    DeadCause
 
-EDM1_SIT_0006_0011_ReceiptFlag
+EDM1_SIT_0006_0011_VerifyReceiptFlagDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
@@ -112,13 +112,13 @@ EDM1_SIT_0006_0011_ReceiptFlag
     @{receiptflag}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.receiptflag <> 'N'
     EDM1_Compare Result    @{receiptflag[0]}    0    ReceiptFlag
 
-EDM1_SIT_0006_0012_ReferenceNo.
+EDM1_SIT_0006_0012_VerifyReferenceNoDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
     EDM1_connect to EDM1
-    @{referenceno}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.referenceno <> ''
+    @{referenceno}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where a.referenceno <> ''
     EDM1_Compare Result    @{referenceno[0]}    0    ReferenceNo.
 
-EDM1_SIT_0006_0013_Reserve
+EDM1_SIT_0006_0013_VerifyReserveDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล reserve
     ...    - reserve = default ค่า blank
     ...
@@ -129,7 +129,7 @@ EDM1_SIT_0006_0013_Reserve
     @{reserve}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where \ a.reserve <> ''
     EDM1_Compare Result    @{reserve[0]}    0    Reserve
 
-EDM1_SIT_0006_0014_MappingRule
+EDM1_SIT_0006_0014_VerifyMappingRuleDefault
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล endownmentyear \ - endownmentyear = default "0000000"
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
@@ -138,7 +138,7 @@ EDM1_SIT_0006_0014_MappingRule
     @{mappingRule}=    query    select count(*) from dm.cert a left join dm.certmapping b on a.certno = b.certno left join tlp.customerinfo c on b.rcertno = c.certificateno \ where \ (c.policyno = '00064001' and a.policyno <> 'LE29') or (c.policyno = '00064002' and a.policyno <> 'LE30') or (c.policyno = '00019008' and a.policyno <> 'LE33') or (c.policyno = '00019009' and a.policyno <> 'LE34') or (c.policyno = '00019010' and a.policyno <> 'LE35') or (c.policyno = '00019011' and a.policyno <> 'LE37') or (c.policyno = '00019012' and a.policyno <> 'LE36') or (c.policyno = '00019004' and a.policyno <> 'LE49') or (c.policyno = '00019005' and a.policyno <> 'LE50') or (c.policyno = '00019006' and a.policyno <> 'LE51') or (c.policyno = '00019007' and a.policyno <> 'LE52') or (c.policyno = '00029022' and a.policyno <> 'LE38') or (c.policyno = '00029023' and a.policyno <> 'LE39') or (c.policyno = '00029024' and a.policyno <> 'LE40') or (c.policyno = '00029025' and a.policyno <> 'LE41') or (c.policyno = '00029026' and a.policyno <> 'LE42') or (c.policyno = '00029032' and a.policyno <> 'LE43') or (c.policyno = '00029034' and a.policyno <> 'LE44') or (c.policyno = '00029035' and a.policyno <> 'LE45') or (c.policyno = '00029036' and a.policyno <> 'LE46') or (c.policyno = '00008039' and a.policyno <> 'ML40') or (c.policyno = '00008038' and a.policyno <> 'ML41') or (c.policyno = '00008018' and a.policyno <> 'ML42') or (c.policyno = '00008021' and a.policyno <> 'ML43') or (c.policyno = '00008029' and a.policyno <> 'ML44') or (c.policyno = '00008033' and a.policyno <> 'ML45') or (c.policyno = '00008030' and a.policyno <> 'ML46') or (c.policyno = '00008031' and a.policyno <> 'ML47') or (c.policyno = '00008034' and a.policyno <> 'ML48') or (c.policyno = '00008040' and a.policyno <> 'OD09') or (c.policyno = '00027004' and a.policyno <> 'OD10') or (c.policyno = '01027002' and a.policyno <> 'PL11') or (c.policyno = '00027006' and a.policyno <> 'PL12') or (c.policyno = '00032004' and a.policyno <> 'LE47') or (c.policyno = '00032001' and a.policyno <> 'LE48') or (c.policyno = '00053001' and a.policyno <> 'LE31') or (c.policyno = '00061002' and a.policyno <> 'LE32') or (c.policyno = '00063001' and a.policyno <> 'PL13') or (c.policyno = '00060001' and a.policyno <> 'PL14') or (c.policyno = '00037001' and a.policyno <> 'PL15') or (c.policyno = '00033002' and a.policyno <> 'PL16') or (c.policyno = '00035001' and a.policyno <> 'PL17') or (c.policyno = '00062001' and a.policyno <> 'PL18')
     EDM1_Compare Result    @{mappingRule[0]}    0    MappingRule
 
-EDM1_SIT_0006_0015_certNo
+EDM1_SIT_0006_0015_VerifyCertNoMapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
@@ -149,7 +149,7 @@ EDM1_SIT_0006_0015_certNo
     ${certNo}=    Convert To String    ${certNo}
     Should Be Equal    ${certNo}    None
 
-EDM1_SIT_0006_0016_certNoEqualAuto Generate by TLI
+EDM1_SIT_0006_0016_VerifyAutoGenCertNo
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"    #รอถามพี่เอ๋, พี่กบ
     ...    - certNo = Auto Generate by TLI
     ...
@@ -160,7 +160,7 @@ EDM1_SIT_0006_0016_certNoEqualAuto Generate by TLI
     Comment    Should Be Equal    ${deadcause}    [(0L,)]
     log    รอถามพี่เอ๋, พี่กบ
 
-EDM1_SIT_0006_0017_Age
+EDM1_SIT_0006_0017_VerifyAgeMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล age
     ...    - age = tlp.CustomerInfo.Age
     ...
@@ -171,7 +171,7 @@ EDM1_SIT_0006_0017_Age
     @{age}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.age <> c.age
     EDM1_Compare Result    @{age[0]}    0    Age
 
-EDM1_SIT_0006_0018_SMI
+EDM1_SIT_0006_0018_VerifySMIMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล smi
     ...    - smi = tlp.CustomerInfo.SA
     ...
@@ -181,28 +181,28 @@ EDM1_SIT_0006_0018_SMI
     @{smi}=    query    select count (*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.smi <> lpad(c.sa,9,'0');
     EDM1_Compare Result    @{smi[0]}    0    SMI
 
-EDM1_SIT_0006_0019_LifeSum
+EDM1_SIT_0006_0019_VerifyLifeSumMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล lifeSum
     ...    - lifeSum = tlp.CustomerSA.SA_Life
     EDM1_connect to EDM1
     @{lifeSum}=    query    select count (0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.sa_life FROM tlp.customerinfo c \ join tlp.customersa p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.lifeSum <> lpad (tmp.sa_life, 9, '0');
     EDM1_Compare Result    @{lifeSum[0]}    0    LifeSum
 
-EDM1_SIT_0006_0020_Period
+EDM1_SIT_0006_0020_VerifyPeriodMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล period
     ...    - period = tlp.CustomerInfo.DurationInsurance
     EDM1_connect to EDM1
     @{period}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.period <> lpad(c.durationinsurance,2,'0');
     EDM1_Compare Result    @{period[0]}    0    Period
 
-EDM1_SIT_0006_0021_Loan_Term
+EDM1_SIT_0006_0021_VerifyLoanTermMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล loan_term
     ...    - loan_term = tlp.CustomerInfo.CustomerDuration
     EDM1_connect to EDM1
     @{loan_term}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.loan_term <> lpad(c.customerduration,2,'0');
     EDM1_Compare Result    @{loan_term[0]}    0    Loan_Term
 
-EDM1_SIT_0006_0022_LifePremium
+EDM1_SIT_0006_0022_VerifyLifePremiumMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล lifepremium
     ...    -lifepremium = tlp.SplitPremiumAmount.LifePremium
     ...
@@ -212,7 +212,7 @@ EDM1_SIT_0006_0022_LifePremium
     @{lifepremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.lifepremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno \ where a.policyno not in ('LE49', 'LE50', 'LE51') \ and a.lifepremium <> lpad(cast(cast(cast(tmp.lifepremium as decimal)*100 as int) as text),10,'0');
     EDM1_Compare Result    @{lifepremium[0]}    0    LifePremium
 
-EDM1_SIT_0006_0023_TPDpremium
+EDM1_SIT_0006_0023_VerifyTPDPremiumMappingTPDPremium
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล tpdpremium
     ...    - tpdpremium = tlp.SplitPremiumAmount.TPDPremium
     ...
@@ -222,7 +222,7 @@ EDM1_SIT_0006_0023_TPDpremium
     @{tpdpremium}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join (SELECT c.policyno, c.certificateno, c.customercode, p.tpdpremium FROM tlp.customerinfo c join tlp.splitpremiumamount p on c.policyno = p.grouppolicyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno \ where a.policyno not in ('LE49', 'LE50', 'LE51') \ and a.tpdpremium <> lpad(cast(cast(cast(tmp.tpdpremium as decimal)*100 as int) as text),10,'0');
     EDM1_Compare Result    @{tpdpremium[0]}    0    TPDpremium
 
-EDM1_SIT_0006_0024_TPDpremium
+EDM1_SIT_0006_0024_VerifyTPDPremiumMappingADDPremium
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล addpremium
     ...    - addpremium = tlp.SplitPremiumAmount.ADDPremium
     ...
@@ -232,7 +232,7 @@ EDM1_SIT_0006_0024_TPDpremium
     @{tpdpremium}=    query    select count(*) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.addpremium FROM tlp.customerinfo c \ join tlp.splitpremiumamount p \ on c.policyno = \ p.grouppolicyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.addpremium <> lpad(cast(cast(cast(tmp.addpremium as decimal)*100 as int) as text),10,'0');
     EDM1_Compare Result    @{tpdpremium[0]}    0    TPDpremium
 
-EDM1_SIT_0006_0025_EM
+EDM1_SIT_0006_0025_VerifyEmMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล em
     ...    - em = tlp.CustomerInfo.ExtraRate
     ...
@@ -242,7 +242,7 @@ EDM1_SIT_0006_0025_EM
     @{em}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.em <> trim (to_char(to_number(c.extrarate, '900'), '000'));
     EDM1_Compare Result    @{em[0]}    0    EM
 
-EDM1_SIT_0006_0026_EffectiveDate
+EDM1_SIT_0006_0026_VerifyEffectiveDateMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล effectiveDate
     ...    - effectiveDate = tlp.CustomerInfo.EffectiveDate
     ...
@@ -252,7 +252,7 @@ EDM1_SIT_0006_0026_EffectiveDate
     @{effectiveDate}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.em <> trim (to_char(to_number(c.extrarate, '900'), '000'));
     EDM1_Compare Result    @{effectiveDate[0]}    0    EffectiveDate
 
-EDM1_SIT_0006_0027_MatureDate
+EDM1_SIT_0006_0027_VerifyMatureDateMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล matureDate
     ...    - matureDate = tlp.CustomerInfo.ExpiredDate+1
     ...
@@ -262,7 +262,7 @@ EDM1_SIT_0006_0027_MatureDate
     @{matureDate}=    query    SELECT count(0) \ from dm.cert a \ inner join dm.certmapping b on (a.certno = b.certno) inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.expireddate FROM tlp.customerinfo c \ join tlp.customerinfo p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno WHERE (to_date(a.maturedate,'YYYYMMDD') - INTERVAL '543 year') \ <> (to_date(tmp.expireddate,'YYYYMMDD') - INTERVAL '543 year') + INTERVAL '1 day';
     EDM1_Compare Result    @{matureDate[0]}    0    MatureDate
 
-EDM1_SIT_0006_0028_PremiumDate
+EDM1_SIT_0006_0028_VerifyPremiumDateMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล premiumDate
     ...    - premiumDate = tlp.Payment.PaymentDate
     ...
@@ -272,7 +272,7 @@ EDM1_SIT_0006_0028_PremiumDate
     @{premiumDate}=    query    select count(distinct(a.policyno)) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno inner join \ (SELECT c.policyno, c.certificateno, c.customercode, p.paymentdate FROM tlp.customerinfo c \ join tlp.payment p on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.premiumDate <> tmp.paymentdate
     EDM1_Compare Result    @{premiumDate[0]}    0    PremiumDate
 
-EDM1_SIT_0006_0029_InformDate1
+EDM1_SIT_0006_0029_VerifyInformDate1Mapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate1
     ...    - informDate1 = tlp.CustomerInfo.informDate1
     ...
@@ -282,7 +282,7 @@ EDM1_SIT_0006_0029_InformDate1
     @{informDate1}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate1 <> c.informDate1;
     EDM1_Compare Result    @{informDate1[0]}    0    InformDate1
 
-EDM1_SIT_0006_0030_PayDate1
+EDM1_SIT_0006_0030_VerifyPayDate1Mapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล payDate1
     ...    - payDate1 = tlp.CustomerInfo.payDate1
     ...
@@ -292,7 +292,7 @@ EDM1_SIT_0006_0030_PayDate1
     @{payDate1}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate1 <> c.informDate1;
     EDM1_Compare Result    @{payDate1[0]}    0    PayDate1
 
-EDM1_SIT_0006_0031_amount1
+EDM1_SIT_0006_0031_Verifyamount1Mapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount1
     ...    - amount1 = tlp.CustomerInfo.amount1
     ...
@@ -302,7 +302,7 @@ EDM1_SIT_0006_0031_amount1
     @{amount1}=    query    select count(0) \ from dm.cert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno \ where a.amount1 <> trim(to_char(to_number(c.amount1,'9999999900'),'0000000000'));
     EDM1_Compare Result    @{amount1[0]}    0    amount1
 
-EDM1_SIT_0006_0032_InformDate2
+EDM1_SIT_0006_0032_VerifyInformDate2Mapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate2
     ...    - informDate2 = tlp.CustomerInfo.informDate2
     ...
@@ -313,18 +313,18 @@ EDM1_SIT_0006_0032_InformDate2
     @{informDate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
     EDM1_Compare Result    @{informDate2[0]}    0    InformDate2
 
-EDM1_SIT_0006_0033_InformDate2
-    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล informDate2
-    ...    - informDate2 = tlp.CustomerInfo.informDate2
+EDM1_SIT_0006_0033_VerifypayDate2Mapping
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล payDate2
+    ...    - payDate2 = tlp.CustomerInfo.payDate2
     ...
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{informDate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
-    EDM1_Compare Result    @{informDate2[0]}    0    InformDate2
+    @{informDate2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.payDate2 <> c.payDate2;
+    EDM1_Compare Result    @{informDate2[0]}    0    payDate2
 
-EDM1_SIT_0006_0034_Amount2
+EDM1_SIT_0006_0034_VerifyAmount2Mapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
     ...    - amount2 = tlp.CustomerInfo.amount2
     ...
@@ -335,7 +335,7 @@ EDM1_SIT_0006_0034_Amount2
     @{amount2}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.informDate2 <> c.informDate2;
     EDM1_Compare Result    @{amount2[0]}    0    Amount2
 
-EDM1_SIT_0006_0035_DeadDate
+EDM1_SIT_0006_0035_VerifyDeadDateMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
     ...    - amount2 = tlp.CustomerInfo.amount2
     ...
@@ -346,7 +346,7 @@ EDM1_SIT_0006_0035_DeadDate
     @{deadDate}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.deadDate <> c.deadDate;
     EDM1_Compare Result    @{deadDate[0]}    0    DeadDate
 
-EDM1_SIT_0006_0036_TDP
+EDM1_SIT_0006_0036_VerifyTDPMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล tpd
     ...    - tpd = em/100 เช่น em = 100, tpd = 1.00
     ...
@@ -357,7 +357,7 @@ EDM1_SIT_0006_0036_TDP
     @{tpd}=    query    select count(*) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno where a.tpd <> lpad(em,4,'0')
     EDM1_Compare Result    @{tpd[0]}    0    TDP
 
-EDM1_SIT_0006_0037_certyyyymm
+EDM1_SIT_0006_0037_VerifycertyyyymmMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล certyyyymm
     ...    - certyyyymm = CustomerInfo.EffectiveDate.substring(0,6)
     ...    เช่น effectivedate = 25591021, certyyymm = 255910
@@ -368,7 +368,7 @@ EDM1_SIT_0006_0037_certyyyymm
     @{certyyyymm}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where substring(c.EffectiveDate,1,6) <> a.certyyyymm;
     EDM1_Compare Result    @{certyyyymm[0]}    0    certyyyymm
 
-EDM1_SIT_0006_0038_statcer I-Active
+EDM1_SIT_0006_0038_VerifyStatcerStatus_I
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Active
     ...    - statcer = "I" (มีผลบังคับ)
     ...
@@ -378,7 +378,7 @@ EDM1_SIT_0006_0038_statcer I-Active
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Active' and a.statcer <> 'I'
     EDM1_Compare Result    @{statcer[0]}    0    statcer I-Active
 
-EDM1_SIT_0006_0039_statcer D-Death
+EDM1_SIT_0006_0039_VerifyStatcerStatus_D
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Death
     ...    - statcer = "D" (มรณกรรม)
     ...
@@ -388,7 +388,7 @@ EDM1_SIT_0006_0039_statcer D-Death
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Death' and a.statcer <> 'D'
     EDM1_Compare Result    @{statcer[0]}    0    statcer D-Death
 
-EDM1_SIT_0006_0040_statcer C-Cancel (Void)
+EDM1_SIT_0006_0040_VerifyStatcerStatus_V
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel (Void)
     ...    - statcer = "V" (บอกล้าง)
     ...
@@ -398,7 +398,7 @@ EDM1_SIT_0006_0040_statcer C-Cancel (Void)
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel (Void)' and a.statcer <> 'V'
     EDM1_Compare Result    @{statcer[0]}    0    statcer C-Cancel (Void)
 
-EDM1_SIT_0006_0041_statcer M-Expired
+EDM1_SIT_0006_0041_VerifyStatcerStatus_M
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Expired
     ...    - statcer = "M" (ครบกำหนดสัญญา)
     ...
@@ -408,7 +408,7 @@ EDM1_SIT_0006_0041_statcer M-Expired
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Expired' and a.statcer <> 'M'
     EDM1_Compare Result    @{statcer[0]}    0    statcer M-Expired
 
-EDM1_SIT_0006_0042_statcer S-Surrender
+EDM1_SIT_0006_0042_VerifyStatcerStatus_S
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Surrender
     ...    - statcer = "S" (เวนคืน)
     ...
@@ -418,7 +418,7 @@ EDM1_SIT_0006_0042_statcer S-Surrender
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Surrender' and a.statcer <> 'S'
     EDM1_Compare Result    @{statcer[0]}    0    statcer S-Surrender
 
-EDM1_SIT_0006_0043_statcer C-Cancel (ไม่รับประกัน)
+EDM1_SIT_0006_0043_VerifyStatcerStatus_C_Cancel
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel (ไม่รับประกัน)
     ...    - statcer = "C" (ยกเลิก)
     ...
@@ -428,7 +428,7 @@ EDM1_SIT_0006_0043_statcer C-Cancel (ไม่รับประกัน)
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel (ไม่รับประกัน)' and a.statcer <> 'C'
     EDM1_Compare Result    @{statcer[0]}    0    statcer C-Cancel (ไม่รับประกัน)
 
-EDM1_SIT_0006_0044_statcer C-Cancel and Refund
+EDM1_SIT_0006_0044_VerifyStatcerStatus_C_CancelRefund
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล statcer กรณี tlp.customerinfo.customerstatus = Cancel and Refund
     ...    - statcer = "C" (ยกเลิก)
     ...
@@ -438,37 +438,37 @@ EDM1_SIT_0006_0044_statcer C-Cancel and Refund
     @{statcer}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where c.customerstatus = 'Cancel and Refund' and a.statcer <> 'C'
     EDM1_Compare Result    @{statcer[0]}    0    statcer C-Cancel and Refund
 
-EDM1_SIT_0006_0045_LE49 - TPD Premium
+EDM1_SIT_0006_0045_VerifyLE49TPDPremium
     [Documentation]    Validate LE49 - TPD Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le49 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE49' \ and (to_number(a.tpdpremium, '9999999999.99') / 100) <> round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
     EDM1_Compare Result    @{statcer[0]}    0    Validate LE49 - TPD Premium
 
-EDM1_SIT_0006_0046_LE49 - Life Premium
+EDM1_SIT_0006_0046_VerifyLE49LifePremium
     [Documentation]    Validate LE49 - TPD Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le49 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE49' \ and (to_number(a.lifepremium, '9999999999.99') / 100) <> to_number(s.lifepremium, '9999999999.99') - round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
     EDM1_Compare Result    @{statcer[0]}    0    Validate LE49 - Life Premium
 
-EDM1_SIT_0006_0047_LE50 - TPD Premium
+EDM1_SIT_0006_0047_VerifyLE50TPDPremium
     [Documentation]    Validate LE50 - TPD Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le50 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE50' \ and (to_number(a.tpdpremium, '9999999999.99') / 100) <> round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
     EDM1_Compare Result    @{statcer[0]}    0    Validate LE50 - TPD Premium
 
-EDM1_SIT_0006_0048_LE50 - Life Premium
+EDM1_SIT_0006_0048_VerifyLE50LifePremium
     [Documentation]    Validate LE50 - Life Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le50 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE50' \ and (to_number(a.lifepremium, '9999999999.99') / 100) <> to_number(s.lifepremium, '9999999999.99') - round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
     EDM1_Compare Result    @{statcer[0]}    0    Validate LE50 - Life Premium
 
-EDM1_SIT_0006_0049_LE51 - TPD Premium
+EDM1_SIT_0006_0049_VerifyLE51TPDPremium
     [Documentation]    Validate LE51 - TPD Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) \ from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le51 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE51' \ and (to_number(a.tpdpremium, '9999999999.99') / 100) <> round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
     EDM1_Compare Result    @{statcer[0]}    0    Validate LE51 - TPD Premium
 
-EDM1_SIT_0006_0050_LE51 - Life Premium
+EDM1_SIT_0006_0050_VerifyLE51LifePremium
     [Documentation]    Validate LE51 - Life Premium
     EDM1_connect to EDM1
     @{statcer}=    query    select count(0) from dm.cert a \ inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno inner join tlp.splitpremiumamount s on c.policyno = \ s.grouppolicyno \ and c.customercode = s.customercode inner join dm."name" n on a.nameid = n.nameid \ inner join dm.person p on n.personid = p.personid \ inner join lookup.rate_le51 r on r.sex = p.sex and r.term = to_number (c.durationinsurance, '99') and r.age = a.age \ where a.policyno = 'LE51' \ and (to_number(a.lifepremium, '9999999999.99') / 100) <> to_number(s.lifepremium, '9999999999.99') - round ((r.tpdrate / r.totrate) * to_number(s.lifepremium, '9999999999.99'), 0);
