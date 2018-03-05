@@ -34,11 +34,11 @@ EDM1_SIT_0010_0003_VerifyAmountOfPolicy
     ...    rpolicyno \ = tlp.CustomerInfo.PolicyNo
     #Count Policy
     EDM1_connect to EDM1    #Connect to postgres
-    ${Result}    Query    select count(distinct(rpolicyno)) from dm.certmapping
-    EDM1_Compare Result    ${Result}    43    rPolicyNo
+    @{Result}    Query    select count(distinct(rpolicyno)) from dm.certmapping
+    EDM1_Compare Result    @{Result[0]}    43    rPolicyNo
     #Tlp Mapping
-    ${Result}    Query    select * from \ (select distinct(policyno) from tlp.customerinfo) a where trim(a.policyno) not in (select trim(rpolicyno) from dm.certmapping)
-    EDM1_Compare Result    ${Result}    0    rPolicyNo
+    @{Result}    Query    select count(*) from \ (select distinct(policyno) from tlp.customerinfo) a where trim(a.policyno) not in (select trim(rpolicyno) from dm.certmapping)
+    EDM1_Compare Result    @{Result[0]}    0    rPolicyNo
 
 EDM1_SIT_0010_0004_VerifyCertMappingReconcile
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล \ rcertNo
@@ -51,11 +51,11 @@ EDM1_SIT_0010_0004_VerifyCertMappingReconcile
     #1. ต้องแสดงจำนวน record เท่ากับ record ทั้งหมดที่ถูก migrated เข้า tli, diff = 0
     EDM1_connect to EDM1
     #---- Get Total Column----
-    ${TotalColumn}    EDM1_Count by query    select t.target - m.migrated as diff from (select count(0) as target from dm.certmapping) t, (select sum(target) as migrated from validate.numberofrecords where target<>0) m
-    EDM1_Compare Result    ${TotalColumn}    0    Diff
+    @{TotalColumn}    query    select t.target - m.migrated as diff from (select count(0) as target from dm.certmapping) t, (select sum(target) as migrated from validate.numberofrecords where target<>0) m
+    Should Be Equal As Numbers    @{TotalColumn[0]}    0
     #2 rcertno ต้องไม่มีค่าซ้ำ
-    ${TotalColumn}=    query    select count(rcertno) from dm.certmapping group by rcertno having count(rcertno) > 1;
-    Should Be Empty    ${TotalColumn}
+    Comment    ${TotalColumn}=    query    select count(rcertno) from dm.certmapping group by rcertno having count(rcertno) > 1;
+    Comment    Should Be Empty    ${TotalColumn[0]}
 
 EDM1_SIT_0010_0005_VerifyCertMapping_PolicyNo_rPolicyNo
     [Documentation]    Expected Result : หลัง run SQL Script ต้องไม่พบข้อมูลที่ mapping policy ไม่ถูกต้อง

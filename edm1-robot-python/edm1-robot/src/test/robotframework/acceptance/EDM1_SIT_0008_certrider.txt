@@ -137,14 +137,14 @@ EDM1_SIT_0008_0007_VerifySumMapping_SAadd
     @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join (SELECT c.policyno, c.certificateno, p.sa_add FROM tlp.customerinfo c \ join tlp.customersa p \ on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where a.ridertype in ('B01','B02','B03','B05','B06','B07','B09','B15','B16', 'B17','B19','B24','B26','B27','B28','B29','B30','B31') and a.sum <> trim(to_char(to_number(tmp.sa_add,'99999999D99'),'000000000'));
     EDM1_Compare Result    @{Result[0]}    0    sum
 
-EDM1_SIT_0008_0008_VerifySumMapping_SATadb
+EDM1_SIT_0008_0008_VerifySumMapping_SAadb
     [Documentation]    - Run SQL Script ตรวจสอบข้อมูล sum กรณี riderType เท่ากับ ADB (ยังไม่มีข้อมูลใน phase1)
     ...    - sum = tlp.customerinfo.SA_ADB
     ...
     ...    expect ::
     ...    - หลังจาก Run Script ต้องไม่มี Record แสดง
     EDM1_connect to EDM1
-    @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join (SELECT c.policyno, c.certificateno, p.sa_add, p.sa_adb FROM tlp.customerinfo c \ join tlp.customersa p \ on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where tmp.sa_adb <> '0.00'
+    @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join (SELECT c.policyno, c.certificateno, p.sa_add, p.sa_adb FROM tlp.customerinfo c \ join tlp.customersa p \ on c.policyno = \ p.policyno \ and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where tmp.sa_adb <> '0'
     EDM1_Compare Result    @{Result[0]}    0    sum
 
 EDM1_SIT_0008_0009_VerifySumMapping_SAme
@@ -164,8 +164,9 @@ EDM1_SIT_0008_0010_VerifyPremiumMapping_TPDPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM1_connect to EDM1
-    @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join \ \ \ (SELECT c.policyno, c.certificateno, p.tpdpremium \ FROM tlp.customerinfo c \ \ \ join tlp.splitpremiumamount p \ \ \ on c.policyno = \ p.grouppolicyno and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where a.ridertype in ('P01','P02','P03','P04','P05','P07','P08','P09','P10','P11','P12','P13','P14','P15','P20','P21','P22','P23','P24','P25','P26','P27','P28','P35') and a.premium <> trim(to_char(to_number(tmp.tpdpremium,'9999999999'),'0000000000')); ;
+    @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join \ \ \ (SELECT c.policyno, c.certificateno, p.tpdpremium \ FROM tlp.customerinfo c \ \ \ join tlp.splitpremiumamount p \ \ \ on c.policyno = \ p.grouppolicyno and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where a.ridertype in ('P01','P02','P03','P04','P05','P07','P08','P09','P10','P11','P12','P15','P20','P21','P22','P23','P24','P25','P26','P27','P28','P35') and a.premium <> trim(to_char(to_number(tmp.tpdpremium,'9999999999'),'0000000000')); ;
     EDM1_Compare Result    @{Result[0]}    0    premium
+    log    Not in P13 & P14
 
 EDM1_SIT_0008_0011_VerifyPremiumMapping_TDPremium
     [Documentation]    - Run SQL Script ตรวจสอบข้อมูล premium กรณี riderType เท่ากับ E01,E02,E03,E05,E06,E07,E11,E16 [ทุพพลภาพสิ้นเชิงชั่วคราว(TD)]
