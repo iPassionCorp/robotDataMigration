@@ -164,7 +164,7 @@ EDM1_SIT_0008_0010_VerifyPremiumMapping_TPDPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM1_connect to EDM1
-    @{Result}=    Query    select count(*) from dm.certrider a \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ join \ \ \ (SELECT c.policyno, c.certificateno, p.tpdpremium \ FROM tlp.customerinfo c \ \ \ join tlp.splitpremiumamount p \ \ \ on c.policyno = \ p.grouppolicyno and c.customercode = p.customercode) tmp on b.rcertno = tmp.certificateno where a.ridertype in ('P01','P02','P03','P04','P05','P07','P08','P09','P10','P11','P12','P15','P20','P21','P22','P23','P24','P25','P26','P27','P28','P35') and a.premium <> trim(to_char(to_number(tmp.tpdpremium,'9999999999'),'0000000000')); ;
+    @{Result}=    Query    select count(*) \ from dm.certrider a \ \ join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno \ \ join (SELECT c.policyno, c.certificateno, p.tpdpremium \ FROM tlp.customerinfo c \ \ \ \ join tlp.splitpremiumamount p \ \ \ on c.policyno = \ p.grouppolicyno and c.customercode = p.customercode) tmp \ on b.rcertno = tmp.certificateno where a.ridertype \ in ('P01','P02','P03','P04','P05','P07','P08','P09','P10','P11','P12','P15','P20','P21','P22','P23','P24','P25','P26','P27','P28','P35') \ and a.premium = trim(to_char(to_number(tmp.tpdpremium,'9999999999'),'000999999'));
     EDM1_Compare Result    @{Result[0]}    0    premium
     log    Not in P13 & P14
 
