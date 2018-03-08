@@ -168,7 +168,7 @@ EDM1_SIT_0006_0017_VerifyAgeMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM1_connect to EDM1
-    @{age}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where a.age <> c.age
+    @{age}=    query    select count(0) from \ dm.cert a inner join dm.certmapping b on \ a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on \ b.rcertno = c.certificateno where \ a.age <> c.age \ \ and c.customerstatus in (select customerstatus from lookup.tlppolicystatus)
     EDM1_Compare Result    @{age[0]}    0    Age
 
 EDM1_SIT_0006_0018_VerifySMIMapping
