@@ -1,0 +1,828 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0012_VerifyPolicyStatusMapping_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0007_VeriftyOrderNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0011_claimType 'T'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0025_VerifyDisabilityType_2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0039_VerifyBookStatusDefault_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0011_VerifyTypeMapping_2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0030_VerifyPayAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0004_VerifyAccidentDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0003_VerifyCertNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0029_VerifybankCode_TBANK
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0031_VerfiyAccdAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0041_VerifyAllowTypeDefault_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0016admitflag_Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0012_VerifyDayDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0021_VerifyBankTypeDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0001_VerifyMgInterestColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0007_VerifyPreNameMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0015_VerifyTambolMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0007_receiveDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0022_okDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0024_VerifyAmeDayDefault_1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0039_VerifyClaimOkDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0001_VerifyMgHisColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0006_VerifyMemoCodeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0017_VerifyServiceBranchDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0027_VerifyAmePaymentMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0008_VerifyPolicyStatus_I
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0010_VerifyPolicyStatus_C
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0008_VerifyRiderTypeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0004_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0013_VerifyPolicyStatusDateMapping_PolicyStatus_C
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0022_VerifyAmeStartDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0009_VerifyStartDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0020_calsurdate_default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0008_VerifyPolicyStatus_I
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0013_claimType 'A'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0020_VerifyClaimType_T
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0033_VerifyIsPayDefault_Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0034_VerifyReturnAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0001_VerifyMgReceiverColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0017_orderNo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0035_VerifyHaveIndiciaDefault_T
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0023_okDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0037_VerifyDeductAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0006_VerifySeqNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0028_VerifybankCode_AYUDHAYA
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0004_accidentDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0028_VerifyAmePaymentDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0001_VerifyMgPayRiderColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0012_VerifyRemarkDateAndRemarkNoMapping_03
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0035_VerifyReturnAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0030_VerifybankBranchDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0011_hospitalcode
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0017_VerifyServiceBranchDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0011_VerifyDayMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0022_VerifybankCode_BBL
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0016_VerifyZipCodeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0026_VerifyAmeExpenseDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0006_VerifyRiderTypeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0031_VerifybankAccountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0003_VerifyCertNoAutogen
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0007_VerifyDetail1Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0012
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0038_VerifyDeductAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0042_VerifyDocNo Default_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0003_VerifyCertNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0019_VerifyAmeStartDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0023_VerifyAmeDayMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0011_VerifyRemarkDateAndRemarkNoMapping_02
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0040_VerifyClaimPayDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0026_VerifybankCode_SCB
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0025_VerifybankCode_TMB
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0036_VerifyReturnAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0029_VerifyTdDayDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0015
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0012_VerifyPolicyStatusDateMappng_PolicyStatus_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0043_VerifyAllowTypeDefault_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0018_receivedocdate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0014_VerifyEmployeeIDMapping_Seq01
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0032_VerifyAccdAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0020_VerifyAmeStartDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0038_VerifyBookStatusDefault_P
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0005_billingorderno
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0008_VerifyclaimType_T
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0007_orderno
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0007_VerifyclaimType_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0036_VerifyCountryCodDefault_THA
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0037_VerifyDeductAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0028_VerifyPayrateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0005_receiveDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0038_VerifyVoidDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0039_VerifyVoidDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0007_VerifyRiderTypeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0017_VerifyMobilePhoneMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0008_VerifyDetail2Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0006_interimflag
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0006_VerifySectionCodeDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0009_claimType 'D'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0033_VerifySurrenderAmountDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0041_VerifyChqNoDefault_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0004_VerifyAccidentDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0015_VerifyinterestAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0008_claimType 'T'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0018_VerifyClaimType_A
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0018_VerifyAmeStartDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0002_VerifyLengthOfMgHisColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0022_VerifyProofInsuredAgeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0019_VerifyPayTypeMapping_2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0014_VerifyPolicyStatus2Default_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0040_VerifyClaimOkDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0020_VerifyPayTypeMapping_4
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0032_VerifyguardianBeneficiaryDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0009_VerifySeqNoAutogen
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0014_VerifyPolicyStatus2Default_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0024_VerifyDisabilityType_1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0015_VerifyPolicyStatusDate2Default_Zero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0023_VerifyDisabilityType_0
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0008_VerifyFirstNameMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0010_claimType 'A'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0013_VerifyPolicyStatusMapping_C
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0003_sectionCode
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0018
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0010_VerifyPolicyStatus_C
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0004_VerifyAccidentDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0043_VerifyIsBeneficiaryKilledDefault_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0013_VerifyRemarkNoInMethod
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0015_VerifyRecTimeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0009_VerifyPolicyStatus_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0003_VerifyCertNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0016_VerifyPolicyStatus2Default_Zero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0009_VerifysaveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0004_VerifyAccientDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0042_VerifyAllowTypeDefault_Blank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0002_VerifyLengthOfMgPayColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0014
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0017admitflag_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0023_VerifybankCode_KBANK
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0019_VerifyClaimType_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0037_VerifyClaimPayDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0036_VerifyDeductAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0003_VerifyCertNoAutoGen
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0015_VerifyPolicyStatus2Default_Zero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0012_VerifyTypeMapping_1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0030_VerifyTdStartDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0009_VerifyPolicyStatus_D
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0001_VerifyMgInsMomoColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0008_receiverid
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0013_VerifyDayDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0014_sectionCode
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0025_VerifyAmeExpenseMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0006_receiveDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0002_VerifyLengthOfMgReceiverColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0007_VerifyOrderNoMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0003_VerifyCertNoOfMGInterestMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0033_VerifyReturnAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0002_VerifyLengthOfMgInterestColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0021_okDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0004_VerifyAccidentDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0017 mgInterest.EDM1_SIT_0017_0010_VerifyEndDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0044_VerifyBirthDateDefault_Zero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0027_VerifyPayrateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0010_VerifyTypeMapping_3
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0002_VerifyLengthOfMgInsMomoColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0018_VerifyCitizenIDMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0019_orderNo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0034_VerifyReturnAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0015_VerifyEmployeeIDMapping_Seq02and03
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0040_VerifyChqDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0031_VerifyTdPaymentMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0004_receivetime
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0015_isMigration
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0021_VerifyPayTypeMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0021_VerifyAmeStartDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0016 mgInsMemo.EDM1_SIT_0018_0005_VerifyReceiveDateMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0001_VerifyMgPayColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0034_VerifyIsPayDefault_N
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0019_receivedocdate_default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0009_considerid
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0002_VerifyLengthOfMgPayRiderColumn
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0020_orderNoDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0024_VerifybankCode_KTB
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0006_VerifySectionCodeDefault_95
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0016_isMigration
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0026_VerifyDisNumberDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0012_claimType 'A'
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0010_VerifyRemarkDateAndRemarkNoMapping_01
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0010_admitdate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0009_VerifyLastNameMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0013_VerifyPayAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0035_VerifyReturnAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0016_VerifyPolicyStatusDate2Mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0011_VerifyPolicyStatusDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0011 mgClaim.EDM1_SIT_0011_0003_mg_cliam
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0012 mgOrder.EDM1_SIT_0012_0013
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0027_VerifybankCode_CIMB THAI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0015 mgHis.EDM1_SIT_0015_0006_VerifyclaimType_A
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0032_VerifyTdPaymentDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0014 mgPayRider.EDM1_SIT_0014_0011_VerifyPolicyStatusDateDefault
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0013 mgPay.EDM1_SIT_0013_0029_VerfiyPayAmountMapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM1 SIT 0018 mgReceiver.EDM1_SIT_0018_0014_VerifyAddressMapping
