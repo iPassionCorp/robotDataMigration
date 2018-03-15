@@ -1,7 +1,7 @@
 *** Settings ***
 Library           DatabaseLibrary
-Resource          ../../keywords/edm1_sit.txt
-Resource          ../../Repositories/${env}/${env}_Connection.txt
+Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0008_0001_VerifyCertRiderColumn
