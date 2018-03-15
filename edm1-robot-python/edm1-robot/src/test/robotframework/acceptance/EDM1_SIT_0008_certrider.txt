@@ -1,7 +1,7 @@
 *** Settings ***
 Library           DatabaseLibrary
-Resource          ../keywords/edm1_sit.txt
-Resource          ../Repositories/${env}/${env}_Connection.txt
+Resource          ../../keywords/edm1_sit.txt
+Resource          ../../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0008_0001_VerifyCertRiderColumn
@@ -124,7 +124,7 @@ EDM1_SIT_0008_0006_VerifySumMapping_SAtd
     ...    expect ::
     ...    - หลังจาก Run Script count = '0'
     EDM1_connect to EDM1
-    @{Result}=    Query    select count(*) from dm.certrider a \ \ join dm.certmapping b \ \ \ on a.certno = b.certno and a.policyno = b.policyno \ join (SELECT c.policyno, c.certificateno, p.sa_td \ \ \ FROM tlp.customerinfo c \ \ \ \ join tlp.customersa p \ \ \ \ on c.policyno = \ p.policyno \ \ \ \ and c.customercode = p.customercode) tmp \ \ on b.rcertno = tmp.certificateno \ \ join dm.cert d \ \ \ on a.certno = d.certno and a.policyno = d.policyno where a.ridertype in ('E01','E02','E03','E05','E06','E07','E11','E16') and a.sum <> trim(to_char(ceiling(to_number(tmp.sa_td,'9999999900D99') / (to_number (d.period, '99')*12)), '000000000')) ;
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ \ \ \ \ join dm.certmapping b \ \ \ \ \ \ \ on a.certno = b.certno and a.policyno = b.policyno \ \ \ join (SELECT c.policyno, c.certificateno, p.sa_td FROM tlp.customerinfo c \ \ \ \ \ \ \ \ join tlp.customersa p \ \ \ \ \ \ \ \ on c.policyno = \ \ p.policyno \ \ \ \ \ \ \ \ and c.customercode = p.customercode) tmp \ \ \ \ on b.rcertno = tmp.certificateno \ \ \ \ join dm.cert d \ \ \ \ \ \ on a.certno = d.certno and a.policyno = d.policyno where a.ridertype in ('E01','E02','E03','E05','E06','E07','E11','E16') \ and a.sum <> lpad(tmp.sa_td, 9, '0')
     EDM1_Compare Result    @{Result[0]}    0    sum_Equal_tlp.customerinfo.SA_TPD
 
 EDM1_SIT_0008_0007_VerifySumMapping_SAadd
