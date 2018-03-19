@@ -3,8 +3,8 @@ Library           BuiltIn
 Library           String
 Library           DatabaseLibrary
 Library           Collections
-Resource          ../../keywords/edm1_sit.txt
-Resource          ../../Repositories/${env}/${env}_Connection.txt
+Resource          ../keywords/edm1_sit.txt
+Resource          ../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0006_0001_VerifyColumn
