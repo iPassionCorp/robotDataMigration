@@ -33,7 +33,7 @@ EDM1_SIT_0010_0003_VerifyAmountOfPolicy
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล \ rpolicyno มีทั้งหมด 43 policy ตาม tlp
     ...    rpolicyno \ = tlp.CustomerInfo.PolicyNo
     #Count Policy
-    Comment EDM1_connect to EDM1    #Connect to postgres
+    EDM1_connect to EDM1    #Connect to postgres
     Comment @{Result}    Query    select count(distinct(rpolicyno)) from dm.certmapping
     Comment EDM1_Compare Result    @{Result[0]}    43    rPolicyNo
     #Tlp Mapping
