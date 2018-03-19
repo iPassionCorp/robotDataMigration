@@ -34,8 +34,8 @@ EDM1_SIT_0010_0003_VerifyAmountOfPolicy
     ...    rpolicyno \ = tlp.CustomerInfo.PolicyNo
     #Count Policy
     EDM1_connect to EDM1    #Connect to postgres
-    Comment @{Result}    Query    select count(distinct(rpolicyno)) from dm.certmapping
-    Comment EDM1_Compare Result    @{Result[0]}    43    rPolicyNo
+    Comment    @{Result}    Query    select count(distinct(rpolicyno)) from dm.certmapping
+    Comment    EDM1_Compare Result    @{Result[0]}    43    rPolicyNo
     #Tlp Mapping
     @{Result}    Query    select count(*) from  (select distinct(policyno) from tlp.customerinfo) a where trim(a.policyno) not in       (select trim(rpolicyno) from dm.certmapping)
     EDM1_Compare Result    @{Result[0]}    43    rPolicyNo
