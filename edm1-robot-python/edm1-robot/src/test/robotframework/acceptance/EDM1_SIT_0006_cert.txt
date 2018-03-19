@@ -3,8 +3,8 @@ Library           BuiltIn
 Library           String
 Library           DatabaseLibrary
 Library           Collections
-Resource          ../keywords/edm1_sit.txt
-Resource          ../Repositories/${env}/${env}_Connection.txt
+Resource          ../../keywords/edm1_sit.txt
+Resource          ../../Repositories/${env}/${env}_Connection.txt
 
 *** Test Cases ***
 EDM1_SIT_0006_0001_VerifyColumn
@@ -365,7 +365,7 @@ EDM1_SIT_0006_0037_VerifycertyyyymmMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM1_connect to EDM1
-    @{certyyyymm}=    query    select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where substring(c.EffectiveDate,1,6) <> a.certyyyymm;
+    @{certyyyymm}=    query    select count(0) from dm.cert a inner join dm.certmapping b on a.certno = b.certno \ inner join tlp.customerinfo c on b.rcertno = c.certificateno \ where substring(a.EffectiveDate,1,6) <> a.certyyyymm;    #select count(*) from dm.cert a inner join dm.certmapping b on a.certno = b.certno inner join tlp.customerinfo c on b.rcertno = c.certificateno where substring(c.EffectiveDate,1,6) <> a.certyyyymm;
     EDM1_Compare Result    @{certyyyymm[0]}    0    certyyyymm
 
 EDM1_SIT_0006_0038_VerifyStatcerStatus_I
