@@ -187,7 +187,7 @@ EDM1_SIT_0007_0016_VerifyRecName2Mapping
     ...    - หลัง run SQL Script ต้องได้ 0 record
     EDM1_connect to EDM1
     @{Result}=    query    select count(*) from dm.detcert a inner join dm.certmapping b on a.certno = b.certno and a.policyno = b.policyno inner join tlp.customerinfo c on b.rcertno = c.certificateno and b.rpolicyno = c.policyno where trim(a.recName2) <> trim(c.NameOfBenefit3)
-    EDM1_Compare Result    @{Result[0]}    '0'    recName2
+    EDM1_Compare Result    @{Result[0]}    0    recName2
 
 EDM1_SIT_0007_0017_VerifyPercent2Mapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล percent2
