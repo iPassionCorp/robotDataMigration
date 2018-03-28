@@ -3,12 +3,7 @@ Library           DatabaseLibrary
 Library           String
 Library           Selenium2Library
 Library           Collections
-Resource          ../Repositories/Cloud/Edm1_Cloud_Connection.txt
-Resource          ../Repositories/Cloud/Edm1pp_Cloud_Connection.txt
-Resource          ../Repositories/Cloud/Edm2_Cloud_Connection.txt
-Resource          ../Repositories/SIT/Edm1_SIT_Connection.txt
-Resource          ../Repositories/SIT/Edm1pp_SIT_Connection.txt
-Resource          ../Repositories/SIT/Edm2_SIT_Connection.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Keywords ***
 EDM_Connect_DB
