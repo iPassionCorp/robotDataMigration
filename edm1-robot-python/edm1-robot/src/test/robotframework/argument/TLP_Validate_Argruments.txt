@@ -1,0 +1,144 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount.EDM2_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0004_Validate PercentOfBenefitciary2_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment.EDM2_SIT_TLP_Payment_0004_0003_Validate CustomerCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0004_SA_ADB_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0009_Validate Relationship2_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0003_SA_Life_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0005_SA_TPD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00014_Validate Relationship4_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00018_Validate MobileTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment.EDM2_SIT_TLP_Payment_0004_0001_Validate PolicyNo_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0001_CustomerCode_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0002_PolicyNo_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00012_Validate Relationship3_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0006_Validate PercentOfBenefitciary3_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00015_Validate Address1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0001_Validate Gender F&M
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00020_Validate PartnerNamel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0008_SA_ME_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0013_Validate Relationship4_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0007_SA_ADD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount.EDM2_SIT_TLP_split_premium_amount_0003_0001_Validate GroupPolicyNo_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0011_Validate Relationship3_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00010_Validate Relationship2_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0007_Validate PercentOfBenefitciary4_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0008_Validate PercentOfBenefitciary4_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount.EDM2_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0004 payment.EDM2_SIT_TLP_Payment_0004_0002_Validate ProductCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_0005_Validate PercentOfBenefitciary3_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0009_CustomerCode&PolicyNo_Duplicated
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00017_Validate HomeTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00016_Validate Address2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0001 customerinfo.EDM2_SIT_TLP_customerinfo_0001_00019_Validate OfficeTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0003 splitpremiumamount.EDM2_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM2 SIT TLP Validation.EDM2 SIT TLP 0002 customersa.EDM2_SIT_TLP_customersa_0002_0006_SA_TD_Decimal
