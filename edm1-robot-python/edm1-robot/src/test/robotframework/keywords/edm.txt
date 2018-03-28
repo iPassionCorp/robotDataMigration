@@ -1,0 +1,38 @@
+*** Settings ***
+Library           DatabaseLibrary
+Library           String
+Library           Selenium2Library
+Library           Collections
+Resource          ../Repositories/EDM1_Connection.txt
+
+*** Keywords ***
+EDM_Connect_DB
+    Connect To Database Using Custom Params    ${dbapi}    database='${databaseName}', user='${user}', password='${password}', host='${host}', port='${port}'
+
+EDM_Compare Result
+    [Arguments]    ${sqlresult}    ${expectedValue}    ${fieldName}
+    [Documentation]    - 1 convert Query result from List/Tuple to String
+    ...    - 2 compare with Expected Result (count = 0)
+    ${Expectedfinal}    Convert To String    ${sqlresult}
+    Should Be Equal    ${Expectedfinal}    ${expectedValue}
+    log    ${fieldName} = ${Expectedfinal}
+
+EDM_Column Length Size
+    [Arguments]    ${TotalColumn}    ${Schema.TBname}
+    ${ColumnSize}    Get Variable Value    ${TotalColumn}
+    ${i}=    Set Variable    0
+    Comment    @{ColumnLengthResult}    Create List
+    : FOR    ${i}    IN RANGE    ${i}    ${ColumnSize}
+    \    ${length}=    query    SELECT DISTINCT(length(${Schema.TBname}.${Cert_ColumnName[${i}]})) FROM ${Schema.TBname}
+    \    @{lengthConvert}=    Convert To String    ${length[${i}]}
+    \    Log    ${Cert_ColumnName[${i}]} : ${lengthConvert[${i}]}}
+    \    Comment    Insert Into List    ${ColumnLengthResult}    ${i}    ${lengthConvert}
+    \    Comment    log    ${Cert_ColumnName[${i}]} : ${ColumnLengthResult[${i}]}
+    \    Comment    ${lengthConvert}    Set Variable    0
+    ${EMPTY}
+
+EDM_Count by query
+    [Arguments]    ${SQL}
+    @{count}=    Query    ${SQL}
+    ${Result}=    Convert To Integer    @{count[0]}
+    [Return]    ${Result}
