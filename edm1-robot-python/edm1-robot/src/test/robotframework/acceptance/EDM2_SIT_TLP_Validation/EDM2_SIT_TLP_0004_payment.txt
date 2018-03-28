@@ -1,0 +1,20 @@
+*** Settings ***
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM2_SIT_TLP_Payment_0004_0001_Validate PolicyNo_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count( 0 ) from tlp.payment a where a.PolicyNo = '' and a.policyNo = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM2_SIT_TLP_Payment_0004_0002_Validate ProductCode_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count( 0 ) from tlp.payment a where a.productcode = '' and a.productcode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ProductCode
+
+EDM2_SIT_TLP_Payment_0004_0003_Validate CustomerCode_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count( 0 ) from tlp.payment a where a.CustomerCode= '' and a.CustomerCode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CustomerCode

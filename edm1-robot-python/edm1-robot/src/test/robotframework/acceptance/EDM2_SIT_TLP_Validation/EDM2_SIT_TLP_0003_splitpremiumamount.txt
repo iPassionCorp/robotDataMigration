@@ -1,0 +1,26 @@
+*** Settings ***
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM2_SIT_TLP_split_premium_amount_0003_0001_Validate GroupPolicyNo_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.GroupPolicyNo= '' and a.GroupPolicyNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    GroupPolicyNo
+
+EDM2_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CustomerCode= '' and a.CustomerCode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    GroupPolicyNo
+
+EDM2_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
+    log    Not validate
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0)
+    Comment    EDM_Compare Result    @{Result[0]}    0    SA_ME
+
+EDM2_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.splitpremiumamount a \ where a.lifepremium = '0' and a.lifepremium <> a.deathpremium
+    EDM_Compare Result    @{Result[0]}    0    lifepremium

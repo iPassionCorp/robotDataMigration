@@ -1,0 +1,101 @@
+*** Settings ***
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM1_SIT_0018_0001_VerifyMgInsMomoColumn
+    [Documentation]    ตรวจจำนวน column ที่เก็บใน Table "mginsmemo" มีจำนวน 7 column ดังนี้
+    ...    1. certNo
+    ...    2. accidentDate
+    ...    3. receiveDate
+    ...    4. memoCode
+    ...    5. detail1
+    ...    6. detail2
+    ...    7. saveDate
+    EDM_Connect_DB
+    #---- Default ----
+    ${TotalColumn}    EDM_Count by query    SELECT count (c.column_name) FROM information_schema.columns c WHERE c.table_name = 'mginsmemo' AND c.table_schema = 'dm'
+    Should Be Equal As Integers    ${TotalColumn}    30
+    log    Column of mgReceiver table is ${TotalColumn}
+
+EDM1_SIT_0018_0002_VerifyLengthOfMgInsMomoColumn
+    [Documentation]    "Run SQL Script ตรวจความยาวของแต่ละ column ที่เก็บต้องไม่เกิน length ที่ระบุในเอกสาร
+    ...    1. certNo = 8
+    ...    2. accidentDate = 8
+    ...    3. receiveDate = 8
+    ...    4. memoCode = 3
+    ...    5. detail1 = 100
+    ...    6. detail2 = 100
+    ...    7. saveDate = 8"
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a WHERE a.table_name = 'mginsmemo' AND a.data_type = 'character varying'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a WHERE a.table_name = 'mginsmemo' AND a.data_type = 'character varying'
+    ${i}=    Set Variable    0
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
+
+EDM1_SIT_0018_0003_VerifyCertNoMapping
+    [Documentation]    Run SQL script ตรวจสอบข้อมูลในฟิลด์ \ certNo
+    ...    - certNo = auto generate by TLI โดยนำ - tlp.claimRegisterHeader.RegCustomerCertificateNo ไปหาเลข CertNo ที่ gen
+    ...    - โดย TLI สร้างขึ้นในแฟ้มหรือ method ที่ TLI สร้างขึ้น
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}=    query    select count(0) From dm.mginsmemo mem JOIN dm.mgclaim mgc ON mem.certno = mgc.certno and mem.accidentdate = mgc.accidentdate and mem.receivedate = mgc.receivedate JOIN dm.certmapping cm ON (cm.policyno = mgc.policyno and cm.certno = mgc.certno ) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq) \ \ \ \ \ \ \ \ and cd.regdtldateofoccurred = mem.accidentdate and cd.RegDtlRegisterDate = mem.receiveDate \ \ \ \ \ \ \ \ where (ch.regcustomercertificateno = cm.rcertno) and (mem.certno <> cm.certno)
+    EDM_Compare Result    @{result[0]}    0    CertNo_mgInsMemo
+
+EDM1_SIT_0018_0004_VerifyAccidentDateMapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}=    query    select count(0) From dm.mginsmemo mem JOIN dm.mgclaim mgc ON mem.certno = mgc.certno and mem.accidentdate = mgc.accidentdate and mem.receivedate = mgc.receivedate JOIN dm.certmapping cm ON (cm.policyno = mgc.policyno and cm.certno = mgc.certno ) \ JOIN tlp.claimregisterheader ch ON (ch.regcustomercertificateno = cm.rcertno) \ JOIN tlp.claimregisterdetail cd \ \ \ ON (cd.registerseq = ch.registerseq) \ \ \ \ \ \ \ \ and cd.regdtldateofoccurred = mem.accidentdate and cd.RegDtlRegisterDate = mem.receiveDate \ \ \ \ \ \ \ \ where (ch.regcustomercertificateno = cm.rcertno) and (mem.certno <> cm.certno)
+    EDM_Compare Result    @{result[0]}    0    accidentDate
+
+EDM1_SIT_0018_0005_VerifyReceiveDateMapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+
+EDM1_SIT_0018_0006_VerifyMemoCodeMapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+
+EDM1_SIT_0018_0007_VerifyDetail1Mapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+
+EDM1_SIT_0018_0008_VerifyDetail2Mapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+
+EDM1_SIT_0018_0009_VerifysaveDateMapping
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ accidentDate
+    ...    - ดังนี้
+    ...
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"

@@ -1,0 +1,51 @@
+*** Settings ***
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM2_SIT_TLP_customersa_0002_0001_CustomerCode_Null
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customersa a \ where a.customercode = '' and a.customercode = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    CustomerCode
+
+EDM2_SIT_TLP_customersa_0002_0002_PolicyNo_Null
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customersa a \ where a.policyno = '' and a.policyno = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM2_SIT_TLP_customersa_0002_0003_SA_Life_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_life ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_Life
+
+EDM2_SIT_TLP_customersa_0002_0004_SA_ADB_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_adb ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_ADB
+
+EDM2_SIT_TLP_customersa_0002_0005_SA_TPD_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_tpd ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_TPD
+
+EDM2_SIT_TLP_customersa_0002_0006_SA_TD_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_td ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_TD
+
+EDM2_SIT_TLP_customersa_0002_0007_SA_ADD_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_add ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_ADB
+
+EDM2_SIT_TLP_customersa_0002_0008_SA_ME_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_me ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    SA_ME
+
+EDM2_SIT_TLP_customersa_0002_0009_CustomerCode&PolicyNo_Duplicated
+    log    Not validate
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_me ~* '^(\d*\.\d+)';
+    Comment    EDM_Compare Result    @{Result[0]}    0    SA_ME

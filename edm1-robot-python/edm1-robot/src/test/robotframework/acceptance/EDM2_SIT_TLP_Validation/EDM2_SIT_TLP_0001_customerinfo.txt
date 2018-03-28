@@ -1,0 +1,149 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_TLP_customerinfo_0001_0001_Validate Gender F&M
+    [Documentation]    1.set Gender \ โดยเช็คว่า ถ้าไม่ใช่ Fและ M ให้ write error
+    ...    - Case: Set Gender ตรวจสอบ Gender 'F'&'M'
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ where a.gender not in ('F','M');
+    EDM_Compare Result    @{Result[0]}    0    Gender
+
+EDM2_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
+    [Documentation]    2.set CertificateNo โดยเช็คว่า \ \ เป็นว่าง ให้ write error
+    ...    - Case: Set CertificateNo ตรวจสอบค่าว่าง
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno and sa.customercode = a.customercode where a.certificateno = '' or a.certificateno = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    CertificateNo
+
+EDM2_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ join tlp.customersa sa on sa.policyno = a.policyno and sa.customercode = a.customercode WHERE a.percentofbenefitciary2 ~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary2
+
+EDM2_SIT_TLP_customerinfo_0001_0004_Validate PercentOfBenefitciary2_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE a.percentofbenefitciary2 = '' or a.percentofbenefitciary2 = 'blank' ;
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary2
+
+EDM2_SIT_TLP_customerinfo_0001_0005_Validate PercentOfBenefitciary3_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE a.percentofbenefitciary3 ~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary3
+
+EDM2_SIT_TLP_customerinfo_0001_0006_Validate PercentOfBenefitciary3_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE a.percentofbenefitciary3 = '';
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary3
+
+EDM2_SIT_TLP_customerinfo_0001_0007_Validate PercentOfBenefitciary4_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE a.percentofbenefitciary4 ~* '[a-z,A-Z]';
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary4
+
+EDM2_SIT_TLP_customerinfo_0001_0008_Validate PercentOfBenefitciary4_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE a.percentofbenefitciary4 = '';
+    EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary4
+
+EDM2_SIT_TLP_customerinfo_0001_0009_Validate Relationship2_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship2 ~* '[a-z,A-Z]';
+    EDM_Compare Result    @{Result[0]}    0    Relationship2
+
+EDM2_SIT_TLP_customerinfo_0001_00010_Validate Relationship2_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship2 = '';
+    EDM_Compare Result    @{Result[0]}    0    Relationship2
+
+EDM2_SIT_TLP_customerinfo_0001_0011_Validate Relationship3_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship3 ~* '[a-z,A-Z]';
+    EDM_Compare Result    @{Result[0]}    0    Relationship3
+
+EDM2_SIT_TLP_customerinfo_0001_00012_Validate Relationship3_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship3 = '';
+    EDM_Compare Result    @{Result[0]}    0    Relationship3
+
+EDM2_SIT_TLP_customerinfo_0001_0013_Validate Relationship4_isNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship4 ~* '[a-z,A-Z]';
+    EDM_Compare Result    @{Result[0]}    0    Relationship4
+
+EDM2_SIT_TLP_customerinfo_0001_00014_Validate Relationship4_notNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ WHERE relationship4 = '';
+    EDM_Compare Result    @{Result[0]}    0    Relationship4
+
+EDM2_SIT_TLP_customerinfo_0001_00015_Validate Address1
+    EDM_Connect_DB
+    @{Result}    Query    select a.address1, a.addressoffice1,a.addressoffice2, a.* \ \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno and sa.customercode = a.customercode \ \ where a.address1 = '' or a.address1= 'blank' \ \ and a.address1 = a.addressoffice1
+    EDM_Compare Result    @{Result[0]}    0    Address1
+
+EDM2_SIT_TLP_customerinfo_0001_00016_Validate Address2
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno and sa.customercode = a.customercode where a.address2 = '' or a.address2 = 'blank' and a.address2 <> a.addressoffice2
+    EDM_Compare Result    @{Result[0]}    0    Address2
+
+EDM2_SIT_TLP_customerinfo_0001_00017_Validate HomeTel_length
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) FROM tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ where length(a.hometel) \ > 50
+    EDM_Compare Result    @{Result[0]}    0    HomeTel
+
+EDM2_SIT_TLP_customerinfo_0001_00018_Validate MobileTel_length
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) FROM tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ where length(a.mobiletel) \ > 50
+    EDM_Compare Result    @{Result[0]}    0    MobileTel
+
+EDM2_SIT_TLP_customerinfo_0001_00019_Validate OfficeTel_length
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) FROM tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ where length(a.officetel) \ > 50
+    EDM_Compare Result    @{Result[0]}    0    OfficeTel
+
+EDM2_SIT_TLP_customerinfo_0001_00020_Validate PartnerNamel_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customerinfo a join tlp.customersa sa on sa.policyno = a.policyno \ and sa.customercode = a.customercode \ where length(a.partnername) \ > 10 and a.partnername = substring(a.partnername,1,10)
+    EDM_Compare Result    @{Result[0]}    0    PartnerNamel
+
+EDM2_SIT_TLP_customerinfo_0001_00021_Validate NationID_13Digits
+    EDM_Connect_DB
+    @{Result}    Query    select count(a.nationid) from tlp.customerinfo a where length(a.nationid) <> 13
+    EDM_Compare Result    @{Result[0]}    0    NationID
+
+EDM2_SIT_TLP_customerinfo_0001_00022_Validate NationID_N0000000000000
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) \ from tlp.customerinfo a \ where a.nationid like '%N000000000000%'
+    EDM_Compare Result    @{Result[0]}    0    NationID_N000000000000
+
+EDM2_SIT_TLP_customerinfo_0001_00023_Validate SA_Life_NotZero
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customersa a where to_number(a.sa_life,'999999') <= 0
+    EDM_Compare Result    @{Result[0]}    0    SA_Life
+
+EDM2_SIT_TLP_customerinfo_0001_00024_Validate CustomerStatus
+    EDM_Connect_DB
+    @{Result}    Query    select distinct(a.customerstatus) from tlp.customerinfo a \ where a.customerstatus not in ('Active','Renew','Void','Surrender' ,'Death', 'Expired','Laps')
+    EDM_Compare Result    @{Result[0]}    0    CustomerStatus
+
+EDM2_SIT_TLP_customerinfo_0001_00025_Validate DeadDate_EqaulZero
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from tlp.customerinfo a \ where a.customerstatus = 'Active' and (a.deaddate = '' or a.deaddate = '0')
+    EDM_Compare Result    @{Result[0]}    0    DeadDate
+
+EDM2_SIT_TLP_customerinfo_0001_00026_Validate CustomerInfoStatus
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.status not in ('1','2','3','4','')
+    EDM_Compare Result    @{Result[0]}    0    DeadDate
+
+EDM2_SIT_TLP_customerinfo_0001_00027_Validate loanNo
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ where length(a.loanno) < '0' or a.loanno = ''
+    EDM_Compare Result    @{Result[0]}    0    DeadDate
+
+EDM2_SIT_TLP_customerinfo_0001_00028_Validate med
+    EDM_Connect_DB
+    @{Result}    Query    select * from tlp.customerinfo a \ where a.med not in ('Y', 'N')
+    EDM_Compare Result    @{Result[0]}    0    MED

@@ -1,0 +1,300 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM1_SIT_0011_0003_mg_cliam
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล certNo
+    ...    - certNo = tli.certmapping.certNo โดยจะเอาค่าจาก tlp.claimRegisterHeader.RegCustomerCertificateNo ไปหาที่ table - certmapping field "rcertNo"
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้
+    ...    - count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm \ ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h \ ON (h.regcustomercertificateno <> cm.rcertno) JOIN tlp.claimregisterdetail d \ ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4))
+    EDM_Compare Result    ${result}    0    mg_cliam
+
+EDM1_SIT_0011_0004_accidentDate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล accidentDate
+    ...    - accidentDate = tlp.claimRegisterDetail.RegDtlDateOfOccurred
+    ...    - วันที่ต้องเป็นปีพ.ศ
+    ...    - ต้องไม่มีค่า \ "00000000" หรือ blank
+    ...
+    ...    Expected Result
+    ...    1.) ค่า accidentDate = tlp.claimRegisterDetail.RegDtlDateOfOccurred
+    ...    โดยรัน SQL Script#1: จะได้ผลลัพธ์เท่ากับ 0 Record
+    ...
+    ...
+    ...    2.) วันที่ต้องเป็นปีพ.ศ
+    ...    โดยรัน SQL Script#2: จะได้ผลลัพธ์เท่ากับ 0 Record
+    ...
+    ...    3.) ต้องไม่มีค่า \ "00000000" หรือ blank
+    ...    โดยรัน SQL Script#3: จะได้ผลลัพธ์เท่ากับ 0 Record
+    EDM_Connect_DB
+    #----accidentDate = tlp.claimRegisterDetail.RegDtlDateOfOccurred ----
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE m.accidentdate <> d.regdtldateofoccurred
+    EDM_Compare Result    ${result}    0    accidentDate
+    #---- วันที่ต้องเป็นปีพ.ศ ----
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE to_number(substring(m.accidentdate,1,4),'9999') <= 2018
+    EDM_Compare Result    ${result}    0    Year
+    #--- ต้องไม่มีค่า \ "00000000" หรือ blank ---
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(m.accidentdate) = '' OR m.accidentdate = '00000000' ;
+    EDM_Compare Result    ${result}    0    NotBlank
+
+EDM1_SIT_0011_0005_receiveDate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล receiveDate กรณี \ tlp.claimRegisterDetail.RegDtlRegisterDate มีค่าไม่ใช่ "00000000" หรือ blank
+    ...    - receiveDate = tlp.claimRegisterDetail.RegDtlRegisterDate
+    ...
+    ...    Expected Result
+    ...    กรณี \ tlp.claimRegisterDetail.RegDtlRegisterDate มีค่าไม่ใช่ "00000000" หรือ blank
+    ...    - receiveDate = tlp.claimRegisterDetail.RegDtlRegisterDate
+    ...    - ให้ทำการ Run Script#1 จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    #----accidentDate = tlp.claimRegisterDetail.RegDtlDateOfOccurred ----
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE m.receivedate <> d.regdtlregisterdate;
+    EDM_Compare Result    ${result}    0    receiveDate
+
+EDM1_SIT_0011_0006_receiveDate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล receiveDate กรณี \ tlp.claimRegisterDetail.RegDtlRegisterDate มีค่า "00000000"
+    ...    - receiveDate = system date
+    ...
+    ...    Expected Result
+    ...    tlp.claimRegisterDetail.RegDtlRegisterDate มีค่า "00000000"
+    ...    - receiveDate = system date
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(d.regdtlregisterdate) = '00000000' AND (trim(m.receivedate) = '' OR trim(m.receivedate) = '00000000');
+    EDM_Compare Result    ${result}    0    receiveDate
+
+EDM1_SIT_0011_0007_receiveDate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล receiveDate กรณี \ tlp.claimRegisterDetail.RegDtlRegisterDate มีค่า "00000000"
+    ...    - receiveDate = system date
+    ...
+    ...    Expected Result
+    ...    tlp.claimRegisterDetail.RegDtlRegisterDate มีค่า blank
+    ...    - receiveDate = system date
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(d.regdtlregisterdate) = '' AND (trim(m.receivedate) = '' OR trim(m.receivedate) = '00000000') ;
+    EDM_Compare Result    ${result}    0    receiveDate
+
+EDM1_SIT_0011_0008_claimType 'T'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 2
+    ...    - claimType = T
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'T'
+
+EDM1_SIT_0011_0009_claimType 'D'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 3
+    ...    - claimType = D
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'D'
+
+EDM1_SIT_0011_0010_claimType 'A'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 4
+    ...    - claimType = A
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'A'
+
+EDM1_SIT_0011_0011_claimType 'T'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 10
+    ...    - claimType = T
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'T'
+
+EDM1_SIT_0011_0012_claimType 'A'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 11
+    ...    - claimType = A
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'A'
+
+EDM1_SIT_0011_0013_claimType 'A'
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล claimType กรณี \ tlp.claimRegisterDetail.ClaimTypeSeq มีค่าเท่ากับ 40
+    ...    - claimType = A
+    ...
+    ...    Expected Result
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    ...
+    ...    โดยมีเงื่อนไขดังนี้
+    ...    - TLI \ \ \ \ \ \ \ \ \ \ TLP
+    ...    - A \ \ \ \ --> \ \ \ 11 : TTD , 4 : AME , 40 : GME
+    ...    - D \ \ \ \ --> \ \ \ 3 : Death , S : Suicide
+    ...    - T \ \ \ \ --> \ \ \ 10 : TPD, 2 : ADD
+    ...    - Z \ \ \ \ --> \ \ \ มีจ่ายทั้ง A&T ในเลขเรื่องเดียวกัน (หากมีข้อมูลในแฟ้มนี้อยู่แล้วและ claimType ไม่ตรงกัน ให้ update เป็น Z)
+    ...
+    ...    - ***นอกเหนือจากนี้ให้ตีเป็น error
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE (m.claimtype = 'A' AND d.claimtypeseq NOT IN ('11','4','40')) OR (m.claimtype = 'D' AND d.claimtypeseq NOT IN ('3','S')) OR (m.claimtype = 'T' AND d.claimtypeseq NOT IN ('10','2')) OR (m.claimtype = 'Z' AND d.claimtypeseq NOT IN ('')) ;
+    EDM_Compare Result    ${result}    0    claimType 'A'
+
+EDM1_SIT_0011_0014_sectionCode
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล sectionCode
+    ...    - sectionCode = default "95"
+    ...
+    ...    Expected Result
+    ...    - sectionCode = default "95" โดย
+    ...    - ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE m.sectioncode <> '95' ;
+    EDM_Compare Result    ${result}    0    sectionCode
+
+EDM1_SIT_0011_0015_isMigration
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล linkerNo
+    ...    - linkerNo = default ค่า blank
+    ...
+    ...    Expected Result
+    ...    - linkerNo = default ค่า blank โดย
+    ...    - ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(m.linkerno) <> '' ;
+    EDM_Compare Result    ${result}    0    linkerNo
+
+EDM1_SIT_0011_0016_isMigration
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล isMigration
+    ...    - isMigration = default "1"
+    ...
+    ...    Expected Result
+    ...    - isMigration = default "1" โดย
+    ...    - ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq) WHERE m.ismigration <> '1' ;
+    EDM_Compare Result    ${result}    0    isMigration
+
+EDM1_SIT_0011_0017_orderNo
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล orderNo
+    ...    - orderNo = tlp.claimRegisterDetail.RegDtlClaimNo
+    ...
+    ...    Expected Result
+    ...    orderNo = tlp.claimRegisterDetail.RegDtlClaimNo โดย
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE m.orderno <> substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4) ;
+    EDM_Compare Result    ${result}    0    orderNo
+
+EDM1_SIT_0011_0018
+    [Documentation]    - Out of Scope
+    ...
+    ...    Run SQL Script ตรวจสอบข้อมูล referenceNo
+    ...    - referenceNo = auto gen by tli (เรียก class utility.claim.Generate().generateReferenceNo(ปี 2 หลักของ tlp.ClaimRegisterDetail.RegDtlRegisterDate)
+    ...
+    ...    Expected Result
+    ...    Auto gen
+    log    EDM1_SIT_0011_0018 is Out of Scope
+
+EDM1_SIT_0011_0019_orderNo
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล okDate กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...
+    ...    กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...    โดย
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE d.regdtlapprovedate = '00000000' AND d.regdtlapprovedate <> m.okdate ;
+    EDM_Compare Result    ${result}    0    orderNo
+
+EDM1_SIT_0011_0020_orderNoDefault
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล okDate กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...
+    ...    กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...    โดย
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE d.regdtlapprovedate = '00000000' AND d.regdtlapprovedate <> m.okdate ;
+    EDM_Compare Result    ${result}    0    orderNo
+
+EDM1_SIT_0011_0021_okDateDefault
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล okDate กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...
+    ...    กรณี \ tlp.claimRegisterDetail.RegDtlApproveDate มีค่า "00000000"
+    ...    - okDate = "00000000"
+    ...    โดย
+    ...    ให้ทำการ Run Script จะได้ผลลัพธ์ท่ากับ 0 Record.
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    SELECT count(*) FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4)) WHERE trim(d.regdtlapprovedate) = '' AND d.regdtlapprovedate <> m.okdate ;
+    EDM_Compare Result    ${result}    0    okDate
+
+EDM1_SIT_0011_0022_okDate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล policyNo แสดงถูกต้องตาม Mapping Rule ดังนี้ [Refer เอกสาร 00 Mapping Business Rule_TLI_V2.0,sheet "List of Plan Code"
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select distinct(cm.policyno) \ FROM dm.mgclaim m \ JOIN dm.certmapping cm ON (cm.certno = m.certno) JOIN tlp.claimregisterheader h ON (h.regcustomercertificateno = cm.rcertno) JOIN tlp.claimregisterdetail d ON (d.registerseq = h.registerseq AND m.orderno = substring(d.regdtlclaimno,1,2) || 'CP'||substring(d.regdtlclaimno,6,4))
+    EDM_Compare Result    ${result}    0    okDate
+
+EDM1_SIT_0011_0023_okDate
+    [Documentation]    Run SQL Script เพื่อ reconcile data ดังนี้
+    ...    1. จำนวนที่เข้า tli : table mgclaim
+    ...    2. จำนวนที่ Reject
+    ...
+    ...    Expected Result
+    ...    - ต้องไม่พบข้อมูล policy ที่ diff
+    EDM_Connect_DB
+    ${result}    EDM_Count by query    select distinct t.policyno, count(t.certno) from ( \ \ \ select cm.certno,cm.policyno \ \ from tlp.claimregisterheader ch \ \ join dm.certmapping cm ON (cm.rcertno = ch.regcustomercertificateno) \ \ join tlp.claimregisterdetail cd ON (cd.registerseq = ch.registerseq) \ \ \ \ \ except all \ \ \ \ \ select cm.certno,cm.policyno \ \ from dm.mgclaim mc \ \ join dm.certmapping cm ON (cm.certno = mc.certno) \ ) t group by policyno;
+    EDM_Compare Result    ${result}    0    okDate
