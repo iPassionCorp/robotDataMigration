@@ -80,7 +80,7 @@ EDM2_SIT_TLP_customerinfo_0001_00014_Validate Relationship4_notNull
 
 EDM2_SIT_TLP_customerinfo_0001_00015_Validate Address1
     EDM_Connect_DB
-    @{Result}    Query    select a.address1, a.addressoffice1,a.addressoffice2, a.* \ \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno and sa.customercode = a.customercode \ \ where a.address1 = '' or a.address1= 'blank' \ \ and a.address1 = a.addressoffice1
+    @{Result}    Query    select count(0) \ \ FROM tlp.customerinfo a \ \ join tlp.customersa sa \ \ on sa.policyno = a.policyno and sa.customercode = a.customercode \ \ where a.address1 = '' or a.address1= 'blank' \ \ and a.address1 = a.addressoffice1
     EDM_Compare Result    @{Result[0]}    0    Address1
 
 EDM2_SIT_TLP_customerinfo_0001_00016_Validate Address2
@@ -125,7 +125,7 @@ EDM2_SIT_TLP_customerinfo_0001_00023_Validate SA_Life_NotZero
 
 EDM2_SIT_TLP_customerinfo_0001_00024_Validate CustomerStatus
     EDM_Connect_DB
-    @{Result}    Query    select distinct(a.customerstatus) from tlp.customerinfo a \ where a.customerstatus not in ('Active','Renew','Void','Surrender' ,'Death', 'Expired','Laps')
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.customerstatus not in ('Active','Renew','Void','Surrender' ,'Death', 'Expired','Laps')
     EDM_Compare Result    @{Result[0]}    0    CustomerStatus
 
 EDM2_SIT_TLP_customerinfo_0001_00025_Validate DeadDate_EqaulZero
@@ -145,5 +145,5 @@ EDM2_SIT_TLP_customerinfo_0001_00027_Validate loanNo
 
 EDM2_SIT_TLP_customerinfo_0001_00028_Validate med
     EDM_Connect_DB
-    @{Result}    Query    select * from tlp.customerinfo a \ where a.med not in ('Y', 'N')
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.med not in ('Y', 'N')
     EDM_Compare Result    @{Result[0]}    0    MED
