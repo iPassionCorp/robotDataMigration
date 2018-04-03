@@ -147,3 +147,8 @@ EDM2_SIT_TLP_customerinfo_0001_00028_Validate med
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.med not in ('Y', 'N')
     EDM_Compare Result    @{Result[0]}    0    MED
+
+EDM_SIT_TLP_customerinfo_0001_00029_Validate CancelReason
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment \ where length(partnercode) > 500;
+    EDM_Compare Result    @{Result[0]}    0    Gender
