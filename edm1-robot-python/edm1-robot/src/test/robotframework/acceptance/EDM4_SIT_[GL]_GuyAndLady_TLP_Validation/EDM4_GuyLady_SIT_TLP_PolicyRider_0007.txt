@@ -1,0 +1,19 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0001
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0002
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0003
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0004
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0005
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007

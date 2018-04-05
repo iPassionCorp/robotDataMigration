@@ -1,0 +1,41 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0001
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0002
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0003
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0004
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0005
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0006
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0007
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0008
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0009
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0010
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0011
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0012
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0013
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0014
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0015
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0016
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0017
+
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0018

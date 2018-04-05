@@ -1,0 +1,23 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0001
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0002
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0003
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0004
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0005
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0006
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0007
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0008
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0009

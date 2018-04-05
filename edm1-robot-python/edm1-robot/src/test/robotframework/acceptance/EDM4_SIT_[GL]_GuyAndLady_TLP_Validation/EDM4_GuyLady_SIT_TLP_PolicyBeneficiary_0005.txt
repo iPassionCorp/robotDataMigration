@@ -1,0 +1,17 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0001
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0002
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0003
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0004
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0005
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0006

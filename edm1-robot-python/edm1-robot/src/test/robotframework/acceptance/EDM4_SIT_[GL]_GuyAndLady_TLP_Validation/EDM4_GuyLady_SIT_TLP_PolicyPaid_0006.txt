@@ -1,0 +1,43 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0003
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0004
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0005
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0006
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0007
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0010
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0011
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0012
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0013
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0014
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0016
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0017
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0018
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0019
