@@ -45,10 +45,9 @@ EDM2_SIT_TLP_customersa_0002_0008_SA_ME_Decimal
     EDM_Compare Result    @{Result[0]}    0    SA_ME
 
 EDM2_SIT_TLP_customersa_0002_0009_CustomerCode&PolicyNo_Duplicated
-    log    Not validate
-    Comment    EDM_Connect_DB
-    Comment    @{Result}    Query    select count(0) FROM tlp.customersa a where a.sa_me ~* '^(\d*\.\d+)';
-    Comment    EDM_Compare Result    @{Result[0]}    0    SA_ME
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select \ a.customercode, a.policyno, count(a.customercode) from tlp.customersa a group by a.customercode, a.policyno having count(a.customercode) > 1 ) tmp
+    EDM_Compare Result    @{Result[0]}    0    PolicyDuplicate
 
 EDM2_SIT_TLP_customersa_0002_0010_SA_Life_lessthan_0
     EDM_Connect_DB
