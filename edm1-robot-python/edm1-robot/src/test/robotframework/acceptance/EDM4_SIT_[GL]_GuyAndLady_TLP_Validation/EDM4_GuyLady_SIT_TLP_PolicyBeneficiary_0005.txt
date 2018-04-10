@@ -4,14 +4,32 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0001
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policybeneficiary a \ \ where length(a.policyno) > 15;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0002
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0002_Validate PolicyNo__NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.policyno = '';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0003
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0003_Validate BeneficiaryName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policybeneficiary a \ \ where length(a.beneficiaryname) > 120;
+    EDM_Compare Result    @{Result[0]}    0    BeneficiaryName
 
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0004
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0004_Validate RelationShip_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policybeneficiary a \ \ where length(a.relationship) > 50;
+    EDM_Compare Result    @{Result[0]}    0    RelationShip
 
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0005
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0005_Validate Percentage_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policybeneficiary a \ \ where length(a.percentage) > 50;
+    EDM_Compare Result    @{Result[0]}    0    Percentage
 
-EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0006
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0006_Validate Age_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policybeneficiary a \ \ where length(a.age) > 5;
+    EDM_Compare Result    @{Result[0]}    0    Age
