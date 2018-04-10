@@ -4,20 +4,47 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0001
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.policyno) > 20;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0002
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0002_Validate UserName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.username) > 100;
+    EDM_Compare Result    @{Result[0]}    0    UserName
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0003
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0003_Validate Status_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.status) > 10;
+    EDM_Compare Result    @{Result[0]}    0    Status
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0004
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0004_Validate StatusRemark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusremark) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusRemark
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0005
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0005_Validate StatusDescription_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusdescription) > 500;
+    EDM_Compare Result    @{Result[0]}    0    StatusDescription
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0006
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0006_Validate StatusNew_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusnew) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusNew
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0007
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0007_Validate StatusNewRemark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusnewremark) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusNewRemark
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0008
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0008_Validate StatusOld_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusold) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusOld
 
-EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0009
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0009_Validate StatusOldRemark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusoldremark) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusOldRemark

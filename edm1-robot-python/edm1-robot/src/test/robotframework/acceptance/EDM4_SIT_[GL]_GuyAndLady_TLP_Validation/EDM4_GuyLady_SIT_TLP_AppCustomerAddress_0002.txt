@@ -4,38 +4,92 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0001
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0001­_Validate AppNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.appno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0002
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0002_Validate AppNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.appcustomeraddress a \ where a.appno = '';
+    EDM_Compare Result    @{Result[0]}    0    AppNo
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0003
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0003_Validate AddType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addtype) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddType
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0004
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0004_Validate AddType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.appcustomeraddress a \ where a.addtype = '';
+    EDM_Compare Result    @{Result[0]}    0    AddType
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0005
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0005_Validate AddPlace_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addplace) > 255;
+    EDM_Compare Result    @{Result[0]}    0    AddPlace
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0006
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0006_Validate AddNumber_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addnumber) > 255;
+    EDM_Compare Result    @{Result[0]}    0    AddNumber
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0007
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0007_Validate AddMoo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addmoo) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddMoo
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0008
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0008_Validate AddVillage_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addvillage) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddVillage
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0009
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0009_Validate AddBuilding_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addbuilding) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddBuilding
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0010
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0010_Validate AddFloor_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addfloor) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddFloor
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0011
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0011_Validate AddRoom_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addroom) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddRoom
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0012
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0012_Validate AddSoi_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addsoi) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddSoi
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0013
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0013_Validate AddRoad_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addroad) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddRoad
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0014
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0014_Validate AddDistrict_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.adddistrict) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddDistrict
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0015
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0015_Validate AddAmphur_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addamphur) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddAmphur
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0016
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0016_Validate AddProvince_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addprovince) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AddProvince
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0017
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0017_Validate AddZipcode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addzipcode) > 10;
+    EDM_Compare Result    @{Result[0]}    0    AddZipcode
 
-EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0018
+EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0018_Validate Remark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.remark) > 255;
+    EDM_Compare Result    @{Result[0]}    0    Remark

@@ -4,16 +4,37 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0001
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0001_Validate RiderNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.riderno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    RiderNo
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0002
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0002_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.policyno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0003
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0003_Validate Plancode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.plancode) > 50;
+    EDM_Compare Result    @{Result[0]}    0    Plancode
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0004
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0004_Validate StatusNew_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.statusnew) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusNew
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0005
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0005_Validate StatusOld_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.statusold) > 10;
+    EDM_Compare Result    @{Result[0]}    0    StatusOld
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006_Validate Mode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.mode) > 10;
+    EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_H, A, Q, M
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policyrider a \ where a.mode not in ('H','A','Q','M');
+    EDM_Compare Result    @{Result[0]}    0    Mode

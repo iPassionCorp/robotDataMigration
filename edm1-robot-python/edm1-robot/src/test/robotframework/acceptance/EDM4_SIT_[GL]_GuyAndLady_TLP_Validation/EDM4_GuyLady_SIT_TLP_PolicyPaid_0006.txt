@@ -4,40 +4,97 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001_Validate ReceiptNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.receiptno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    ReceiptNo
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002_Validate ReceiptNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.receiptno = '';
+    EDM_Compare Result    @{Result[0]}    0    ReceiptNo
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0003
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0003_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.policyno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0004
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0004_Validate PaidPrem_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.paidprem) > 50;
+    EDM_Compare Result    @{Result[0]}    0    PaidPrem
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0005
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0005_Validate NumberPay_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.numberpay) > 50;
+    EDM_Compare Result    @{Result[0]}    0    NumberPay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0006
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0006_Validate BranchPay_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.branchpay) > 50;
+    EDM_Compare Result    @{Result[0]}    0    BranchPay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0007
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0007_Validate BankPay_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.bankpay) > 50;
+    EDM_Compare Result    @{Result[0]}    0    BankPay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009_Validate TypePay_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.typepay) > 50;
+    EDM_Compare Result    @{Result[0]}    0    TypePay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008_Validate TypePay_APL, BP, CA, CH, CQ, CR, CS, DD, GC
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.typepay not in ('APL','BP','CA','CH','CQ','CR','CS','DD','GC');
+    EDM_Compare Result    @{Result[0]}    0    TypePay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0010
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0010_Validate TypeCustomer_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.typecustomer) > 50;
+    EDM_Compare Result    @{Result[0]}    0    TypeCustomer
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0011
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0011_Validate TypeCustomer_PTCL, PTCR, PTMB, PUOB, TUOB
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.typecustomer not in ('PTCL','PTCR','PTMB','PUOB','TUOB');
+    EDM_Compare Result    @{Result[0]}    0    TypeCustomer
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0012
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0012_Validate UserName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.username) > 100;
+    EDM_Compare Result    @{Result[0]}    0    UserName
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0013
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0013_Validate ImportBy_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.importby) > 50;
+    EDM_Compare Result    @{Result[0]}    0    ImportBy
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0014
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0014_Validate ReceiptStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.receiptstatus) > 10;
+    EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015_Validate ReceiptStatus_ACT, CAN = Cancel, REF = Refund
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.receiptstatus not in ('ACT','CAN = Cancel','REF = Refund');
+    EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0016
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0016_Validate ReceiptDescription_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.receiptdescription) > 500;
+    EDM_Compare Result    @{Result[0]}    0    ReceiptDescription
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0017
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0017_Validate Mode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.mode) > 5;
+    EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0018
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0018_Validate PartnerSend_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.partnersend) > 10;
+    EDM_Compare Result    @{Result[0]}    0    PartnerSend
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0019
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0019_Validate PartnerSend_BAY, TMB, UOB
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.partnersend not in ('BAY','TMB','UOB');
+    EDM_Compare Result    @{Result[0]}    0    PartnerSend

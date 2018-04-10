@@ -4,74 +4,182 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0001
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.policyno) > 15;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0002
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0002_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.policyno = '';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003_Validate AppNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.appno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0004
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0004_Validate PlanCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.plancode) > 15;
+    EDM_Compare Result    @{Result[0]}    0    PlanCode
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0005
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0005_Validate Prename_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.planname) > 80;
+    EDM_Compare Result    @{Result[0]}    0    Prename
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0006
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0006_Validate Prename_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.prename) > 50;
+    EDM_Compare Result    @{Result[0]}    0    Prename
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0007
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0007_Validate FrstName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.frstname) > 50;
+    EDM_Compare Result    @{Result[0]}    0    FrstName
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0008
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0008_Validate Surname_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.surname) > 100;
+    EDM_Compare Result    @{Result[0]}    0    Surname
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0009
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0009_Validate StatusNew_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.statusNew) > 5;
+    EDM_Compare Result    @{Result[0]}    0    StatusNew
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0010
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0010_Validate StatusNewRemark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.statusnewremark) > 80;
+    EDM_Compare Result    @{Result[0]}    0    StatusNewRemark
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0011
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0011_Validate StatusOld_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.statusold) > 5;
+    EDM_Compare Result    @{Result[0]}    0    StatusOld
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0012
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0012_Validate StatusOldRemark_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.statusoldremark) > 80;
+    EDM_Compare Result    @{Result[0]}    0    StatusOldRemark
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0013
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0013_Validate Sex_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.sex) > 1;
+    EDM_Compare Result    @{Result[0]}    0    Sex
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0014
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0014_Validate Class_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.class) > 5;
+    EDM_Compare Result    @{Result[0]}    0    Class
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0015
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0015_Validate Class_0,1,2,3,4,5
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.class not in ('0','1','2','3','4','5');
+    EDM_Compare Result    @{Result[0]}    0    Class
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0016
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0016_Validate OccType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.occtype) > 5;
+    EDM_Compare Result    @{Result[0]}    0    OccType
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0017
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0017_Validate OccType_0,1,2,3
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.occtype not in ('0','1','2','3');
+    EDM_Compare Result    @{Result[0]}    0    OccType
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0018
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0018_Validate Mode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.mode) > 5;
+    EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0019
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0019_Validate Mode_H, A, Q, M
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.mode not in ('H','A','Q','M');
+    EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0020
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0020_Validate IDNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.idno) > 50;
+    EDM_Compare Result    @{Result[0]}    0    IDNo
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0021
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0021_Validate StopReason_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.stopreason) > 255;
+    EDM_Compare Result    @{Result[0]}    0    StopReason
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0022
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0022_Validate ReceiveFreeLookDescription_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.receivefreelookdescription) > 255;
+    EDM_Compare Result    @{Result[0]}    0    ReceiveFreeLookDescription
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0023
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0023_Validate Prefix_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.prefix) > 50;
+    EDM_Compare Result    @{Result[0]}    0    Prefix
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0024
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0024_Validate Book_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.book) > 50;
+    EDM_Compare Result    @{Result[0]}    0    Book
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0025
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0025_Validate Book_Y
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.book not in ('Y');
+    EDM_Compare Result    @{Result[0]}    0    Book
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0026
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0026_Validate NoCount_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.nocount) > 50;
+    EDM_Compare Result    @{Result[0]}    0    NoCount
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0027
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0027_Validate BookPredic_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.bookpredic) > 50;
+    EDM_Compare Result    @{Result[0]}    0    BookPredic
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0028
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0028_Validate TescoPredic_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.tescopredic) > 50;
+    EDM_Compare Result    @{Result[0]}    0    TescoPredic
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0029
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0029_Validate SendStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.sendstatus) > 50;
+    EDM_Compare Result    @{Result[0]}    0    SendStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0030
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0030_Validate UserConfirm_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.userconfirm) > 50;
+    EDM_Compare Result    @{Result[0]}    0    UserConfirm
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0031
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0031_Validate RegisterMailTesco_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.registermailtesco) > 20;
+    EDM_Compare Result    @{Result[0]}    0    RegisterMailTesco
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0032
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0032_Validate ReceiveTescoStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.receivetescostatus) > 10;
+    EDM_Compare Result    @{Result[0]}    0    ReceiveTescoStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0033
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0033_Validate ReceiveTescoStatus_RETURN & YES
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.receivetescostatus not in ('RETURN','YES');
+    EDM_Compare Result    @{Result[0]}    0    ReceiveTescoStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0034
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0034_Validate ReceiveTescoReason_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.receivetescoreason) > 255;
+    EDM_Compare Result    @{Result[0]}    0    ReceiveTescoReason
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0035
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0035_Validate UploadXO_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.uploadxo) > 2;
+    EDM_Compare Result    @{Result[0]}    0    UploadXO
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0036
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0036_Validate UploadXO_OK
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.uploadxo not in ('OK');
+    EDM_Compare Result    @{Result[0]}    0    UploadXO
