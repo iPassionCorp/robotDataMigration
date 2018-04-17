@@ -183,3 +183,8 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0036_Validate UploadXO_OK
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.uploadxo not in ('OK');
     EDM_Compare Result    @{Result[0]}    0    UploadXO
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0037_Validate Sex_F&M
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.sex not in ('F','M');
+    EDM_Compare Result    @{Result[0]}    0    Sex

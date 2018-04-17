@@ -39,12 +39,12 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0007_Validate BankPay_length
     @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.bankpay) > 50;
     EDM_Compare Result    @{Result[0]}    0    BankPay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009_Validate TypePay_length
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008_Validate TypePay_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.typepay) > 50;
     EDM_Compare Result    @{Result[0]}    0    TypePay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008_Validate TypePay_APL, BP, CA, CH, CQ, CR, CS, DD, GC
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009_Validate TypePay_APL, BP, CA, CH, CQ, CR, CS, DD, GC
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.typepay not in ('APL','BP','CA','CH','CQ','CR','CS','DD','GC');
     EDM_Compare Result    @{Result[0]}    0    TypePay
