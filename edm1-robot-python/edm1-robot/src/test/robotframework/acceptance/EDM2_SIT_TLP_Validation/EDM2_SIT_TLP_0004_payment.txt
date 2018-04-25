@@ -63,3 +63,18 @@ EDM2_SIT_TLP_Payment_0004_0012_Validate Refund_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.payment a \ \ where length(a.refund) > 20;
     EDM_Compare Result    @{Result[0]}    0    Refund
+
+EDM2_SIT_TLP_Payment_0004_0013_CheckPolicynotinCustomerinfo
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ except all select b.policyno , b.customercode \ from tlp.payment b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_TLP_Payment_0004_0014_CheckPolicynotinCustomersa
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno,a.customercode FROM tlp.customersa a \ except all select b.policyno,b.customercode \ from tlp.payment b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_TLP_Payment_0004_0015_CheckPolicynotinsplitamount
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.grouppolicyno, a.customercode FROM tlp.splitpremiumamount a \ \ except all select b.policyno , b.customercode \ from tlp.payment b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno

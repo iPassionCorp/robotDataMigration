@@ -417,3 +417,18 @@ EDM_SIT_TLP_customerinfo_0001_0082_Validate CustomerNation_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.customerinfo a where length(a.customernation) > 50;
     EDM_Compare Result    @{Result[0]}    0    Gender
+
+EDM_SIT_TLP_customerinfo_0001_0083_CheckPolicynotinCustomersa
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customersa a \ except all select b.policyno, b.customercode \ from tlp.customerinfo b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM_SIT_TLP_customerinfo_0001_0084_CheckPolicynotinsplitamount
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.grouppolicyno, a.customercode FROM tlp.splitpremiumamount a \ except all select b.policyno, b.customercode \ from tlp.customerinfo b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM_SIT_TLP_customerinfo_0001_0085_CheckPolicynotinPayment
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.policyno, b.customercode \ from tlp.customerinfo b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno

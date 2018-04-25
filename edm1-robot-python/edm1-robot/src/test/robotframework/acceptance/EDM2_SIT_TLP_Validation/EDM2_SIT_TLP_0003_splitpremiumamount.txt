@@ -318,3 +318,18 @@ EDM2_SIT_TLP_split_premium_amount_0003_0063_Validate LifeTPDPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LifeTPDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    LifeTPDPremium
+
+EDM2_SIT_TLP_split_premium_amount_0003_0064_CheckPolicynotinCustomerinfo
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+
+EDM2_SIT_TLP_split_premium_amount_0003_0065_CheckPolicynotinCustomersa
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customersa a \ \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+
+EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    EDM_Compare Result    @{Result[0]}    0    grouppolicyno

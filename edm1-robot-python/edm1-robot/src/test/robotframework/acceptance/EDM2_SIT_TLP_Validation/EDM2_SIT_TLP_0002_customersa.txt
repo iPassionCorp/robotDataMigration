@@ -516,15 +516,15 @@ EDM2_SIT_TLP_customersa_0002_0102_Expiry_MC_CheckMonth
 
 EDM2_SIT_TLP_customersa_0002_0103_CheckPolicynotinCustomerinfo
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM2_SIT_TLP_customersa_0002_0104_CheckPolicynotinsplitamount
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    @{Result}    Query    select count(0) from \ (select a.grouppolicyno, a.customercode FROM tlp.splitpremiumamount a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
-EDM2_SIT_TLP_customersa_0002_0104_CheckPolicynotinpayment
+EDM2_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.policyno , b.customercode \ from tlp.payment b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
