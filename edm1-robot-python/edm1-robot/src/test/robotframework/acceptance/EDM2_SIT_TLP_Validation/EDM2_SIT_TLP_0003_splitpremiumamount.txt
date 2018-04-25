@@ -46,7 +46,7 @@ EDM2_SIT_TLP_split_premium_amount_0003_0008_Validate GroupPolicyNo.length
 
 EDM2_SIT_TLP_split_premium_amount_0003_0009_Validate CustomerCode.length
     EDM_Connect_DB
-    @{Result}    Query    select a.grouppolicyno, a.customercode, count(a.grouppolicyno) from tlp.splitpremiumamount a group by a.grouppolicyno, a.customercode having count(a.grouppolicyno) > 1
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ where length(a.customercode) > 50
     EDM_Compare Result    @{Result[0]}    0    customercode
 
 EDM2_SIT_TLP_split_premium_amount_0003_0010_Validate TotPremium.decimal

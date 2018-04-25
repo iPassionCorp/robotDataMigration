@@ -266,320 +266,265 @@ EDM2_SIT_TLP_customersa_0002_0052_TransDate_IsNotChar
 
 EDM2_SIT_TLP_customersa_0002_0053_TransDate_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(transdate,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(transdate,7,2),'99') not between 0 and 31 ;
     EDM_Compare Result    @{Result[0]}    0    transdate
 
 EDM2_SIT_TLP_customersa_0002_0054_TransDate_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(transdate,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(transdate,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    transdate
 
-EDM2_SIT_TLP_customersa_0002_0055_TransDate_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(transdate,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    transdate
-
-EDM2_SIT_TLP_customersa_0002_0056_MI_AMOUNT_Decimal
+EDM2_SIT_TLP_customersa_0002_0055_MI_AMOUNT_Decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.customersa a where a.MI_AMOUNT ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    MI_AMOUNT
 
-EDM2_SIT_TLP_customersa_0002_0057_MI_AMOUNT_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0056_MI_AMOUNT_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.MI_AMOUNT~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    MI_AMOUNT
 
-EDM2_SIT_TLP_customersa_0002_0058_MI_AMOUNT_LessThanZero
+EDM2_SIT_TLP_customersa_0002_0057_MI_AMOUNT_LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.MI_AMOUNT < '0'
     EDM_Compare Result    @{Result[0]}    0    MI_AMOUNT
 
-EDM2_SIT_TLP_customersa_0002_0059_Expiry_Life_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0058_Expiry_Life_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_Life~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_Life
 
-EDM2_SIT_TLP_customersa_0002_0060_Expiry_Life_CheckDate
+EDM2_SIT_TLP_customersa_0002_0059_Expiry_Life_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_Life,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_Life,7,2),'99') not between 0 and 31 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_Life
 
-EDM2_SIT_TLP_customersa_0002_0061_Expiry_Life_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0060_Expiry_Life_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_Life,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_Life,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_Life
 
-EDM2_SIT_TLP_customersa_0002_0062_Expiry_Life_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_Life,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_Life
-
-EDM2_SIT_TLP_customersa_0002_0063_Expiry_TPD_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0061_Expiry_TPD_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TPD~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_TPD
 
-EDM2_SIT_TLP_customersa_0002_0064_Expiry_TPD_CheckDate
+EDM2_SIT_TLP_customersa_0002_0062_Expiry_TPD_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TPD,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TPD,7,2),'99') not between 0 and 31 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_TPD
 
-EDM2_SIT_TLP_customersa_0002_0065_Expiry_TPD_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0063_Expiry_TPD_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TPD,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TPD,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_TPD
 
-EDM2_SIT_TLP_customersa_0002_0066_Expiry_TPD_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TPD,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_TPD
-
-EDM2_SIT_TLP_customersa_0002_0067_Expiry_TD_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0064_Expiry_TD_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TD~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_TD
 
-EDM2_SIT_TLP_customersa_0002_0068_Expiry_TD_CheckDate
+EDM2_SIT_TLP_customersa_0002_0065_Expiry_TD_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TD,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TD,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_TD
 
-EDM2_SIT_TLP_customersa_0002_0069_Expiry_TD_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0066_Expiry_TD_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TD,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TD,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_TD
 
-EDM2_SIT_TLP_customersa_0002_0070_Expiry_TD_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_TD,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_TD
-
-EDM2_SIT_TLP_customersa_0002_0071_Expiry_ADD_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0067_Expiry_ADD_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADD~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADD
 
-EDM2_SIT_TLP_customersa_0002_0072_Expiry_ADD_CheckDate
+EDM2_SIT_TLP_customersa_0002_0068_Expiry_ADD_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADD,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADD,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADD
 
-EDM2_SIT_TLP_customersa_0002_0073_Expiry_ADD_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0069_Expiry_ADD_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADD,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADD,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADD
 
-EDM2_SIT_TLP_customersa_0002_0074_Expiry_ADD_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADD,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_ADD
-
-EDM2_SIT_TLP_customersa_0002_0075_Expiry_ADB_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0070_Expiry_ADB_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADB~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADB
 
-EDM2_SIT_TLP_customersa_0002_0076_Expiry_ADB_CheckDate
+EDM2_SIT_TLP_customersa_0002_0071_Expiry_ADB_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADB,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADB,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADB
 
-EDM2_SIT_TLP_customersa_0002_0077_Expiry_ADB_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0072_Expiry_ADB_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADB,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADB,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADB
 
-EDM2_SIT_TLP_customersa_0002_0078_Expiry_ADB_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ADB,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_ADB
-
-EDM2_SIT_TLP_customersa_0002_0079_Expiry_HA_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0073_Expiry_HA_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HA~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_HA
 
-EDM2_SIT_TLP_customersa_0002_0080_Expiry_HA_CheckDate
+EDM2_SIT_TLP_customersa_0002_0074_Expiry_HA_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HA,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HA,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_HA
 
-EDM2_SIT_TLP_customersa_0002_0081_Expiry_HA_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0075_Expiry_HA_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HA,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HA,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_HA
 
-EDM2_SIT_TLP_customersa_0002_0082_Expiry_HA_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HA,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_HA
-
-EDM2_SIT_TLP_customersa_0002_0083_Expiry_HB_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0076_Expiry_HB_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HB~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_HB
 
-EDM2_SIT_TLP_customersa_0002_0084_Expiry_HB_CheckDate
+EDM2_SIT_TLP_customersa_0002_0077_Expiry_HB_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HB,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HB,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_HB
 
-EDM2_SIT_TLP_customersa_0002_0085_Expiry_HB_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0078_Expiry_HB_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HB,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HB,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_HB
 
-EDM2_SIT_TLP_customersa_0002_0086_Expiry_HB_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_HB,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_HB
-
-EDM2_SIT_TLP_customersa_0002_0087_Expiry_ME_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0079_Expiry_ME_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ME~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ME
 
-EDM2_SIT_TLP_customersa_0002_0088_Expiry_ME_CheckDate
+EDM2_SIT_TLP_customersa_0002_0080_Expiry_ME_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ME,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ME,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ME
 
-EDM2_SIT_TLP_customersa_0002_0089_Expiry_ME_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0081_Expiry_ME_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ME,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ME,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_ME
 
-EDM2_SIT_TLP_customersa_0002_0090_Expiry_ME_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_ME,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_ME
-
-EDM2_SIT_TLP_customersa_0002_0091_Expiry_PA_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0082_Expiry_PA_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PA~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_PA
 
-EDM2_SIT_TLP_customersa_0002_0092_Expiry_PA_CheckDate
+EDM2_SIT_TLP_customersa_0002_0083_Expiry_PA_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PA,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PA,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_PA
 
-EDM2_SIT_TLP_customersa_0002_0093_Expiry_PA_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0084_Expiry_PA_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PA,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PA,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_PA
 
-EDM2_SIT_TLP_customersa_0002_0094_Expiry_PA_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PA,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_PA
-
-EDM2_SIT_TLP_customersa_0002_0095_Expiry_PH_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0085_Expiry_PH_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PH~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_PH
 
-EDM2_SIT_TLP_customersa_0002_0096_Expiry_PH_CheckDate
+EDM2_SIT_TLP_customersa_0002_0086_Expiry_PH_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PH,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PH,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_PH
 
-EDM2_SIT_TLP_customersa_0002_0097_Expiry_PH_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0087_Expiry_PH_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PH,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PH,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_PH
 
-EDM2_SIT_TLP_customersa_0002_0098_Expiry_PH_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_PH,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_PH
-
-EDM2_SIT_TLP_customersa_0002_0099_Expiry_CI_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0088_Expiry_CI_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_CI~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_CI
 
-EDM2_SIT_TLP_customersa_0002_0100_Expiry_CI_CheckDate
+EDM2_SIT_TLP_customersa_0002_0089_Expiry_CI_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_CI,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_CI,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_CI
 
-EDM2_SIT_TLP_customersa_0002_0101_Expiry_CI_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0090_Expiry_CI_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_CI,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_CI,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_CI
 
-EDM2_SIT_TLP_customersa_0002_0102_Expiry_CI_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_CI,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_CI
-
-EDM2_SIT_TLP_customersa_0002_0103_SA_MA_Decimal
+EDM2_SIT_TLP_customersa_0002_0091_SA_MA_Decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.customersa a where a.SA_MA ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    SA_MA
 
-EDM2_SIT_TLP_customersa_0002_0104_SA_MA_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0092_SA_MA_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MA~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    SA_MA
 
-EDM2_SIT_TLP_customersa_0002_0105_SA_MA_LessThanZero
+EDM2_SIT_TLP_customersa_0002_0093_SA_MA_LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MA < '0'
     EDM_Compare Result    @{Result[0]}    0    SA_MA
 
-EDM2_SIT_TLP_customersa_0002_0106_Expiry_MA_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0094_Expiry_MA_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MA~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_MA
 
-EDM2_SIT_TLP_customersa_0002_0107_Expiry_MA_CheckDate
+EDM2_SIT_TLP_customersa_0002_0095_Expiry_MA_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MA,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MA,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_MA
 
-EDM2_SIT_TLP_customersa_0002_0108_Expiry_MA_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0096_Expiry_MA_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MA,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MA,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_MA
 
-EDM2_SIT_TLP_customersa_0002_0109_Expiry_MA_CheckYear
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MA,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_MA
-
-EDM2_SIT_TLP_customersa_0002_0110_SA_MC_Decimal
+EDM2_SIT_TLP_customersa_0002_0097_SA_MC_Decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.customersa a where a.SA_MC ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    SA_MC
 
-EDM2_SIT_TLP_customersa_0002_0111_SA_MC_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0098_SA_MC_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MC~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    SA_MC
 
-EDM2_SIT_TLP_customersa_0002_0112_SA_MC_LessThanZero
+EDM2_SIT_TLP_customersa_0002_0099_SA_MC_LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MC < '0'
     EDM_Compare Result    @{Result[0]}    0    SA_MC
 
-EDM2_SIT_TLP_customersa_0002_0113_Expiry_MC_IsNotChar
+EDM2_SIT_TLP_customersa_0002_0100_Expiry_MC_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MC~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_MC
 
-EDM2_SIT_TLP_customersa_0002_0114_Expiry_MC_CheckDate
+EDM2_SIT_TLP_customersa_0002_0101_Expiry_MC_CheckDate
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MC,7,2),'99') not between 1 and 31 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MC,7,2),'99') not between 0 and 31;
     EDM_Compare Result    @{Result[0]}    0    Expiry_MC
 
-EDM2_SIT_TLP_customersa_0002_0115_Expiry_MC_CheckMonth
+EDM2_SIT_TLP_customersa_0002_0102_Expiry_MC_CheckMonth
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MC,5,2),'99') not between 1 and 12 ;
+    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MC,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    Expiry_MC
 
-EDM2_SIT_TLP_customersa_0002_0116_Expiry_MC_CheckYear
+EDM2_SIT_TLP_customersa_0002_0103_CheckPolicynotinCustomerinfo
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.customersa \ where to_number(substring(Expiry_MC,1,4),'9999') not between 2400 and 2600 ;
-    EDM_Compare Result    @{Result[0]}    0    Expiry_MC
+    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_TLP_customersa_0002_0104_CheckPolicynotinsplitamount
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_TLP_customersa_0002_0104_CheckPolicynotinpayment
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select b.policyno , b.customercode \ from tlp.payment b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
