@@ -528,3 +528,8 @@ EDM2_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_TLP_customersa_0002_0105_CheckPolicynoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from \ (select policyno, customercode, count(0) \ from tlp.customersa tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno

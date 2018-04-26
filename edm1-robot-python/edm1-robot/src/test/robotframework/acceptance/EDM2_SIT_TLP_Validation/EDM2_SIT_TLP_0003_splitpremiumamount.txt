@@ -333,3 +333,8 @@ EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
     EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+
+EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckGroupPolicynoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select grouppolicyno, customercode, count(0) \ from tlp.splitpremiumamount tlp \ \ group by grouppolicyno, customercode \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
