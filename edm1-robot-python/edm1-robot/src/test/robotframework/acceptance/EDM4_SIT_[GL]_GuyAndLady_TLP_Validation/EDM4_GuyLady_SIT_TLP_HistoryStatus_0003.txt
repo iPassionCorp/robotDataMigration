@@ -48,3 +48,13 @@ EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0009_Validate StatusOldRemark_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.historystatus a \ \ where length(a.statusoldremark) > 10;
     EDM_Compare Result    @{Result[0]}    0    StatusOldRemark
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0010_Validate PolicyNonotinPolicyMaster
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno FROM tlp.policymaster a \ \ \ except all select b.policyno \ from tlp.historystatus b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0011_Validate PolicyNoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select policyno, historycode, count(0) \ from tlp.historystatus tlp \ group by policyno, historycode \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno

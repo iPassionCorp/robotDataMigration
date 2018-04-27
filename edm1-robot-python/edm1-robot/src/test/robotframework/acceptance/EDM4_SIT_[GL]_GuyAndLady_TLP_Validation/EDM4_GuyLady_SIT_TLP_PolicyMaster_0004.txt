@@ -188,3 +188,28 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0037_Validate Sex_F&M
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.policymaster a \ where a.sex not in ('F','M');
     EDM_Compare Result    @{Result[0]}    0    Sex
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0038_Validate PolicyNonotinHistoryStatus
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno FROM tlp.historystatus a \ \ \ except all select b.policyno \ from tlp.policymaster b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0039_Validate PolicyNonotinPolicypaid
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno FROM tlp.policypaid a \ \ \ except all select b.policyno \ from tlp.policymaster b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0040_Validate PolicyNonotinPolicyRider
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno a.plancode FROM tlp.policyrider a \ \ \ except all select b.policyno b.plancode \ from tlp.policymaster b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0041_Validate PolicyNonotinPolicyBeneficiary
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno FROM tlp.policybeneficiary a \ \ \ except all select b.policyno \ from tlp.policymaster b) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0042_Validate PolicyNoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select policyno, appno, plancode, count(0) \ from tlp.policymaster tlp \ group by policyno, appno, plancode \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno

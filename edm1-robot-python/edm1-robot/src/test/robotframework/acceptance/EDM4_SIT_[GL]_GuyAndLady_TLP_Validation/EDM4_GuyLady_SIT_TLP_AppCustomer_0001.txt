@@ -193,3 +193,18 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0038_Validate Prefix_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.prefix) > 50;
     EDM_Compare Result    @{Result[0]}    0    Prefix
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0039_Validate AppNonotinAppCustomerAddress
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.appno FROM tlp.appcustomeraddress a \ \ \ except all select b.appno \ from tlp.appcustomer b) tmp
+    EDM_Compare Result    @{Result[0]}    0    appno
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0040_Validate AppNonotinPolicyMaster
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.appno FROM tlp.policymaster a \ \ \ except all select b.appno \ from tlp.appcustomer b) tmp
+    EDM_Compare Result    @{Result[0]}    0    appno
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0041_Validate AppNoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select appno, count(0) \ from tlp.appcustomer tlp \ group by appno having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    appno
