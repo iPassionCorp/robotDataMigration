@@ -11,7 +11,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0001­_Validate AppNo_length
 
 EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0002_Validate AppNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.appcustomer a \ where a.appno = '';
+    @{Result}    Query    select count(0) from tlp.appcustomer a \ where a.appno = '' or a.appno \ in ('NULL', 'Null', 'null');
     EDM_Compare Result    @{Result[0]}    0    AppNo
 
 EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0003_Validate CustPrename_length
@@ -208,3 +208,8 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0041_Validate AppNoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select appno, count(0) \ from tlp.appcustomer tlp \ group by appno having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    appno
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0042_Validate CustOccupation_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.appcustomer a \ where a.custoccupation = '' and a.custoccupation = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    custoccupation

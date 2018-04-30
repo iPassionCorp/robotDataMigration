@@ -11,7 +11,7 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0001_Validate PolicyNo_length
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0002_Validate PolicyNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.policyno = '';
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.policyno = '' \ or a.policyno \ in ('NULL', 'Null', 'null');
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003_Validate AppNo_length
@@ -24,10 +24,10 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0004_Validate PlanCode_length
     @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.plancode) > 15;
     EDM_Compare Result    @{Result[0]}    0    PlanCode
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0005_Validate Prename_length
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0005_Validate PlanName_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.planname) > 80;
-    EDM_Compare Result    @{Result[0]}    0    Prename
+    EDM_Compare Result    @{Result[0]}    0    PlanName
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0006_Validate Prename_length
     EDM_Connect_DB
@@ -213,3 +213,148 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0042_Validate PolicyNoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select policyno, appno, plancode, count(0) \ from tlp.policymaster tlp \ group by policyno, appno, plancode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0043_Validate StatusNew_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusnew= '' \ and a.statusnew= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusNew
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0044_Validate Mode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.mode= '' \ and a.mode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0045_Validate PlanCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.plancode= '' \ and a.plancode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PlanCode
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0046_Validate StatusOld_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusold= '' and a.statusold= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusOld
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0047_Validate OccType_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.occtype= '' and a.occtype= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    OccType
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0048_Validate StatusNewRemark_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusnewremark= '' and a.statusnewremark= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusNewRemark
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0049_Validate StatusOldRemark_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusoldremark= '' and a.statusoldremark= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusOldRemark
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0050_Validate PolicyNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.policyno = '' \ and a.policyno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0051_Validate EffectiveDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.effectivedate = '' \ and a.effectivedate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0052_Validate StatusDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusdate = '' \ and a.statusdate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusDate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0053_Validate PayPeriod_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.payperiod = '' \ and a.payperiod = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PayPeriod
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0054_Validate PremExta_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.premexta = '' \ and a.premexta = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PremExta
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0055_Validate IssuePolicyDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.issuepolicydate = '' \ and a.issuepolicydate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    IssuePolicyDate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0056_Validate EffectiveDateOld_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.effectivedateold = '' \ and a.effectivedateold = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDateOld
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0057_Validate NextDueDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.nextduedate = '' \ and a.nextduedate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    NextDueDate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0058_Validate IssuedAge_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.issuedage = '' \ and a.issuedage = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    IssuedAge
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0059_Validate SA_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.sa = '' \ and a.sa = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0060_Validate PremLife_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.premlife = '' \ and a.premlife = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PremLife
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0061_Validate ExpDateNew_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.expdatenew = '' \ and a.expdatenew = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ExpDateNew
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0062_Validate CashExpire_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.cashexpire = '' \ and a.cashexpire = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CashExpire
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0063_Validate Status2_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.status2 = '' \ and a.status2 = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Status2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0064_Validate StatusDate2_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusdate2 = '' \ and a.statusdate2 = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusDate2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0065_Validate ExtraRate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.extrarate = '' \ and a.extrarate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ExtraRate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0066_Validate Prename_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.prename = '' \ and a.prename = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Prename
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0067_Validate FrstName_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.frstname = '' \ and a.frstname = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    FrstName
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0068_Validate Surname_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.surname = '' \ and a.surname = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Surname
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0069_Validate IDNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.idno = '' \ and a.idno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    IDNo
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0070_Validate BirthDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.birthdate = '' \ and a.birthdate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    BirthDate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0071_Validate Sex_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.sex = '' \ and a.sex = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Sex

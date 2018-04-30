@@ -58,3 +58,18 @@ EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0011_Validate PolicyNoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select policyno, historycode, count(0) \ from tlp.historystatus tlp \ group by policyno, historycode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0012_Validate StatusDescription_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.historystatus a \ where a.statusdescription = '' and a.statusdescription = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    statusdescription
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0013_Validate StatusOld_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.historystatus a \ where a.statusold = '' and a.statusold = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    statusold
+
+EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0014_Validate StatusDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.historystatus a \ where a.statusdate = '' and a.statusdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    statusdate

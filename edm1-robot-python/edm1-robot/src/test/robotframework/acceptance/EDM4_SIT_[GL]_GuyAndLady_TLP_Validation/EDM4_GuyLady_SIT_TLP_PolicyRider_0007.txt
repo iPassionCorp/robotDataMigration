@@ -48,3 +48,53 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0009_Validate PolicyNoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select policyno, riderno, plancode, statusnew, statusold, count(0) \ from tlp.policyrider tlp \ group by policyno, riderno, plancode, statusnew, statusold having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0010_Validate StatusNew_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.statusnew = '' \ and a.statusnew = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusNew
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0011_Validate PlanCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.plancode= '' and a.plancode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PlanCode
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0012_Validate PolicyNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.policyno= '' and a.policyno= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0013_Validate StartDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.startdate= '' and a.startdate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0014_Validate ExpDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.expdate= '' and a.expdate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ExpDate
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0015_Validate StatusDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.statusdate= '' and a.statusdate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    StatusDate
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0016_Validate EffectiveDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.effectivedate= '' and a.effectivedate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0017_Validate PremExtra_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.premextra= '' and a.premextra= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PremExtra
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0018_Validate SA_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.sa= '' and a.sa= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA
+
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0019_Validate PremRider_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.premrider= '' and a.premrider= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PremRider
