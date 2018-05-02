@@ -1,0 +1,7 @@
+*** Variables ***
+${port}           5432
+${host}           edm1.c1omez2fbnnj.ap-southeast-1.rds.amazonaws.com
+${user}           postgres
+${databaseName}    edm4gl
+${dbapi}          psycopg2
+${password}       postgres
