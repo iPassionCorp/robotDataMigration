@@ -201,7 +201,7 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0039_Validate PolicyNonotinPolicypaid
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0040_Validate PolicyNonotinPolicyRider
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno a.plancode FROM tlp.policyrider a \ \ \ except all select b.policyno b.plancode \ from tlp.policymaster b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno,a.plancode FROM tlp.policyrider a \ except all select b.policyno,b.plancode from tlp.policymaster b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0041_Validate PolicyNonotinPolicyBeneficiary

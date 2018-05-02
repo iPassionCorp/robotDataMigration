@@ -41,7 +41,7 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_H, A, Q, M
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0008_Validate PolicyNonotinPolicyMaster
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno a.plancode FROM tlp.policymaster a \ \ \ except all select b.policyno b.plancode from tlp.policyrider b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno,a.plancode FROM tlp.policymaster a \ except all select b.policyno,b.plancode from tlp.policyrider b) tmp
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0009_Validate PolicyNoDuplicate
