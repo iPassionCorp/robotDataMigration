@@ -46,40 +46,50 @@ EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0008_Validate PolicyNoDuplicate
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0009_Validate RelationShip_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.relationship= '' and a.relationship= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.relationship= '' or a.relationship= 'blank';
     EDM_Compare Result    @{Result[0]}    0    RelationShip
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0010_Validate Age_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.age= '' and a.age= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.age= '' or a.age= 'blank';
     EDM_Compare Result    @{Result[0]}    0    Age
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0011_Validate Percentage_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.percentage= '' and a.percentage= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.percentage= '' or a.percentage= 'blank';
     EDM_Compare Result    @{Result[0]}    0    Percentage
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0012_Validate PolicyNo_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.policyno = '' and a.policyno = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.policyno = '' or a.policyno = 'blank';
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0013_Validate SeqNo_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.seqno = '' and a.seqno = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.seqno = '' or a.seqno = 'blank';
     EDM_Compare Result    @{Result[0]}    0    SeqNo
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0014_Validate BeneficiaryPreName_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiaryprename = '' and a.beneficiaryprename = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiaryprename = '' or a.beneficiaryprename = 'blank';
     EDM_Compare Result    @{Result[0]}    0    BeneficiaryPreName
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0015_Validate BeneficiaryName_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiaryname = '' and a.beneficiaryname = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiaryname = '' or a.beneficiaryname = 'blank';
     EDM_Compare Result    @{Result[0]}    0    BeneficiaryName
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0016_Validate BeneficiaryLastName_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiarylastname = '' and a.beneficiarylastname = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policybeneficiary a \ where a.beneficiarylastname = '' or a.beneficiarylastname = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    BeneficiaryLastName
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0017_Validate BeneficiaryPreName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policybeneficiary a where length(a.beneficiaryprename) > 120;
+    EDM_Compare Result    @{Result[0]}    0    BeneficiaryPreName
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0018_Validate BeneficiaryLastName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policybeneficiary a where length(a.beneficiarylastname) > 120;
     EDM_Compare Result    @{Result[0]}    0    BeneficiaryLastName

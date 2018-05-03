@@ -106,15 +106,15 @@ EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0020_Validate AppNoDuplicate
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0021_Validate AddDistrict_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.adddistrict = '' and a.adddistrict = 'blank'
+    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.adddistrict = '' or a.adddistrict = 'blank'
     EDM_Compare Result    @{Result[0]}    0    adddistrict
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0022_Validate AddZipcode_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.addzipcode = '' and a.addzipcode = 'blank'
+    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.addzipcode = '' or a.addzipcode = 'blank'
     EDM_Compare Result    @{Result[0]}    0    addzipcode
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0023_Validate AddAddress_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.addnumber = '' and a.addnumber = 'blank'
+    @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.addnumber = '' or a.addnumber = 'blank'
     EDM_Compare Result    @{Result[0]}    0    addnumber
