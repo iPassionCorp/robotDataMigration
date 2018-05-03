@@ -1,0 +1,1188 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0004_TD Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0084_Expiry_PA_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0010_AME Benefit FixAmount for ML50 ML52 ML56
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0022_SA_TD_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_005_0002_PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0048_Validate MEPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0069_Validate UWDescription_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0062_Validate OfficerCodeSale_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0017_Validate Deathpremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0028_Validate Gender
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0026_Validate loanNo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0022_Validate NationID_N0000000000000
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0043_Validate MCPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0010_Validate TotPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0030_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0007_Validate PercentOfBenefitciary4_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0095_Expiry_MA_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0027_Validate med
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0055_MI_AMOUNT_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0037_Validate RCCPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0004_Validate PercentOfBenefitciary2_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0020_Validate TPDpremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0047_Validate MEPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0012_Validate Relationship3_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0079_Expiry_ME_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0019_Validate OfficeTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0003_SA_Life_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_0005_0004_PolicyNoBalloon_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0006_Validate PercentOfBenefitciary3_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0024_SA_ADD_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0081_Validate Med_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0063_Validate LifeTPDPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0055_Validate HSPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0015_CheckPolicynoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0008_Validate TypeOfPayment_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0011_Validate TotPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0006_Validate ProductID_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0061_Validate Relationship4_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0054_Validate NameOfBenefit1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0036_Validate ADBPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0009_Validate CustomerCode.length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0058_Expiry_Life_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0006_Validate PolicyNo_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0072_Expiry_ADB_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0049_Validate ExpiredCreditCard_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0039_SA_CI_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0062_Expiry_TPD_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0023_Validate TTDPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0001_Validate GroupPolicyNo_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0092_SA_MA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0046_IA_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0082_Validate CustomerNation_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0048_IA_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0066_Validate PartnerCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0045_FLAGLIFETPD_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0015_Validate Address1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0027_SA_HA_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_0005_0006_certNoBolloon_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0032_Validate CertificateNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0010_Validate AccNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_0005_0007_loancontractno_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0024_Validate DeadDate_EqaulZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0018_Validate Deathpremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0005_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0073_Validate Lob_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0002_Life Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0041_Validate MAPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_005_0001_CheckCertnonotinCustomerinfo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0045_Validate Gender_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0026_SA_ME_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0019_Validate TPDpremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0004_ADD Benefit Percentage
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0053_Validate AddressOffice2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0033_Validate BranchName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0022_Validate TTDPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0009_Validate Relationship2_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0067_Expiry_ADD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0067_Validate DatabaseSource_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0049_Validate HBPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0074_Validate OldAccountNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0069_Expiry_ADD_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0049_SA_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0035_SA_PA_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0053_TransDate_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0001_CustomerCode_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0085_Expiry_PH_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0052_Validate AddressOffice1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0041_Validate Cannel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0038_SA_PH_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0080_Expiry_ME_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0032_Validate ADBPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0035_Validate ADBPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0028_Validate PAPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0014_CheckPolicynotinCustomersa
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0005_ADD Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0018_SA_ADB_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0003_Validate CustomerCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0035_Validate AccountNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0051_Validate HBPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0007_Validate ProductCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0006 SMI-Plan code
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0006 SMI-Plan code.EDM4_SIT_TLP_Plancode_0006_0002
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0001_Total Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0094_Expiry_MA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0008_Validate GroupPolicyNo.length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0056_Validate HSPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0064_CheckPolicynotinCustomerinfo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0010_SA_Life_lessthan_0
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0066_CheckGroupPolicynoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0048_Validate CreditCardNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0070_Validate UWStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0025_SA_ME_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0001_ Life Benefit
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0007_ADB Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0009_Validate CustomerCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0093_SA_MA_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0015_SA_LifeTPD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0047_Validate NationID_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0034_Validate ADBPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0057_MI_AMOUNT_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0081_Expiry_ME_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0006_ADD Benefit FixAmount for L007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0012_PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0050_Validate Address1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0021_Validate NationID_13Digits
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_0005_0007_CheckPolicynoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0009_CustomerCode&PolicyNo_Duplicated
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0020_Validate PartnerNamel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0036_Validate LoanNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0082_Expiry_PA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0060_Expiry_Life_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0029_Validate PAPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0102_Expiry_MC_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0062_Validate LifeTPDPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0040_Validate MAPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0005 customerballoon.EDM4_SIT_TLP_CustomerBalloon_005_0003_CertNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0053_Validate HAPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0096_Expiry_MA_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0074_Expiry_HA_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0013_Validate Relationship4_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0059_Validate Relationship2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0075_Validate CustomerOccupationText_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0031_SA_HB_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0068_Expiry_ADD_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0036_SA_PH_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0101_Expiry_MC_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0030_Validate PAPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0037_SA_PH_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0091_SA_MA_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0060_Validate Relationship3_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0054_Validate HAPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0100_Expiry_MC_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0058_Validate Relationship1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0009_AME Benefit FixAmount for LE95 LE96 LE99 L001 L002 L007
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0014_Validate Lifepremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0013_Validate Lifepremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0028_SA_HA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0046_Validate Status_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0065_Expiry_TD_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0075_Expiry_HA_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0065_Validate CancelLetterNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0038_Validate RCCPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0006_SA_TD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0090_Expiry_CI_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0032_SA_HB_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0001_Validate PolicyNo_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0042_Validate Prefix_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0086_Expiry_PH_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0077_Validate PercenOfBenefitciary1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0026_Validate TDPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0025_Validate CustomerInfoStatus
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0103_CheckPolicynotinCustomerinfo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0023_Validate CustomerStatus
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0041_SA_CI_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0016_Validate Deathpremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0052_TransDate_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0034_SA_PA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0050_Validate HBPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0039_Validate RCCPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0033_Validate ADBPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0078_Expiry_HB_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0066_Expiry_TD_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0061_Validate LifeTPDPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0077_Expiry_HB_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0021_Validate TPDpremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0011_Validate Relationship3_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0047_IA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0013_SA_Life_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0076_Expiry_HB_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0008_ADB Benefit FixAmount for LE81 LE83 L008 L0115
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0051_Validate Address2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0027_Validate TDPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0064_Expiry_TD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0063_Expiry_TPD_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0011_Validate InvoiceNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0007_AME Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0083_Expiry_PA_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0019_SA_TPD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0070_Expiry_ADB_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0034_Validate CustomerCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0068_Validate FACILITY_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0039_Validate CancelReason_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0089_Expiry_CI_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0064_Validate ManagerCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0030_SA_HB_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0099_SA_MC_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0014_SA_LifeTPD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0071_Validate Coverage_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0012_Validate Refund_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0071_Expiry_ADB_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0025_Validate TDPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0004_Validate PartnerCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0016_Validate Address2
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0011_CustomerCode_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0072_Validate VoiceTag_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0073_Expiry_HA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0004_SA_ADB_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0080_Validate PercenOfBenefitciary4_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0042_Validate MAPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0056_MI_AMOUNT_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0056_Validate NameOfBenefit3_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0060_Validate DDPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0104_CheckPolicynotinsplitamount
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0023_SA_ADD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0043_FLAGLIFE_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0007_Validate ProductID_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0002_PolicyNo_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0057_Validate HSPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0063_Validate SaleNameTH_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0008_SA_ME_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0008_Validate PercentOfBenefitciary4_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0043_Validate NameTH_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0002_TDP Benefit
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0037_Validate InsuranceStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0017_Validate HomeTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0078_Validate PercenOfBenefitciary2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0007_SA_ADD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0006 SMI-Plan code
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0006 SMI-Plan code.EDM4_SIT_TLP_Plancode_0006_0001
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0076_Validate CustomerContractOfficePay_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0059_Expiry_Life_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0008_ADD Benefit FixAmount forLE75, LE76,LE78,LE79,L006
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0012_Validate TotPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0016_SA_LifeTPD_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0014_Validate Relationship4_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0054_TransDate_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0005_Validate PercentOfBenefitciary3_isNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0055_Validate NameOfBenefit2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0046_Validate MEPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0007 TLP Premium.EDM4_SIT_TLP_Plancode_0007_0003_TPD Premium
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0003_TD Benefit
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0044_Validate SurnameTH_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0002_Validate ProductCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0097_SA_MC_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0029_SA_HA_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0040_SA_CI_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0024_Validate TTDPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0052_Validate HAPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0061_Expiry_TPD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0057_Validate NameOfBenefit4_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0045_Validate MCPremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0050_SA_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0079_Validate PercenOfBenefitciary3_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0021_SA_TD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0088_Expiry_CI_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0059_Validate DDPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0058_Validate DDPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0031_Validate ProductCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0044_FLAGLIFETPD_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0038_Validate CustomerStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0020_SA_TPD_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0015_Validate Lifepremium.LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0040_Validate CancelDescription_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0001_Validate Gender F&M
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0018_Validate MobileTel_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0042_FLAGLIFE_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM4_SIT_TLP_customerinfo_0001_0010_Validate Relationship2_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0044_Validate MCPremium.IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0033_SA_PA_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0031_Validate ADBPremium.decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0013_CheckPolicynotinCustomerinfo
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0005_Validate LifePremium_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0004 payment.EDM4_SIT_TLP_Payment_0004_0015_CheckPolicynotinsplitamount
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0001 customerinfo.EDM_SIT_TLP_customerinfo_0001_0029_Validate ProductName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0087_Expiry_PH_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0017_SA_ADB_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0003 splitpremiumamount.EDM4_SIT_TLP_split_premium_amount_0003_0065_CheckPolicynotinCustomersa
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP Plancode 0008 TLP SA.EDM4_SIT_TLP_Plancode_0008_0005_ADD Benefit FixAmount for LE95,LE96,L005
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0005_SA_TPD_Decimal
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0051_SA_LessThanZero
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0002 customersa.EDM4_SIT_TLP_customersa_0002_0098_SA_MC_IsNotChar
