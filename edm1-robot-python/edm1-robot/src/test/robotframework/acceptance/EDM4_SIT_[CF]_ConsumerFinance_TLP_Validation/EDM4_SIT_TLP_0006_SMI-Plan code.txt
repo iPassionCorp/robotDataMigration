@@ -1,0 +1,17 @@
+*** Settings ***
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM4_SIT_TLP_Plancode_0006_0001
+    [Documentation]    Case: ตรวจสอบ tlpPolicyNo = SMI_tlpPlancode
+    EDM_Connect_DB
+    @{Result}    Query    select count(tmp.*) from ( select distinct (a.policyno) from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) except all select distinct (b.tlpplancode) \ from lookup.smi b ) tmp
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_SIT_TLP_Plancode_0006_0002
+    [Documentation]    Case: ตรวจสอบ SMI_tlpPlancode = \ tlpPolicyNo
+    EDM_Connect_DB
+    @{Result}    Query    select count(tmp.*) from ( select distinct (b.tlpplancode) \ from lookup.smi b \ \ except all \ select distinct (a.policyno) from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) ) tmp
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
