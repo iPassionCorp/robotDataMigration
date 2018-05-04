@@ -26,7 +26,7 @@ EDM2_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
 
 EDM2_SIT_TLP_split_premium_amount_0003_0005_Validate LifePremium_notNull
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium= '' and a.lifepremium= 'blank';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium= '' or a.lifepremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
 EDM2_SIT_TLP_split_premium_amount_0003_0006_Validate ProductID_IsNotChar
@@ -332,9 +332,4 @@ EDM2_SIT_TLP_split_premium_amount_0003_0065_CheckPolicynotinCustomersa
 EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
-    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
-
-EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckGroupPolicynoDuplicate
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select grouppolicyno, customercode, count(0) \ from tlp.splitpremiumamount tlp \ \ group by grouppolicyno, customercode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    grouppolicyno
