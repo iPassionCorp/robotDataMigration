@@ -117,4 +117,4 @@ EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0022_Validate AddZipcode_NotBlank
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0023_Validate AddAddress_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.appcustomeraddress a \ where a.addnumber = '' or a.addnumber = 'blank'
-    EDM_Compare Result    @{Result[0]}    0    addnumber
+    EDM_Compare Result    @{Result[0]}    0    addaddress

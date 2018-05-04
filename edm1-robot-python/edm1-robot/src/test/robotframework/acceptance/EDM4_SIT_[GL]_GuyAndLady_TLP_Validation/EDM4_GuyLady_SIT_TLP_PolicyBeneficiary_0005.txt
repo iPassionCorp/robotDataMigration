@@ -41,7 +41,7 @@ EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0007_Validate PolicyNonotinPolicymas
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0008_Validate PolicyNoDuplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select policyno, count(0) \ from tlp.policybeneficiary tlp \ group by policyno having count(0) > 1) tmp;
+    @{Result}    Query    select count(0) from \ \ (select policyno, seqno, beneficiaryprename, beneficiaryname, beneficiarylastname, count(0) \ from tlp.policybeneficiary tlp \ group by policyno, seqno, beneficiaryprename, beneficiaryname, beneficiarylastname having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0009_Validate RelationShip_NotBlank
@@ -93,3 +93,8 @@ EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0018_Validate BeneficiaryLastName_le
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.policybeneficiary a where length(a.beneficiarylastname) > 120;
     EDM_Compare Result    @{Result[0]}    0    BeneficiaryLastName
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0019_Validate Percentage
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ \ (select policyno, sum(to_number (percentage, '9999999999.99')) from tlp.policybeneficiary group by policyno \ having sum(to_number (percentage, '9999999999.99')) <> 100) tmp;
+    EDM_Compare Result    @{Result[0]}    0    percentage
