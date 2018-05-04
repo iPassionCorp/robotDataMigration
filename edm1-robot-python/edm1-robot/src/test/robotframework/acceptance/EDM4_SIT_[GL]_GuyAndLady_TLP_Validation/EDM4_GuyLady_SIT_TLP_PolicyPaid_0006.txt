@@ -74,9 +74,9 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0014_Validate ReceiptStatus_length
     @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.receiptstatus) > 10;
     EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015_Validate ReceiptStatus_ACT, CAN = Cancel, REF = Refund
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015_Validate ReceiptStatus_E,C,Y
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.receiptstatus not in ('ACT','CAN = Cancel','REF = Refund');
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.receiptstatus not in ('E','C','Y');
     EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0016_Validate ReceiptDescription_length
@@ -153,3 +153,8 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0028_Validate YearPay_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.yearpay = '' \ or a.yearpay = 'blank';
     EDM_Compare Result    @{Result[0]}    0    YearPay
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0029_Validate Mode_0,1
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.mode not in ('0','1');
+    EDM_Compare Result    @{Result[0]}    0    Mode
