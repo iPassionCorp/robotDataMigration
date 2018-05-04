@@ -158,3 +158,8 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0029_Validate Mode_0,1
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.mode not in ('0','1');
     EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0030_Validate PolicynoDuplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ \ (select policyno, receiptno, paiddate, count(0) \ from tlp.policypaid tlp \ group by policyno, receiptno, paiddate \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno
