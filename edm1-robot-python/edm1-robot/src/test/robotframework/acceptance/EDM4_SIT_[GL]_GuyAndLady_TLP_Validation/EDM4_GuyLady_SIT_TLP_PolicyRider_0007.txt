@@ -34,9 +34,9 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006_Validate Mode_length
     @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.mode) > 10;
     EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_H, A, Q, M
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_0,1
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from tlp.policyrider a \ where a.mode not in ('H','A','Q','M');
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.mode not in ('0','1');
     EDM_Compare Result    @{Result[0]}    0    Mode
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0008_Validate PolicyNonotinPolicyMaster
