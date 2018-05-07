@@ -333,3 +333,43 @@ EDM4_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
     EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+
+EDM4_SIT_TLP_split_premium_amount_0003_0067_Validate LifePremium.Benefit_Life
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ \ on prem.grouppolicyno = info.policyno \ \ and prem.customercode = info.customercode \ \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LIFE') smi \ \ on prem.grouppolicyno = smi.tlpplancode where prem.lifepremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    lifepremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0068_Validate TPDPremium.Benefit_TPD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.tpdpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    tpdpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0069_Validate TDPremium.Benefit_TD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'TDP') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.tdpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    tdpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0070_Validate ADDPremium.Benefit_ADD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ADD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.addpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    addpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0071_Validate ADBPremium.Benefit_ADB
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ADB') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.adbpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    adbpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0072_Validate MCPremium.Benefit_MC
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'MC') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.mcpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    mcpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0073_Validate HAPremium.Benefit_HA
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'HA') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.hapremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    hapremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0074_Validate HAPremium.Benefit_HB
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'HB') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.hbpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    hbpremium
