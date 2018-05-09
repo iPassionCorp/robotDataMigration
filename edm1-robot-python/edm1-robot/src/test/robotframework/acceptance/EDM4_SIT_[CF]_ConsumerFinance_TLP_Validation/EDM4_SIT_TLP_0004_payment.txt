@@ -83,3 +83,28 @@ EDM4_SIT_TLP_Payment_0004_0015_CheckPolicynoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select policyno, customercode, count(0) \ from tlp.payment tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_SIT_TLP_Payment_0004_0016_Validate PartnerCode_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.partnercode = '' or a.partnercode is \ null
+    EDM_Compare Result    @{Result[0]}    0    PartnerCode
+
+EDM4_SIT_TLP_Payment_0004_0017_Validate TypeOfPayment_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.TypeOfPayment = '' or a.TypeOfPayment is \ null
+    EDM_Compare Result    @{Result[0]}    0    TypeOfPayment
+
+EDM4_SIT_TLP_Payment_0004_0018_Validate AccNo_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.AccNo = '' or a.AccNo is \ null
+    EDM_Compare Result    @{Result[0]}    0    AccNo
+
+EDM4_SIT_TLP_Payment_0004_0019_Validate Refund_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.Refund = '' or a.Refund is \ null
+    EDM_Compare Result    @{Result[0]}    0    Refund
+
+EDM4_SIT_TLP_Payment_0004_0020_Validate InvoiceNo_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.InvoiceNo = '' or a.InvoiceNo is \ null
+    EDM_Compare Result    @{Result[0]}    0    InvoiceNo
