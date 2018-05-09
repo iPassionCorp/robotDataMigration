@@ -213,3 +213,18 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0042_Validate CustOccupation_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.appcustomer a \ where a.custoccupation = '' or a.custoccupation = 'blank'
     EDM_Compare Result    @{Result[0]}    0    custoccupation
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0043_Validate CustIDProvince_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.custidprovince) > 50;
+    EDM_Compare Result    @{Result[0]}    0    CustIDProvince
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0044_Validate PrintStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.printstatus) > 50;
+    EDM_Compare Result    @{Result[0]}    0    PrintStatus
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0045_Validate Relation_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.relation) > 20;
+    EDM_Compare Result    @{Result[0]}    0    Relation

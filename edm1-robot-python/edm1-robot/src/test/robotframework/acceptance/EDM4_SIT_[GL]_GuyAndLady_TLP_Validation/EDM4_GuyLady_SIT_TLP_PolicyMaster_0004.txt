@@ -368,3 +368,8 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0073_Validate StatusDate2_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.statusdate2) > 50;
     EDM_Compare Result    @{Result[0]}    0    StatusDate2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0074_Validate Medical_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.medical) > 5;
+    EDM_Compare Result    @{Result[0]}    0    Medical
