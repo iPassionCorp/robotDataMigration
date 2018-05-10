@@ -6,7 +6,7 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0001_Validate RegDtlDateOfDeath_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from tlp.ClaimRegisterDetail a where a.RegDtlDateOfDeath <> \ '00000000'
+    @{Result}    Query    select regdtldateofdeath from tlp.ClaimRegisterDetail a where a.RegDtlDateOfDeath <> \ '00000000' and a.RegDtlDateOfDeath not like '[a-zA-Z,]' \ and length(a.RegDtlDateOfDeath) <> 8
     EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfDeath
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0002_Validate RegDtlDateOfDeath_NotBlank
@@ -16,8 +16,8 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0002_Validate RegDtlDateOfDeath
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0003_Validate RegDtlRegisterDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from tlp.ClaimRegisterDetail a where a.RegDtlDateOfDeath <> \ '00000000'
-    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfDeath
+    @{Result}    Query    select regdtldateofdeath from tlp.ClaimRegisterDetail a where a.RegDtlRegisterDate <> \ '00000000' and a.RegDtlRegisterDate not like '[a-zA-Z,]' \ and length(a.RegDtlRegisterDate ) <> 8
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegisterDate
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0004_Validate RRegDtlRegisterDate_NotBlank
     EDM_Connect_DB
@@ -176,5 +176,65 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0035_Validate payType_length
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0036_Validate RegDtlApproveDate_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate= '' or a.RegDtlApproveDateis null
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate= '' or a.RegDtlApproveDate is null
     EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0037_Validate RegDtlTotalClaim_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlTotalClaim= '' or a.RegDtlTotalClaim is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlTotalClaim
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0038_Validate RegDtlTotalClaim_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.ClaimRegisterDetail a where a.RegDtlTotalClaim ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    RegDtlTotalClaim
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0039_Validate RegDtlPolicyStatus_I,D,K
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.ClaimRegisterDetail a \ where a.RegDtlPolicyStatus not in ('I','D','K')
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0040_Validate RegDtlPolicyStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlPolicyStatus) > 10;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0041_Validate PartnerCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.PartnerCode) > 30;
+    EDM_Compare Result    @{Result[0]}    0    PartnerCode
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0042_Validate RegDtlTotalAmount_Decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.ClaimRegisterDetail a where a.RegDtlTotalAmount~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    RegDtlTotalAmount
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0043_Validate RegDtlTotalAmount_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlTotalAmount= '' or a.RegDtlTotalAmount is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlTotalAmount
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0044_Validate RegDtlNote&RegDtlClaimNoteApprove_length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.ClaimRegisterDetail where length(Concat(RegDtlNote ,RegDtlClaimNoteApprove)) > 200;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlNote&RegDtlClaimNoteApprove
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0045_Validate RegDtlNote_length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.ClaimRegisterDetail where length(RegDtlNote) > 500;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlNote
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0046_Validate RegDtlNote_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlNote= '' or a.RegDtlNote is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlNote
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0047_Validate RegDtlClaimNoteApprove_length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.ClaimRegisterDetail where length(RegDtlClaimNoteApprove) > 200;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNoteApprove
+
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0048_Validate RegDtlClaimNoteApprove_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimNoteApprove= '' or a.RegDtlClaimNoteApprove is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNoteApprove
