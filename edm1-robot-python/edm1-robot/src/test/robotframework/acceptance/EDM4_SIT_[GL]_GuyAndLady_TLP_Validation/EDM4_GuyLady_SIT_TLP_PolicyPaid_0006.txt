@@ -99,22 +99,17 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0019_Validate PartnerSend_BAY, TMB, UOB
     @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.partnersend not in ('BAY','TMB','UOB');
     EDM_Compare Result    @{Result[0]}    0    PartnerSend
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0020_Validate PolicyNonotinPolicyMaster
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno FROM tlp.policymaster a \ \ \ except all select b.policyno \ from tlp.policypaid b) tmp
-    EDM_Compare Result    @{Result[0]}    0    policyno
-
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0021_Validate PolicyNoDuplicate
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0020_Validate PolicyNoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select policyno, count(0) \ from tlp.policypaid tlp \ group by policyno having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0022_Validate PolicyNo_NotBlank
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0021_Validate PolicyNo_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.policyno= '' \ or a.policyno= 'blank';
     EDM_Compare Result    @{Result[0]}    0    policyno
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0023_Validate ReceiptStatus_NotBlank
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0022_Validate ReceiptStatus_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.receiptstatus= '' or a.receiptstatus= 'blank';
     EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
