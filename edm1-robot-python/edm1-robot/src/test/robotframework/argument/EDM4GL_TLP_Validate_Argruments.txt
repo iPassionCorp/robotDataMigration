@@ -381,7 +381,7 @@ Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Valid
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004
 --test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003_Validate AppNo_length
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003_Validate AppNo__NotNull
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyRider 0007
 --test
