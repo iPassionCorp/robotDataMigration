@@ -34,7 +34,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0006_Validate CustStatus_length
     @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.custstatus) > 50;
     EDM_Compare Result    @{Result[0]}    0    CustStatus
 
-EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0007_Validate CustStatus_หม้าย, สมรส (ไม่จดทะเบียน), หย่าร้าง, สมรส, โสด
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0007_Validate CustStatus
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.appcustomer a \ where a.custstatus not in ('หม้าย','สมรส (ไม่จดทะเบียน)','หย่าร้าง','สมรส','โสด');
     EDM_Compare Result    @{Result[0]}    0    CustStatus
@@ -69,7 +69,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0013_Validate CustIDType_length
     @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.custidtype) > 50;
     EDM_Compare Result    @{Result[0]}    0    CustIDType
 
-EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0014_Validate CustIDType_1 - บัตรประชาชน, 2 - บัตรข้าราชการ, 3 - หนังสือเดินทาง, 4 - ใบต่างด้าว, 5 - เลขในทะเบียนบ้าน, 6 - อื่นๆ, 7 - เลขการค้า/นิติบุคคล
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0014_Validate CustIDType
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from tlp.appcustomer a \ where a.custidtype not in ('1 - บัตรประชาชน','2 - บัตรข้าราชการ','3 - หนังสือเดินทาง','4 - ใบต่างด้าว','5 - เลขในทะเบียนบ้าน','6 - อื่นๆ','7 - เลขการค้า/นิติบุคคล');
     EDM_Compare Result    @{Result[0]}    0    CustIDType
