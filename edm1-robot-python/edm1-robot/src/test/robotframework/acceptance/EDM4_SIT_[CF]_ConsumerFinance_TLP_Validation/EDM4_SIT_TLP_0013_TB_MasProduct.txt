@@ -1,0 +1,15 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_TLP_TB_MasProduct_0013_0001_Validate PolicyNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.masproduct a \ where a.PolicyNo= '' or a.PolicyNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_SIT_TLP_TB_MasProduct_0013_0002_Validate PolicyNo_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.masproduct a \ where length(a.PolicyNo) > 20;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
