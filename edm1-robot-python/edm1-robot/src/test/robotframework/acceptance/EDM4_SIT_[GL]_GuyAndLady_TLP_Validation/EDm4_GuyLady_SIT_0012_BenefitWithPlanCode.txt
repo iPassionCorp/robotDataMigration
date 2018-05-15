@@ -1,0 +1,74 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_Plan1_LIFE
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '40000' and rider.ridertype = 'LIFE' and rider.sa <> '40000'
+    EDM_Compare Result    @{Result[0]}    0    Plan1_LIFE
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_Plan1_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '40000' and rider.ridertype = 'CI' and rider.sa <> '200000'
+    EDM_Compare Result    @{Result[0]}    0    Plan1_CI
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0003_Plan1_CB&CP
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '40000' and rider.ridertype in ('CP', 'CB') and rider.sa <> '200000'
+    EDM_Compare Result    @{Result[0]}    0    Plan1_CP&CB
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0004_Plan1_CS
+    [Documentation]    ตรวจสอบข้อมูล GuyLady-CS Benefit Plan 1
+    ...    - tlp.PolicyRider.SA = '40000'
+    ...
+    ...    - Assume ว่า CS [Cancers Skin] = SA ประเภท LIFE
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '40000' and rider.ridertype = 'LIFE' and rider.sa <> '40000'
+    EDM_Compare Result    @{Result[0]}    0    Plan1_CS
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0005_Plan2_LIFE
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '75000' and rider.ridertype = 'LIFE' and rider.sa <> '75000'
+    EDM_Compare Result    @{Result[0]}    0    Plan2_LIFE
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0006_Plan2_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '75000' and rider.ridertype = 'CI' and rider.sa <> '375000'
+    EDM_Compare Result    @{Result[0]}    0    Plan2_CI
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0007_Plan2_CB&CP
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '75000' and rider.ridertype in ('CP', 'CB') and rider.sa <> '375000' \
+    EDM_Compare Result    @{Result[0]}    0    Plan2_CP&CB
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0008_Plan2_CS
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '75000' and rider.ridertype = 'LIFE' and rider.sa <> '75000'
+    EDM_Compare Result    @{Result[0]}    0    Plan2_CS
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0009_Plan3_LIFE
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '100000' and rider.ridertype = 'LIFE' and rider.sa <> '100000'
+    EDM_Compare Result    @{Result[0]}    0    Plan3_LIFE
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0010_Plan3_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '100000' and rider.ridertype = 'CI' and rider.sa <> '500000'
+    EDM_Compare Result    @{Result[0]}    0    Plan3_CI
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0011_Plan3_CB&CP
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '100000' and rider.ridertype in ('CP', 'CB') \ and rider.sa <> '500000'
+    EDM_Compare Result    @{Result[0]}    0    Plan3_CP&CB
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0012_Plan3_CS
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster master left join tlp.policyrider rider \ on master.policyno = rider.policyno where master.sa = '100000' and rider.ridertype = 'LIFE' and rider.sa <> '100000'
+    EDM_Compare Result    @{Result[0]}    0    Plan3_CS
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0013_LIFE_tlp.policymaster.SA
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policymaster a \ \ JOIN tlp.policyrider b \ \ ON a.policyno = b.policyno WHERE b.ridertype = 'LIFE' AND to_number(a.sa,'999999999.99') <> to_number(b.sa,'999999999.99')
+    EDM_Compare Result    @{Result[0]}    0    PolicyMaster.SA
