@@ -407,10 +407,6 @@ Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Valid
 --test
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0007_Validate FrstName_length
 --suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0046_Validate StatusOld_NotBlank
---suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyBeneficiary 0005
 --test
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyBeneficiary 0005.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0010_Validate Age_NotBlank
@@ -486,10 +482,6 @@ Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Valid
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004
 --test
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0056_Validate EffectiveDateOld_NotBlank
---suite
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004
---test
-Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyMaster 0004.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0011_Validate StatusOld_length
 --suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT TLP PolicyPaid 0006
 --test
