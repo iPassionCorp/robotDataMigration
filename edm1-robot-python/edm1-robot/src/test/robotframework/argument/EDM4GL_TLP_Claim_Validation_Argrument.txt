@@ -1,4 +1,4 @@
---suite 
+--suite
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0008 TLP ClaimRegisterDetail
 --test
 Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0008 TLP ClaimRegisterDetail.EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0040_Validate RegDtlTotalAmount_Decimal
