@@ -224,32 +224,27 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0046_Validate RegDtlClaimNoteAp
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimNoteApprove= '' or a.RegDtlClaimNoteApprove is null
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNoteApprove
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0047_Validate HospitalCode_Default
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0047_Validate RegDtlDurationDays_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> ''
-    EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
-
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0048_Validate RegDtlDurationDays_Default
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) <> 3 and RegDtlDurationDays !='0.00'
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) <> 3 and RegDtlDurationDays !='0'
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0049_Validate PartnerCode_Default
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0048_Validate PartnerCode_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where partnercode not in ('064','019','029','027','032','053','061','060','042','039','041','062')
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0050_Validate PartnerCode_notBlank
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0049_Validate PartnerCode_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.partnercode= '' or a.partnercode= 'blank' or a.partnercode is null
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0051_Validate RegDtlDateOfOccurred_Default
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0050_Validate RegDtlDateOfOccurred_Default
     EDM_Connect_DB
     @{Result}    Query    SELECT \ count(0) from (select RegDtlDateOfOccurred from tlp.ClaimRegisterDetail where RegDtlDateOfOccurred \ not between '0000-00-00' and '3000-12-31' and length(RegDtlDateOfOccurred) <> 8) tmp
     EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfOccurred
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0052_Validate RegDtlApproveDate_notBlank
+EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0051_Validate RegDtlApproveDate_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate= '' or a.RegDtlApproveDate= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
