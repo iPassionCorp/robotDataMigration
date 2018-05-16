@@ -1,0 +1,165 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Remark_0001_0001_Validate PolicyType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno \ where length(a.policytype) > 1
+    EDM_Compare Result    @{Result[0]}    0    policytype
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0002_Validate PolicyType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno \ where a.policytype ='' or a.policytype = 'blank' or a.policytype is null
+    EDM_Compare Result    @{Result[0]}    0    policytype
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0003_Validate PolicyType_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno \ group by a.policytype \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    policytype
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0004_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno where length(a.policyno) > 8
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0005_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno where a.policyno ='' or a.policyno = 'blank' or a.policyno is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0006_Validate PolicyNo_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno \ group by a.policyno \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0007_Validate PolicyNo_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno where a.policyno <> d.policyno
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0008_Validate Sequence_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.sequence = d.seqno where length(a.sequence) <> 1
+    EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0009_Validate Sequence_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.sequence = d.seqno where a.sequence ='' or a.sequence = 'blank' or a.sequence is null
+    EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0010_Validate Sequence_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.sequence = d.seqno \ group by a.sequence \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0011_Validate PreName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.preName = d.BeneficiaryPreName where length(a.preName) > 30
+    EDM_Compare Result    @{Result[0]}    0    preName
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0012_Validate PreName_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.preName = d.BeneficiaryPreName where a.preName ='' or a.preName = 'blank' or a.preName is null
+    EDM_Compare Result    @{Result[0]}    0    preName
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0013_Validate PreName_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.preName <> d.beneficiaryprename
+    EDM_Compare Result    @{Result[0]}    0    preName
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0014_Validate FirstName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where length(a.firstname) > 30
+    EDM_Compare Result    @{Result[0]}    0    firstname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0015_Validate FirstName_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.firstname ='' or a.firstname = 'blank' or a.firstname is null
+    EDM_Compare Result    @{Result[0]}    0    firstname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0016_Validate FirstName_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.firstname <> d.beneficiaryname
+    EDM_Compare Result    @{Result[0]}    0    firstname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0017_Validate LastName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where length(a.lastname) > 30
+    EDM_Compare Result    @{Result[0]}    0    lastname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0018_Validate LastName_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.lastname ='' or a.lastname = 'blank' or a.lastname is null
+    EDM_Compare Result    @{Result[0]}    0    lastname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0019_Validate LastName_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.lastname <> d.beneficiarylastname
+    EDM_Compare Result    @{Result[0]}    0    lastname
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0020_Validate RelationshipCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where length(a.relationshipcode) > 2
+    EDM_Compare Result    @{Result[0]}    0    relationshipcode
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0021_Validate RelationshipCode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.relationshipcode ='' or a.relationshipcode = 'blank' or a.relationshipcode is null
+    EDM_Compare Result    @{Result[0]}    0    relationshipcode
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0022_Validate RelationshipCode_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.relationshipcode <> d.relationship
+    EDM_Compare Result    @{Result[0]}    0    relationshipcode
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0023_Validate RelationshipCode_01-76
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where to_number(SUBSTRING(a.relationshipcode,1,2),'99') not between 1 and 76
+    EDM_Compare Result    @{Result[0]}    0    relationshipcode
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0024_Validate PercentShare_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where length(a.percentshare) > 5
+    EDM_Compare Result    @{Result[0]}    0    percentshare
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0025_Validate PercentShare_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.percentshare ='' or a.percentshare = 'blank' or a.percentshare is null
+    EDM_Compare Result    @{Result[0]}    0    percentshare
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0026_Validate PercentShare_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.percentshare <> d.percentage
+    EDM_Compare Result    @{Result[0]}    0    percentshare
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0027_Validate PersonFlag_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where length(a.personflag) <> 1
+    EDM_Compare Result    @{Result[0]}    0    personflag
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0028_Validate PersonFlag_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where a.personflag ='' or a.personflag = 'blank' or a.personflag is null
+    EDM_Compare Result    @{Result[0]}    0    personflag
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0029_Validate idNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where length(a.idno) > 13
+    EDM_Compare Result    @{Result[0]}    0    idno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0030_Validate idNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where a.idno is null
+    EDM_Compare Result    @{Result[0]}    0    idno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0031_Validate BirthDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where length(a.birthdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    birthdate
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0032_Validate BirthDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ where a.birthdate is null
+    EDM_Compare Result    @{Result[0]}    0    birthdate
