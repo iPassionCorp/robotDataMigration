@@ -1,0 +1,102 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Name_0009_0001_Validate nameID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where length(n.nameID) > 13;
+    EDM_Compare Result    @{Result[0]}    0    nameID
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0002_Validate nameID_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.name a inner join dm.ordmast b on a.nameid = b.nameid \ where a.nameID = '' or a.nameID \ in ('NULL', 'Null', 'null') or a.nameID = '' or a.nameID = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    nameID
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0003_Validate nameIDDuplicate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${TotalColumn}    query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno group by n.nameID having count(0) > 1
+    Should Be Empty    ${TotalColumn}
+    log    Record Duplicated is ${TotalColumn}
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0004_Validate personID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where length(n.personID) > 13;
+    EDM_Compare Result    @{Result[0]}    0    personID
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0005_Validate personID_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.name a inner join dm.person b on a.personid = b.personid \ where a.personid = '' or a.personid \ in ('NULL', 'Null', 'null') or a.personid = '' or a.personid = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    personID
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0006_Validate preName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where length(n.preName) > 30;
+    EDM_Compare Result    @{Result[0]}    0    preName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0007_Validate preNameMapping
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${preName}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno \ join tlp.PolicyMaster pm on pm.policyno = m.rpolicyno \ and pm.Prename = m.rpolicyno \ where n.Prename <> pm.Prename;
+    ${preName}=    Convert To String    ${preName}
+    Should Be Equal    ${preName}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0008_Validate firstName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where length(n.firstName) > 30;
+    EDM_Compare Result    @{Result[0]}    0    firstName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0009_Validate firstNameMapping
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${firstName}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid join dm.certmapping m on c.policyno = m.policyno \ join tlp.PolicyMaster pm on pm.policyno = m.rpolicyno \ and pm.FrstName = m.rpolicyno \ where n.firstName <> pm.FrstName;
+    ${firstName}=    Convert To String    ${firstName}
+    Should Be Equal    ${firstName}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0010_Validate lastName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where length(n.lastName) > 30;
+    EDM_Compare Result    @{Result[0]}    0    lastName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0011_Validate lastNameMapping
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${lastName}=    DatabaseLibrary.Execute Sql String    select m.policyno, m.policyno, n.lastName, pm.Surname from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno \ join tlp.PolicyMaster pm on pm.policyno = m.rpolicyno \ and pm.Surname = m.rpolicyno \ where n.lastName <> pm.Surname;
+    ${lastName}=    Convert To String    ${lastName}
+    Should Be Equal    ${lastName}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0012_Validate startDateMapping
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{startDate }=    query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno \ join tlp.PolicyMaster pm on pm.policyno = m.rpolicyno \ and pm.EffectiveDate = m.rpolicyno \ \ where n.startdate \ <> \ pm.EffectiveDate;
+    EDM_Compare Result    @{startDate [0]}    0    startDate
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0013_Validate startDate_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno where n.startDate = '' or n.startDate in ('NULL', 'Null', 'null') or n.startDate= '' or n.startDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    startDate
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0014_Validate startDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno \ join tlp.PolicyMaster pm on pm.policyno = m.rpolicyno \ and pm.EffectiveDate = m.rpolicyno \ \ where n.startdate \ not between '0000-00-00' and '3000-12-31' and length(startdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    startDate

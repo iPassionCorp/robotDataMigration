@@ -1,0 +1,76 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Person_0010_0001_Validate personID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ \ where length(a.personID) > 13;
+    EDM_Compare Result    @{Result[0]}    0    personID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0002_Validate personID_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ \ where a.personID= '' or a.personID in ('NULL', 'Null', 'null') or a.personID= '' or a.personID= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    personID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0003_Validate personIDDuplicate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${TotalColumn}    query    select count(0) from dm.name n \ join dm.ordmast c \ on n.nameid = c.nameid \ join dm.certmapping m on c.policyno = m.policyno group by n.nameID having count(0) > 1
+    Should Be Empty    ${TotalColumn}
+    log    Record Duplicated is ${TotalColumn}
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0004_Validate referenceID_length
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
+    EDM_Connect_DB
+    @{referenceID}=    query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ and e.IDNo = d.rpolicyno \ \ where \ length(a.referenceID) <> 13 and length(a.referenceID) <> 12
+    EDM_Compare Result    @{referenceID[0]}    0    referenceID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0005_Validate referenceIDMapping
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${referenceID}=    DatabaseLibrary.Execute Sql String    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ and e.idno = d.rpolicyno \ \ where a.referenceID <> e.idno;
+    ${referenceID}=    Convert To String    ${referenceID}
+    Should Be Equal    ${referenceID}    None
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0006_Validate referenceID_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ where a.referenceID= '' or a.referenceID in ('NULL', 'Null', 'null') or a.referenceID= '' or a.referenceID= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    referenceID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0007_Validate referenceType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ \ where length(a.referenceType) > 2;
+    EDM_Compare Result    @{Result[0]}    0    referenceType
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0008_Validate referenceType_Type
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno where a.referenceType not in ('01','02','03','04','05','06','07','08','09','10','11','12','13','14');
+    EDM_Compare Result    @{Result[0]}    0    referenceType
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0009_Validate birthDateMapping
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{birthDate}=    query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where a.birthDate \ <> \ e.BirthDate;
+    EDM_Compare Result    @{birthDate [0]}    0    birthDate
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0010_Validate birthDate_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where a.birthDate = '' or a.birthDate in ('NULL', 'Null', 'null') or a.birthDate = '' or a.birthDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    startDate
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0011_Validate birthDate_Default
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    startDate
