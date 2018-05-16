@@ -74,37 +74,32 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0014_Validate ADDRESS2_Length
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ADDRESS2) > 200;
     EDM_Compare Result    @{Result[0]}    0    ADDRESS2
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0015_Validate ADDRESS2_NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ADDRESS2= '' or a.ADDRESS1= 'blank';
-    EDM_Compare Result    @{Result[0]}    0    ADDRESS2
-
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0016_Validate TUMBON_Length
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0015_Validate TUMBON_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.TUMBON) > 50;
     EDM_Compare Result    @{Result[0]}    0    TUMBON
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0017_Validate TUMBON_NotBlank
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0016_Validate TUMBON_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.TUMBON= '' or a.TUMBON= 'blank';
     EDM_Compare Result    @{Result[0]}    0    TUMBON
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0018_Validate AMPHOR_Length
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0017_Validate AMPHOR_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.AMPHOR) > 50;
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0019_Validate AMPHOR_NotBlank
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0018_Validate AMPHOR_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.AMPHOR= '' or a.AMPHOR= 'blank';
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0020_Validate PROVINCE_Length
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0019_Validate PROVINCE_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.PROVINCE) > 50;
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0021_Validate PROVINCE_NotBlank
+EDM4_GuyLady_SIT_TLP_TB_ClaimPaymentDetail_0010_0020_Validate PROVINCE_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.PROVINCE= '' or a.PROVINCE= 'blank';
     EDM_Compare Result    @{Result[0]}    0    PROVINCE
