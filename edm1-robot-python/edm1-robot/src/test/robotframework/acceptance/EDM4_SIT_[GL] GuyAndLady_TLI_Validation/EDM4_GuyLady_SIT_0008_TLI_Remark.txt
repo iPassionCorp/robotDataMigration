@@ -1,0 +1,60 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Remark_0001_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.remark a inner join dm.certmapping b on a.policyno = b.policyno \ inner join tlp.policymaster c on b.policyno = c.policyno where length(a.policyno) > 15
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0002_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.remark a inner join dm.certmapping b on a.policyno = b.policyno \ inner join tlp.policymaster c on b.policyno = c.policyno where a.policyno is null or a.policyno = ''
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0003_Validate Department_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.department <> '88' and length(department) > 2
+    EDM_Compare Result    @{Result[0]}    0    department
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0004_Validate Department_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.department ='' or a.department = 'blank' or a.department is null
+    EDM_Compare Result    @{Result[0]}    0    department
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0005_Validate Sequence_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where length(sequence) > 2 or sequence \ LIKE '%[^a-z]%'
+    EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0006_Validate Sequence_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.sequence ='' or a.sequence = 'blank' or a.sequence is null
+    EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0007_Validate Message_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.remark a inner join dm.certmapping b on a.policyno = b.policyno \ inner join tlp.historystatus c on b.policyno = c.policyno where length(a.message ) > 100
+    EDM_Compare Result    @{Result[0]}    0    message
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0008_Validate Message_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.remark a inner join dm.certmapping b on a.policyno = b.policyno \ inner join tlp.historystatus c on b.policyno = c.policyno where a.message = '' or a.message = 'blank' or a.message is null
+    EDM_Compare Result    @{Result[0]}    0    message
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0009_Validate PolicyNo_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select a.policyno from dm.remark a inner join dm.certmapping b on a.policyno = b.policyno \ inner join tlp.historystatus c on b.policyno = c.policyno group by a.policyno \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0010_Validate Department_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select a.department from dm.remark a left join dm.ordmast b on a.policyno = b.policyno \ \ group by a.department \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    department
+
+EDM4_GuyLady_SIT_TLI_Remark_0001_0011_Validate Sequence_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select a.sequence from dm.remark a left join dm.ordmast b on a.policyno = b.policyno \ \ group by a.sequence \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    sequence
