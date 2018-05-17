@@ -1,0 +1,368 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0007_Validate PAYMENTTYPE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlAdjustPayment _isNegative
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0008_Validate RegDtlClaimNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0025_Validate ReceiveChequeDate_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0041_Validate RegDtlApproveDate_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0031_Validate PayType_0-8
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EDM4_SIT_TLP_TB_ClaimPayment_0010_0005_Validate CREATEDATE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0052_Validate PartnerCode_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_I,D,C
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0016_Validate RegDtlClaimCauseEN_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0027_Validate RegdtlICDten2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EDM4_SIT_TLP_TB_ClaimPayment_0010_0002_Validate PAID_DATE_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0022_Validate ReceiveChequeDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0040_Validate RegDtlAdjustPayment _notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0021_Validate RegDtlDateOfAdmission_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimExpense_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0023_Validate RegDtlHospitalCode_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0026_Validate ReceiveChequeDate_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0004_Validate RegDtlRegisterDate_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0015_Validate RRegDtlClaimCauseCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlInterest_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0009_Validate BANKID_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0006_Validate PAYMENTTYPE_LBC,ACH
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0020_Validate RegDtlApproval_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0001_Validate PAYEENAME_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0016_Validate RegDtlClaimCauseEN_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0007_Validate RegDtlClaimNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0015_Validate ADDRESS2_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0009_Validate RegDtlClaimNo_CheckYear
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0029_Validate RegdtlICDtenEng2_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlApproveDate_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0005_Validate PAYMENTTYPE_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0053_Validate PartnerCode_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0031_Validate PayType_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0005_Validate ClaimTypeSeq_CheckType
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0028_Validate RegdtlICDtenEng2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlClaimRemark_length_200
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0010_Validate ACCNO_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0004_Validate ZIPCODE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader.EDM4_SIT_TLP_TB_ClaimRegisterHeader_0012_0002_Validate RegCustomerCertificateNo_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0017_Validate RegDtlRegister_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0021_Validate PROVINCE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0016_Validate TUMBON_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0013_Validate ADDRESS1_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0019_Validate AMPHOR_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0026_Validate RegdtlICDten2_notNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0008_Validate BANKID_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EDM4_SIT_TLP_TB_ClaimPayment_0010_0001_Validate PAID_DATE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0011_Validate RegDtlClaimNo_CheckNo.
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0022_Validate RegDtlDateOfAdmission_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate RegDtlPaidToBeneficiary_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EDM4_SIT_TLP_TB_ClaimPayment_0010_0006_Validate payRate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0002_Validate PAYEENAME_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0023_Validate ReceiveChequeDate_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0024_Validate RegDtlHospitalCode_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader.EDM4_SIT_TLP_TB_ClaimRegisterHeader_0012_0001_Validate RegCustomerCertificateNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlClaimRemark_length_100
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlDurationDays_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0014_Validate RegDtlClaimCauseCode_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0003_Validate ZIPCODE_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0018_Validate AMPHOR_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0002_Validate RegDtlDateOfOccurred_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0032_Validate RegDtlVoidAmount_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0001_Validate RegDtlDateOfOccurred_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0006_Validate ClaimTypeSeq_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0003_Validate RegDtlRegisterDate_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0039_Validate RegDtlAdjustPayment _isNegative
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EEDM4_SIT_TLP_TB_ClaimPayment_0010_0004_Validate PAID_DATE_CheckMonth
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0024_Validate ReceiveChequeDate_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0012_Validate ADDRESS1_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0014_Validate ADDRESS2_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate RegDtlPaidToPartner_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader.EDM4_SIT_TLP_TB_ClaimRegisterHeader_0012_0004_Validate AGE_IsNotChar
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0017_Validate TUMBON_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationFrom_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimStatus_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0046_Validate RegDtlClaimRemark_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0025_Validate RegDtlDateOfCompleteDoc_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationFrom_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0012 TB ClaimRegisterHeader.EDM4_SIT_TLP_TB_ClaimRegisterHeader_0012_0003_Validate AGE_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0020_Validate PROVINCE_Length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0019_Validate RegDtlApproval_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0011 TB ClaimPaymentDetail.EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0011_Validate ACCNO_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0018_Validate RegDtlRegister_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0013_Validate RegDtlApproveDate_notBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0010 TB ClaimPayment.EDM4_SIT_TLP_TB_ClaimPayment_0010_0003_Validate PAID_DATE_CheckDate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0010_Validate RegDtlClaimNo_CheckP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0012_Validate RegDtlApproveDate_Default
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [CF] ConsumerFinance TLP Validation.EDM4 SIT TLP 0009 TB ClaimRegisterDetail.EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _notBlank
