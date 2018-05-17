@@ -68,9 +68,65 @@ EDM4_GuyLady_SIT_TLI_Person_0010_0009_Validate birthDateMapping
 EDM4_GuyLady_SIT_TLI_Person_0010_0010_Validate birthDate_NotNull&NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where a.birthDate = '' or a.birthDate in ('NULL', 'Null', 'null') or a.birthDate = '' or a.birthDate = 'blank';
-    EDM_Compare Result    @{Result[0]}    0    startDate
+    EDM_Compare Result    @{Result[0]}    0    birthDate
 
-EDM4_GuyLady_SIT_TLI_Person_0010_0011_Validate birthDate_Default
+EDM4_GuyLady_SIT_TLI_Person_0010_0011_Validate birthDate_CheckDate
     EDM_Connect_DB
-    @{Result}    Query
-    EDM_Compare Result    @{Result[0]}    0    startDate
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where to_number(substring(a.birthDate,7,2),'99') not between 0 and 31 \ ;
+    EDM_Compare Result    @{Result[0]}    0    birthDate
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0012_Validate birthDate_CheckMonth
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where to_number(substring(a.birthDate,5,2),'99') not between 0 and 12 ;
+    EDM_Compare Result    @{Result[0]}    0    birthDate
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0013_Validate birthDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ \ where length(a.birthDate) > 8;
+    EDM_Compare Result    @{Result[0]}    0    birthDate
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0014_Validate sex_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a join dm.name b on a.personid = b.personid join dm.ordmast c on b.nameid = c.nameid join dm.certmapping d on c.policyno = d.policyno \ \ where length(a.sex) > 1;
+    EDM_Compare Result    @{Result[0]}    0    sex
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0015_Validate sex_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ \ and e.BirthDate = d.rpolicyno \ where \ a.sex= '' or a.sex= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    sex
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0016_Validate sex_Type
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ join tlp.PolicyMaster e on e.policyno = d.rpolicyno and e.sex = d.rpolicyno \ where a.sex not in ('F','M');
+    EDM_Compare Result    @{Result[0]}    0    sex
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0017_Validate sexMapping
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{birthDate}=    query    select count(*) from dm.person a \ \ join dm.name b on a.personid = b.personid \ \ join dm.ordmast c on b.nameid = c.nameid \ \ join dm.certmapping d on c.policyno = d.policyno \ join tlp.PolicyMaster e on e.policyno = d.rpolicyno \ and e.sex = d.rpolicyno \ where a.sex \ <> \ e.sex;
+    EDM_Compare Result    @{birthDate [0]}    0    sex
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0018_Validate customerID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ where length(a.customerID) > 13;
+    EDM_Compare Result    @{Result[0]}    0    customerID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0019_Validate customerID_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ where a.customerID = '' or a.customerID in ('NULL', 'Null', 'null') ;
+    EDM_Compare Result    @{Result[0]}    0    customerID
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0020_Validate blueCard_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ where length(a.blueCard) > 1;
+    EDM_Compare Result    @{Result[0]}    0    blueCard
+
+EDM4_GuyLady_SIT_TLI_Person_0010_0021_Validate reserve_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from dm.person a \ join dm.name b on a.personid = b.personid \ join dm.ordmast c on b.nameid = c.nameid \ join dm.certmapping d on c.policyno = d.policyno \ where length(a.reserve) > 6;
+    EDM_Compare Result    @{Result[0]}    0    reserve

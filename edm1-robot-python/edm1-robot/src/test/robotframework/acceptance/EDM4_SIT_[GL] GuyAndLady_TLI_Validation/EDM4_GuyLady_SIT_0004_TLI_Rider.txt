@@ -1,0 +1,73 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Name_0004_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.policyno) > 15;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0002_Validate PolicyNo_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.policyno = '' or a.policyno \ in ('NULL', 'Null', 'null') or a.policyno = '' or a.policyno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0003_Validate PolicyNoDuplicate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${TotalColumn}    query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ group by a.policyno having count(0) > 1
+    Should Be Empty    ${TotalColumn}
+    log    Record Duplicated is ${TotalColumn}
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0004_Validate PolicyNoMapping
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${PolicyNo}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ \ join dm.ordmast b \ \ on a.policyno = b.policyno \ \ join dm.certmapping c \ on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ where a.policyno <> d.policyno;
+    ${PolicyNo}=    Convert To String    ${PolicyNo}
+    Should Be Equal    ${PolicyNo}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0005_ValidateriderType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderType) > 3;
+    EDM_Compare Result    @{Result[0]}    0    riderType
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0006_Validate riderType_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderType= '' or a.riderType\ in ('NULL', 'Null', 'null') or a.riderType= '' or a.riderType= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderType
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0007_Validate riderTypeDuplicate
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${TotalColumn}    query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ group by a.riderType having count(0) > 1
+    Should Be Empty    ${TotalColumn}
+    log    Record Duplicated is ${TotalColumn}
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0008_Validate riderSum_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderSum) > 9;
+    EDM_Compare Result    @{Result[0]}    0    riderSum
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0009_Validate riderSum_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderSum= '' or a.riderSum\ in ('NULL', 'Null', 'null') or a.riderSum= '' or a.riderSum= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderSum
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0010_Validate riderSumMapping
+    EDM_Connect_DB
+    ${riderSum}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno and d.SA = c.rpolicyno where a.riderSum <> d.SA;
+    ${riderSum}=    Convert To String    ${riderSum}
+    Should Be Equal    ${riderSum}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0011_Validate riderSum_NotChar
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderSum~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    riderSum
