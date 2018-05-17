@@ -98,3 +98,14 @@ EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0019_Validate Percentage
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ \ (select policyno, sum(to_number (percentage, '9999999999.99')) from tlp.policybeneficiary group by policyno \ having sum(to_number (percentage, '9999999999.99')) <> 100) tmp;
     EDM_Compare Result    @{Result[0]}    0    percentage
+
+EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0020_ValidateSumOfBeneficiary
+    [Documentation]    ต้องมี SA รวมกันไม่เกิน 100
+    ...
+    ...    SELECT count(0)
+    ...    FROM (
+    ...    SELECT a.policyno, sum(to_number(a.percentage, '999.0000')) FROM tlp.policybeneficiary a
+    ...    GROUP BY a.policyno HAVING sum(to_number(a.percentage, '999.0000')) <> '100') tmp
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT a.policyno, sum(to_number(a.percentage, '999.0000')) FROM tlp.policybeneficiary a \ GROUP BY a.policyno HAVING sum(to_number(a.percentage, '999.0000')) <> '100') tmp
+    EDM_Compare Result    @{Result[0]}    0    SumOfBeneficairy
