@@ -14,22 +14,17 @@ EDM4_SIT_TLP_TB_ClaimPayment_0010_0002_Validate PAID_DATE_IsNotChar
     @{Result}    Query    SELECT count(0) FROM tlp.claimpayment a \ WHERE a.PAID_DATE~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    PAID_DATE
 
-EDM4_SIT_TLP_TB_ClaimPayment_0010_0003_Validate PAID_DATE_CheckDate
+EDM4_SIT_TLP_TB_ClaimPayment_0010_0003_Validate PAID_DATE_Default
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpayment \ where to_number(substring(PAID_DATE,7,2),'99') not between 0 and 31 ;
+    @{Result}    Query    SELECT \ count(0) from (select PAID_DATE from tlp.claimpayment where PAID_DATE \ not between '0000-00-00' and '3000-12-31' and PAID_DATE <> '00000000') tmp
     EDM_Compare Result    @{Result[0]}    0    PAID_DATE
 
-EEDM4_SIT_TLP_TB_ClaimPayment_0010_0004_Validate PAID_DATE_CheckMonth
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpayment \ where to_number(substring(PAID_DATE,5,2),'99') not between 0 and 12 ;
-    EDM_Compare Result    @{Result[0]}    0    PAID_DATE
-
-EDM4_SIT_TLP_TB_ClaimPayment_0010_0005_Validate CREATEDATE_NotBlank
+EDM4_SIT_TLP_TB_ClaimPayment_0010_0004_Validate CREATEDATE_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpayment a \ where a.CREATEDATE= '' or a.CREATEDATE= 'blank';
     EDM_Compare Result    @{Result[0]}    0    CREATEDATE
 
-EDM4_SIT_TLP_TB_ClaimPayment_0010_0006_Validate payRate_NotBlank
+EDM4_SIT_TLP_TB_ClaimPayment_0010_0005_Validate payRate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpayment a \ where a.payRate= '' or a.payRate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    payRate

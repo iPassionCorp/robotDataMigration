@@ -74,62 +74,47 @@ EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0014_Validate ADDRESS2_Length
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ADDRESS2) > 200;
     EDM_Compare Result    @{Result[0]}    0    ADDRESS2
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0015_Validate ADDRESS2_NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ADDRESS2= '' or a.ADDRESS1= 'blank';
-    EDM_Compare Result    @{Result[0]}    0    ADDRESS2
-
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0016_Validate TUMBON_Length
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0015_Validate TUMBON_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.TUMBON) > 50;
     EDM_Compare Result    @{Result[0]}    0    TUMBON
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0017_Validate TUMBON_NotBlank
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0016_Validate TUMBON_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.TUMBON= '' or a.TUMBON= 'blank';
     EDM_Compare Result    @{Result[0]}    0    TUMBON
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0018_Validate AMPHOR_Length
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0017_Validate AMPHOR_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.AMPHOR) > 50;
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0019_Validate AMPHOR_NotBlank
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0018_Validate AMPHOR_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.AMPHOR= '' or a.AMPHOR= 'blank';
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0020_Validate PROVINCE_Length
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0019_Validate PROVINCE_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.PROVINCE) > 50;
     EDM_Compare Result    @{Result[0]}    0    AMPHOR
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0021_Validate PROVINCE_NotBlank
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0020_Validate PROVINCE_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.PROVINCE= '' or a.PROVINCE= 'blank';
     EDM_Compare Result    @{Result[0]}    0    PROVINCE
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0022_Validate ReceiveChequeDate_NotBlank
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0021_Validate ReceiveChequeDate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ReceiveChequeDate= '' or a.ReceiveChequeDate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0023_Validate ReceiveChequeDate_Default
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0022_Validate ReceiveChequeDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from tlp.claimpaymentdetail a where a.ReceiveChequeDate<> \ '00000000'
+    @{Result}    Query    SELECT \ count(0) from (select ReceiveChequeDate from tlp.claimpaymentdetail where ReceiveChequeDate \ not between '0000-00-00' and '3000-12-31' and ReceiveChequeDate <> '00000000') tmp
     EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
 
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0024_Validate ReceiveChequeDate_IsNotChar
+EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0023_Validate ReceiveChequeDate_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.claimpaymentdetail a WHERE a.ReceiveChequeDate ~* '[a-zA-Z,]';
-    EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
-
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0025_Validate ReceiveChequeDate_CheckDate
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpaymentdetail where to_number(substring(ReceiveChequeDate ,7,2),'99') not between 0 and 31;
-    EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
-
-EDM4_SIT_TLP_TB_ClaimPaymentDetail_0011_0026_Validate ReceiveChequeDate_CheckMonth
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpaymentdetail where to_number(substring(ReceiveChequeDate ,5,2),'99') not between 0 and 12 ;
     EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
