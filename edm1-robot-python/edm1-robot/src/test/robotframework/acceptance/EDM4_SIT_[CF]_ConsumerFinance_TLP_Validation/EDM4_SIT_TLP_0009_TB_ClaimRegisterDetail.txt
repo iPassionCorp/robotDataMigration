@@ -121,7 +121,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0022_Validate RegDtlDateOfAdmission_
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0023_Validate RegDtlHospitalCode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> ''
+    @{Result}    Query    select RegDtlHospitalCode from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and length(RegDtlHospitalCode) <> 3 and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
     EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0024_Validate RegDtlHospitalCode_notBlank
@@ -191,7 +191,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _n
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlDurationDays_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) <>3
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) >3 or RegDtlDurationDays like '%[^a-z]%'
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_notBlank
@@ -202,7 +202,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_not
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationFrom_Default
     EDM_Connect_DB
     @{Result}    Query    SELECT \ count(0) from (select RegDtlDurationFrom from tlp.ClaimRegisterDetail where RegDtlDurationFrom \ \ not between '0000-00-00' and '3000-12-31' or RegDtlDurationFrom = '00000000') tmp
-    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfOccurred
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationFrom_notBlank
     EDM_Connect_DB
@@ -236,7 +236,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimExpense_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_Default
     EDM_Connect_DB
-    @{Result}    Query    รอข้อมูลจากพี่กบ
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus not in ('Deny','0','1','Closed','Void','Paid')
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimStatus_notBlank
@@ -249,37 +249,32 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0046_Validate RegDtlClaimRemark_notB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimRemark= '' or a.RegDtlClaimRemark= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlClaimRemark_length_100
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimRemark) between 100 and 200
-    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
-
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlClaimRemark_length_200
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlClaimRemark_length_200
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimRemark) > 200
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlInterest_notBlank
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlInterest_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlInterest= '' or a.RegDtlInterest= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlInterest
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate RegDtlPaidToPartner_notBlank
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlPaidToPartner_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToPartner= '' or a.RegDtlPaidToPartner= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToPartner
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate RegDtlPaidToBeneficiary_notBlank
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate RegDtlPaidToBeneficiary_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToBeneficiary= '' or a.RegDtlPaidToBeneficiary= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToBeneficiary
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0052_Validate PartnerCode_Default
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate PartnerCode_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where partnercode not in ('064','019','029','027','032','053','061','060','042','039','041','062')
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0053_Validate PartnerCode_notBlank
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0052_Validate PartnerCode_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.partnercode= '' or a.partnercode= 'blank' or a.partnercode is null
     EDM_Compare Result    @{Result[0]}    0    partnercode
