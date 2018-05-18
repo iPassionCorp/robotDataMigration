@@ -181,12 +181,12 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0032_Validate RegDtlVoidAmount_notBl
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlAdjustPayment _isNegative
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlVoidAmount= '' or a.RegDtlVoidAmount = 'blank'
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where substr(t.regdtlvoidamount,1,1) = '-' or t.regdtlvoidamount > '0.00'
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _notBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlVoidAmount= '' or a.RegDtlVoidAmount = 'blank'
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlAdjustPayment= '' or a.RegDtlAdjustPayment= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlDurationDays_Default
@@ -201,12 +201,12 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationFrom_Default
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) from (select RegDtlDurationFrom from tlp.ClaimRegisterDetail where RegDtlDurationFrom \ \ not between '0000-00-00' and '3000-12-31' or RegDtlDurationFrom = '00000000') tmp
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlDurationFrom from tlp.ClaimRegisterDetail \ where RegDtlDurationFrom \ \ not between '0000-00-00' and '3000-12-31' \ and length(RegDtlDurationFrom)<> 8 ) tmp
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationFrom_notBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where RegDtlDurationFrom= '' or RegDtlDurationFromis null
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where RegDtlDurationFrom= '' or RegDtlDurationFrom is null
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0039_Validate RegDtlAdjustPayment _isNegative
