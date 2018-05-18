@@ -4,9 +4,9 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001_Validate ReceiptNo_length
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001_Validate ReceiptNo_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.policypaid a \ \ where length(a.receiptno) > 50;
+    @{Result}    Query    select \ receiptno from \ tlp.policypaid a where substring(a.receiptno,1,4) not like 'APL-' and substring(a.receiptno,1,2) not like 'R-' and length(a.receiptno) <> 16 \ and length(a.receiptno) <> 14 or substring(a.receiptno,4,12) like '%[^a-z]%' and substring(a.receiptno,3,12) like '%[^a-z]%'
     EDM_Compare Result    @{Result[0]}    0    ReceiptNo
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002_Validate ReceiptNo_NotNull
