@@ -430,3 +430,18 @@ EDM_SIT_TLP_customerinfo_0001_0082_Validate CustomerNation_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.customernation) > 50;
     EDM_Compare Result    @{Result[0]}    0    customernation
+
+EDM_SIT_TLP_customerinfo_0001_0083_Validate PolicyNo_CheckDataExceptDocument
+    EDM_Connect_DB
+    @{Result}    Query    select policyno from tlp.customerinfo \ except \ select tlpplancode from lookup.smi;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM_SIT_TLP_customerinfo_0001_0084_Validate PolicyNo_CheckDataMissingDocument
+    EDM_Connect_DB
+    @{Result}    Query    select tlpplancode from lookup.smi except select policyno from tlp.customerinfo;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode,a.customerstatus \ FROM tlp.customerinfo a \ \ where a.customerstatus in \ \ (select customerstatus from lookup.tlppolicystatus) \ \ group by policyno, customercode,customerstatus \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    Policyno,customercode,customerstatus
