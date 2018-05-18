@@ -14,12 +14,7 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimPayment_0009_0002_Validate PAID_DATE_IsNotChar
     @{Result}    Query    SELECT count(0) FROM tlp.claimpayment a \ WHERE a.PAID_DATE~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    PAID_DATE
 
-EDM4_GuyLady_SIT_TLP_TB_ClaimPayment_0009_0003_Validate PAID_DATE_CheckDate
+EDM4_GuyLady_SIT_TLP_TB_ClaimPayment_0009_0003_Validate PAID_DATE_Default
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpayment \ where to_number(substring(PAID_DATE,7,2),'99') not between 0 and 31 ;
-    EDM_Compare Result    @{Result[0]}    0    PAID_DATE
-
-EDM4_GuyLady_SIT_TLP_TB_ClaimPayment_0009_0004_Validate PAID_DATE_CheckMonth
-    EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) \ \ FROM tlp.claimpayment \ where to_number(substring(PAID_DATE,5,2),'99') not between 0 and 12 ;
+    @{Result}    Query    SELECT \ count(0) from (select PAID_DATE from tlp.claimpayment where PAID_DATE \ not between '0000-00-00' and '3000-12-31' and PAID_DATE <> '00000000') tmp
     EDM_Compare Result    @{Result[0]}    0    PAID_DATE
