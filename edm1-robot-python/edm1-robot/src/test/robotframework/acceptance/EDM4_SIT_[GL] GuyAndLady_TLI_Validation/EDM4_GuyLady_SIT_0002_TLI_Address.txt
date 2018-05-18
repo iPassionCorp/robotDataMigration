@@ -1,0 +1,80 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Address_0002_0001_Validate AddressID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno \ \ where length(a.addressid) > 10
+    EDM_Compare Result    @{Result[0]}    0    addressid
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0002_Validate AddressID_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno \ \ where a.addressid = '' or a.addressid ='blank' or a.addressid is null
+    EDM_Compare Result    @{Result[0]}    0    addressid
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0003_Validate Address_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.address = e.addnumber where length(a.address) > 128
+    EDM_Compare Result    @{Result[0]}    0    address
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0004_Validate Address_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.address = e.addnumber where a.addressid = '' or a.addressid ='blank' or a.addressid is null
+    EDM_Compare Result    @{Result[0]}    0    address
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0005_Validate Address_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.address = e.addnumber where a.address <> e.addnumber
+    EDM_Compare Result    @{Result[0]}    0    address
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0006_Validate tumbon_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.tumbon = e.adddistrict where length(a.tumbon) > 5
+    EDM_Compare Result    @{Result[0]}    0    tumbon
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0007_Validate tumbon_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.tumbon = e.adddistrict where a.tumbon = '' or a.tumbon ='blank' or a.tumbon is null
+    EDM_Compare Result    @{Result[0]}    0    tumbon
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0008_Validate tumbon_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.tumbon = e.adddistrict where a.tumbon <> e.adddistrict
+    EDM_Compare Result    @{Result[0]}    0    tumbon
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0009_Validate ZipCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.zipcode = e.addzipcode where length(a.zipcode) > 5
+    EDM_Compare Result    @{Result[0]}    0    zipcode
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0010_Validate ZipCode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.zipcode = e.addzipcode where a.zipcode = '' or a.zipcode ='blank' or a.zipcode is null
+    EDM_Compare Result    @{Result[0]}    0    zipcode
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0011_Validate ZipCode_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno inner join tlp.appcustomeraddress e on e.appno = d.appno and a.zipcode = e.addzipcode where a.zipcode <> e.addzipcode
+    EDM_Compare Result    @{Result[0]}    0    zipcode
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0013_Validate StartDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno and a.startdate = d.effectivedate where length(a.startdate) > 8 or to_number(SUBSTRING(a.startdate,1,4),'9999') not between 0 \ and 3000 or to_number(SUBSTRING(a.startdate,5,2),'99') not between 1 and 12 or to_number(SUBSTRING(a.startdate,7,2),'99') not between 1 and 31
+    EDM_Compare Result    @{Result[0]}    0    startdate
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0014_Validate StartDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno and a.startdate = d.effectivedate where a.startdate = '' or a.startdate ='blank' or a.startdate is null
+    EDM_Compare Result    @{Result[0]}    0    startdate
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0015_Validate StartDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno and a.startdate = d.effectivedate where a.startdate <> d.effectivedate
+    EDM_Compare Result    @{Result[0]}    0    startdate
+
+EDM4_GuyLady_SIT_TLI_Address_0002_0016_Validate AddressID_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select addressid from dm.address a \ \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ \ inner join dm.certmapping c on b.policyno = c.policyno \ \ group by a.addressid \ having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    addressid
