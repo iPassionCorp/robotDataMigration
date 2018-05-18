@@ -22,7 +22,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0003_Validate PolicyNoDuplicate
     Should Be Empty    ${TotalColumn}
     log    Record Duplicated is ${TotalColumn}
 
-EDM4_GuyLady_SIT_TLI_Name_0009_0004_Validate PolicyNoMapping
+EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
@@ -61,7 +61,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0009_Validate riderSum_NotNull&NotBlank
     @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderSum= '' or a.riderSum\ in ('NULL', 'Null', 'null') or a.riderSum= '' or a.riderSum= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderSum
 
-EDM4_GuyLady_SIT_TLI_Name_0009_0010_Validate riderSumMapping
+EDM4_GuyLady_SIT_TLI_Name_0004_0010_Validate riderSumMapping
     EDM_Connect_DB
     ${riderSum}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno and d.SA = c.rpolicyno where a.riderSum <> d.SA;
     ${riderSum}=    Convert To String    ${riderSum}
@@ -71,3 +71,97 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0011_Validate riderSum_NotChar
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderSum~* '[a-zA-Z,]';
     EDM_Compare Result    @{Result[0]}    0    riderSum
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0012_Validate riderPremium_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderPremium) > 9;
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0013_Validate riderPremium_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderPremium= '' or a.riderPremium\ in ('NULL', 'Null', 'null') or a.riderPremium= '' or a.riderPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0014_Validate riderPremiumMapping
+    EDM_Connect_DB
+    ${riderPremium}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.PremRider = c.rpolicyno \ where a.riderPremium <> d.PremRider;
+    ${riderPremium}=    Convert To String    ${riderPremium}
+    Should Be Equal    ${riderPremium}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0015_Validate riderPremium_NotChar
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0016_Validate riderStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderStatus) > 1;
+    EDM_Compare Result    @{Result[0]}    0    riderStatus
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0017_Validate riderStatus_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where \ a.riderStatus= '' or a.riderStatus= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderStatus
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0018_Validate riderStatusMapping
+    EDM_Connect_DB
+    ${riderStatus}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusNew= c.rpolicyno \ where a.riderStatus<> d.StatusNew;
+    ${riderStatus}=    Convert To String    ${riderStatus}
+    Should Be Equal    ${riderStatus}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0019_Validate riderStatusDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderStatusDate) > 8;
+    EDM_Compare Result    @{Result[0]}    0    riderStatusDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0020_Validate riderStatusDate_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderStatusDate= '' or a.riderStatusDate\ in ('NULL', 'Null', 'null') or a.riderStatusDate= '' or a.riderStatusDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderStatusDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0021_Validate riderStatusDateMapping
+    EDM_Connect_DB
+    ${riderStatusDate}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusDate= c.rpolicyno \ where a.riderStatusDate<> d.StatusDate;
+    ${riderStatusDate}=    Convert To String    ${riderStatusDate}
+    Should Be Equal    ${riderStatusDate}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0022_Validate riderStatusDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusDate= c.rpolicyno \ where a.riderStatusDate not between '0000-00-00' and '3000-12-31'
+    EDM_Compare Result    @{Result[0]}    0    riderStatusDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0023_Validate effectiveDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.effectiveDate) > 8;
+    EDM_Compare Result    @{Result[0]}    0    effectiveDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0024_Validate effectiveDate_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.effectiveDate= '' or a.effectiveDate\ in ('NULL', 'Null', 'null') or a.effectiveDate= '' or a.effectiveDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    effectiveDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0025_Validate effectiveDateMapping
+    EDM_Connect_DB
+    ${effectiveDate}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.EffectiveDate= c.rpolicyno \ where a.effectiveDate<> d.EffectiveDate;
+    ${effectiveDate}=    Convert To String    ${effectiveDate}
+    Should Be Equal    ${effectiveDate}    None
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0026_Validate effectiveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.EffectiveDate= c.rpolicyno \ where a.effectiveDate not between '0000-00-00' and '3000-12-31'
+    EDM_Compare Result    @{Result[0]}    0    effectiveDate
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0027_Validate marker_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.marker) > 1;
+    EDM_Compare Result    @{Result[0]}    0    marker
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0028_Validate marker_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.marker= '' or a.marker\ in ('NULL', 'Null', 'null') ;
+    EDM_Compare Result    @{Result[0]}    0    marker
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0029_Validate marker_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ where a.marker <> 'M' ;
+    EDM_Compare Result    @{Result[0]}    0    marker
