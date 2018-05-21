@@ -429,9 +429,9 @@ EDM4_SIT_TLP_split_premium_amount_0003_0085_Validate FI_Deathlum.LessThanZero
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_Deathlum < '0'
     EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
 
-EDM4_SIT_TLP_split_premium_amount_0003_0086_Validate FI_Deathlum.Benefit_FI_Deathlum
+EDM4_SIT_TLP_split_premium_amount_0003_0086_Validate FI_Deathlum.Benefit_FID
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FI_Deathlum') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_Deathlum = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FI_Deathlum') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FID = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
     EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
 
 EDM4_SIT_TLP_split_premium_amount_0003_0087_Validate FI_TPDPremium.decimal
@@ -449,9 +449,9 @@ EDM4_SIT_TLP_split_premium_amount_0003_0089_Validate FI_TPDPremium.LessThanZero
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_TPDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
 
-EDM4_SIT_TLP_split_premium_amount_0003_0090_Validate FI_TPDPremium.Benefit_FI_TPD
+EDM4_SIT_TLP_split_premium_amount_0003_0090_Validate FI_TPDPremium.Benefit_FIT
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FI_TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FIT') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
     EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
 
 EDM4_SIT_TLP_split_premium_amount_0003_0091_Validate LS_DeathPremium.decimal
