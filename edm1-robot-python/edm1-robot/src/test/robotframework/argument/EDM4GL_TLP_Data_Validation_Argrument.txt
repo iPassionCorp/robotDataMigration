@@ -1,0 +1,972 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0016_Validate ReceiptDescription_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0029_Validate Address2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0010_Plan3_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0003_Plan1_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0019_Validate AppNonotinAppCustomer
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0007_Validate PolicyNonotinPolicymaster
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0031_Validate Address4_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0043_Validate CustIDProvince_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0012_Validate AddSoi_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0002_Validate PolicyNo_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0005_Plan2_LIFE
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0016_Validate AddProvince_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0021_Validate AddType_1,2,3
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0007_Validate FrstName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0009_Validate CustWeight_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0069_Validate IDNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0001­_Validate AppNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0056_Validate EffectiveDateOld_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0027_Validate CreditType_Master&Visa
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0011_Validate StatusOld_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002_Validate ReceiptNo_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0007_Plan2_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0003_Validate AppNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0051_Validate EffectiveDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate DueDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0037_Validate Nationality_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0046_Validate StatusOld_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0004_Plan1_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0023_Validate AddAddress_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0018_Validate PartnerSend_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0004_Validate RelationShip_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0012_Validate PolicyNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0009_Validate StatusNew_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0013_Validate SeqNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0002_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0003_Validate BeneficiaryName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0007_Validate AddMoo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0016_Validate EffectiveDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0019_Validate CustAge_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0028_Validate TescoPredic_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0003_Validate AddType_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0013_Validate AddRoad_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0005_Validate Percentage_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0052_Validate StatusDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0008_Validate AddVillage_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0025_Validate Book_Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0014_Validate AddDistrict_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0035_Validate UploadXO_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0064_Validate StatusDate2_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0029_Validate SendStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0015_Validate StatusDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0007_Validate StatusNewRemark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_Plan1_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0008_Validate PolicyNonotinPolicyMaster
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate PaidDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0012_Validate StatusDescription_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0002_Validate AppNo_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0022_Validate AddZipcode_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0030_Validate Address3_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0005_Validate AddPlace_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0045_Validate PlanCode_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0066_Validate Prename_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0024_Validate ReceiptNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0057_Validate NextDueDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0054_Validate PremExta_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0041_Validate AppNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0011_Validate TypeCustomer_PTCL, PTCR, PTMB, PUOB, TUOB
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0005_Validate PlanName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0009_Plan3_LIFE
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0071_Validate Sex_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0015_Validate AddAmphur_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0005_Validate StatusOld_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0026_Validate CreditType_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0037_Validate Sex_F&M
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0004_Validate AddType_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0012_Validate StatusOldRemark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0030_Validate UserConfirm_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0009_Validate RelationShip_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0022_Validate ReceiptStatus_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0005_Validate NumberPay_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006_Validate Mode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0011_Validate CustPosition_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0004_Validate StatusNew_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0017_Validate BeneficiaryPreName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0024_Validate FileImport_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0043_Validate StatusNew_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0002_Validate UserName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0016_Validate OccType_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0026_Validate PremTotal_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0023_Validate Prefix_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0062_Validate CashExpire_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0010_Validate TypeCustomer_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0017_Validate PremExtra_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0013_LIFE_tlp.policymaster.SA
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0019_Validate Mode_0,1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0012_Plan3_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0049_Validate StatusOldRemark_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0060_Validate PremLife_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0019_Validate PremRider_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0001_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0065_Validate ExtraRate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0001_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0022_Validate ReceiveFreeLookDescription_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0032_Validate CAddress1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0018_Validate Remark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0027_Validate CreateDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0028_Validate Address1_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0015_Validate Class_0,1,2,3,4,5
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0021_Validate StopReason_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0004_Validate StatusRemark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0020_Validate AddType_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0011_Validate PlanCode_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0006_Validate BranchPay_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0036_Validate UploadXO_OK
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0006_Validate StatusNew_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0055_Validate IssuePolicyDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0020_Validate AppNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0032_Validate ReceiveTescoStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0029_Validate Mode_0,1
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_CoverageForGuy
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0017_Validate CustSex_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0023_Validate Mode_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0020_Validate IDNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0024_Validate Book_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0044_Validate Mode_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0036_Validate Race_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0067_Validate FrstName_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0018_Validate BeneficiaryLastName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0034_Validate ReceiveTescoReason_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0003_Validate Status_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0011_Plan3_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_00020_Validate PolicyAndRiderPackage_GUY
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0018_Validate CustSex_F&M
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0033_Validate ReceiveTescoStatus_RETURN & YES
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0021_Validate PolicyNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_Plan1_LIFE
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0053_Validate PayPeriod_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0019_Validate PartnerSend_BAY, TMB, UOB
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0016_Validate BeneficiaryLastName_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0016_Validate CustIDAmphur_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0004_Validate PaidPrem_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0021_Validate AddDistrict_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0014_Validate StatusDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0013_Validate CustIDType_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0017_Validate AddZipcode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0008_Validate CustHeight_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0018_Validate Mode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0009_Validate StatusOldRemark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0002_Validate PolicyNo_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0006_Validate Prename_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001_Validate ReceiptNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0039_Validate PolicyNonotinPolicypaid
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0007_Validate BankPay_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0013_Validate Sex_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0072_Validate Status2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0017_Validate Mode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0025_Validate CreditNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0008_Validate StatusOld_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0003_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0042_Validate PolicyNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0028_Validate YearPay_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0006_Validate Age_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0040_Validate AppNonotinPolicyMaster
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0013_Validate StatusOld_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0006_Plan2_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0008_Validate TypePay_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0010_Validate Age_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0013_Validate StartDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0001­_Validate AppNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0006_Validate CustStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_00021_Validate PolicyAndRiderPackage_LADY
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0006_Validate AddNumber_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0027_Validate BookPredic_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0013_Validate ImportBy_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0031_Validate RegisterMailTesco_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0026_Validate NoCount_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0001_Validate RiderNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0012_Validate PolicyNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0073_Validate StatusDate2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0008_Validate Surname_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0008_Plan2_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0017_Validate OccType_0,1,2,3
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0018_Validate SA_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0010_Validate StatusNewRemark_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0074_Validate Medical_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0030_Validate PolicynoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0047_Validate OccType_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0010_Validate AddFloor_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0014_Validate Class_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0058_Validate IssuedAge_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0014_Validate ExpDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0010_Validate StatusNew_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0019_Validate Percentage
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0070_Validate BirthDate_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0048_Validate StatusNewRemark_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0010_Validate PolicyNonotinPolicyMaster
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0035_Validate CAddress4_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0041_Validate PolicyNonotinPolicyBeneficiary
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0010_Validate CustOccupation_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0045_Validate Relation_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0011_Validate AddRoom_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0014_Validate CustIDType_CheckCustIDType
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0009_Validate AddBuilding_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0038_Validate PolicyNonotinHistoryStatus
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0059_Validate SA_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0042_Validate CustOccupation_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_0,1,2,4
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0022_Validate AccountNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0020_Validate PolicyNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0039_Validate AppNonotinAppCustomerAddress
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0015_Validate CustIDDate_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0003_Validate CustPrename_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0011_Validate PolicyNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0009_Validate PolicyNoDuplicate
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0005_Validate CustSurname_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0068_Validate Surname_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0034_Validate CAddress3_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0004_Validate PlanCode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0005_Validate StatusDescription_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0040_Validate PolicyNonotinPolicyRider
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0020_ValidateSumOfBeneficiary
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0007_Validate CustStatus_CheckCustStatusType
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0015_Validate BeneficiaryName_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0061_Validate ExpDateNew_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0015_Validate ReceiptStatus_E,C,Y
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0011_Validate Percentage_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0023_Validate UserImport_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0014_Validate BeneficiaryPreName_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0012_Validate UserName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0033_Validate CAddress2_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0002 TLP AppCustomerAddress.EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0002_Validate AppNo_NotNull
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0004_Validate CustName_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0044_Validate PrintStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0007 TLP PolicyRider.EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0003_Validate Plancode_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0063_Validate Status2_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0012_Validate CustID_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0003 TLP HistoryStatus.EDM4_GuyLady_SIT_TLP_HistoryStatus_0003_0001_Validate PolicyNo_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_CoverageForLady
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0014_Validate ReceiptStatus_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0004 TLP PolicyMaster.EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0050_Validate PolicyNo_NotBlank
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0001 TLP AppCustomer.EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0038_Validate Prefix_length
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0006 TLP PolicyPaid.EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0009_Validate TypePay_APL, BP, CA, CH, CQ, CR, CS, DD, GC
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0005 TLP PolicyBeneficiary.EDM4_GuyLady_SIT_TLP_PolicyBeneficiary_0005_0008_Validate PolicyNoDuplicate
