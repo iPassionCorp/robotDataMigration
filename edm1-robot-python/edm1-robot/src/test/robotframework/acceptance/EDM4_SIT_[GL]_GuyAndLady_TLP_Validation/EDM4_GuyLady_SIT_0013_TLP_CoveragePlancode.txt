@@ -1,0 +1,10 @@
+*** Test Cases ***
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_CoverageForGuy
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policyrider A \ JOIN tlp.policymaster B on a.policyno = b.policyno WHERE b.plancode in ('01026021', '01026023', '01026025', '01026027', '01026029') AND a.ridertype NOT IN ('LIFE', 'CI', 'CP');
+    EDM_Compare Result    @{Result[0]}    0    PolicyMaster.SA
+
+EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_CoverageForLady
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.policyrider A \ JOIN tlp.policymaster B on a.policyno = b.policyno WHERE b.plancode in ('01026022', '01026024', '01026026', '01026028', '01026030') AND a.ridertype NOT IN ('LIFE', 'CI', 'CB');
+    EDM_Compare Result    @{Result[0]}    0    PolicyMaster.SA
