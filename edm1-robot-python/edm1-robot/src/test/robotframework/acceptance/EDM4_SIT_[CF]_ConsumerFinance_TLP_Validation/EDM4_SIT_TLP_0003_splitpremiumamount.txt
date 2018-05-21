@@ -373,3 +373,123 @@ EDM4_SIT_TLP_split_premium_amount_0003_0074_Validate HAPremium.Benefit_HB
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'HB') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.hbpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
     EDM_Compare Result    @{Result[0]}    0    hbpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0075_Validate ICUPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.ICUPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0076_Validate ICUPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ICUPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0077_Validate ICUPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ICUPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0078_Validate ICUPremium.Benefit_ICU
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ICU') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.ICUPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0079_Validate CIPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.CIPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0080_Validate CIPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CIPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0081_Validate CIPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CIPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0082_Validate CIPremium.Benefit_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'CI') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.CIPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0083_Validate FI_Deathlum.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.FI_Deathlum ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0084_Validate FI_Deathlum.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_Deathlum~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0085_Validate FI_Deathlum.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_Deathlum < '0'
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0086_Validate FI_Deathlum.Benefit_FI_Deathlum
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FI_Deathlum') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_Deathlum = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0087_Validate FI_TPDPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.FI_TPDPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0088_Validate FI_TPDPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_TPDPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0089_Validate FI_TPDPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_TPDPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0090_Validate FI_TPDPremium.Benefit_FI_TPD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FI_TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0091_Validate LS_DeathPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.LS_DeathPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0092_Validate LS_DeathPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_DeathPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0093_Validate LS_DeathPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_DeathPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0094_Validate LS_DeathPremium.Benefit_LS_Death
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LS_Death') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.LS_DeathPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0095_Validate LS_TPDPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.LS_TPDPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0096_Validate LS_TPDPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_TPDPremium~* '[a-zA-Z,]';
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0097_Validate LS_TPDPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_TPDPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0098_Validate LS_TPDPremium.Benefit_LS_TPD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LS_TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.LS_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
