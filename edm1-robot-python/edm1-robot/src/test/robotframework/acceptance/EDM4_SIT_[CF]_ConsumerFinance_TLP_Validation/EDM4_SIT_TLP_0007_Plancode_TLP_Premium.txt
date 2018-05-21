@@ -1,0 +1,83 @@
+*** Settings ***
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+
+*** Test Cases ***
+EDM4_SIT_TLP_Plancode_0007_0001_Life Premium
+    [Documentation]    Case: Validate Total Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'LIFE' AND TO_number(sa.sa_life, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    Total Premium
+
+EDM4_SIT_TLP_Plancode_0007_0002_TPD Premium
+    [Documentation]    Case: Validate Life Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'TPD' AND TO_number(sa.sa_tpd, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    Life Premium
+
+EDM4_SIT_TLP_Plancode_0007_0003_TD Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'TD' AND TO_number(sa.sa_td, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0004_ADD Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'ADD' AND TO_number(sa.sa_add, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0005_AME Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'AME' AND TO_number(sa.sa_ame, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0006_ADB Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'ADB' AND TO_number(sa.sa_adb, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0009_HA Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'HA' AND TO_number(sa.sa_ha, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0010_HB Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'HB' AND TO_number(sa.sa_hb, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0011_ICU Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'ICU' AND TO_number(sa.sa_icu, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0012_FID Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'FID' AND TO_number(sa.sa_fid, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0013_FIT Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'FIT' AND TO_number(sa.sa_fit, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0007_MC Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'MC' AND TO_number(sa.sa_mc, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
+
+EDM4_SIT_TLP_Plancode_0007_0008_MA Premium
+    [Documentation]    Case: Validate TPD Premium
+    EDM_Connect_DB
+    @{Result}    Query    SELECT DISTINCT info.policyno, sa.sa_adb FROM tlp.customerinfo info \ JOIN tlp.customersa sa \ ON sa.policyno = info.policyno AND sa.customercode = info.customercode JOIN lookup.smi smi \ ON smi.tlpplancode = sa.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ smi.coverage = 'MA' AND TO_number(sa.sa_ma, '9999999.99') = 0;
+    EDM_Compare Result    @{Result[0]}    0    TPD Premium
