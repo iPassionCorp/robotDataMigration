@@ -49,9 +49,9 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0009_Validate RegDtlClaimNo_CheckYea
     @{Result}    Query    SELECT \ count(0) from (select RegDtlClaimNo from tlp.claimregisterdetail where to_number(substring(RegDtlClaimNo ,1,2),'99') \ not between 1 and 99) tmp
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0010_Validate RegDtlClaimNo_CheckP
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0010_Validate RegDtlClaimNo_CheckP,T
     EDM_Connect_DB
-    @{Result}    Query    SELECT \ count(0) from (select substring(RegDtlClaimNo ,3,1) from tlp.claimregisterdetail where RegDtlClaimNo \ not LIKE '%P%') tmp
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail where substring(RegDtlClaimNo ,3,1) \ not in ('P','T');
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0011_Validate RegDtlClaimNo_CheckNo.
@@ -121,7 +121,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0023_Validate RegDtlDateOfAdmission_
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0024_Validate RegDtlHospitalCode_Default
     EDM_Connect_DB
-    @{Result}    Query    select RegDtlHospitalCode from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and length(RegDtlHospitalCode) <> 3 and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and length(RegDtlHospitalCode) <> 3 and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
     EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0025_Validate RegDtlHospitalCode_notBlank
@@ -179,9 +179,9 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlVoidAmount_notBl
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlVoidAmount= '' or a.RegDtlVoidAmount = 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlVoidAmount
 
-EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _isNegative
+EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where substr(t.RegDtlAdjustPayment,1,1) = '-' or t.RegDtlAdjustPayment> '0.00'
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where t.RegDtlAdjustPayment LIKE '%[^a-z]%'
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlAdjustPayment _notBlank
