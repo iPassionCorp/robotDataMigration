@@ -46,7 +46,7 @@ EDM4_SIT_TLP_customersa_0002_0008_SA_ME_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0009_CustomerCode&PolicyNo_Duplicated
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select \ a.customercode, a.policyno, count(a.customercode) from tlp.customersa a group by a.customercode, a.policyno having count(a.customercode) > 1 ) tmp
+    @{Result}    Query    select count(0) \ from \ (select policyno, customercode, count(0) \ from tlp.customersa tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    PolicyDuplicate
 
 EDM4_SIT_TLP_customersa_0002_0010_SA_Life_lessthan_0
@@ -530,11 +530,6 @@ EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynoDuplicate
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from \ (select policyno, customercode, count(0) \ from tlp.customersa tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
-    EDM_Compare Result    @{Result[0]}    0    policyno
-
-EDM4_SIT_TLP_customersa_0002_0106_CheckPolicyno,Customercode_Duplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from \ (select policyno, customercode, count(0) \ from tlp.customersa tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
