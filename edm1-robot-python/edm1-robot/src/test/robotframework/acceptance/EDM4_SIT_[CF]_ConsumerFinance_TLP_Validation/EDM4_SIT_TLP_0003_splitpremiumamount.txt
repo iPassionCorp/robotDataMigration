@@ -16,7 +16,7 @@ EDM4_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
 
 EDM4_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.grouppolicyno, a.customercode, count(a.grouppolicyno) from tlp.splitpremiumamount a group by a.grouppolicyno, a.customercode having count(a.grouppolicyno) > 1 ) tmp
+    @{Result}    Query    select count(0) from ( select a.grouppolicyno, a.customercode,a.productid ,count(a.grouppolicyno) \ from tlp.splitpremiumamount a group by a.grouppolicyno, a.customercode,a.productid having count(a.grouppolicyno) > 1 ) tmp
     EDM_Compare Result    @{Result[0]}    0    PolicyDuplicate
 
 EDM4_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping

@@ -441,7 +441,7 @@ EDM_SIT_TLP_customerinfo_0001_0084_Validate PolicyNo_CheckDataMissingDocument
     @{Result}    Query    select tlpplancode from lookup.smi except select policyno from tlp.customerinfo;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus_Duplicate
+EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus,productcode,certificateno_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode,a.customerstatus \ FROM tlp.customerinfo a \ \ where a.customerstatus in \ \ (select customerstatus from lookup.tlppolicystatus) \ \ group by policyno, customercode,customerstatus \ having count(0) > 1) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode,a.customerstatus,a.certificateno,a.productcode \ FROM tlp.customerinfo a \ \ where a.customerstatus in \ \ \ (select customerstatus from lookup.tlppolicystatus) \ \ group by policyno, customercode,customerstatus,a.certificateno,a.productcode \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    Policyno,customercode,customerstatus
