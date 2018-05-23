@@ -101,7 +101,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0019_Validate AppNonotinAppCustomer
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0020_Validate AppNoDuplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select appno, count(0) \ \ from tlp.appcustomeraddress tlp \ group by appno \ having count(0) > 1) tmp;
+    @{Result}    Query    select count(0) from \ (select appno,addtype, count(0) \ \ from tlp.appcustomeraddress tlp \ group by appno,addtype \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    appno
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0021_Validate AddDistrict_NotBlank
