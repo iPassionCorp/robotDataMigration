@@ -142,8 +142,8 @@ EDM4_SIT_TLP_customerinfo_0001_0024_Validate DeadDate_EqaulZero
 
 EDM4_SIT_TLP_customerinfo_0001_0025_Validate CustomerInfoStatus
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.status not in ('1','2','3','4','')
-    EDM_Compare Result    @{Result[0]}    0    customerstatus
+    @{Result}    Query    select status from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.status not in ('S','M','D','W','','blank')
+    EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_TLP_customerinfo_0001_0026_Validate loanNo
     Comment    EDM_Connect_DB
