@@ -4,3 +4,57 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0001_Validate PolicyNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.PolicyNo= '' or a.PolicyNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0002_Validate PolicyNo_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.PolicyNo) > 4;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0003_Validate CertificateNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CertificateNo= '' or a.CertificateNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CertificateNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0004_Validate CertificateNo_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where length(a.CertificateNo) <> 15 or to_number(SUBSTRING(a.CertificateNo,1,8),'99999999') not between 0 and 99999999 \ or SUBSTRING(a.CertificateNo,9,3) <> 'TLP' or to_number(SUBSTRING(a.CertificateNo,12,4),'9999') not between 0 and 9999
+    EDM_Compare Result    @{Result[0]}    0    CertificateNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0005_Validate CardNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CardNo= '' or a.CardNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CardNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0006_Validate CardNo_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CardNo) > 16;
+    EDM_Compare Result    @{Result[0]}    0    CardNo
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0007_Validate CardExpired_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CardExpired= '' or a.CardExpired= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CardExpired
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0008_Validate CardExpired_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CardExpired) > 4;
+    EDM_Compare Result    @{Result[0]}    0    CardExpired
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0009_Validate EffectiveDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.EffectiveDate= '' or a.EffectiveDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0010_Validate EffectiveDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.EffectiveDate) > 8;
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate
+
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0011_Validate FirstDueDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where a.FirstDueDate \ not between '0000-00-00' and '3000-12-31' and length(a.FirstDueDate) <> 8 \ or a.FirstDueDate <> '' or a.FirstDueDate <> 'blank';
+    EDM_Compare Result    @{Result[0]}    0    FirstDueDate

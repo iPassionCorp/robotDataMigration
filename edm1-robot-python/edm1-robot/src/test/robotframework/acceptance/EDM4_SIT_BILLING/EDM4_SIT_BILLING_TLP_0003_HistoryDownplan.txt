@@ -4,3 +4,42 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0001_Validate OldProductCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.OldProductCode= '' or a.OldProductCode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    OldProductCode
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0002_Validate OldProductCode_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.OldProductCode) > 2;
+    EDM_Compare Result    @{Result[0]}    0    OldProductCode
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0003_Validate NewProductCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.NewProductCode= '' or a.NewProductCode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    NewProductCode
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0004_Validate NewProductCode_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.NewProductCode) > 2;
+    EDM_Compare Result    @{Result[0]}    0    NewProductCode
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0005_Validate payPeriod_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.payPeriod= '' or a.payPeriod= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0006_Validate payPeriod_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.payPeriod) > 4;
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0007_Validate newPremium _NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.newPremium = '' or a.newPremium = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    newPremium
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0008_Validate createdDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.createdate = '' or a.createdate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    createdDate
