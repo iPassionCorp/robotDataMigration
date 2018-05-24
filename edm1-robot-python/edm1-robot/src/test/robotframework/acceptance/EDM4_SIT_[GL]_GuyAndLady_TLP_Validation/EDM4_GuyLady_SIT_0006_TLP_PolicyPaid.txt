@@ -6,7 +6,7 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0001_Validate ReceiptNo_Default
     EDM_Connect_DB
-    @{Result}    Query    select \ receiptno from \ tlp.policypaid a where substring(a.receiptno,1,4) not like 'APL-' and substring(a.receiptno,1,2) not like 'R-' and length(a.receiptno) <> 16 \ and length(a.receiptno) <> 14 or substring(a.receiptno,4,12) like '%[^a-z]%' and substring(a.receiptno,3,12) like '%[^a-z]%'
+    @{Result}    Query    select \ count(0) from \ tlp.policypaid a where substring(a.receiptno,1,4) not like 'APL-' and substring(a.receiptno,1,2) \ \ \ not like 'R-' and substring(a.receiptno,1,4) not like 'KWC-' and substring(a.receiptno,4,1) not in ('A','B','C') and length(a.receiptno) <> 16 \ and length(a.receiptno) <> 14 or substring(a.receiptno,4,12) like '%[^a-z]%' \ \ \ and substring(a.receiptno,3,12) like '%[^a-z]%'
     EDM_Compare Result    @{Result[0]}    0    ReceiptNo
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0002_Validate ReceiptNo_NotNull
@@ -106,12 +106,12 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0020_Validate PolicyNoDuplicate
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0021_Validate PolicyNo_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.policyno= '' \ or a.policyno= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.policyno= '' \ or a.policyno= 'blank' or a.policyno in ('NULL', 'Null', 'null');
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0022_Validate ReceiptStatus_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.receiptstatus= '' or a.receiptstatus= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.receiptstatus= '' or a.receiptstatus= 'blank' or a.receiptstatus in ('NULL', 'Null', 'null');
     EDM_Compare Result    @{Result[0]}    0    ReceiptStatus
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0023_Validate Mode_NotBlank
@@ -126,7 +126,7 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0024_Validate ReceiptNo_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate PaidDate_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.paiddate = '' \ or a.paiddate = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.paiddate = '' \ or a.paiddate = 'blank' or a.paiddate in ('NULL', 'Null', 'null')
     EDM_Compare Result    @{Result[0]}    0    PaidDate
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate DueDate_NotBlank
@@ -141,20 +141,30 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0026_Validate PremTotal_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0027_Validate CreateDate_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.createdate = '' \ or a.createdate = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.createdate = '' \ or a.createdate = 'blank' or a.createdate in ('NULL', 'Null', 'null')
     EDM_Compare Result    @{Result[0]}    0    CreateDate
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0028_Validate YearPay_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.yearpay = '' \ or a.yearpay = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.yearpay = '' \ or a.yearpay = 'blank' where a.yearpay = '' \ or a.yearpay in ('NULL', 'Null', 'null');
     EDM_Compare Result    @{Result[0]}    0    YearPay
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0029_Validate Mode_0,1
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0029_Validate Mode_0,1,4,2
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.mode not in ('0','1');
+    @{Result}    Query    select count(*) \ from tlp.policypaid a \ where a.mode not in ('0','1','4','2');
     EDM_Compare Result    @{Result[0]}    0    Mode
 
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0030_Validate YearPay_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.policypaid where to_number(SUBSTRING(yearpay,1,2),'99') not between 1 and 12 \ and SUBSTRING(yearpay,3,1) != '/' \ or to_number(SUBSTRING(yearpay,4,2),'99') not between 1 and 12
     EDM_Compare Result    @{Result[0]}    0    yearpay
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0031_Validate PaidDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policypaid a where a.PaidDate not between '0000-00-00' and '3000-12-31'
+    EDM_Compare Result    @{Result[0]}    0    PaidDate
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0032_Validate CreateDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policypaid a where a.CreateDate not between '0000-00-00' and '3000-12-31' and length(a.CreateDate) <> 8 and a.CreateDate <> '00000000'
+    EDM_Compare Result    @{Result[0]}    0    CreateDate
