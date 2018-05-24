@@ -4,3 +4,167 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0001_Validate Billingtype_CheckType
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingtype not in ('1','2','3','4','5','6','7','8','9','') or length(a.billingtype) <>1
+    EDM_Compare Result    @{Result[0]}    0    billingtype
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0002_Validate Billingtype_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingtype = '' or a.billingtype= 'blank' or a.billingtype is null;
+    EDM_Compare Result    @{Result[0]}    0    billingtype
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0003_Validate BillingDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31 \ \ or length(a.billingdate) <> 8 \ and a.billingdate <> ''
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0004_Validate BillingDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingdate = '' or a.billingdate= 'blank' or a.billingdate is null;
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0005_Validate DueDateStart_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.duedatestart,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.duedatestart,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.duedatestart,7,2),'99') not between 1 and 31 \ \ or length(a.duedatestart) <> 8 \ and a.duedatestart <> ''
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0006_Validate DueDateStart_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.duedatestart = '' or a.duedatestart= 'blank' or a.duedatestart is null;
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0007_Validate DueDateEnd_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.duedateend,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.duedateend,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.duedateend,7,2),'99') not between 1 and 31 \ \ or length(a.duedateend) <> 8 \ and a.duedateend <> ''
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0008_Validate DueDateEnd_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.duedateend = '' or a.duedateend= 'blank' or a.duedateend is null;
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0009_Validate Payperiod_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.payperiod) <> 4 and a.payperiod <> ''
+    EDM_Compare Result    @{Result[0]}    0    payperiod
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0010_Validate Payperiod_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.payperiod = '' or a.payperiod= 'blank' or a.payperiod is null;
+    EDM_Compare Result    @{Result[0]}    0    payperiod
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0011_Validate PartnerBillingDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.partnerbillingdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.partnerbillingdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.partnerbillingdate,7,2),'99') not between 1 and 31 \ \ or length(a.partnerbillingdate) <> 8 \ and a.partnerbillingdate <> '' \
+    EDM_Compare Result    @{Result[0]}    0    partnerbillingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0012_Validate PartnerBillingDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.partnerbillingdate = '' or a.partnerbillingdate= 'blank' or a.partnerbillingdate is null;
+    EDM_Compare Result    @{Result[0]}    0    partnerbillingdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0013_Validate TotalPremium_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.totalpremium = '' or a.totalpremium= 'blank' or a.totalpremium is null;
+    EDM_Compare Result    @{Result[0]}    0    totalpremium
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0014_Validate TotalPremium_IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.totalpremium like '%[^a-z]%'
+    EDM_Compare Result    @{Result[0]}    0    totalpremium
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0015_Validate TotalPremium_IsNegative
+    EDM_Connect_DB
+    @{Result}    Query    \ select count(0) \ \ from tlpbilling.historyexport a \ \ where a.totalpremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    totalpremium
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0016_Validate Status_W,H
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.status not in ('W','H','') \ or length(a.status) > 10
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0017_Validate Status_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.status = '' or a.status= 'blank' or a.status is null;
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0018_Validate ReturnDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ \ or length(a.returndate) <> 8 \ and a.returndate <> ''
+    EDM_Compare Result    @{Result[0]}    0    returndate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0019_Validate ReturnDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.returndate = '' or a.returndate= 'blank' or a.returndate is null;
+    EDM_Compare Result    @{Result[0]}    0    returndate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0020_Validate AttemptTime_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.attempttime = '' or a.attempttime= 'blank' or a.attempttime is null;
+    EDM_Compare Result    @{Result[0]}    0    attempttime
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0021_Validate AttemptTime_IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.attempttime like '%[^a-z]%'
+    EDM_Compare Result    @{Result[0]}    0    attempttime
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0022_Validate InstallmentSeq_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq = '' or a.installmentseq= 'blank' or a.installmentseq is null;
+    EDM_Compare Result    @{Result[0]}    0    installmentseq
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0023_Validate InstallmentSeq_IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq like '%[^a-z]%'
+    EDM_Compare Result    @{Result[0]}    0    installmentseq
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0024_Validate Installmentpolyear_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentpolyear = '' or a.installmentpolyear= 'blank' or a.installmentpolyear is null;
+    EDM_Compare Result    @{Result[0]}    0    installmentpolyear
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0025_Validate Installmentpolyear_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentpolyear not in ('N','F','R','')
+    EDM_Compare Result    @{Result[0]}    0    installmentpolyear
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0026_Validate CreateDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.createdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.createdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.createdate,7,2),'99') not between 1 and 31 \ \ or length(a.createdate) <> 8 \ and a.createdate <> ''
+    EDM_Compare Result    @{Result[0]}    0    createdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0027_Validate CreateDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.createdate = '' or a.createdate= 'blank' or a.createdate is null;
+    EDM_Compare Result    @{Result[0]}    0    createdate
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0028_Validate RespondCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.responsecode) <> 2 and a.responsecode <> ''
+    EDM_Compare Result    @{Result[0]}    0    respondcode
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0029_Validate RespondCode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;
+    EDM_Compare Result    @{Result[0]}    0    respondcode
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfileout) > 30 and a.exfileout <> ''
+    EDM_Compare Result    @{Result[0]}    0    exfileout
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;
+    EDM_Compare Result    @{Result[0]}    0    exfileout
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfilereturn) > 30 and a.exfilereturn <> ''
+    EDM_Compare Result    @{Result[0]}    0    exfilereturn
+
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null;
+    EDM_Compare Result    @{Result[0]}    0    exfilereturn
