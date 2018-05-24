@@ -103,3 +103,8 @@ EDM4_SIT_TLP_Payment_0004_0020_Validate InvoiceNo_notNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.payment a \ where a.InvoiceNo = '' or a.InvoiceNo is \ null
     EDM_Compare Result    @{Result[0]}    0    InvoiceNo
+
+EDM4_SIT_TLP_Payment_0004_0021_Validate PolicyNo,Customercode,ReceipNo_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.customercode,a.receiptno ,count(a.receiptno) \ from tlp.payment a group by a.policyno,a.customercode,a.receiptno having count(a.receiptno) > 1 ) tmp
+    EDM_Compare Result    @{Result[0]}    0    receiptno
