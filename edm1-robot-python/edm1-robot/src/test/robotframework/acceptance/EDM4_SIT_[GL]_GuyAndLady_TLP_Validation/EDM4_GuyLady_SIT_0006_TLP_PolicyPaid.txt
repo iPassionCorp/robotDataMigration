@@ -129,11 +129,6 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate PaidDate_NotBlank
     @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.paiddate = '' \ or a.paiddate = 'blank' or a.paiddate in ('NULL', 'Null', 'null')
     EDM_Compare Result    @{Result[0]}    0    PaidDate
 
-EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0025_Validate DueDate_NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.duedate = '' \ or a.duedate = 'blank';
-    EDM_Compare Result    @{Result[0]}    0    DueDate
-
 EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0026_Validate PremTotal_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.policypaid a \ where a.premtotal = '' \ or a.premtotal = 'blank';

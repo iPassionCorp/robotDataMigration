@@ -4,7 +4,7 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0001­_Validate AppNo_length
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0001_Validate AppNo_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.appno) > 50;
     EDM_Compare Result    @{Result[0]}    0    AppNo
