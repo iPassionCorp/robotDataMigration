@@ -231,7 +231,7 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0045_Validate PlanCode_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0046_Validate StatusOld_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusold= '' or a.statusold= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusold!= '' or a.statusold!= 'blank';
     EDM_Compare Result    @{Result[0]}    0    StatusOld
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0047_Validate OccType_NotBlank
@@ -314,9 +314,9 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0062_Validate CashExpire_NotBlank
     @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.cashexpire = '' \ or a.cashexpire = 'blank';
     EDM_Compare Result    @{Result[0]}    0    CashExpire
 
-EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0063_Validate Status2_NotBlank
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0063_Validate Status2_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.status2 = '' \ or a.status2 = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.status2 is null
     EDM_Compare Result    @{Result[0]}    0    Status2
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0064_Validate StatusDate2_NotBlank
@@ -373,3 +373,43 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0074_Validate Medical_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.policymaster a \ \ where length(a.medical) > 5;
     EDM_Compare Result    @{Result[0]}    0    Medical
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0075_Validate EffectiveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policymaster a \ where to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31 \ \ or length(a.effectivedate) <> 8 \ and a.effectivedate <> ''
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0076_Validate StatusNew_Type
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where a.statusnew not in ('W','I','K','D','X','*','L','')
+    EDM_Compare Result    @{Result[0]}    0    statusnew
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0077_Validate Status2_Type
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where a.status2 not in ('3','','D','2','2','R')
+    EDM_Compare Result    @{Result[0]}    0    status2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0078_Validate StatusDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where statusdate \ not between '0000-00-00' and '3000-12-31' and length(statusdate) <> 8 \
+    EDM_Compare Result    @{Result[0]}    0    statusdate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0079_Validate StatusDate2_Default
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where statusdate2 \ not between '0000-00-00' and '3000-12-31' and length(statusdate2) <> 8
+    EDM_Compare Result    @{Result[0]}    0    statusdate2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0080_Validate StatusOld_Default
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where statusold \ not between '0000-00-00' and '3000-12-31' and length(statusold) <> 8 and statusold != ''
+    EDM_Compare Result    @{Result[0]}    0    statusdate2
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0081_Validate SA_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.policymaster where sa != '100000' and sa != '40000'and sa != '75000'
+    EDM_Compare Result    @{Result[0]}    0    sa
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0082_NextDueDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select \ count(0) from tlp.policymaster a where nextduedate \ not between '0000-00-00' and '3000-12-31' and length(nextduedate) <> 8 and nextduedate != ''
+    EDM_Compare Result    @{Result[0]}    0    nextduedate
