@@ -12,7 +12,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0006_0001_Validate RpNo_Default
     ...    APL:
     ...    A (1 หลัก)+Running (11 หลัก)
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policypaid d on c.rpolicyno = d.policyno \ where substring(a.rpno,1,3) not like '%[^a-z]%' and substring(a.rpno,1,1) not like 'A' and length(a.rpno) <> 11 \ or to_number(substring(a.rpno,4,2),'99') not between 1 and 12
+    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policypaid d on c.rpolicyno = d.policyno \ where substring(a.rpno,1,3) !~* '[a-zก-ฮ]' and substring(a.rpno,1,1) not like 'A' and length(a.rpno) <> 11 \ or to_number(substring(a.rpno,4,2),'99') not between 1 and 12
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0002_Validate RpNo_NotNull

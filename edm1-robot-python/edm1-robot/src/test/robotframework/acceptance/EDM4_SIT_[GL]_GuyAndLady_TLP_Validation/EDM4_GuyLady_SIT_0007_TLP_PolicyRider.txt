@@ -11,7 +11,7 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0001_Validate RiderNo_length
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0002_Validate PolicyNo_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.policyno) > 15;
+    @{Result}    Query    select count(0) \ \ \ from tlp.policyrider a \ \ where length(a.policyno) > 50;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0003_Validate Plancode_length
@@ -36,7 +36,7 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0006_Validate Mode_length
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0007_Validate Mode_0,1,2,4
     EDM_Connect_DB
-    @{Result}    Query    select mode from tlp.policyrider a \ where a.mode not in ('0','1','4','2');
+    @{Result}    Query    select count(0) from tlp.policyrider a \ where a.mode not in ('0','1','4','2');
     EDM_Compare Result    @{Result[0]}    0    Mode
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0008_Validate PolicyNonotinPolicyMaster
@@ -56,7 +56,7 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0010_Validate PlanCode_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0011_Validate PolicyNo_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.policyno= '' and a.policyno= 'blank' or a.policyno in ('NULL', 'Null', 'null');
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.policyno= '' and a.policyno= 'blank';
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0012_Validate StartDate_NotBlank
@@ -86,15 +86,15 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0016_Validate PremExtra_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0017_Validate SA_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.sa= '' and a.sa= 'blank' or a.sa in ('NULL', 'Null', 'null');
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.sa= '' and a.sa= 'blank';
     EDM_Compare Result    @{Result[0]}    0    SA
 
 EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0018_Validate PremRider_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.premrider= '' and a.premrider= 'blank' or a.premrider in ('NULL', 'Null', 'null');
+    @{Result}    Query    select count(0) \ from tlp.policyrider a \ where a.premrider= '' and a.premrider= 'blank';
     EDM_Compare Result    @{Result[0]}    0    PremRider
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0019_Validate PolicyAndRiderPackage_GUY
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_00019_Validate PolicyAndRiderPackage_GUY
     [Documentation]    ตรวจสอบกรณี 1 PlanCode (GL) ต้องประกอบไปด้วย Rider 3 rider เสมอ
     ...
     ...    BA: การซื้อ กรรมธรรม์ ใด ของ GL จะต้องมีสัญญาแนบท้าย 3 ตัวด้วยเสมอ ไม่มีตัวใดตัวหนึ่งไม่ได้
@@ -102,20 +102,10 @@ EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0019_Validate PolicyAndRiderPackage_GUY
     @{Result}    Query    SELECT count(0) FROM tlp.policyrider A \ JOIN tlp.policymaster B on a.policyno = b.policyno WHERE b.plancode in ('01026021', '01026023', '01026025', '01026027', '01026029') AND a.ridertype NOT IN ('LIFE', 'CI', 'CP');
     EDM_Compare Result    @{Result[0]}    0    Guy_RiderPackage
 
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0020_Validate PolicyAndRiderPackage_LADY
+EDM4_GuyLady_SIT_TLP_PolicyRider_0007_00020_Validate PolicyAndRiderPackage_LADY
     [Documentation]    ตรวจสอบกรณี 1 PlanCode (GL) ต้องประกอบไปด้วย Rider 3 rider เสมอ
     ...
     ...    BA: การซื้อ กรรมธรรม์ ใด ของ GL จะต้องมีสัญญาแนบท้าย 3 ตัวด้วยเสมอ ไม่มีตัวใดตัวหนึ่งไม่ได้
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.policyrider A \ JOIN tlp.policymaster B on a.policyno = b.policyno WHERE b.plancode in ('01026022', '01026024', '01026026', '01026028', '01026030') AND a.ridertype NOT IN ('LIFE', 'CI', 'CB');
     EDM_Compare Result    @{Result[0]}    0    Lady_RiderPackage
-
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0021_Validate StatusDate_Default
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.policyrider a where a.StatusDate not between '0000-00-00' and '3000-12-31' and length(a.StatusDate) <> 8 and a.StatusDate<> '00000000'
-    EDM_Compare Result    @{Result[0]}    0    StatusDate
-
-EDM4_GuyLady_SIT_TLP_PolicyRider_0007_0022_Validate EffectiveDate_Default
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.policyrider a where a.EffectiveDate not between '0000-00-00' and '3000-12-31' and length(a.EffectiveDate) <> 8 and a.EffectiveDate<> '00000000'
-    EDM_Compare Result    @{Result[0]}    0    EffectiveDate

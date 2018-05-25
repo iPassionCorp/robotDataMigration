@@ -26,7 +26,7 @@ EDM4_GuyLady_SIT_TLI_Remark_0008_0004_Validate Department_NotNull
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0005_Validate Sequence_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where length(sequence) > 3 or sequence \ LIKE '%[^a-z]%'
+    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where length(sequence) > 3 or sequence \ ~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0006_Validate Sequence_NotNull

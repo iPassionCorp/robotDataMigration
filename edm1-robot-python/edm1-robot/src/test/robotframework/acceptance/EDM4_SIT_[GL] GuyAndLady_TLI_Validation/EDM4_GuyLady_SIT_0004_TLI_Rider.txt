@@ -69,7 +69,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0010_Validate riderSumMapping
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0011_Validate riderSum_NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderSum~* '[a-zA-Z,]';
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderSum~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    riderSum
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0012_Validate riderPremium_length
@@ -90,7 +90,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0014_Validate riderPremiumMapping
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0015_Validate riderPremium_NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderPremium~* '[a-zA-Z,]';
+    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderPremium~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    riderPremium
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0016_Validate riderStatus_length
