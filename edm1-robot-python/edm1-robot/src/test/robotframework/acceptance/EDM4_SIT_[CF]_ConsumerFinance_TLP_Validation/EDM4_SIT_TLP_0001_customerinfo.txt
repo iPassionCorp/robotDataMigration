@@ -20,7 +20,7 @@ EDM4_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
 
 EDM4_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary2 ~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary2 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary2
 
 EDM4_SIT_TLP_customerinfo_0001_0004_Validate PercentOfBenefitciary2_notNull
@@ -30,7 +30,7 @@ EDM4_SIT_TLP_customerinfo_0001_0004_Validate PercentOfBenefitciary2_notNull
 
 EDM4_SIT_TLP_customerinfo_0001_0005_Validate PercentOfBenefitciary3_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary3 ~* '[a-z,A-Z]';
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary3 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary3
 
 EDM4_SIT_TLP_customerinfo_0001_0006_Validate PercentOfBenefitciary3_notNull
@@ -40,7 +40,7 @@ EDM4_SIT_TLP_customerinfo_0001_0006_Validate PercentOfBenefitciary3_notNull
 
 EDM4_SIT_TLP_customerinfo_0001_0007_Validate PercentOfBenefitciary4_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary4 ~* '[a-z,A-Z]';
+    @{Result}    Query    SELECT count(0) \ FROM tlp.customerinfo a WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.percentofbenefitciary4 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PercentOfBenefitciary4
 
 EDM4_SIT_TLP_customerinfo_0001_0008_Validate PercentOfBenefitciary4_notNull
@@ -50,7 +50,7 @@ EDM4_SIT_TLP_customerinfo_0001_0008_Validate PercentOfBenefitciary4_notNull
 
 EDM4_SIT_TLP_customerinfo_0001_0009_Validate Relationship2_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit2 <> '' \ and a.relationship2 ~* '[a-zA-Z,],[a-zA-Z,]%'
+    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit2 <> '' \ and a.relationship2 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Relationship2
 
 EDM4_SIT_TLP_customerinfo_0001_0010_Validate Relationship2_notNull
@@ -60,7 +60,7 @@ EDM4_SIT_TLP_customerinfo_0001_0010_Validate Relationship2_notNull
 
 EDM4_SIT_TLP_customerinfo_0001_0011_Validate Relationship3_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit3 <> '' \ and a.relationship3 ~* '[a-zA-Z,],[a-zA-Z,]%'
+    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit3 <> '' \ and a.relationship3 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Relationship3
 
 EDM4_SIT_TLP_customerinfo_0001_0012_Validate Relationship3_notNull
@@ -70,7 +70,7 @@ EDM4_SIT_TLP_customerinfo_0001_0012_Validate Relationship3_notNull
 
 EDM4_SIT_TLP_customerinfo_0001_0013_Validate Relationship4_isNotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit4 <> '' \ and a.relationship4 ~* '[a-zA-Z,],[a-zA-Z,]%'
+    @{Result}    Query    select count(0) \ FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit4 <> '' \ and a.relationship4 \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Relationship4
 
 EDM4_SIT_TLP_customerinfo_0001_0014_Validate Relationship4_notNull
@@ -142,7 +142,7 @@ EDM4_SIT_TLP_customerinfo_0001_0024_Validate DeadDate_EqaulZero
 
 EDM4_SIT_TLP_customerinfo_0001_0025_Validate CustomerInfoStatus
     EDM_Connect_DB
-    @{Result}    Query    select status from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.status not in ('S','M','D','W','','blank')
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.status not in ('S','M','D','W','','blank')
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_TLP_customerinfo_0001_0026_Validate loanNo
@@ -445,7 +445,7 @@ EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode,a.customerstatus,a.certificateno,a.productcode \ FROM tlp.customerinfo a \ \ where a.customerstatus in \ \ \ (select customerstatus from lookup.tlppolicystatus) \ \ group by policyno, customercode,customerstatus,a.certificateno,a.productcode \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    Policyno,customercode,customerstatus
-    
+
 EDM_SIT_TLP_customerinfo_0001_0086_Validate NameOfBenefit2_NotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and \ a.nameofbenefit2 !~* '[ก-ฮA-Za-z]' and a.nameofbenefit2 <> '';
@@ -455,4 +455,58 @@ EDM_SIT_TLP_customerinfo_0001_0087_Validate NameOfBenefit3_NotChar
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and \ a.nameofbenefit3 !~* '[ก-ฮA-Za-z]' and a.nameofbenefit3 <> '';
     EDM_Compare Result    @{Result[0]}    0    nameofbenefit2
-EDM_SIT_TLP_customerinfo_0001_0087_Validate NameOfBenefit3_NotChar
+
+EDM_SIT_TLP_customerinfo_0001_0088_Validate ProductCode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and productcode ='' or productcode ='blank' or productcode is null
+    EDM_Compare Result    @{Result[0]}    0    productcode
+
+EDM_SIT_TLP_customerinfo_0001_0089_Validate ProductName_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) a nd productname ='' or productname ='blank' or productname is null
+    EDM_Compare Result    @{Result[0]}    0    productname
+
+EDM_SIT_TLP_customerinfo_0001_0090_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and policyno ='' or policyno ='blank' or policyno is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM_SIT_TLP_customerinfo_0001_0091_Validate Age_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and age ='' or age ='blank'
+    EDM_Compare Result    @{Result[0]}    0    age
+
+EDM_SIT_TLP_customerinfo_0001_0092_Validate Sa_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and sa ='' or sa ='blank'
+    EDM_Compare Result    @{Result[0]}    0    sa
+
+EDM_SIT_TLP_customerinfo_0001_0093_Validate DurationInsurance_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and durationinsurance ='' or durationinsurance ='blank'
+    EDM_Compare Result    @{Result[0]}    0    durationinsurance
+
+EDM_SIT_TLP_customerinfo_0001_0094_Validate CustomerDuration_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and customerduration ='' or customerduration ='blank'
+    EDM_Compare Result    @{Result[0]}    0    customerduration
+
+EDM_SIT_TLP_customerinfo_0001_0095_Validate ExtraRate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and extrarate ='' or extrarate ='blank'
+    EDM_Compare Result    @{Result[0]}    0    extrarate
+
+EDM_SIT_TLP_customerinfo_0001_0096_Validate EffectiveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM_SIT_TLP_customerinfo_0001_0097_Validate ExpiredDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    expireddate
+
+EDM_SIT_TLP_customerinfo_0001_0098_Validate LastPayDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    lastpaydate

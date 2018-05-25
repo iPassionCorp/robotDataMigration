@@ -31,7 +31,7 @@ EDM4_SIT_TLP_Payment_0004_0005_Validate PolicyNo_length
 
 EDM4_SIT_TLP_Payment_0004_0006_Validate PolicyNo_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.payment a \ WHERE a.PolicyNo~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.payment a \ WHERE a.PolicyNo~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_SIT_TLP_Payment_0004_0007_Validate ProductCode_length
@@ -81,30 +81,70 @@ EDM4_SIT_TLP_Payment_0004_0015_CheckPolicynotinsplitamount
 
 EDM4_SIT_TLP_Payment_0004_0016_Validate PartnerCode_notNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where a.partnercode = '' or a.partnercode is \ null
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.PartnerCode= '' and a.PartnerCode= 'blank' and a.PartnerCode= 'null';
     EDM_Compare Result    @{Result[0]}    0    PartnerCode
 
 EDM4_SIT_TLP_Payment_0004_0017_Validate TypeOfPayment_notNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where a.TypeOfPayment = '' or a.TypeOfPayment is \ null
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.TypeOfPayment = '' and a.TypeOfPayment = 'blank' and a.TypeOfPayment = 'null';
     EDM_Compare Result    @{Result[0]}    0    TypeOfPayment
 
 EDM4_SIT_TLP_Payment_0004_0018_Validate AccNo_notNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where a.AccNo = '' or a.AccNo is \ null
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.AccNo= '' and a.AccNo= 'blank' and a.AccNo= 'null';
     EDM_Compare Result    @{Result[0]}    0    AccNo
 
 EDM4_SIT_TLP_Payment_0004_0019_Validate Refund_notNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where a.Refund = '' or a.Refund is \ null
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.Refund= '' and a.Refund= 'blank' and a.Refund= 'null';
     EDM_Compare Result    @{Result[0]}    0    Refund
 
 EDM4_SIT_TLP_Payment_0004_0020_Validate InvoiceNo_notNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where a.InvoiceNo = '' or a.InvoiceNo is \ null
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.InvoiceNo= '' and a.InvoiceNo= 'blank' and a.InvoiceNo= 'null';
     EDM_Compare Result    @{Result[0]}    0    InvoiceNo
 
 EDM4_SIT_TLP_Payment_0004_0021_Validate PolicyNo,Customercode,ReceipNo_Duplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from ( select a.policyno,a.customercode,a.receiptno ,count(a.receiptno) \ from tlp.payment a group by a.policyno,a.customercode,a.receiptno having count(a.receiptno) > 1 ) tmp
     EDM_Compare Result    @{Result[0]}    0    receiptno
+
+EDM4_SIT_TLP_Payment_0004_0022_Validate ReceiptNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.ReceiptNo= '' or a.ReceiptNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ReceiptNo
+
+EDM4_SIT_TLP_Payment_0004_0023_Validate PayPeriod_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.PayPeriod= '' or a.PayPeriod= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PayPeriod
+
+EDM4_SIT_TLP_Payment_0004_0024_Validate PaymentDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.PaymentDate= '' or a.PaymentDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PaymentDate
+
+EDM4_SIT_TLP_Payment_0004_0025_Validate PaymentDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where to_number(SUBSTRING(a.PaymentDate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.PaymentDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.PaymentDate,7,2),'99') not between 1 and 31 \ or length(a.PaymentDate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    PaymentDate
+
+EDM4_SIT_TLP_Payment_0004_0026_Validate PremiumAmt_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.PremiumAmt= '' or a.PremiumAmt= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PremiumAmt
+
+EDM4_SIT_TLP_Payment_0004_0027_Validate CollectedDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.CollectedDate= '' or a.CollectedDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CollectedDate
+
+EDM4_SIT_TLP_Payment_0004_0028_Validate CollectedDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where to_number(SUBSTRING(a.CollectedDate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.CollectedDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.CollectedDate,7,2),'99') not between 1 and 31 \ or length(a.CollectedDate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    CollectedDate
+
+EDM4_SIT_TLP_Payment_0004_0027_Validate Mode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.payment a \ where a.Mode= '' or a.Mode= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    Mode

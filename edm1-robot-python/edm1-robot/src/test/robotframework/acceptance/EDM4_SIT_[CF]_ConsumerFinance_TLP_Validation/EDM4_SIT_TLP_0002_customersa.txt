@@ -56,7 +56,7 @@ EDM4_SIT_TLP_customersa_0002_0010_SA_Life_lessthan_0
 
 EDM4_SIT_TLP_customersa_0002_0011_CustomerCode_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ \ WHERE a.customercode ~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ \ WHERE a.customercode \ ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    customercode
 
 EDM4_SIT_TLP_customersa_0002_0012_PolicyNo_length
@@ -66,7 +66,7 @@ EDM4_SIT_TLP_customersa_0002_0012_PolicyNo_length
 
 EDM4_SIT_TLP_customersa_0002_0013_SA_Life_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_life~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_life ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_life
 
 EDM4_SIT_TLP_customersa_0002_0014_SA_LifeTPD_Decimal
@@ -76,7 +76,7 @@ EDM4_SIT_TLP_customersa_0002_0014_SA_LifeTPD_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0015_SA_LifeTPD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_lifetpd~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_lifetpd ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_lifetpd
 
 EDM4_SIT_TLP_customersa_0002_0016_SA_LifeTPD_LessThanZero
@@ -86,7 +86,7 @@ EDM4_SIT_TLP_customersa_0002_0016_SA_LifeTPD_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0017_SA_ADB_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_adb~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_adb ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_adb
 
 EDM4_SIT_TLP_customersa_0002_0018_SA_ADB_LessThanZero
@@ -96,7 +96,7 @@ EDM4_SIT_TLP_customersa_0002_0018_SA_ADB_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0019_SA_TPD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_tpd~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_tpd ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_tpd
 
 EDM4_SIT_TLP_customersa_0002_0020_SA_TPD_LessThanZero
@@ -106,7 +106,7 @@ EDM4_SIT_TLP_customersa_0002_0020_SA_TPD_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0021_SA_TD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_td~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_td ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_td
 
 EDM4_SIT_TLP_customersa_0002_0022_SA_TD_LessThanZero
@@ -116,7 +116,7 @@ EDM4_SIT_TLP_customersa_0002_0022_SA_TD_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0023_SA_ADD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_add~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_add ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_add
 
 EDM4_SIT_TLP_customersa_0002_0024_SA_ADD_LessThanZero
@@ -126,7 +126,7 @@ EDM4_SIT_TLP_customersa_0002_0024_SA_ADD_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0025_SA_ME_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_me~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_me ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_ME
 
 EDM4_SIT_TLP_customersa_0002_0026_SA_ME_LessThanZero
@@ -141,7 +141,7 @@ EDM4_SIT_TLP_customersa_0002_0027_SA_HA_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0028_SA_HA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_ha~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.sa_ha ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    sa_ha
 
 EDM4_SIT_TLP_customersa_0002_0029_SA_HA_LessThanZero
@@ -156,7 +156,7 @@ EDM4_SIT_TLP_customersa_0002_0030_SA_HB_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0031_SA_HB_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_HB~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_HB ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_HB
 
 EDM4_SIT_TLP_customersa_0002_0032_SA_HB_LessThanZero
@@ -171,7 +171,7 @@ EDM4_SIT_TLP_customersa_0002_0033_SA_PA_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0034_SA_PA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_PA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_PA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_PA
 
 EDM4_SIT_TLP_customersa_0002_0035_SA_PA_LessThanZero
@@ -186,7 +186,7 @@ EDM4_SIT_TLP_customersa_0002_0036_SA_PH_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0037_SA_PH_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_PH~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_PH ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_PH
 
 EDM4_SIT_TLP_customersa_0002_0038_SA_PH_LessThanZero
@@ -201,7 +201,7 @@ EDM4_SIT_TLP_customersa_0002_0039_SA_CI_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0040_SA_CI_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_CI~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_CI ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_CI
 
 EDM4_SIT_TLP_customersa_0002_0041_SA_CI_LessThanZero
@@ -211,7 +211,7 @@ EDM4_SIT_TLP_customersa_0002_0041_SA_CI_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0042_FLAGLIFE_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.FLAGLIFE~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.FLAGLIFE ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    FLAGLIFE
 
 EDM4_SIT_TLP_customersa_0002_0043_FLAGLIFE_LessThanZero
@@ -221,7 +221,7 @@ EDM4_SIT_TLP_customersa_0002_0043_FLAGLIFE_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0044_FLAGLIFETPD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.FLAGLIFETPD~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.FLAGLIFETPD ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    FLAGLIFETPD
 
 EDM4_SIT_TLP_customersa_0002_0045_FLAGLIFETPD_LessThanZero
@@ -236,7 +236,7 @@ EDM4_SIT_TLP_customersa_0002_0046_IA_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0047_IA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.IA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.IA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    IA
 
 EDM4_SIT_TLP_customersa_0002_0048_IA_LessThanZero
@@ -251,7 +251,7 @@ EDM4_SIT_TLP_customersa_0002_0049_SA_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0050_SA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA
 
 EDM4_SIT_TLP_customersa_0002_0051_SA_LessThanZero
@@ -261,7 +261,7 @@ EDM4_SIT_TLP_customersa_0002_0051_SA_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0052_TransDate_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.transdate~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.transdate ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    transdate
 
 EDM4_SIT_TLP_customersa_0002_0053_TransDate_CheckDate
@@ -281,7 +281,7 @@ EDM4_SIT_TLP_customersa_0002_0055_MI_AMOUNT_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0056_MI_AMOUNT_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.MI_AMOUNT~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.MI_AMOUNT ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    MI_AMOUNT
 
 EDM4_SIT_TLP_customersa_0002_0057_MI_AMOUNT_LessThanZero
@@ -291,7 +291,7 @@ EDM4_SIT_TLP_customersa_0002_0057_MI_AMOUNT_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0058_Expiry_Life_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_Life~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_Life ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_Life
 
 EDM4_SIT_TLP_customersa_0002_0059_Expiry_Life_CheckDate
@@ -306,7 +306,7 @@ EDM4_SIT_TLP_customersa_0002_0060_Expiry_Life_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0061_Expiry_TPD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TPD~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TPD ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_TPD
 
 EDM4_SIT_TLP_customersa_0002_0062_Expiry_TPD_CheckDate
@@ -321,7 +321,7 @@ EDM4_SIT_TLP_customersa_0002_0063_Expiry_TPD_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0064_Expiry_TD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TD~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_TD ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_TD
 
 EDM4_SIT_TLP_customersa_0002_0065_Expiry_TD_CheckDate
@@ -336,7 +336,7 @@ EDM4_SIT_TLP_customersa_0002_0066_Expiry_TD_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0067_Expiry_ADD_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADD~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADD ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADD
 
 EDM4_SIT_TLP_customersa_0002_0068_Expiry_ADD_CheckDate
@@ -351,7 +351,7 @@ EDM4_SIT_TLP_customersa_0002_0069_Expiry_ADD_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0070_Expiry_ADB_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADB~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ADB ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ADB
 
 EDM4_SIT_TLP_customersa_0002_0071_Expiry_ADB_CheckDate
@@ -366,7 +366,7 @@ EDM4_SIT_TLP_customersa_0002_0072_Expiry_ADB_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0073_Expiry_HA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_HA
 
 EDM4_SIT_TLP_customersa_0002_0074_Expiry_HA_CheckDate
@@ -381,7 +381,7 @@ EDM4_SIT_TLP_customersa_0002_0075_Expiry_HA_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0076_Expiry_HB_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HB~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_HB ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_HB
 
 EDM4_SIT_TLP_customersa_0002_0077_Expiry_HB_CheckDate
@@ -396,7 +396,7 @@ EDM4_SIT_TLP_customersa_0002_0078_Expiry_HB_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0079_Expiry_ME_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ME~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_ME ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_ME
 
 EDM4_SIT_TLP_customersa_0002_0080_Expiry_ME_CheckDate
@@ -411,7 +411,7 @@ EDM4_SIT_TLP_customersa_0002_0081_Expiry_ME_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0082_Expiry_PA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_PA
 
 EDM4_SIT_TLP_customersa_0002_0083_Expiry_PA_CheckDate
@@ -426,7 +426,7 @@ EDM4_SIT_TLP_customersa_0002_0084_Expiry_PA_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0085_Expiry_PH_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PH~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_PH ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_PH
 
 EDM4_SIT_TLP_customersa_0002_0086_Expiry_PH_CheckDate
@@ -441,7 +441,7 @@ EDM4_SIT_TLP_customersa_0002_0087_Expiry_PH_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0088_Expiry_CI_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_CI~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_CI ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_CI
 
 EDM4_SIT_TLP_customersa_0002_0089_Expiry_CI_CheckDate
@@ -461,7 +461,7 @@ EDM4_SIT_TLP_customersa_0002_0091_SA_MA_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0092_SA_MA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_MA
 
 EDM4_SIT_TLP_customersa_0002_0093_SA_MA_LessThanZero
@@ -471,7 +471,7 @@ EDM4_SIT_TLP_customersa_0002_0093_SA_MA_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0094_Expiry_MA_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MA~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MA ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_MA
 
 EDM4_SIT_TLP_customersa_0002_0095_Expiry_MA_CheckDate
@@ -491,7 +491,7 @@ EDM4_SIT_TLP_customersa_0002_0097_SA_MC_Decimal
 
 EDM4_SIT_TLP_customersa_0002_0098_SA_MC_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MC~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.SA_MC ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    SA_MC
 
 EDM4_SIT_TLP_customersa_0002_0099_SA_MC_LessThanZero
@@ -501,7 +501,7 @@ EDM4_SIT_TLP_customersa_0002_0099_SA_MC_LessThanZero
 
 EDM4_SIT_TLP_customersa_0002_0100_Expiry_MC_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MC~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.customersa a \ WHERE a.Expiry_MC ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    Expiry_MC
 
 EDM4_SIT_TLP_customersa_0002_0101_Expiry_MC_CheckDate
@@ -529,7 +529,37 @@ EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
-EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynoDuplicate
+EDM4_SIT_TLP_customersa_0002_0106_CheckPolicynoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from \ (select policyno, customercode, count(0) \ from tlp.customersa tlp \ \ group by policyno, customercode \ having count(0) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_SIT_TLP_customersa_0002_0107_SA_Life_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_Life= '' or a.SA_Life= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_Life
+
+EDM4_SIT_TLP_customersa_0002_0108_SA_ADD_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_ADD= '' or a.SA_ADD= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_ADD
+
+EDM4_SIT_TLP_customersa_0002_0109_SA_ADB_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_ADB= '' or a.SA_ADB= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_ADB
+
+EDM4_SIT_TLP_customersa_0002_0110_SA_TPD_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_TPD= '' or a.SA_TPD= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_TPD
+
+EDM4_SIT_TLP_customersa_0002_0111_SA_TD_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_TD= '' or a.SA_TD= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_TD
+
+EDM4_SIT_TLP_customersa_0002_0112_SA_ME_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customersa a \ where a.SA_ME= '' or a.SA_ME= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    SA_ME

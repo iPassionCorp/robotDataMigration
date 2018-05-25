@@ -26,7 +26,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0004_Validate RegDtlRegisterDate_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0005_Validate ClaimTypeSeq_CheckType
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq \ not in \ ('3','S','1','46','48','32','31','2','4','40','10','11','5','6','21','47','49')
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq \ not in \ ('3','S','2','4','40','10','11')
     EDM_Compare Result    @{Result[0]}    0    ClaimTypeSeq
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0006_Validate ClaimTypeSeq_NotNull
@@ -181,7 +181,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlVoidAmount_notBl
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where t.RegDtlAdjustPayment LIKE '%[^a-z]%'
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where t.RegDtlAdjustPayment ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlAdjustPayment _notBlank
@@ -191,7 +191,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlAdjustPayment _n
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) >3 or RegDtlDurationDays like '%[^a-z]%'
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) >3 or RegDtlDurationDays ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationDays_notBlank

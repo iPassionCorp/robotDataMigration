@@ -11,7 +11,7 @@ EDM4_SIT_TLP_TB_ClaimPayment_0010_0001_Validate PAID_DATE_NotBlank
 
 EDM4_SIT_TLP_TB_ClaimPayment_0010_0002_Validate PAID_DATE_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.claimpayment a \ WHERE a.PAID_DATE~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.claimpayment a \ WHERE a.PAID_DATE~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PAID_DATE
 
 EDM4_SIT_TLP_TB_ClaimPayment_0010_0003_Validate PAID_DATE_Default
