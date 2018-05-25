@@ -43,3 +43,13 @@ EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0008_Validate createdDate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.createdate = '' or a.createdate = 'blank';
     EDM_Compare Result    @{Result[0]}    0    createdDate
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0009_Validate status_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.status = '' or a.status = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0010_Validate status_W,S,F
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.status not in ('W','S','F');
+    EDM_Compare Result    @{Result[0]}    0    status
