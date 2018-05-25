@@ -445,3 +445,14 @@ EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus
     EDM_Connect_DB
     @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode,a.customerstatus,a.certificateno,a.productcode \ FROM tlp.customerinfo a \ \ where a.customerstatus in \ \ \ (select customerstatus from lookup.tlppolicystatus) \ \ group by policyno, customercode,customerstatus,a.certificateno,a.productcode \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    Policyno,customercode,customerstatus
+    
+EDM_SIT_TLP_customerinfo_0001_0086_Validate NameOfBenefit2_NotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and \ a.nameofbenefit2 !~* '[ก-ฮA-Za-z]' and a.nameofbenefit2 <> '';
+    EDM_Compare Result    @{Result[0]}    0    nameofbenefit2
+
+EDM_SIT_TLP_customerinfo_0001_0087_Validate NameOfBenefit3_NotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.customerinfo a \ WHERE a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and \ a.nameofbenefit3 !~* '[ก-ฮA-Za-z]' and a.nameofbenefit3 <> '';
+    EDM_Compare Result    @{Result[0]}    0    nameofbenefit2
+EDM_SIT_TLP_customerinfo_0001_0087_Validate NameOfBenefit3_NotChar
