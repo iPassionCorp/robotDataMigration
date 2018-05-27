@@ -5,56 +5,101 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0001_Validate PolicyNo_NotBlank
+    [Documentation]    Validate PolicyNo_NotBlank
+    ...
+    ...    AA : ทางพี่วิรัชต้องเอามา mapping อีกทีกับ PolicyNo. ของทาง TLP โดยทำให้เหลือแค่ 4 หลัก
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.PolicyNo= '' or a.PolicyNo= 'blank';
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0002_Validate PolicyNo_Length
+    [Documentation]    Validate PolicyNo_Length
+    ...
+    ...    *- ทาง TLP ส่งมา 8 digits > ทาง TLI จะเอามา Mapping เอง*
+    ...
+    ...
+    ...    - AA \ : ทางพี่วิรัชต้องเอามา mapping อีกทีกับ PolicyNo. ของทาง TLP โดยทำให้เหลือแค่ 4 หลัก
+    ...    - "ดูจาก 00 Mapping Business Rule_TLI_V2.0 \ sheet \ List of Plan code
+    ...    https://docs.google.com/spreadsheets/d/1Ksaa1nO2asye8QFQfjH24xWNOPf5FwhPEOa94ujr7DU/edit#gid=1246460684
+    ...    New Plan Code คือแบบประกันที่จะลงในแฟ้มนี้
+    ...    Existing policy no. คือ แบบประกันของ TLP"
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.PolicyNo) > 4;
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.PolicyNo) > 4;    #แก้ Script เนื่องจาก TLP ส่งมา 8 digits ทาง TLI จะ map กับ New Polocy เอง
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0003_Validate CertificateNo_NotBlank
+    [Documentation]    Validate CertificateNo_NotBlank
+    ...
+    ...    - "พี่วิรัชแจ้งว่าจะทำการ gennerate RunningNo. ทางบ้าน TLI เองเพื่อไป mapping กับเลข Cert ของบ้าน TLP
+    ...    กรณีที่เลข certificat ของบ้าน TLP เป็น null บ้าน TLP จะ gen เลข dummy มาให้ TLI โดยอยู่ในรูปแบบดังนี้
+    ...    Format Dummy: Policy No. (8 ตัว) + TLP + Running (4 ตัว)
+    ...    เช่น 08900001TLP0001
+    ...
+    ...    20171213: จำนวน digits ของ Phase 2 จะมี 10 และ 14 digits
+    ...
+    ...    หมายเหตุ: โดยจะมี Table Mapping ของ TLP Cert. และ TLI Cert. ที่ Table certmapping เพื่อเชื่อมข้อมูลกับ field นี้"
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CertificateNo= '' or a.CertificateNo= 'blank';
     EDM_Compare Result    @{Result[0]}    0    CertificateNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0004_Validate CertificateNo_Default
+    [Documentation]    *Validate CertificateNo_Default*
+    ...
+    ...    - "พี่วิรัชแจ้งว่าจะทำการ gennerate RunningNo. ทางบ้าน TLI เองเพื่อไป mapping กับเลข Cert ของบ้าน TLP
+    ...    กรณีที่เลข certificat ของบ้าน TLP เป็น null บ้าน TLP จะ gen เลข dummy มาให้ TLI โดยอยู่ในรูปแบบดังนี้
+    ...    Format Dummy: Policy No. (8 ตัว) + TLP + Running (4 ตัว)
+    ...    เช่น 08900001TLP0001
+    ...
+    ...    20171213: จำนวน digits ของ Phase 2 จะมี 10 และ 14 digits
+    ...
+    ...    หมายเหตุ: โดยจะมี Table Mapping ของ TLP Cert. และ TLI Cert. ที่ Table certmapping เพื่อเชื่อมข้อมูลกับ field นี้"
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where length(a.CertificateNo) <> 15 or to_number(SUBSTRING(a.CertificateNo,1,8),'99999999') not between 0 and 99999999 \ or SUBSTRING(a.CertificateNo,9,3) <> 'TLP' or to_number(SUBSTRING(a.CertificateNo,12,4),'9999') not between 0 and 9999
     EDM_Compare Result    @{Result[0]}    0    CertificateNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0005_Validate CardNo_NotBlank
+    [Documentation]    Validate CardNo_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CardNo= '' or a.CardNo= 'blank';
     EDM_Compare Result    @{Result[0]}    0    CardNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0006_Validate CardNo_Length
+    [Documentation]    Validate CardNo_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CardNo) > 16;
     EDM_Compare Result    @{Result[0]}    0    CardNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0007_Validate CardExpired_NotBlank
+    [Documentation]    Validate CardExpired_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CardExpired= '' or a.CardExpired= 'blank';
     EDM_Compare Result    @{Result[0]}    0    CardExpired
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0008_Validate CardExpired_Length
+    [Documentation]    Validate CardExpired_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CardExpired) > 4;
     EDM_Compare Result    @{Result[0]}    0    CardExpired
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0009_Validate EffectiveDate_NotBlank
+    [Documentation]    Validate EffectiveDate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.EffectiveDate= '' or a.EffectiveDate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    EffectiveDate
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0010_Validate EffectiveDate_Length
+    [Documentation]    Validate EffectiveDate_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.EffectiveDate) > 8;
     EDM_Compare Result    @{Result[0]}    0    EffectiveDate
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0011_Validate FirstDueDate_Default
+    [Documentation]    Validate FirstDueDate_Default
+    ...
+    ...    - "[20180510] พี่ตรองแจ้งว่าทาง TLP ต้องเรียกเก็บยอดให้ครบก่อน ดังนั้น จะไม่มีสถานะ Wait Premium ถูก migrate เข้าฐานข้อมูลที่ TLI อย่างไรก็ตามเดี๋ยวพี่รองจะไปตรวจสอบข้อมูลว่าทาง TLP
+    ...    1. มี volume ในการขายต่อวันเท่าไหร่ (AEON: 50 app/วัน, KTC: 120 app/ วัน) และ
+    ...    2. มี list ที่ยังไม่ได้เบี้ยมากน้อยเพียงใด ตอนนี้มีจำนวน 621 app. \
+    ...    ซึ่งพี่ปุ๊กจะเอา list จากพี่รังรองไปหารือกับผู้ใหญ่อีกที"
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where a.FirstDueDate \ not between '0000-00-00' and '3000-12-31' and length(a.FirstDueDate) <> 8 \ or a.FirstDueDate <> '' or a.FirstDueDate <> 'blank';
+    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where a.FirstDueDate \ not between '0000-00-00' and '3000-12-31' and length(a.FirstDueDate) <> 8 \ or a.FirstDueDate <> '' or a.FirstDueDate <> 'blank';    #ยังไม่แน่ใจว่าเป็น Issue หรือเปล่า
     EDM_Compare Result    @{Result[0]}    0    FirstDueDate

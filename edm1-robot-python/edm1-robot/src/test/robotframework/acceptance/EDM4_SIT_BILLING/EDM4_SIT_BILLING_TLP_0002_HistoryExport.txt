@@ -5,46 +5,82 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0001_Validate Billingtype_CheckType
+    [Documentation]    Validate Billingtype_CheckType
+    ...
+    ...    - "[20180510] ทาง TLP จะตรวจสอบเงื่อนไขในการส่งข้อมูลตามรายละเอียดด้านล่าง
+    ...
+    ...    - 1. KTC
+    ...    -> 01 - 1914, credit card
+    ...    -> 02 - 1967, ploan รายเดือน
+    ...    -> 03 - 1968, ploan รายปี
+    ...    - 2. AEON
+    ...    -> 01 - MCE_GL = Good life
+    ...    -> 02 - MCE_BL = Better life
+    ...    -> 03 - MCE_WB= WinBack
+    ...    -> 04 - MCE_HC = Health care
+    ...    -> 05 - MCE_AJ = Aunjai
+    ...    -> 06 - CC-Tele
+    ...    -> 07 - CC-POS
+    ...    - 3. AYCAP
+    ...    -> 01 - PPI FIX
+    ...    -> 02 - PPI%""
+    ...
+    ...    - ** พี่รองจะหา table เพื่อทำการ mapping อีกที ( หาแล้วครับ 14/05/2018 )"
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingtype not in ('1','2','3','4','5','6','7','8','9','') or length(a.billingtype) <>1
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ \ where a.billingtype not in ('01','02','03','04','05','06','07','08','09','') or length(a.billingtype) <> 2    #แก้ Script ใหม่ จาก 1 > 01, length <> จาก 1 เป็น 2
     EDM_Compare Result    @{Result[0]}    0    billingtype
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0002_Validate Billingtype_NotNull
+    [Documentation]    Validate Billingtype_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingtype = '' or a.billingtype= 'blank' or a.billingtype is null;
     EDM_Compare Result    @{Result[0]}    0    billingtype
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0003_Validate BillingDate_Default
+    [Documentation]    Validate BillingDate_Default
+    ...
+    ...    - [20180510] พี่รองจะหา table เพื่อทำการ mapping อีกที
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31 \ \ or length(a.billingdate) <> 8 \ and a.billingdate <> ''
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31 \ \ or length(a.billingdate) <> 8 \ and a.billingdate <> ''    #พบข้อมูล 00000000
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0004_Validate BillingDate_NotNull
+    [Documentation]    Validate BillingDate_NotNull
+    ...
+    ...    - [20180510] พี่รองจะหา table เพื่อทำการ mapping อีกที
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.billingdate = '' or a.billingdate= 'blank' or a.billingdate is null;
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0005_Validate DueDateStart_Default
+    [Documentation]    Validate DueDateStart_Default
+    ...
+    ...    - duedate (Start) สำหรับงวดแรกที่ส่งมาที่ TLI
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.duedatestart,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.duedatestart,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.duedatestart,7,2),'99') not between 1 and 31 \ \ or length(a.duedatestart) <> 8 \ and a.duedatestart <> ''
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0006_Validate DueDateStart_NotNull
+    [Documentation]    Validate DueDateStart_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.duedatestart = '' or a.duedatestart= 'blank' or a.duedatestart is null;
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0007_Validate DueDateEnd_Default
+    [Documentation]    Validate DueDateEnd_Default
+    ...    - duedate (End) สำหรับงวดแรกที่ส่งมาที่ TLI
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.duedateend,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.duedateend,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.duedateend,7,2),'99') not between 1 and 31 \ \ or length(a.duedateend) <> 8 \ and a.duedateend <> ''
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0008_Validate DueDateEnd_NotNull
+    [Documentation]    Validate DueDateEnd_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.duedateend = '' or a.duedateend= 'blank' or a.duedateend is null;
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0009_Validate Payperiod_length
+    [Documentation]    Validate Payperiod_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.payperiod) <> 4 and a.payperiod <> ''
     EDM_Compare Result    @{Result[0]}    0    payperiod
@@ -80,91 +116,131 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0015_Validate TotalPremium_IsNegative
     EDM_Compare Result    @{Result[0]}    0    totalpremium
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0016_Validate Status_W,H
+    [Documentation]    ตรวจสอบ Status ของ Billing
+    ...
+    ...    - "[20180510] ทาง TLP จะส่งมา 2 \ สถานะ คือ ""W"" และ ""H""
+    ...    หมายเหตุ หากพบว่ามีสถานะ ""FAIL"" TLP จะส่ง ""W"" มา"
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.status not in ('W','H','') \ or length(a.status) > 10
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0017_Validate Status_NotNull
+    [Documentation]    Validate Status_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.status = '' or a.status= 'blank' or a.status is null;
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0018_Validate ReturnDate_Default
+    [Documentation]    Validate ReturnDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ \ or length(a.returndate) <> 8 \ and a.returndate <> ''
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ \ or length(a.returndate) <> 8 \ and a.returndate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
     EDM_Compare Result    @{Result[0]}    0    returndate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0019_Validate ReturnDate_NotNull
+    [Documentation]    Validate ReturnDate_NotNull
+    ...
+    ...    - Status 'Wainting - W' จะไม่มีค่า returndate หรือไม่ และมี Status อื่นอีกหรือเปล่า
+    ...    - Confirm AA
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.returndate = '' or a.returndate= 'blank' or a.returndate is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.returndate = '' or a.returndate= 'blank' or a.returndate is null;    # Status 'Wainting - W' จะไม่มีค่า returndate หรือไม่ และมี Status อื่นอีกหรือเปล่า
     EDM_Compare Result    @{Result[0]}    0    returndate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0020_Validate AttemptTime_NotNull
+    [Documentation]    Validate AttemptTime_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.attempttime = '' or a.attempttime= 'blank' or a.attempttime is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.attempttime = '' or a.attempttime= 'blank' or a.attempttime is null;
     EDM_Compare Result    @{Result[0]}    0    attempttime
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0021_Validate AttemptTime_IsNotChar
+    [Documentation]    Validate AttemptTime_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.attempttime like '%[^a-z]%'
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a where a.attempttime ~* '[a-z]'    #แก้จาก like เป็น ~
     EDM_Compare Result    @{Result[0]}    0    attempttime
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0022_Validate InstallmentSeq_NotNull
+    [Documentation]    Validate InstallmentSeq_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq = '' or a.installmentseq= 'blank' or a.installmentseq is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq = '' or a.installmentseq= 'blank' or a.installmentseq is null;
     EDM_Compare Result    @{Result[0]}    0    installmentseq
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0023_Validate InstallmentSeq_IsNotChar
+    [Documentation]    Validate InstallmentSeq_IsNotChar
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq like '%[^a-z]%'
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentseq ~* '[a-z]'    #แก้จาก like เป็น ~
     EDM_Compare Result    @{Result[0]}    0    installmentseq
 
-EDM4_SIT_Billing_TLP_HistoryExport_0002_0024_Validate Installmentpolyear_NotNull
+EDM4_SIT_Billing_TLP_HistoryExport_0002_0024_Validate Installmentpolicyyear_NotNull
+    [Documentation]    Validate InstallmentpolicyYear_NotNull
+    ...
+    ...    - "[20180510] ทาง TLP ต้องตรวจสอบโดยใช้เงื่อนไขดังนี้
+    ...
+    ...    - 1. default 'N' - เคสใหม่: หากเป็นการส่ง Billing ครั้งแรกกี่งวดก็ตาม ให้
+    ...
+    ...    - 2. deafult 'F' - เบี้ยปีแรก: เป็นเบี้ยปีแรก
+    ...
+    ...    - 3. default 'R' - เบี้ยปีต่อ: เป็นเบี้ยปีต่อ"
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentpolyear = '' or a.installmentpolyear= 'blank' or a.installmentpolyear is null;
-    EDM_Compare Result    @{Result[0]}    0    installmentpolyear
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentpolyear = '' or a.installmentpolyear= 'blank' or a.installmentpolyear is null;
+    EDM_Compare Result    @{Result[0]}    0    InstallmentPolicyYear
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0025_Validate Installmentpolyear_Default
+    [Documentation]    Validate InstallmentpolicyYear_default
+    ...
+    ...    - "[20180510] ทาง TLP ต้องตรวจสอบโดยใช้เงื่อนไขดังนี้
+    ...
+    ...    - 1. default 'N' - เคสใหม่: หากเป็นการส่ง Billing ครั้งแรกกี่งวดก็ตาม ให้
+    ...
+    ...    - 2. deafult 'F' - เบี้ยปีแรก: เป็นเบี้ยปีแรก
+    ...
+    ...    - 3. default 'R' - เบี้ยปีต่อ: เป็นเบี้ยปีต่อ"
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.installmentpolyear not in ('N','F','R','')
     EDM_Compare Result    @{Result[0]}    0    installmentpolyear
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0026_Validate CreateDate_Default
+    [Documentation]    Validate CreateDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.createdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.createdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.createdate,7,2),'99') not between 1 and 31 \ \ or length(a.createdate) <> 8 \ and a.createdate <> ''
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.createdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.createdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.createdate,7,2),'99') not between 1 and 31 \ \ or length(a.createdate) <> 8 \ and a.createdate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
     EDM_Compare Result    @{Result[0]}    0    createdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0027_Validate CreateDate_NotNull
+    [Documentation]    Validate CreateDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.createdate = '' or a.createdate= 'blank' or a.createdate is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.createdate = '' or a.createdate= 'blank' or a.createdate is null;
     EDM_Compare Result    @{Result[0]}    0    createdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0028_Validate RespondCode_length
+    [Documentation]    Validate RespondCode_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.responsecode) <> 2 and a.responsecode <> ''
     EDM_Compare Result    @{Result[0]}    0    respondcode
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0029_Validate RespondCode_NotNull
+    [Documentation]    Validate RespondCode_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;
     EDM_Compare Result    @{Result[0]}    0    respondcode
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
+    [Documentation]    Validate exfileOut_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfileout) > 30 and a.exfileout <> ''
     EDM_Compare Result    @{Result[0]}    0    exfileout
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
+    [Documentation]    Validate exfileOut_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfileout
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
+    [Documentation]    Validate exfileReturn_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfilereturn) > 30 and a.exfilereturn <> ''
     EDM_Compare Result    @{Result[0]}    0    exfilereturn
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
+    [Documentation]    Validate exfileReturn_NotNull
     EDM_Connect_DB
-    @{Result}    Query     select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfilereturn

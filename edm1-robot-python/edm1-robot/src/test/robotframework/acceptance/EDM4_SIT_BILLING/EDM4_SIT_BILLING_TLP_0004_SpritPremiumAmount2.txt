@@ -5,36 +5,43 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0001_Validate ridername_NotBlank
+    [Documentation]    Validate ridername_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.splitpremiumamount2 a where a.ridername= '' or a.ridername= 'blank';
     EDM_Compare Result    @{Result[0]}    0    ridername
 
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0002_Validate oldridersa_NotBlank
+    [Documentation]    Validate oldridersa_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.splitpremiumamount2 a where a.oldridersa= '' or a.oldridersa= 'blank';
     EDM_Compare Result    @{Result[0]}    0    oldridersa
 
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0003_Validate newridersa_NotBlank
+    [Documentation]    Validate newridersa_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.splitpremiumamount2 a where a.newridersa= '' or a.newridersa= 'blank';
     EDM_Compare Result    @{Result[0]}    0    newridersa
 
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0004_Validate oldriderpremium_NotBlank
+    [Documentation]    Validate oldriderpremium_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.splitpremiumamount2 a where a.oldriderpremium= '' or a.oldriderpremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    oldriderpremium
 
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0005_Validate oldriderpremium_Length
+    [Documentation]    Validate oldriderpremium_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.splitpremiumamount2 a \ where length(a.oldriderpremium) > 9;
     EDM_Compare Result    @{Result[0]}    0    oldriderpremium
 
-EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0004_Validate oldriderpremium_NotBlank
+EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0004_Validate newriderpremium_NotBlank
+    [Documentation]    Validate newriderpremium_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.splitpremiumamount2 a where a.newriderpremium= '' or a.newriderpremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    newriderpremium
 
 EDM4_SIT_BILLING_TLP_SplitPremiumAmount2_0004_0005_Validate newriderpremium_Length
+    [Documentation]    Validate newriderpremium_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.splitpremiumamount2 a \ where length(a.newriderpremium) > 9;
     EDM_Compare Result    @{Result[0]}    0    newriderpremium

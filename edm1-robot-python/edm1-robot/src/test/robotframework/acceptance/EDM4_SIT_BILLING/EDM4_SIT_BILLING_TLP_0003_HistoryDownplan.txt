@@ -5,51 +5,68 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0001_Validate OldProductCode_NotBlank
+    [Documentation]    Validate OldProductCode_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.OldProductCode= '' or a.OldProductCode= 'blank';
     EDM_Compare Result    @{Result[0]}    0    OldProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0002_Validate OldProductCode_Length
+    [Documentation]    Validate OldProductCode_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.OldProductCode) > 2;
     EDM_Compare Result    @{Result[0]}    0    OldProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0003_Validate NewProductCode_NotBlank
+    [Documentation]    Validate NewProductCode_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.NewProductCode= '' or a.NewProductCode= 'blank';
     EDM_Compare Result    @{Result[0]}    0    NewProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0004_Validate NewProductCode_Length
+    [Documentation]    Validate NewProductCode_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.NewProductCode) > 2;
     EDM_Compare Result    @{Result[0]}    0    NewProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0005_Validate payPeriod_NotBlank
+    [Documentation]    Validate payPeriod_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.payPeriod= '' or a.payPeriod= 'blank';
     EDM_Compare Result    @{Result[0]}    0    payPeriod
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0006_Validate payPeriod_Length
+    [Documentation]    Validate payPeriod_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.payPeriod) > 4;
     EDM_Compare Result    @{Result[0]}    0    payPeriod
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0007_Validate newPremium _NotBlank
+    [Documentation]    Validate newPremium _NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.newPremium = '' or a.newPremium = 'blank';
     EDM_Compare Result    @{Result[0]}    0    newPremium
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0008_Validate createdDate_NotBlank
+    [Documentation]    Validate createdDate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.createdate = '' or a.createdate = 'blank';
     EDM_Compare Result    @{Result[0]}    0    createdDate
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0009_Validate status_NotBlank
+    [Documentation]    Validate status_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.status = '' or a.status = 'blank';
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0010_Validate status_W,S,F
+    [Documentation]    Validate status_W,S,F
+    ...    - [20180510] ทาง TLP มี 3 status
+    ...
+    ...    - 1. W : รอจ่ายเบี้ย
+    ...
+    ...    - 2. S: Downplan สำเร็จ (ปรับ master แล้วก็ตัดเงินสำเร็จ)
+    ...
+    ...    - 3. F: FAIL (เกิน grace period แล้วยังไม่สามารถตัดเงินได้)"
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.historydownplan a where a.status not in ('W','S','F');
     EDM_Compare Result    @{Result[0]}    0    status
