@@ -142,7 +142,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0019_Validate ReturnDate_NotNull
     ...    - Status 'Wainting - W' จะไม่มีค่า returndate หรือไม่ และมี Status อื่นอีกหรือเปล่า
     ...    - Confirm AA
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.returndate = '' or a.returndate= 'blank' or a.returndate is null;    # Status 'Wainting - W' จะไม่มีค่า returndate หรือไม่ และมี Status อื่นอีกหรือเปล่า
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ where (a.status <> 'WAITING') and \ a.returndate = '' or a.returndate= 'blank' or a.returndate is null;    # Status 'Wainting - W' จะไม่มีค่า returndate หรือไม่ และมี Status อื่นอีกหรือเปล่า
     EDM_Compare Result    @{Result[0]}    0    returndate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0020_Validate AttemptTime_NotNull
@@ -218,7 +218,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0028_Validate RespondCode_length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0029_Validate RespondCode_NotNull
     [Documentation]    Validate RespondCode_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (a.status <> 'WAITING') and a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    respondcode
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
@@ -230,7 +230,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
     [Documentation]    Validate exfileOut_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (a.status <> 'WAITING') and a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfileout
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
@@ -242,5 +242,5 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
     [Documentation]    Validate exfileReturn_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
+    @{Result}    Query    select status,exfilereturn \ from tlpbilling.historyexport a \ \ where (a.status <> 'WAITING') and a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfilereturn
