@@ -510,3 +510,23 @@ EDM_SIT_TLP_customerinfo_0001_0098_Validate LastPayDate_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
     EDM_Compare Result    @{Result[0]}    0    lastpaydate
+
+EDM_SIT_TLP_customerinfo_0001_0099_Validate LastReceiptNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and a.lastreceiptno =''
+    EDM_Compare Result    @{Result[0]}    0    lastreceiptno
+
+EDM_SIT_TLP_customerinfo_0001_0100_Validate Address1_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address1 ='' or address1 ='blank' or address1 is null
+    EDM_Compare Result    @{Result[0]}    0    address1
+
+EDM_SIT_TLP_customerinfo_0001_0101_Validate Address2_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address2 ='' or address2 ='blank' or address2 is null
+    EDM_Compare Result    @{Result[0]}    0    address2
+
+EDM_SIT_TLP_customerinfo_0001_0102_Validate HomeTel_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and hometel ='' or hometel ='blank' or hometel is null
+    EDM_Compare Result    @{Result[0]}    0    hometel
