@@ -41,7 +41,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0003_Validate BillingDate_Default
     ...
     ...    - [20180510] พี่รองจะหา table เพื่อทำการ mapping อีกที
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31 \ \ or length(a.billingdate) <> 8 \ and a.billingdate <> ''    #พบข้อมูล 00000000
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where ((to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31) \ or length(a.billingdate) <> 8) or a.billingdate = '00000000'    #พบข้อมูล 00000000
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0004_Validate BillingDate_NotNull
@@ -82,7 +82,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0008_Validate DueDateEnd_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0009_Validate Payperiod_length
     [Documentation]    Validate Payperiod_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.payperiod) <> 4 and a.payperiod <> ''
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.payperiod) > 4
     EDM_Compare Result    @{Result[0]}    0    payperiod
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0010_Validate Payperiod_NotNull
@@ -133,7 +133,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0017_Validate Status_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0018_Validate ReturnDate_Default
     [Documentation]    Validate ReturnDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ \ or length(a.returndate) <> 8 \ and a.returndate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where (to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ or length(a.returndate) <> 8 or a.returndate = '00000000' ) and a.returndate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
     EDM_Compare Result    @{Result[0]}    0    returndate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0019_Validate ReturnDate_NotNull
@@ -200,7 +200,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0025_Validate Installmentpolyear_Default
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0026_Validate CreateDate_Default
     [Documentation]    Validate CreateDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where to_number(SUBSTRING(a.createdate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.createdate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.createdate,7,2),'99') not between 1 and 31 \ \ or length(a.createdate) <> 8 \ and a.createdate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where (to_number(SUBSTRING(a.createdate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.createdate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.createdate,7,2),'99') not between 1 and 31 \ or length(a.createdate) <> 8 or a.createdate = '00000000') and a.createdate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
     EDM_Compare Result    @{Result[0]}    0    createdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0027_Validate CreateDate_NotNull
@@ -218,7 +218,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0028_Validate RespondCode_length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0029_Validate RespondCode_NotNull
     [Documentation]    Validate RespondCode_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where a.responsecode = '' or a.responsecode= 'blank' or a.responsecode is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    respondcode
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length

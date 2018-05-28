@@ -13,7 +13,7 @@ EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0001_Validate OldProductCode_NotBlank
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0002_Validate OldProductCode_Length
     [Documentation]    Validate OldProductCode_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.OldProductCode) > 2;
+    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.OldProductCode) > 15;
     EDM_Compare Result    @{Result[0]}    0    OldProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0003_Validate NewProductCode_NotBlank
@@ -25,7 +25,7 @@ EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0003_Validate NewProductCode_NotBlank
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0004_Validate NewProductCode_Length
     [Documentation]    Validate NewProductCode_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.NewProductCode) > 2;
+    @{Result}    Query    select count(0) from tlpbilling.historydownplan a \ where length(a.NewProductCode) > 8;
     EDM_Compare Result    @{Result[0]}    0    NewProductCode
 
 EDM4_SIT_BILLING_TLP_HistoryDownPlan_0003_0005_Validate payPeriod_NotBlank
