@@ -141,7 +141,7 @@ EDM4_SIT_TLP_Payment_0004_0027_Validate CollectedDate_NotBlank
 
 EDM4_SIT_TLP_Payment_0004_0028_Validate CollectedDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.payment a \ where to_number(SUBSTRING(a.CollectedDate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.CollectedDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.CollectedDate,7,2),'99') not between 1 and 31 \ or length(a.CollectedDate) <> 8
+    @{Result}    Query    select count(0) from tlp.payment a \ \ where (to_number(SUBSTRING(a.CollectedDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.CollectedDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.CollectedDate,7,2),'99') not between 1 and 31) or length(a.CollectedDate) <> 8 or a.CollectedDate = '00000000'
     EDM_Compare Result    @{Result[0]}    0    CollectedDate
 
 EDM4_SIT_TLP_Payment_0004_0027_Validate Mode_NotBlank
