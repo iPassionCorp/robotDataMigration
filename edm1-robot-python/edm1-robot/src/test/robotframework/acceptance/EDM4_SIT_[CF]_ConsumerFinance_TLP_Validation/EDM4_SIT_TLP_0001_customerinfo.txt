@@ -433,12 +433,12 @@ EDM_SIT_TLP_customerinfo_0001_0082_Validate CustomerNation_length
 
 EDM_SIT_TLP_customerinfo_0001_0083_Validate PolicyNo_CheckDataExceptDocument
     EDM_Connect_DB
-    @{Result}    Query    select policyno from tlp.customerinfo \ except \ select tlpplancode from lookup.smi;
+    @{Result}    Query    select count(0) from tlp.customerinfo \ except \ select tlpplancode from lookup.smi;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM_SIT_TLP_customerinfo_0001_0084_Validate PolicyNo_CheckDataMissingDocument
     EDM_Connect_DB
-    @{Result}    Query    select tlpplancode from lookup.smi except select policyno from tlp.customerinfo;
+    @{Result}    Query    select count(0) from lookup.smi except select policyno from tlp.customerinfo;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM_SIT_TLP_customerinfo_0001_0085_Validate Policyno,customercode,customerstatus,productcode,certificateno_Duplicate
@@ -463,7 +463,7 @@ EDM_SIT_TLP_customerinfo_0001_0088_Validate ProductCode_NotNull
 
 EDM_SIT_TLP_customerinfo_0001_0089_Validate ProductName_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) a nd productname ='' or productname ='blank' or productname is null
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and productname ='' or productname ='blank' or productname is null
     EDM_Compare Result    @{Result[0]}    0    productname
 
 EDM_SIT_TLP_customerinfo_0001_0090_Validate PolicyNo_NotNull
@@ -503,12 +503,12 @@ EDM_SIT_TLP_customerinfo_0001_0096_Validate EffectiveDate_Default
 
 EDM_SIT_TLP_customerinfo_0001_0097_Validate ExpiredDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where (a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and expireddate \ not between '0000-00-00' and '3000-12-31' or length(expireddate) <> 8) \ and expireddate <>'00000000'
     EDM_Compare Result    @{Result[0]}    0    expireddate
 
 EDM_SIT_TLP_customerinfo_0001_0098_Validate LastPayDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) and effectivedate \ not between '0000-00-00' and '3000-12-31' or length(effectivedate) <> 8
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and (lastpaydate \ not between '0000-00-00' and '3000-12-31' or length(lastpaydate) <> 8) and lastpaydate <> '00000000'
     EDM_Compare Result    @{Result[0]}    0    lastpaydate
 
 EDM_SIT_TLP_customerinfo_0001_0099_Validate LastReceiptNo_NotNull
