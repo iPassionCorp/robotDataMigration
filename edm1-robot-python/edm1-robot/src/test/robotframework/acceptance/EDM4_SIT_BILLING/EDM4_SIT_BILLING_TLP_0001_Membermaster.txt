@@ -103,38 +103,14 @@ EDM4_SIT_BILLING_TLP_MemberMaster_0001_0011_Validate FirstDueDate_Default
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where a.FirstDueDate \ not between '0000-00-00' and '3000-12-31' and length(a.FirstDueDate) <> 8 \ \ or a.FirstDueDate = '' or a.FirstDueDate = 'blank';    #ยังไม่แน่ใจว่าเป็น Issue หรือเปล่า
     EDM_Compare Result    @{Result[0]}    0    FirstDueDate
 
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0012_Validate CancelReason2_NotBlank
-    [Documentation]    Validate CancelReason2_NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CancelReason2= '' or a.CancelReason2= 'blank';
-    EDM_Compare Result    @{Result[0]}    0    CancelReason2
-
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0013_Validate CancelReason2_Length
-    [Documentation]    Validate CancelReason2_Length
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CancelReason2) > 2;
-    EDM_Compare Result    @{Result[0]}    0    CancelReason2
-
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0012_Validate CancelReason2_NotBlank
-    [Documentation]    Validate CancelReason2_NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.CancelReason2= '' or a.CancelReason2= 'blank';
-    EDM_Compare Result    @{Result[0]}    0    CancelReason2
-
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0013_Validate CancelReason2_Length
-    [Documentation]    Validate CancelReason2_Length
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.CancelReason2) > 2;
-    EDM_Compare Result    @{Result[0]}    0    CancelReason2
-
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0014_Validate mobile_NotBlank
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0012_Validate mobile_NotBlank
     [Documentation]    Validate mobile_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a where a.mobile= '' or a.mobile= 'blank';
     EDM_Compare Result    @{Result[0]}    0    mobile
 
-EDM4_SIT_BILLING_TLP_MemberMaster_0001_0015_Validate mobile_Length
+EDM4_SIT_BILLING_TLP_MemberMaster_0001_0013_Validate mobile_Length
     [Documentation]    Validate mobile_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.mobile) > 20;
+    @{Result}    Query    select count(0) from tlpbilling.membermaster a \ where length(a.mobile) > 15;
     EDM_Compare Result    @{Result[0]}    0    mobile
