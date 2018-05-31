@@ -1,3 +1,8 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
 *** Test Cases ***
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0001_Validate Type_NotBlank
     [Documentation]    Validate ridername_NotBlank
@@ -26,7 +31,7 @@ EDM4_SIT_BILLING_TLP_CancelRefund_0005_0004_Validate PartailRefund_NotBlank
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0005_Validate PartailRefund_length
     [Documentation]    Validate ridername_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a."partial") <> 1 and a."partial" != ''
+    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a."partialrefund") <> 1 and a."partialrefund" != ''
     EDM_Compare Result    @{Result[0]}    0    partialrefund
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0006_Validate CancelReason2_NotBlank
