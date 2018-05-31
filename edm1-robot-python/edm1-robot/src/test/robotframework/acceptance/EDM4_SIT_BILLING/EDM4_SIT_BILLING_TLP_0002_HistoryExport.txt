@@ -248,5 +248,5 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0034_Validate CheckReturenDate&Attemptime
     [Documentation]    Validate CheckReturenDate&Attemptime
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a where (returndate = '0' and attempttime != '0') or (returndate = '' and attempttime != '') or (returndate != '' and attempttime = '')
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (returndate = '0' and attempttime <> '0') or (returndate = '' and attempttime <> '') or (returndate <> '' and attempttime = '') or (returndate <> '' and attempttime = '0');
     EDM_Compare Result    @{Result[0]}    0    CheckReturenDate&Attemptime
