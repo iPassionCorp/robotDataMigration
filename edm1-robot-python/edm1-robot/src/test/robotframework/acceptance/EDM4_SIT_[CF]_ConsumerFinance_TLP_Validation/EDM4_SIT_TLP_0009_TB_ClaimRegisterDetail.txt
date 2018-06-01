@@ -261,7 +261,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlPaidToBeneficiar
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate PartnerCode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where partnercode not in ('064','019','029','027','032','053','061','060','042','039','041','062')
+    @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ where partnercode not in ('787','789','791','889','892','786','788','784','780','794','883','777','881','882','774','791','775','878');
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate PartnerCode_notBlank
