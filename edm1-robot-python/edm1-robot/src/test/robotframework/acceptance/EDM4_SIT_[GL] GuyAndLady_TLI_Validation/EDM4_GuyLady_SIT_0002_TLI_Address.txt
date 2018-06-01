@@ -71,7 +71,7 @@ EDM4_GuyLady_SIT_TLI_Address_0002_0014_Validate StartDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Address_0002_0015_Validate StartDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.address a \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ inner join dm.certmapping c on b.policyno = c.policyno inner join tlp.policymaster d on c.rpolicyno = d.policyno and a.startdate = d.effectivedate where a.startdate <> d.effectivedate
+    @{Result}    Query    select count(0) from(select c.policyno,a.startdate from dm.address a \ \ \ inner join dm.ordmast b on a.addressid = b.contactaddressid \ \ inner join dm.certmapping c on b.policyno = c.policyno \ where length(a.startdate) > 8 or to_number(SUBSTRING(a.startdate,1,4),'9999') not between 0 \ and 3000 \ or to_number(SUBSTRING(a.startdate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.startdate,7,2),'99') not between 1 and 31 \ except all select e.policyno,e.effectivedate from tlp.policymaster e join dm.certmapping f on e.policyno = f.policyno) tmp
     EDM_Compare Result    @{Result[0]}    0    startdate
 
 EDM4_GuyLady_SIT_TLI_Address_0002_0016_Validate AddressID_Duplicate
