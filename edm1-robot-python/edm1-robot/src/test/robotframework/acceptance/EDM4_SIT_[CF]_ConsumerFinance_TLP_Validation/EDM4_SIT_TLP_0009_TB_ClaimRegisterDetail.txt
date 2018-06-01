@@ -226,7 +226,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlClaimExpense_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimStatus_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus not in ('Deny','0','1','Closed','Void','Paid')
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus not in ('Deny','0','1','Closed','Void','Paid','Pending')
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_notBlank
