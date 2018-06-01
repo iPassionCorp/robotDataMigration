@@ -228,3 +228,8 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0045_Validate Relation_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.appcustomer a \ \ where length(a.relation) > 20;
     EDM_Compare Result    @{Result[0]}    0    Relation
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0046_Validate CustOccupation_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.appcustomer a where to_number((a.custoccupation),'99') not between 1 and 50
+    EDM_Compare Result    @{Result[0]}    0    custoccupation
