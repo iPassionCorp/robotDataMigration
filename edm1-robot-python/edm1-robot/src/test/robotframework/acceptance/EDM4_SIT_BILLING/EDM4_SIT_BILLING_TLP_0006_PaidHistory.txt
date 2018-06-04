@@ -4,26 +4,32 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_SIT_BILLING_TLP_CancelRefund_0006_0001_Validate Certno_length
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_PaidHistory_0006_0001_Validate Certno_length
+    [Documentation]    Validate Certno_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.paidhistory a where length(a.certno) > 18 and a.certno != ''
     EDM_Compare Result    @{Result[0]}    0    certno
 
-EDM4_SIT_BILLING_TLP_CancelRefund_0006_0002_Validate Certno_NotNull
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_PaidHistory_0006_0002_Validate Certno_NotNull
+    [Documentation]    Validate Certno_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.paidhistory a where a.certno= '' or a.certno= 'blank';
     EDM_Compare Result    @{Result[0]}    0    certno
 
-EDM4_SIT_BILLING_TLP_CancelRefund_0006_0003_Validate Certno,Duedate_Duplicate
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_PaidHistory_0006_0003_Validate Certno,Duedate_Duplicate
+    [Documentation]    Validate Certno,Duedate_Duplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from ( select a.certno,a.duedate ,count(certno) as certno,count(duedate) as duedate from tlpbilling.paidhistory a group by a.certno,a.duedate \ having count(a.certno) > 1 ) tmp
     EDM_Compare Result    @{Result[0]}    0    certno
 
-EDM4_SIT_BILLING_TLP_CancelRefund_0006_0003_Validate DueDate_NotNull
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_PaidHistory_0006_0004_Validate DueDate_NotNull
+    [Documentation]    Validate DueDate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.paidhistory a where a.DueDate= '' or a.DueDate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    DueDate
+
+EDM4_SIT_BILLING_TLP_PaidHistory_0006_0005_Validate refundAmount_NotNull
+    [Documentation]    refundAmount_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlpbilling.paidhistory a where a.refundAmount= '' or a.refundAmount= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    refundAmount

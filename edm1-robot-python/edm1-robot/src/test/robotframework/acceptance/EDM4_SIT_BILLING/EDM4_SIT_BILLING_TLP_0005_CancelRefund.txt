@@ -5,67 +5,73 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0001_Validate Type_NotBlank
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Type_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.type= '' or a.type= 'blank';
     EDM_Compare Result    @{Result[0]}    0    type
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0002_Validate transactionDate_Default
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate transactionDate_Default
     EDM_Connect_DB
     @{Result}    Query    SELECT \ count(0) from (select transactiondate from tlpbilling.cancelrefund a \ where transactiondate \ \ not between '0000-00-00' and '3000-12-31' or transactiondate = '00000000' and length(a.transactiondate) <> 8) tmp
     EDM_Compare Result    @{Result[0]}    0    transactiondate
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0003_Validate transactionDate_NotBlank
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate transactionDate_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.transactiondate= '' or a.transactiondate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    transactiondate
 
-EDM4_SIT_BILLING_TLP_CancelRefund_0005_0004_Validate PartailRefund_NotBlank
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_CancelRefund_0005_0004_Validate partial_NotBlank
+    [Documentation]    Validate partial_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.partialrefund= '' or a.partialrefund= 'blank';
-    EDM_Compare Result    @{Result[0]}    0    partialrefund
+    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.partial= '' or a.partial= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    partial
 
-EDM4_SIT_BILLING_TLP_CancelRefund_0005_0005_Validate PartailRefund_length
-    [Documentation]    Validate ridername_NotBlank
+EDM4_SIT_BILLING_TLP_CancelRefund_0005_0005_Validate partial_length
+    [Documentation]    Validate partial_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a."partialrefund") <> 1 and a."partialrefund" != ''
-    EDM_Compare Result    @{Result[0]}    0    partialrefund
+    @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a."partial") <> 1 and a."partial" != ''
+    EDM_Compare Result    @{Result[0]}    0    partial
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0006_Validate CancelReason2_NotBlank
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    CancelReason2_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.cancelreason2= '' or a.cancelreason2= 'blank';
     EDM_Compare Result    @{Result[0]}    0    cancelreason2
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0007_Validate CancelReason2_length
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate CancelReason2_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a.cancelreason2) > 2 and a.cancelreason2 != ''
     EDM_Compare Result    @{Result[0]}    0    cancelreason2
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0008_Validate CertNo_length
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate CertNo_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where length(a.certno) > 18 and a.certno != ''
     EDM_Compare Result    @{Result[0]}    0    certno
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0009_Validate CertNo_NotNull
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate CertNo_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.certno= '' or a.certno= 'blank';
     EDM_Compare Result    @{Result[0]}    0    certno
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0010_Validate CertNo,Duedate_Duplicate
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate CertNo,Duedate_Duplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from ( select a.certno,a.duedate \ from tlpbilling.cancelrefund a group by a.certno,a.duedate \ having count(a.certno) > 1 ) tmp
     EDM_Compare Result    @{Result[0]}    0    certno
 
 EDM4_SIT_BILLING_TLP_CancelRefund_0005_0011_Validate Duedate_NotNull
-    [Documentation]    Validate ridername_NotBlank
+    [Documentation]    Validate Duedate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.cancelrefund a where a.duedate= '' or a.duedate= 'blank' or a.duedate is null;
     EDM_Compare Result    @{Result[0]}    0    duedate
+
+EDM4_SIT_BILLING_TLP_CancelRefund_0005_0012_Validate type_length
+    [Documentation]    Validate type_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlpbilling.cancelrefund a \ where length(a.type) > 1;
+    EDM_Compare Result    @{Result[0]}    0    type
