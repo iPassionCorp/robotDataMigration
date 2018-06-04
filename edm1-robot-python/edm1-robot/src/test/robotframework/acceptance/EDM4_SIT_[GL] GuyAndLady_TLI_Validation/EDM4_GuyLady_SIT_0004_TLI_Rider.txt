@@ -6,21 +6,19 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLI_Name_0004_0001_Validate PolicyNo_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.policyno) > 15;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.policyno) > 15
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0002_Validate PolicyNo_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.policyno = '' or a.policyno \ in ('NULL', 'Null', 'null') or a.policyno = '' or a.policyno = 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.policyno = '' or a.policyno \ in ('NULL', 'Null', 'null') or a.policyno = '' or a.policyno = 'blank';
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0003_Validate PolicyNoDuplicate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    #---- Get Total Column----
-    ${TotalColumn}    query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ group by a.policyno having count(0) > 1
-    Should Be Empty    ${TotalColumn}
-    log    Record Duplicated is ${TotalColumn}
+    @{Result}    Query    select count(0) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.policyno having count(0) > 1
+    EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
@@ -33,135 +31,133 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     ${PolicyNo}=    Convert To String    ${PolicyNo}
     Should Be Equal    ${PolicyNo}    None
 
-EDM4_GuyLady_SIT_TLI_Name_0004_0005_ValidateriderType_length
+EDM4_GuyLady_SIT_TLI_Name_0004_0005_Validate riderType_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderType) > 3;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderType) > 3;
     EDM_Compare Result    @{Result[0]}    0    riderType
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0006_Validate riderType_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderType= '' or a.riderType\ in ('NULL', 'Null', 'null') or a.riderType= '' or a.riderType= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderType= '' or a.riderType in ('NULL', 'Null', 'null') or a.riderType= '' or a.riderType= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderType
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0007_Validate riderTypeDuplicate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    #---- Get Total Column----
-    ${TotalColumn}    query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ group by a.riderType having count(0) > 1
-    Should Be Empty    ${TotalColumn}
-    log    Record Duplicated is ${TotalColumn}
+    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ \ join dm.tlpmigration c on b.policyno = c.tlipolicyno \ group by a.riderType having count(0) > 1
+    EDM_Compare Result    @{Result[0]}    0    ridertype
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0008_Validate riderSum_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderSum) > 9;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderSum) > 9;
     EDM_Compare Result    @{Result[0]}    0    riderSum
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0009_Validate riderSum_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderSum= '' or a.riderSum\ in ('NULL', 'Null', 'null') or a.riderSum= '' or a.riderSum= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderSum= '' or a.riderSum in ('NULL', 'Null', 'null') or a.riderSum= '' or a.riderSum= 'blank'; \
     EDM_Compare Result    @{Result[0]}    0    riderSum
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0010_Validate riderSumMapping
     EDM_Connect_DB
-    ${riderSum}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno and d.SA = c.rpolicyno where a.riderSum <> d.SA;
+    ${riderSum}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderSum <> f.SA;
     ${riderSum}=    Convert To String    ${riderSum}
     Should Be Equal    ${riderSum}    None
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0011_Validate riderSum_NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderSum~* '[a-zก-ฮ]'
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno WHERE a.riderSum~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    riderSum
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0012_Validate riderPremium_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderPremium) > 9;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderPremium) > 9;
     EDM_Compare Result    @{Result[0]}    0    riderPremium
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0013_Validate riderPremium_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderPremium= '' or a.riderPremium\ in ('NULL', 'Null', 'null') or a.riderPremium= '' or a.riderPremium= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderPremium= '' or a.riderPremium in ('NULL', 'Null', 'null') or a.riderPremium= '' or a.riderPremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderPremium
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0014_Validate riderPremiumMapping
     EDM_Connect_DB
-    ${riderPremium}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.PremRider = c.rpolicyno \ where a.riderPremium <> d.PremRider;
+    ${riderPremium}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderPremium <> f.PremRider;
     ${riderPremium}=    Convert To String    ${riderPremium}
     Should Be Equal    ${riderPremium}    None
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0015_Validate riderPremium_NotChar
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c \ on b.policyno = c.policyno \ WHERE a.riderPremium~* '[a-zก-ฮ]'
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno WHERE a.riderPremium~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    riderPremium
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0016_Validate riderStatus_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderStatus) > 1;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderStatus) > 1;
     EDM_Compare Result    @{Result[0]}    0    riderStatus
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0017_Validate riderStatus_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where \ a.riderStatus= '' or a.riderStatus= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where \ a.riderStatus= '' or a.riderStatus= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderStatus
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0018_Validate riderStatusMapping
     EDM_Connect_DB
-    ${riderStatus}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusNew= c.rpolicyno \ where a.riderStatus<> d.StatusNew;
+    ${riderStatus}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatus<> f.StatusNew;
     ${riderStatus}=    Convert To String    ${riderStatus}
     Should Be Equal    ${riderStatus}    None
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0019_Validate riderStatusDate_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.riderStatusDate) > 8;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderStatusDate) > 8;
     EDM_Compare Result    @{Result[0]}    0    riderStatusDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0020_Validate riderStatusDate_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.riderStatusDate= '' or a.riderStatusDate\ in ('NULL', 'Null', 'null') or a.riderStatusDate= '' or a.riderStatusDate= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatusDate= '' or a.riderStatusDate in ('NULL', 'Null', 'null') or a.riderStatusDate= '' or a.riderStatusDate= 'blank'; \
     EDM_Compare Result    @{Result[0]}    0    riderStatusDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0021_Validate riderStatusDateMapping
     EDM_Connect_DB
-    ${riderStatusDate}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusDate= c.rpolicyno \ where a.riderStatusDate<> d.StatusDate;
+    ${riderStatusDate}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatusDate<> f.StatusDate;
     ${riderStatusDate}=    Convert To String    ${riderStatusDate}
     Should Be Equal    ${riderStatusDate}    None
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0022_Validate riderStatusDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.StatusDate= c.rpolicyno \ where a.riderStatusDate not between '0000-00-00' and '3000-12-31'
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatusDate not between '0000-00-00' and '3000-12-31'
     EDM_Compare Result    @{Result[0]}    0    riderStatusDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0023_Validate effectiveDate_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.effectiveDate) > 8;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.effectiveDate) > 8;
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0024_Validate effectiveDate_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.effectiveDate= '' or a.effectiveDate\ in ('NULL', 'Null', 'null') or a.effectiveDate= '' or a.effectiveDate= 'blank';
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.effectiveDate= '' or a.effectiveDate in ('NULL', 'Null', 'null') or a.effectiveDate= '' or a.effectiveDate= 'blank';
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0025_Validate effectiveDateMapping
     EDM_Connect_DB
-    ${effectiveDate}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.EffectiveDate= c.rpolicyno \ where a.effectiveDate<> d.EffectiveDate;
+    ${effectiveDate}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.effectiveDate<> f.EffectiveDate;
     ${effectiveDate}=    Convert To String    ${effectiveDate}
     Should Be Equal    ${effectiveDate}    None
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0026_Validate effectiveDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ and d.EffectiveDate= c.rpolicyno \ where a.effectiveDate not between '0000-00-00' and '3000-12-31'
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.effectiveDate not between '0000-00-00' and '3000-12-31'
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0027_Validate marker_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where length(a.marker) > 1;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.marker) > 1;
     EDM_Compare Result    @{Result[0]}    0    marker
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0028_Validate marker_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ join dm.certmapping c on b.policyno = c.policyno \ where a.marker= '' or a.marker\ in ('NULL', 'Null', 'null') ;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.marker= '' or a.marker in ('NULL', 'Null', 'null') ;
     EDM_Compare Result    @{Result[0]}    0    marker
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0029_Validate marker_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ join dm.ordmast b \ on a.policyno = b.policyno \ join dm.certmapping c on b.policyno = c.policyno \ where a.marker <> 'M' ;
+    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.marker <> 'M' ;
     EDM_Compare Result    @{Result[0]}    0    marker
