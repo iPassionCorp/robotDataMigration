@@ -231,7 +231,7 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0045_Validate PlanCode_NotBlank
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0046_Validate StatusOld_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusold!= '' or a.statusold!= 'blank';
+    @{Result}    Query    select count(0) \ from tlp.policymaster a \ where a.statusold <> '';
     EDM_Compare Result    @{Result[0]}    0    StatusOld
 
 EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0047_Validate OccType_NotBlank
