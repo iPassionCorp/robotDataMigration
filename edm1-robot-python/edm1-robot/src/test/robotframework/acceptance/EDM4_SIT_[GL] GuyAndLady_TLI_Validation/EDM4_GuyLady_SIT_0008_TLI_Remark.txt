@@ -6,65 +6,65 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLI_Remark_0008_0008_Validate PolicyNo_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno where length(a.policyno) > 8
+    @{Result}    Query    select count(*) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ where length(a.policyno) > 8
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0002_Validate PolicyNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno where a.policyno is null or a.policyno = ''
+    @{Result}    Query    select count(*) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ where a.policyno is null or a.policyno = ''
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0003_Validate Department_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.department <> '88' and length(department) > 2
+    @{Result}    Query    select count(0) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.department <> '88' and length(a.department) > 2
     EDM_Compare Result    @{Result[0]}    0    department
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0004_Validate Department_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.department ='' or a.department = 'blank' or a.department is null
+    @{Result}    Query    select count(0) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.department ='' or a.department = 'blank' or a.department is null
     EDM_Compare Result    @{Result[0]}    0    department
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0005_Validate Sequence_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where length(sequence) > 3 or sequence \ ~* '[a-zก-ฮ]'
+    @{Result}    Query    select count(0) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.sequence) > 3 or a.sequence \ ~* '[a-zก-ฮ]'
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0006_Validate Sequence_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.remark a left join dm.certmapping b on a.policyno = b.policyno \ where a.sequence ='' or a.sequence = 'blank' or a.sequence is null
+    @{Result}    Query    select count(0) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where a.sequence ='' or a.sequence = 'blank' or a.sequence is null
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0007_Validate Message_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.historystatus d on d.policyno = c.rpolicyno \ and a.message = d.statusdescription where length(a.message ) > 100
+    @{Result}    Query    select count(*) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ inner join tlp.historystatus e on e.policyno = d.policyno \ \ where length(a.message ) > 100
     EDM_Compare Result    @{Result[0]}    0    message
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0008_Validate Message_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.historystatus d on d.policyno = c.rpolicyno \ where a.message = '' or a.message = 'blank'
+    @{Result}    Query    select count(*) from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ inner join tlp.historystatus e on e.policyno = d.policyno \ \ \ where a.message = '' or a.message = 'blank'
     EDM_Compare Result    @{Result[0]}    0    message
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0009_Validate PolicyNo_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.historystatus d on c.rpolicyno = d.policyno \ group by a.policyno \ having count(0) > 1) tmp
+    @{Result}    Query    select count(0) from (select a.policyno from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ group by a.policyno \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0010_Validate Department_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.department from dm.remark a left join dm.ordmast b on a.policyno = b.policyno \ \ group by a.department \ having count(0) > 1) tmp
+    @{Result}    Query    select count(0) from (select a.department from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ group by a.department \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    department
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0011_Validate Sequence_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.sequence from dm.remark a left join dm.ordmast b on a.policyno = b.policyno \ \ group by a.sequence \ having count(0) > 1) tmp
+    @{Result}    Query    select count(0) from (select a.sequence from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ group by a.sequence \ having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0012_Validate PolicyNo_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policymaster d on c.rpolicyno = d.policyno \ where a.policyno <> d.policyno
+    @{Result}    Query    select count(*) from (select a.policyno from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.policyno <> d.policyno except all select d.policyno from tlp.policymaster d join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Remark_0008_0013_Validate Message_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.remark a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.historystatus d on d.policyno = c.rpolicyno \ and a.message = d.statusdescription where a.message <> d.statusdescription
+    @{Result}    Query    select count(*) \ from (select a.policyno,a.message from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ inner join tlp.historystatus e on e.policyno = d.policyno \ \ where a.message <> e.statusdescription except all select e.policyno, e.statusdescription from tlp.historystatus e join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    sequence
