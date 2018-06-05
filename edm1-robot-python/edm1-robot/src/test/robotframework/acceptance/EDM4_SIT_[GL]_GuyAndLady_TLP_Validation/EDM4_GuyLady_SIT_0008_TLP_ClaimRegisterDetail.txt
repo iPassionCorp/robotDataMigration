@@ -91,7 +91,7 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0018_Validate RegDtlClaimCauseT
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0019_Validate RegDtlHospitalCode_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlHospitalCode) > 10;
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlHospitalCode) <> 4;
     EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0020_Validate RegDtlHospitalCode_NotBlank
@@ -101,7 +101,7 @@ EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0020_Validate RegDtlHospitalCod
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0021_Validate RegDtlHospitalCode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and length(RegDtlHospitalCode) <> 3 and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
     EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
 
 EDM4_GuyLady_SIT_TLP_TB_ClaimRegisterDetail_0008_0022_Validate RegDtlDateOfAdmission_Default
