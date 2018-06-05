@@ -15,12 +15,9 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0002_Validate nameID_NotNull&NotBlank
     EDM_Compare Result    @{Result[0]}    0    nameID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0003_Validate nameIDDuplicate
-    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    #---- Get Total Column----
-    ${TotalColumn}    query    select count(0) from (select a.nameID from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.nameID having count(0) > 1) tmp
-    Should Be Empty    ${TotalColumn}
-    log    Record Duplicated is ${TotalColumn}
+    @{Result}    Query    select count(0) from (select a.nameID from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.nameID having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    nameID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0004_Validate personID_length
     EDM_Connect_DB
@@ -100,3 +97,18 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0014_Validate startDate_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ \ where a.startdate \ not between '0000-00-00' and '3000-12-31' and length(a.startdate) <> 8
     EDM_Compare Result    @{Result[0]}    0    startDate
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0015_Validate preName_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.preName = '' or a.preName in ('NULL', 'Null', 'null') or a.preName= '' or a.preName= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    preName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0016_Validate firstName_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.firstName = '' or a.firstName in ('NULL', 'Null', 'null') or a.firstName = '' or a.firstName = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    firstName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0017_Validate lastName_NotNull&NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.lastName = '' or a.lastName in ('NULL', 'Null', 'null') or a.lastName = '' or a.lastName = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    lastName

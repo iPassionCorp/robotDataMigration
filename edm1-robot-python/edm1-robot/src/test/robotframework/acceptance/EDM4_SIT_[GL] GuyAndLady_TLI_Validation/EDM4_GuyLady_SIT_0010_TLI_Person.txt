@@ -15,17 +15,14 @@ EDM4_GuyLady_SIT_TLI_Person_0010_0002_Validate personID_NotNull&NotBlank
     EDM_Compare Result    @{Result[0]}    0    personID
 
 EDM4_GuyLady_SIT_TLI_Person_0010_0003_Validate personIDDuplicate
-    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    #---- Get Total Column----
-    ${TotalColumn}    query    select count(0) from ( select a.personid from dm.person a \inner \ join dm.name b on a.personid = b.personid \ inner join dm.ordmast c on b.nameid = c.nameid inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ group by a.personid having count(0) > 1) tmp
-    Should Be Empty    ${TotalColumn}
-    log    Record Duplicated is ${TotalColumn}
+    @{Result}    Query    select count(0) from ( select a.personid from dm.person a \ inner \ join dm.name b on a.personid = b.personid \ \ inner join dm.ordmast c on b.nameid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ \ group by a.personid having count(0) > 1) tmp
+    EDM_Compare Result    @{Result[0]}    0    personID
 
 EDM4_GuyLady_SIT_TLI_Person_0010_0004_Validate referenceID_length
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล reqdate \ \ \ \ \ \ \ \ \ \ - reqdate = default "00000000"
     EDM_Connect_DB
-    @{referenceID}=    query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.ordmast c on b.nameid = c.nameid inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ inner join tlp.policymaster e on e.policyno = d.tlppolicyno \ \ \ \ \ where \ length(a.referenceID) <> 13 and length(a.referenceID) <> 12
+    @{referenceID}=    query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.ordmast c on b.nameid = c.nameid inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ inner join tlp.policymaster e on e.policyno = d.tlppolicyno \ \ \ \ \ where \ length(a.referenceID) <> 13
     EDM_Compare Result    @{referenceID[0]}    0    referenceID
 
 EDM4_GuyLady_SIT_TLI_Person_0010_0005_Validate referenceIDMapping
@@ -98,7 +95,7 @@ EDM4_GuyLady_SIT_TLI_Person_0010_0015_Validate sexMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM_Connect_DB
-    @{birthDate}=    query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.ordmast c on b.nameid = c.nameid inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ inner join tlp.policymaster e on e.policyno = d.tlppolicyno \ where a.sex \ <> \ e.sex;
+    @{birthDate}=    query    select count(*) from (select a.personid,a.sex from dm.person a \ inner join dm.name b on a.personid = b.personid \ \ inner join dm.ordmast c on b.nameid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ \ \ inner join tlp.policymaster e on e.policyno = d.tlppolicyno \ \ where a.sex \ <> \ e.sex except all select e.policyno,e.sex from tlp.policymaster e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     EDM_Compare Result    @{birthDate [0]}    0    sex
 
 EDM4_GuyLady_SIT_TLI_Person_0010_0016_Validate customerID_length

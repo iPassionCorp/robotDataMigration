@@ -17,7 +17,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0002_Validate PolicyNo_NotNull&NotBlank
 EDM4_GuyLady_SIT_TLI_Name_0004_0003_Validate PolicyNoDuplicate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.policyno having count(0) > 1
+    @{Result}    Query     select count(0) from (select a.policyno from dm.rider a \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ group by a.policyno having count(0) > 1)tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
@@ -44,7 +44,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0006_Validate riderType_NotNull&NotBlank
 EDM4_GuyLady_SIT_TLI_Name_0004_0007_Validate riderTypeDuplicate
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rider a \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ \ join dm.tlpmigration c on b.policyno = c.tlipolicyno \ group by a.riderType having count(0) > 1
+    @{Result}    Query    select count(0) from (select a.riderType from dm.rider a \ \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ \ join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ group by a.riderType having count(0) > 1)tmp
     EDM_Compare Result    @{Result[0]}    0    ridertype
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0008_Validate riderSum_length
