@@ -1,0 +1,465 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0001_Validate PolicyNo_Length&Null
+    [Documentation]    "[20180216] ทาง TLI จะทำการ mapping เป็นเลข running ของ TLI เอง โดย Maximum ของ TLP ที่พี่เฮี้ยงแจ้งคือ 15 characters
+    ...
+    ...    เป็น Running ของทาง TLI มี 8หลัก ไม่ต้อง Migrate Field นี้มา"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE (length(a.policyno) <> 8 or a.policyno = '' or a.policyno = 'BLANK');
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0002_Validate NameID_Length&Null
+    [Documentation]    [20180216] พี่ตรองบอกว่าไม่ต้องทำการ mapping แต่จะใช้ concept ในการ generate ข้อมูลเหมือน CL
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE length(a.nameid) <> 13 or a.nameid = '' or a.nameid = 'BLANK';
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0003_Validate Branch_Length&Null
+    [Documentation]    "[20180216] พี่ตรองจะทำ Mapping Column นี้ให้
+    ...    [20180315 พี่ตรอง] TLI จะ Mapping ตาม Partner โดยเรียกใช้ Method BankAssure.tlBranchFromPlan(planCode)"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE length(a.branch) <> 13 AND a.branch = '';
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0004_Validate SalesID_Length
+    [Documentation]    "[20180216]
+    ...    พี่ตรองจะ generate เป็น dummy มาให้เนื่องจากว่าคุณรังรองแจ้งว่าทาง TLP ไม่ได้เก็บโครงสร้างฝ่ายขายของ Guy'Lady เก็บเพียงแค่ ""รหัสคนขาย"" ว่าคนนี้เป็นคนขาย APP. ซึ่งถ้าต้องการทราบชื่อต้องไป refer ที่ระบบ Midas
+    ...
+    ...    Note: Product พ้น 5 ปีมาแล้วไม่มีการจ่ายค่าคอม
+    ...
+    ...    [20180315 พี่ตรอง] TLI Generate Sales Structure ตาม BR ที่แจ้งมา แจ้ง Code ให้ทราบภายหลังนะคะ"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno \ WHERE length(a.salesid) <> 10
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0005_Validate OccupationType_Defualt&Null
+    [Documentation]    ตรวจสอบข้อมูล occupationType (ระดับความเสี่ยงของอาชีพ)
+    ...    - occupationType = default "2"
+    ...
+    ...    "[20180216]
+    ...    สำหรับ Guy/Lady we care ทาง TLP จะ default เป็น "2" ใน field PolicyMaster.OccType
+    ...
+    ...    ทาง TLP ต้องตรวจสอบ OccType เพิ่มว่ามีกี่ประเภทและแต่ละประเภทหมายความว่าอย่างไร
+    ...
+    ...    [TLP20180219] จากการตรวจสอบ ไม่สามารถหาความหมายของ OccType ได้ ข้อมูลใน PolicyMaster มีดังนี้
+    ...    - OccType ค่าว่าง มี 1,667 รายการ
+    ...    - OccType = 0 มี 11 รายการ
+    ...    - OccType = 1 = 152 รายการ
+    ...    - OccType = 2 = 9 รายการ
+    ...    - OccType = 3 = 528 รายการ
+    ...    [20180224] พี่ตรองคะ สำหรับเคสนี้ต้องดำเนินการอย่างไรคะพี่
+    ...    [20180315 พี่ตรอง] ขอทราบความหมายของชั้นอาชีพแต่ละอันค่ะมีความหมายเดียวกันกับของ TLI หรือไม่
+    ...    [TLP20180329] กรณีที่เป็น Guy/Lady จะไม่มี OccType คะ แต่ถ้าเป็น OL แท้ จะมี OccType ซึ่งความหมายแต่ละค่า จะต้องสอบถามทาง Actuarial ให้อีกครั้งคะ
+    ...
+    ...    ส่วนข้อมูลที่บอกไปในวันที่ 20180219 เป็นของ OL แท้ กรณีนี้จะ stamp default ตามที่ตกลงของวันที่ 20180216 คือ default เป็น ""2"""
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ joint dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.occupationcode <> '2' OR a.occupationcode = '';
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0006_Validate OccupationCode_Mapping
+    [Documentation]    ตรวจสอบข้อมูล occupationCode (โค้ดรายละเอียดอาชีพ)
+    ...    - occupationCode = tlp.AppCustomer.CustOccupation
+    ...
+    ...    "[20180216] ทาง TLP จะทำการ mapping อาชีพโดยตรวจสอบจาก
+    ...    https://docs.google.com/spreadsheets/d/1Ksaa1nO2asye8QFQfjH24xWNOPf5FwhPEOa94ujr7DU/edit#gid=1446621767"
+    #Target except all Source
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT DISTINCT (a.occupationcode) FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno EXCEPT ALL \ SELECT DISTINCT(a.custoccupation) FROM tlp.appcustomer a ) tlp
+    EDM_Compare Result    @{Result[0]}    0    Except-Source
+    #Source except all Target
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT DISTINCT(a.custoccupation) FROM tlp.appcustomer a \ EXCEPT ALL \ SELECT \ DISTINCT (a.occupationcode) FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno) tli
+    EDM_Compare Result    @{Result[0]}    0    Except-Target
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0007_Validate PlanCode_InTLPMigration
+    [Documentation]    ตรวจสอบข้อมูล planCode (รหัสแบบประกัน)
+    ...    - planCode = xxxxxxxxxxxxxxxx
+    ...
+    ...    - ทาง TLI จะทำการ Mapping รหัส PlanCode จากที่ท่ง TLP ส่งมาเป็น รหัสแบบประกัน 4 หลักของ TLI
+    ...    - **คือจะ ไปหาจาก certmapping หรือไม่
+    #Target except all Source
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT a.plancode \ FROM dm.ordmast a \ EXCEPT ALL SELECT b.tlppolicyno FROM dm.tlpmigration b) tli
+    EDM_Compare Result    @{Result[0]}    0    Except-Target
+    #Source except all Target
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT b.tlppolicyno FROM dm.tlpmigration b EXCEPT all SELECT a.plancode \ FROM dm.ordmast a) tlp
+    EDM_Compare Result    @{Result[0]}    0    Except-Sorce
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0008_Validate EffectiveDate_Formatting
+    [Documentation]    ตรวจสอบข้อมูล effectiveDate (วันเริ่มสัญญาการทำประกัน)
+    ...    - effectiveDate = tlp.PolicyMaster.EffectiveDate
+    ...    - Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ FROM dm.ordmast a \ JOIN dm.certmapping b ON a.policyno = b.policyno \ where (to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 and 3000) or \ (to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12) \ or \ (to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31);
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate Formatting incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0009_Validate EffectiveDate_Null
+    [Documentation]    ตรวจสอบข้อมูล effectiveDate (วันเริ่มสัญญาการทำประกัน)
+    ...    - effectiveDate = tlp.PolicyMaster.EffectiveDate
+    ...    - Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ FROM dm.ordmast a \ JOIN dm.certmapping b ON a.policyno = b.policyno \ where a.effectivedate = '' or a.effectivedate = 'BLANK';
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate is Null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0010_Validate EffectiveDate_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล effectiveDate (วันเริ่มสัญญาการทำประกัน)
+    ...    - effectiveDate = tlp.PolicyMaster.EffectiveDate
+    ...    - Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno where a.effectivedate <> c.effectivedate;
+    EDM_Compare Result    @{Result[0]}    0    EffectiveDate incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0011_Validate PolicyStatus1_Length&Null
+    [Documentation]    ตรวจสอบข้อมูล policyStatus1 (สถานะกรมธรรม์ปัจจุบัน)
+    ...    - policyStatus1 = tlp.PolicyMaster.StatusNew
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatus1 = '' OR a.policystatus1 = upper('null') OR length(a.policystatus1) <> 1;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatus1 over Length & is null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0012_Validate PolicyStatus1_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล policyStatus1 (สถานะกรมธรรม์ปัจจุบัน)
+    ...    - policyStatus1 = tlp.PolicyMaster.StatusNew
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatus1 <> c.statusnew;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatus1 incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0013_Validate PolicyStatus2_Length&Null
+    [Documentation]    ตรวจสอบข้อมูล policyStatus2 (สถานะช่วยขยายสถานะกรมธรรม์ปัจจุบัน)
+    ...    - policyStatus2 = tlp.PolicyMaster.Status2
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatus2 = '' OR a.policystatus2 = upper('null') OR length(a.policystatus2) <> 1;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatus2 over Length & is null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0014_Validate PolicyStatus2_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล policyStatus2 (สถานะช่วยขยายสถานะกรมธรรม์ปัจจุบัน)
+    ...    - policyStatus2 = tlp.PolicyMaster.Status2
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatus2 <> c.status2;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatus2 incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0015_Validate PolicyStatusDate1_Formatting
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate1 (วันที่เริ่มใช้สถานะกรม์ธรรมปัจจุบัน)
+    ...    - policyStatusDate1 = \ tlp.PolicyMaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.certmapping b ON a.policyno = b.policyno \ \ \ where (to_number(SUBSTRING(a.policystatusdate1,1,4),'9999') not between 0 and 3000) or \ \ \ (to_number(SUBSTRING(a.policystatusdate1,5,2),'99') not between 1 and 12) \ \ or \ \ \ (to_number(SUBSTRING(a.policystatusdate1,7,2),'99') not between 1 and 31);
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate1 formatting incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0016_Validate PolicyStatusDate1_Null
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate1 (วันที่เริ่มใช้สถานะกรม์ธรรมปัจจุบัน)
+    ...    - policyStatusDate1 = \ tlp.PolicyMaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.certmapping b ON a.policyno = b.policyno \ \ \ where a.policystatusdate1 = '' or a.policystatusdate1 = 'BLANK';
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate1 in Null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0017_Validate PolicyStatusDate1_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate1 (วันที่เริ่มใช้สถานะกรม์ธรรมปัจจุบัน)
+    ...    - policyStatusDate1 = \ tlp.PolicyMaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatusdate1 <> c.statusdate;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate1 incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0018_Validate PolicyStatusDate2_Formatting
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate2 (วันที่เริ่มใช้สถานะช่วยขยาย)
+    ...    - policyStatusDate2 = \ tlp.PolicyMaster.StatusDate2
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.certmapping b ON a.policyno = b.policyno \ \ \ where (to_number(SUBSTRING(a.policystatusdate2,1,4),'9999') not between 0 and 3000) or \ \ \ (to_number(SUBSTRING(a.policystatusdate2,5,2),'99') not between 1 and 12) \ \ or \ \ \ (to_number(SUBSTRING(a.policystatusdate2,7,2),'99') not between 1 and 31);
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate2 formatting incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0019_Validate PolicyStatusDate2_Null
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate1 (วันที่เริ่มใช้สถานะกรม์ธรรมปัจจุบัน)
+    ...    - policyStatusDate1 = \ tlp.PolicyMaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.certmapping b ON a.policyno = b.policyno \ \ \ where a.policystatusdate2 = '' or a.policystatusdate2 = 'BLANK';
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate2 in Null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0020_Validate PolicyStatusDate2_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล policyStatusDate1 (วันที่เริ่มใช้สถานะกรม์ธรรมปัจจุบัน)
+    ...    - policyStatusDate1 = \ tlp.PolicyMaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.policystatusdate2 <> c.statusdate2;
+    EDM_Compare Result    @{Result[0]}    0    PolicyStatusDate2 incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0021_Validate OldPolicyStatus1_Length&Null
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatus1 (สถานะกรมธรรม์เดิม ก่อนมีการเปลี่ยนแปลง)
+    ...    - oldPolicyStatus1 = tlp.policymaster.statusOld
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.oldpolicystatus1= '' OR a.oldpolicystatus1= upper('null') OR length(a.oldpolicystatus1) <> 1;
+    EDM_Compare Result    @{Result[0]}    0    OldPolicyStatus1 over Length and Null
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0022_Validate OldPolicyStatus1_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatus1 (สถานะกรมธรรม์เดิม ก่อนมีการเปลี่ยนแปลง)
+    ...    - oldPolicyStatus1 = tlp.policymaster.statusOld
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.oldpolicystatus1 <> c.statusold ;
+    EDM_Compare Result    @{Result[0]}    0    OldPolicyStatus incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0023_Validate OldPolicyStatus2_Leave Blank
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatus2 (สถานะช่วยขยายสถานะกรมธรรม์เดิม ก่อนมีการเปลี่ยนแปลง)
+    ...    - oldPolicyStatus2 = 'Blank'
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.oldpolicystatus2<> '' ;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0024_Validate OldPolicyStatusDate1_Formatting
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatusDate1 (วันที่เริ่มใช้สถานะกรมธรรม์เดิม)
+    ...    - oldPolicyStatusDate1 = tlp.policymaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.certmapping b ON a.policyno = b.policyno \ \ \ where (to_number(SUBSTRING(a.oldpolicystatusdate1,1,4),'9999') not between 0 and 3000) or \ \ \ (to_number(SUBSTRING(a.oldpolicystatusdate1,5,2),'99') not between 1 and 12) \ \ or \ \ \ (to_number(SUBSTRING(a.oldpolicystatusdate1,7,2),'99') not between 1 and 31);
+    EDM_Compare Result    @{Result[0]}    0    OldPolicyStatusDate Formatting incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0025_Validate OldPolicyStatusDate1_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatusDate1 (วันที่เริ่มใช้สถานะกรมธรรม์เดิม)
+    ...    - oldPolicyStatusDate1 = tlp.policymaster.StatusDate
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.oldpolicystatusdate1 <> c.statusdate;
+    EDM_Compare Result    @{Result[0]}    0    OldPolicyStatusDate1 incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0026_Validate OldPolicyStatusDate2_Leave Blank
+    [Documentation]    ตรวจสอบข้อมูล oldPolicyStatusDate2 (วันที่เริ่มใช้สถานะช่วยขยายสถานะกรมธรรม์เดิม)
+    ...    - oldPolicyStatusDate2 =Defualt '00000000'
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.oldpolicystatusdate2<> '' ;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0027_Validate InsureAge_Length&Null
+    [Documentation]    ตรวจสอบข้อมูล insuredAge (อายุผู้เอาประกันเมื่อเริ่มทำสัญญา)
+    ...    - insuredAge = tlp.PolicyMaster.IssuedAge
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ \ \ WHERE a.insuredage = '' OR length(a.insuredage) <> 2;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0028_Validate InsureAge_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล insuredAge (อายุผู้เอาประกันเมื่อเริ่มทำสัญญา)
+    ...    - insuredAge = tlp.PolicyMaster.IssuedAge
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE a.insuredage <> c.issuedage;
+    EDM_Compare Result    @{Result[0]}    0    InsureAge incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0029_Validate SUM_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล sum (ทุนประกัน)
+    ...    - sum = tlp.PolicyMaster.SA (ต้องไม่รวม converage ตัวอื่น ๆ )
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ \ \ FROM dm.ordmast a \ \ \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ \ \ WHERE to_number(a.sum,'999999.99') NOT IN (SELECT DISTINCT(benefit) FROM lookup.smi WHERE coverage = 'LIFE') \ AND a.sum <> c.sa;
+    EDM_Compare Result    @{Result[0]}    0    AppNo
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0030_LifePremium_Default
+    [Documentation]    ตรวจสอบข้อมูล lifePremium (เบี้ยชีวิตไม่รวมเบี้ยเพิ่มพิเศษ)
+    ...    - lifePremium = default "0"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.lifepremium <> '0';
+    EDM_Compare Result    @{Result[0]}    0    LifePremium don't default zero
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0031_Mode_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล mode (วิธีการชำระเบี้ย)
+    ...    - mode = tlp.PolicyMaster.Mode (0/1)
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno \ WHERE a.mode <> c.mode;
+    EDM_Compare Result    @{Result[0]}    0    Mode incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0032_PayPeriod_Formatting
+    [Documentation]    ตรวจสอบข้อมูล payPeriod (งวดชำระแล้ว ล่าสุด (ปีที่/งวดที่))
+    ...    - payPeriod \ = tlp.PolicyPaid.YearPay
+    ...    - *ถ้า Policyno ที่ PolicyPaid มีหลายงวด ที่ TLI จะเห็น Record เดียวหรือไม่
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlipolicyno where (to_number(SUBSTRING(a.payperiod,1,2),'99') not between 1 and 12) and (to_number(SUBSTRING(a.payperiod,4,2),'99') not between 1 and 31);
+    EDM_Compare Result    @{Result[0]}    0    PayPeriod formatting incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0033_PayPeriod_ValueFromPolicyPaid
+    [Documentation]    ตรวจสอบข้อมูล payPeriod (งวดชำระแล้ว ล่าสุด (ปีที่/งวดที่))
+    ...    - payPeriod \ = tlp.PolicyPaid.YearPay
+    ...    - *ถ้า Policyno ที่ PolicyPaid มีหลายงวด ที่ TLI จะเห็น Record เดียวหรือไม่
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policypaid c ON b.tlppolicyno = c.policyno WHERE a.payperiod <> concat(substring(c.yearpay,1,2),substring(c.yearpay,4,5));
+    EDM_Compare Result    @{Result[0]}    0    PayPeriod Incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0034_rpNo._Length
+    [Documentation]    ตรวจสอบข้อมูล rpNo (เลขที่ใบเสร็จที่ใช้ในงวดชำระล่าสุด)
+    ...    - rpNo ทาง TLI Running No. ต้องไม่มี rpNo ซ้ำกัน
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policypaid c ON b.tlppolicyno = c.policyno WHERE length(a.rpno) <> 12;
+    EDM_Compare Result    @{Result[0]}    0    rpNo. Length incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0035_PayDate_Formatting
+    [Documentation]    ตรวจสอบข้อมูล payDate (วันที่ชำระเบี้ย งวด ล่าสุด)
+    ...    - payDate = tlp.PolicyPaid.PaidDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE (to_number(substring(a.paydate,1,4),'9999') NOT BETWEEN 0000 AND 3000) OR \ (to_number(substring(a.paydate,4,5),'99') NOT BETWEEN 01 AND 12) OR (to_number(substring(a.paydate,6,7),'99') NOT BETWEEN 01 AND 31)
+    EDM_Compare Result    @{Result[0]}    0    PayDate_Formatting
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0036_PayDate_ValueFromPolicyPaid
+    [Documentation]    ตรวจสอบข้อมูล payDate (วันที่ชำระเบี้ย งวด ล่าสุด)
+    ...    - payDate = tlp.PolicyPaid.PaidDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policypaid c ON b.tlppolicyno = c.policyno WHERE a.paydate <> c.paiddate
+    EDM_Compare Result    @{Result[0]}    0    PayDate Incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0037_DueDate_Formatting
+    [Documentation]    ตรวจสอบข้อมูล dueDate (วันที่ครบชำระงวดต่อไป)
+    ...    - dueDate = tlp.PolicyMaster.NextDueDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE (to_number(substring(a.duedate,1,4),'9999') NOT BETWEEN 0000 AND 3000) OR \ (to_number(substring(a.duedate,4,5),'99') NOT BETWEEN 01 AND 12) OR (to_number(substring(a.duedate,6,7),'99') NOT BETWEEN 01 AND 31)
+    EDM_Compare Result    @{Result[0]}    0    DueDate_Format incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0038_DueDate_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล dueDate (วันที่ครบชำระงวดต่อไป)
+    ...    - dueDate = tlp.PolicyMaster.NextDueDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE a.paydate <> c.nextduedate
+    EDM_Compare Result    @{Result[0]}    0    DueDate incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0039_DueDate&PayDate_Comparing
+    [Documentation]    ตรวจสอบ PayDate กับ DueDate ต้องไม่เท่ากัน
+    ...    - PayDate <>DueDate
+    ...
+    ...    ถ้า StatusNew เป็น code ในหมวดของ Cancle ( 'W', 'K', 'D', 'X', 'L', '*')
+    ...    Paydate จะเท่ากับ duedate หรือไม่
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    DueDate & PayDate
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0040_Remark_ValueFromPolicyMaster
+    [Documentation]    "[20180216] ทาง TLP ส่ง ""Y"" เมื่อมีข้อมูลในช่อง PolicyMaster.StatusNewRemark หรือ PolicyMaster.StatusOldRemark มีค่า
+    ...    นอกนั้นให้ Default ""N"""
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE (a.remark <> c.statusnewremark OR a.remark <> c.statusoldremark);
+    EDM_Compare Result    @{Result[0]}    0    Remark
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0041_Remark_Length&Null
+    [Documentation]    ตรวจสอบข้อมูล remark (หมายเหตุ) \ Remark = 'Y'
+    ...    เมื่อ TLP.Policymaster.StatusNewRemark หรือ TLP.Policymaster.StatusOldRemark มีค่า
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE length(a.remark) > 1 OR a.remark = '';
+    EDM_Compare Result    @{Result[0]}    0    Remark
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0042_PlanPA_DefaultBlank
+    [Documentation]    ตรวจสอบข้อมูล planPA (แผนแบบประกัน PA)
+    ...    - planPA = default blank
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE a.planpa <> '';
+    EDM_Compare Result    @{Result[0]}    0    PlanPA Default
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0043_HIVFlag_Default&Null
+    [Documentation]    ตรวจสอบข้อมูล hivFlag (สถานะการตรวจเชื้อ HIV)
+    ...    - hivFlag = default "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE \ a.hivflag <> 'N' OR a.hivflag = '';
+    EDM_Compare Result    @{Result[0]}    0    HIVFlag
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0044_lapseFlag_Default&Null
+    [Documentation]    ตรวจสอบข้อมูล lapseFlag (สถานะการขออนุมัติต่อสัญญาเมื่อกธ.ขาดผล)
+    ...    - lapseFlag = default "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE \ a.lapseflag <> 'N' OR a.lapseflag = '';
+    EDM_Compare Result    @{Result[0]}    0    lapseFlag
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0045_tabianLapseFlag
+    [Documentation]    ตรวจสอบข้อมูล tabianLapseFlag (ทะเบียบขาดผล)
+    ...    - tabianLapseFlag = default "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE \ a.tabianlapseflag <> 'N' OR a.tabianlapseflag = '';
+    EDM_Compare Result    @{Result[0]}    0    tabianLapseFlag
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0046_Medical_Default&Null
+    [Documentation]    ตรวจสอบข้อมูล medical (การตรวจสุขภาพ)
+    ...    - medical = default "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE \ a.medical <> 'N' OR a.medical = '';
+    EDM_Compare Result    @{Result[0]}    0    Medical
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0047_Class_N
+    [Documentation]    ตรวจสอบข้อมูล class
+    ...    - class = 'N'
+    ...
+    ...    [20180216] TLI จะ map เป็น "S" เมื่อมีข้อมูลใน table: Extra Premium
+    ...    นอกนั้นทาง TLI จะ map เป็น "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ WHERE (a.class <> 'N' AND a.policyno NOT IN (SELECT DISTINCT(policyno) FROM dm.extrapremium))
+    EDM_Compare Result    @{Result[0]}    0    Class N
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0048_Class_S
+    [Documentation]    ตรวจสอบข้อมูล class 'S'
+    ...    - ต้องมี Policyno ที่ TB: ExtraPremium
+    ...
+    ...
+    ...    [20180216] TLI จะ map เป็น "S" เมื่อมีข้อมูลใน table: Extra Premium
+    ...    นอกนั้นทาง TLI จะ map เป็น "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno \ WHERE (a.class <> 'S' AND a.policyno IN (SELECT DISTINCT(policyno) FROM dm.extrapremium))
+    EDM_Compare Result    @{Result[0]}    0    Class S
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0049_BenefitRate_Default
+    [Documentation]    ตรวจสอบข้อมูล benefitRate (อัตราการจ่ายผลประโยชน์ให้ฝ่ายขาย)
+    ...    - benefitRate = default "0"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE \ a.benefitrate = '0' OR a.benefitrate = '';
+    EDM_Compare Result    @{Result[0]}    0    BenefitRate_Default
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0050_ContactAddressID_Length
+    [Documentation]    ตรวจสอบข้อมูล contactAddressID (เลขอ้างอิงที่อยู่ที่ติดต่อสะดวกของผู้เอาประกัน)
+    ...    - contactAddressID = confirm ว่า map จากไหน และตรวจยังไง
+    ...
+    ...    [20180216] ทาง TLI จะทำการ map column นี้เอง
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a \ JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE length(a.contactaddressid) > 10 OR a.contactaddressid = '';
+    EDM_Compare Result    @{Result[0]}    0    ContactAddressID
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0051_ContactStartDate_Formatting
+    [Documentation]    ตรวจสอบข้อมูล contactStartDate
+    ...    - contactStartDate = tlp.PolicyMaster.EffectiveDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno WHERE (to_number(substring(a.contactstartdate,1,4),'9999') NOT BETWEEN 0000 AND 3000) OR \ (to_number(substring(a.contactstartdate,4,5),'99') NOT BETWEEN 01 AND 12) OR (to_number(substring(a.contactstartdate,6,7),'99') NOT BETWEEN 01 AND 31)
+    EDM_Compare Result    @{Result[0]}    0    contactStartDate formatting
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0052_ContactStartDate_ValueFromPolicyMaster
+    [Documentation]    ตรวจสอบข้อมูล contactStartDate
+    ...    - contactStartDate = tlp.PolicyMaster.EffectiveDate
+    ...    Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE a.contactstartdate <> c.effectivedate
+    EDM_Compare Result    @{Result[0]}    0    contactStartDate incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0053_LocalAddressID_Default&Null
+    [Documentation]    ตรวจสอบข้อมูล localAddressID (เลขอ้างอิงที่อยู่ตามภูมิลำเนาของผู้เอาประกัน)
+    ...    - localAddressID = default "0000000000"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE a.localaddressid <> '0000000000' OR a.localaddressid = ''
+    EDM_Compare Result    @{Result[0]}    0    LocalAddressID incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0054_Invalid_Default&Null
+    [Documentation]    ตรวจสอบข้อมูล invalid
+    ...    - invalid = default "N"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE a.invalid <> 'N' OR a.invalid = ''
+    EDM_Compare Result    @{Result[0]}    0    Invalid incorrect
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0055_SalesChannel_S
+    [Documentation]    ตรวจสอบข้อมูล salesChannel
+    ...    กรณีที่1: tlp.PolicyMaster.PolicyNo หลักที่ 6 ของ policyno เท่ากับ "1"
+    ...    - salesChannel = "S"
+    ...
+    ...    กรณีที่2: tlp.PolicyMaster.PolicyNo หลักที่ 6 ของ policyno ไม่เท่ากับ "1"
+    ...    - salesChannel = blank
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE to_number(substring(c.policyno,6,1),'9') = 1 AND a.saleschannel <> 'S';
+    EDM_Compare Result    @{Result[0]}    0    Sale Channel S
+
+EDM4_GuyLady_SIT_TLI_OrdMast_0003_0056_SalesChannel_Blank
+    [Documentation]    ตรวจสอบข้อมูล salesChannel
+    ...    กรณีที่1: tlp.PolicyMaster.PolicyNo หลักที่ 6 ของ policyno เท่ากับ "1"
+    ...    - salesChannel = "S"
+    ...
+    ...    กรณีที่2: tlp.PolicyMaster.PolicyNo หลักที่ 6 ของ policyno ไม่เท่ากับ "1"
+    ...    - salesChannel = blank
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.ordmast a JOIN dm.tlpmigration b ON a.policyno = b.tlipolicyno JOIN tlp.policymaster c ON b.tlppolicyno = c.policyno WHERE to_number(substring(c.policyno,6,1),'9') <> 1 AND a.saleschannel <> '';
+    EDM_Compare Result    @{Result[0]}    0    Sale Channel S

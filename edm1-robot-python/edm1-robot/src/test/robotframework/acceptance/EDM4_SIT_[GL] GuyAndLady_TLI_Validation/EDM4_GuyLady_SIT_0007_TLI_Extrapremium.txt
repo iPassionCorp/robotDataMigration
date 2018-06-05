@@ -1,0 +1,96 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0001_Validate PolicyNo
+    [Documentation]    ตรวจสอบข้อมูล policyNo (เลขกรมธรรม์)
+    ...    - policyNo \ = TLI จะทำการ mapping เป็นเลข running ของ TLI เอง
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM tlitext.ordmast a WHERE length(a.policyno) > 8;
+    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0002_Validate ExtraType
+    [Documentation]    ตรวจสอบข้อมูล policyNo (เลขกรมธรรม์)
+    ...    - policyNo \ = TLI จะทำการ mapping เป็นเลข running ของ TLI เอง
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM tlitext.ordmast a WHERE length(a.extratype) > 3;
+    EDM_Compare Result    @{Result[0]}    0    extratype
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0003_Validate StartYear
+    [Documentation]    ตรวจสอบข้อมูล startYear (ปีที่เริ่มเรียกเก็บ)
+    ...    - startYear = default "01"
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.startyear <> '01';
+    EDM_Compare Result    @{Result[0]}    0    StartYear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0004_Validate NoOfYear
+    [Documentation]    ตรวจสอบข้อมูล noOfYear (จำนวนปีที่เรียกเก็บ)
+    ...    - noOfYear = tlp.PolicyMaster.PayPeriod
+    ...    - [Format : '05', '07' (2 digits)]
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.noofyear NOT IN ('05', '07');
+    EDM_Compare Result    @{Result[0]}    0    NoOfYear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate
+    [Documentation]    ตรวจสอบข้อมูล startDate (วันเริ่มมีผล)
+    ...    - startDate = tlp.PolicyMaster.EffectiveDate
+    ...
+    ...    - Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.startdate <> c.payperiod
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0006_Validate_ExtraPremium
+    [Documentation]    ตรวจสอบข้อมูล extraPremium (เบี้ยเพิ่มพิเศษ)
+    ...    - extraPremium = tlp.PolicyMaster.PremExta
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.premexta
+    EDM_Compare Result    @{Result[0]}    0    ExtraPremium
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate Mode
+    [Documentation]    ตรวจสอบข้อมูล mode (วิธีการชำระเบี้ยเมื่อเริ่มทำประกัน)
+    ...    - mode = tlp.PolicyMaster.Mode
+    ...    - GuyLady มีแค่ 0,1
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.mode NOT IN ('0','1');
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate
+    [Documentation]    ตรวจสอบข้อมูล emRate (เป็นจำนวนเท่า ยกเว้น ชว.และฉพ. เป็นจำนวนค่าของ %EM)
+    ...    - emRate = tlp.PolicyMaster.ExtraRate
+    ...
+    ...
+    ...    [20180224] ทาง TLP มีการเก็บข้อมูลเป็น 50 หรือ 75 แต่เพื่อความถูกต้อง ทาง TLP จะไปตรวจสอบ field นี้อีกครั้งว่ามีการเก็บนอกเหนือจาก % หรือไม่
+    ...    [TLP20180220] ตัวอย่างข้อมูล 38.86, 33.39, 18.18, 16.49, 13.87
+    ...    [20180224พี่ซ่า] ทาง TLP \ มีตาราง EPRate หรือไม่ และแบบประกันนี้ของทาง TLP charge extra rate เหรอคะ ]
+    ...    [20180314] รบกวนพี่ TLP ตรวจสอบให้หน่อยนะคะ
+    ...    [TLP20180328] มีตาราง extrapremium ตัวอย่างข้อมูล
+    ...    - ex_plancode = EN1507PI5
+    ...    - ex_emrate = 25
+    ...    - ex_sex = M
+    ...    - ex_age = 0
+    ...    - ex_value = 0.46
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.extraRate
+    EDM_Compare Result    @{Result[0]}    0    EmRate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0009_Validate EPformEM
+    [Documentation]    ตรวจสอบข้อมูล epFromEM (ค่า EP ที่คำนวนจาก EM rate)
+    ...    - epFromEM = confirm
+    ...
+    ...    - [20180224] เดี๋ยวพี่ตรองจะไปตรวจสอบลักษณะการเก็บข้อมูลของ field นี้อีกครั้งหนึ่ง
+    ...    - [20180224 พี่ซ่า] ค่านี้เป็นค่าที่คำนวณมาได้จาก EM ที่เป็น % จาก Table เพื่อเอาไปคำนวณต่อทุนประกัน
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    EPformEM
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0010_Validate EPUnderWRT
+    [Documentation]    ตรวจสอบข้อมูล epUnderwrt (ค่า EP ที่underwrite คิดเอง)
+    ...    - epUnderwrt = confirm
+    ...    - [20180224] เดี๋ยวพี่ตรองจะไปตรวจสอบลักษณะการเก็บข้อมูลของ field นี้อีกครั้งหนึ่ง
+    ...    - [20180224 พี่ซ่า] ค่านี้เป็นค่าที่ีทาง UNW charge เบี้ยเพิ่มเพื่ยงระยะเวลาหนึ่งเท่านั้น จะคิดต่อทุนประกัน 1000
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    EPUnderWRT
