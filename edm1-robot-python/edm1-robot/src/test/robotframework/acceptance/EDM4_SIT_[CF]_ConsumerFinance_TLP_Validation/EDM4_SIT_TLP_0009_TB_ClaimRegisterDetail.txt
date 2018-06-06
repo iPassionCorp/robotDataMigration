@@ -26,7 +26,7 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0004_Validate RegDtlRegisterDate_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0005_Validate ClaimTypeSeq_CheckType
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq \ not in \ ('1','3','S','2','4','40','10','11','5','6','21','47','49','45','46','48','32','31')
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq \ not in \ ('3' ,'S ','1', '46', '48', '32 ','31', '2','4','40', '10','11', '5','6' ,'21', '47','49')
     EDM_Compare Result    @{Result[0]}    0    ClaimTypeSeq
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0006_Validate ClaimTypeSeq_NotNull
@@ -226,12 +226,12 @@ EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlClaimExpense_not
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimStatus_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus not in ('Deny','0','1','Closed','Void','Paid','Pending')
+    @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus not in ('Deny','0','1','Closed','Void','Paid','Pending','Register','')
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_notBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimStatus= '' or a.RegDtlClaimStatus= 'blank'
+    @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ \ \ JOIN tlp.claimregisterheader b ON a.regdtlseq = b.registerseq where (a.RegDtlClaimStatus= '' or a.RegDtlClaimStatus= 'blank') AND b.regcustomerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus);
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
 EDM4_CF_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimRemark_notBlank
