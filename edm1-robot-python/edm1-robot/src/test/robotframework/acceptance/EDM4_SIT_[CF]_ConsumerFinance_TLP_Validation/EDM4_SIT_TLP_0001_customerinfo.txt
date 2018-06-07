@@ -15,7 +15,7 @@ EDM4_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
     [Documentation]    2.set CertificateNo โดยเช็คว่า \ \ เป็นว่าง ให้ write error
     ...    - Case: Set CertificateNo ตรวจสอบค่าว่าง
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and a.certificateno = '' or a.certificateno = 'blank';
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and a.certificateno = '' or a.certificateno = 'blank' and a.policy not in ('00026009','00026010')
     EDM_Compare Result    @{Result[0]}    0    CertificateNo
 
 EDM4_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
@@ -77,16 +77,6 @@ EDM4_SIT_TLP_customerinfo_0001_0014_Validate Relationship4_notNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and a.nameofbenefit4 <> '' \ and a.relationship4 = '' or a.relationship4 in ('NULL', 'Null', 'null')
     EDM_Compare Result    @{Result[0]}    0    Relationship4
-
-EDM4_SIT_TLP_customerinfo_0001_0015_Validate Address1
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and \ length (trim(a.address1)) = 0 and length (trim(a.addressoffice1)) = 0
-    EDM_Compare Result    @{Result[0]}    0    Address1
-
-EDM4_SIT_TLP_customerinfo_0001_0016_Validate Address2
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length (trim(a.address2)) = 0 and length (trim(a.addressoffice2)) = 0
-    EDM_Compare Result    @{Result[0]}    0    Address2
 
 EDM4_SIT_TLP_customerinfo_0001_0017_Validate HomeTel_length
     EDM_Connect_DB
@@ -520,17 +510,17 @@ EDM_SIT_TLP_customerinfo_0001_0099_Validate LastReceiptNo_NotNull
 
 EDM_SIT_TLP_customerinfo_0001_0100_Validate Address1_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address1 ='' or address1 ='blank' or address1 is null
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address1 is null
     EDM_Compare Result    @{Result[0]}    0    address1
 
 EDM_SIT_TLP_customerinfo_0001_0101_Validate Address2_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address2 ='' or address2 ='blank' or address2 is null
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and address2 is null
     EDM_Compare Result    @{Result[0]}    0    address2
 
 EDM_SIT_TLP_customerinfo_0001_0102_Validate HomeTel_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and hometel ='' or hometel ='blank' or hometel is null
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ and hometel is null
     EDM_Compare Result    @{Result[0]}    0    hometel
 
 EDM_SIT_TLP_customerinfo_0001_0103_Validate Mode_NotBlank
