@@ -487,8 +487,10 @@ EDM_SIT_TLP_customerinfo_0001_0093_Validate DurationInsurance_NotBlank
     EDM_Compare Result    @{Result[0]}    0    durationinsurance
 
 EDM_SIT_TLP_customerinfo_0001_0094_Validate CustomerDuration_NotBlank
+    [Documentation]    set CustomerDuration โดยเช็คว่าถ้า PolicyNo. เป็น ppi จะสามารถมีค่าว่างได้
+    ...    - Case: Set CustomerDuration หาข้อมูลไม่เป็น PPI แล้วมีค่าว่าง หากพบ Wirte Error
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and customerduration ='' or customerduration ='blank'
+    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ \ \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) AND \ \ (customerduration = '' or customerduration ='blank') AND \ a.policyno NOT IN ('00600100', '00600800', '00601100', '00601200', '00601300', '00601301', '00601400', '00601500', '00601501', '00601600', '00601700', '00601701', '00601800', '00601801', '00601900', '00602000', '00602100', '00602101') --PPI_Policyno
     EDM_Compare Result    @{Result[0]}    0    customerduration
 
 EDM_SIT_TLP_customerinfo_0001_0095_Validate ExtraRate_NotBlank
