@@ -608,3 +608,23 @@ EDM4_SIT_[CF]_0005_0121_Validate OldStatCertDate2_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.oldstatcert2 = '' or a.oldstatcert2 = 'blank' or a.oldstatcert2 is null
     EDM_Compare Result    @{Result[0]}    0    oldStatCertDate2
+
+EDM4_SIT_[CF]_0005_0122_Validate Package_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where length(a.package) <> 2 and a.package !=''
+    EDM_Compare Result    @{Result[0]}    0    package
+
+EDM4_SIT_[CF]_0005_0123_Validate Package_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.package = '' or a.package = 'blank' or a.package is null
+    EDM_Compare Result    @{Result[0]}    0    package
+
+EDM4_SIT_[CF]_0005_0124_Validate DueDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where (to_number(SUBSTRING(a.duedate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.duedate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.duedate,7,2),'99') not between 1 and 31) and a.duedate !=''
+    EDM_Compare Result    @{Result[0]}    0    duedate
+
+EDM4_SIT_[CF]_0005_0125_Validate DueDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.duedate = '' or a.duedate = 'blank' or a.duedate is null
+    EDM_Compare Result    @{Result[0]}    0    duedate
