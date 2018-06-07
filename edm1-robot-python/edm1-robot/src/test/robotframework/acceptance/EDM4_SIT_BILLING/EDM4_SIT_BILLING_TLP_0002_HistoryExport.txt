@@ -133,7 +133,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0017_Validate Status_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0018_Validate ReturnDate_Default
     [Documentation]    Validate ReturnDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where (to_number(SUBSTRING(a.returndate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.returndate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.returndate,7,2),'99') not between 1 and 31 \ or length(a.returndate) <> 8 or a.returndate = '00000000' ) and a.returndate <> ''    #invalid input syntax for type numeric: " " (Script ผิด)
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ \ where \ returndate not between '0000-00-00' and '3000-12-31' \ and returndate != '00000000'    #invalid input syntax for type numeric: " " (Script ผิด)
     EDM_Compare Result    @{Result[0]}    0    returndate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0019_Validate ReturnDate_NotNull
@@ -230,7 +230,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
     [Documentation]    Validate exfileOut_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (a.status = 'W') and a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (a.status = 'W') and (a.exfileout = '' or a.exfileout= 'blank' or a.exfileout is null ) and a.returndate = '0' and a.attempttime = '0'    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfileout
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
@@ -242,11 +242,11 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
     [Documentation]    Validate exfileReturn_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from tlpbilling.historyexport a \ where (a.status = 'W') and a.exfilereturn = '' \ or a.exfilereturn= 'blank' or a.exfilereturn is null;    #อาจจะต้องเพิ่ม Condition Status = Waiting
+    @{Result}    Query    select count(*) from tlpbilling.historyexport a \ \ where (a.status = 'W') and (a.exfilereturn = '' or a.exfilereturn= 'blank' or a.exfilereturn is null) and a.returndate = '0' and a.attempttime = '0'    #อาจจะต้องเพิ่ม Condition Status = Waiting
     EDM_Compare Result    @{Result[0]}    0    exfilereturn
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0034_Validate CheckReturenDate&Attemptime
     [Documentation]    Validate CheckReturenDate&Attemptime
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ where (returndate = '0' and attempttime <> '0') or (returndate = '' and attempttime <> '') or (returndate <> '' and attempttime = '') or (returndate <> '' and attempttime = '0');
+    @{Result}    Query    select count(0) \ \ from tlpbilling.historyexport a \ where (returndate = '00000000' and attempttime <> '0') and \ (returndate = '' or attempttime = '')
     EDM_Compare Result    @{Result[0]}    0    CheckReturenDate&Attemptime

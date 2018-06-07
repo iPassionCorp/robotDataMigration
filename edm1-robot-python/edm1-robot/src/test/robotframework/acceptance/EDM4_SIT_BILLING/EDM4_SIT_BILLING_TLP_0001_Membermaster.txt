@@ -54,7 +54,7 @@ EDM4_SIT_BILLING_TLP_MemberMaster_0001_0004_Validate CertificateNo_Length
     ...
     ...    หมายเหตุ: โดยจะมี Table Mapping ของ TLP Cert. และ TLI Cert. ที่ Table certmapping เพื่อเชื่อมข้อมูลกับ field นี้"
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlpbilling.membermaster a \ where length(a.CertificateNo) <> 15
+    @{Result}    Query    select count(0) \ \ from tlpbilling.membermaster a \ where length(a.CertificateNo) > 18
     EDM_Compare Result    @{Result[0]}    0    CertificateNo
 
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0005_Validate CardNo_NotBlank
