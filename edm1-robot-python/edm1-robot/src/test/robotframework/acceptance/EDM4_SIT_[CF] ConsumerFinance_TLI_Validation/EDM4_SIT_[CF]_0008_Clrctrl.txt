@@ -1,0 +1,285 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_[CF]_0008_0001_Validate Rpno_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a \ \ inner join dm.cert b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno inner join tlp.payment e on e.policyno = d.policyno \ \ where length(a.rpno) > 12 and a.rpno != ''
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM4_SIT_[CF]_0008_0002_Validate Rpno_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a \ inner join dm.cert b on a.policyno = b.policyno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode \ where a.rpno = '' or a.rpno = 'blank' or a.rpno is null
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM4_SIT_[CF]_0008_0003_Validate Rpno_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.rpno from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.receiptno from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM4_SIT_[CF]_0008_0004_Validate Rpno_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.receiptno from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.rpno from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM4_SIT_[CF]_0008_0005_Validate Policyno_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.policyno) <> 4 and a.policyno!= ''
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_SIT_[CF]_0008_0006_Validate Policyno_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.policyno = '' or a.policyno = 'blank' or a.policyno is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_SIT_[CF]_0008_0007_Validate CertNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.certno) <> 8 and a.certno!= ''
+    EDM_Compare Result    @{Result[0]}    0    certno
+
+EDM4_SIT_[CF]_0008_0008_Validate CertNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.certno = '' or a.certno = 'blank' or a.certno is null
+    EDM_Compare Result    @{Result[0]}    0    certno
+
+EDM4_SIT_[CF]_0008_0009_Validate EffectiveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where (to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31) and a.effectivedate !=''
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM4_SIT_[CF]_0008_0010_Validate EffectiveDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.effectivedate = '' or a.effectivedate = 'blank' or a.effectivedate is null
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM4_SIT_[CF]_0008_0011_Validate EffectiveDate_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.effectivedate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM4_SIT_[CF]_0008_0011_Validate EffectiveDate_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.effectivedate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    effectivedate
+
+EDM4_SIT_[CF]_0008_0012_Validate PayPeriod_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where length(a.payPeriod) <> 4 and a.payPeriod != ''
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_[CF]_0008_0013_Validate PayPeriod_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.payPeriod = '' or a.payPeriod = 'blank' or a.payPeriod is null
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_[CF]_0008_0014_Validate PayPeriod_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.payPeriod from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.payperiod from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_[CF]_0008_0015_Validate PayPeriod_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.payperiod from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.payPeriod from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_[CF]_0008_0016_Validate PayDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where (to_number(SUBSTRING(a.payDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.payDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.payDate,7,2),'99') not between 1 and 31) and a.payDate !=''
+    EDM_Compare Result    @{Result[0]}    0    payDate
+
+EDM4_SIT_[CF]_0008_0017_Validate PayDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.payDate = '' or a.payDate = 'blank' or a.payDate is null
+    EDM_Compare Result    @{Result[0]}    0    payDate
+
+EDM4_SIT_[CF]_0008_0018_Validate PayDate_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.paymentdate from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.payDate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    payDate
+
+EDM4_SIT_[CF]_0008_0019_Validate PayDate_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.payDate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.paymentdate from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    payDate
+
+EDM4_SIT_[CF]_0008_0020_Validate Premium_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where length(a.premium) > 12 and a.premium != ''
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_[CF]_0008_0021_Validate Premium_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.premium = '' or a.premium = 'blank' or a.premium is null
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_[CF]_0008_0022_Validate Premium_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.premium from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.PremiumAmt from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_[CF]_0008_0023_Validate Premium_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.PremiumAmt from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.premium from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_[CF]_0008_0024_Validate ExtraPrem_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.extraPrem) > 8 and a.extraPrem!= ''
+    EDM_Compare Result    @{Result[0]}    0    extraPrem
+
+EDM4_SIT_[CF]_0008_0025_Validate ExtraPrem_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.extraPrem = '' or a.extraPrem = 'blank' or a.extraPrem is null
+    EDM_Compare Result    @{Result[0]}    0    extraPrem
+
+EDM4_SIT_[CF]_0008_0026_Validate SysDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where (to_number(SUBSTRING(a.sysDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.sysDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.sysDate,7,2),'99') not between 1 and 31) and a.sysDate !=''
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_[CF]_0008_0027_Validate SysDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.sysDate = '' or a.sysDate = 'blank' or a.sysDate is null
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_[CF]_0008_0028_Validate SysDate_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.sysDate from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.sysDate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_[CF]_0008_0029_Validate SysDate_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.sysDate from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.sysDate from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_[CF]_0008_0030_Validate CurrentStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where (length(a.CurrentStatus) <> 1 and a.CurrentStatus!= '') or a.currentstatus != 'P'
+    EDM_Compare Result    @{Result[0]}    0    CurrentStatus
+
+EDM4_SIT_[CF]_0008_0031_Validate CurrentStatus_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.CurrentStatus = '' or a.CurrentStatus = 'blank' or a.CurrentStatus is null
+    EDM_Compare Result    @{Result[0]}    0    CurrentStatus
+
+EDM4_SIT_[CF]_0008_0032_Validate OriginalStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where (length(a.OriginalStatus) <> 1 and a.OriginalStatus!= '' ) or a.originalstatus != 'N'
+    EDM_Compare Result    @{Result[0]}    0    OriginalStatus
+
+EDM4_SIT_[CF]_0008_0033_Validate OriginalStatus_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.OriginalStatus = '' or a.OriginalStatus = 'blank' or a.OriginalStatus is null
+    EDM_Compare Result    @{Result[0]}    0    OriginalStatus
+
+EDM4_SIT_[CF]_0008_0034_Validate Mode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where length(a.Mode) M< 1 and a.Mode != ''
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_SIT_[CF]_0008_0035_Validate Mode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.payment d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.Mode = '' or a.Mode = 'blank' or a.Mode is null
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_SIT_[CF]_0008_0036_Validate Mode_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select a.policyno,a.Mode from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno except all select d.policyno,d.mode from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_SIT_[CF]_0008_0037_Validate Mode_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from ( select d.policyno,d.mode from tlp.payment d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.Mode from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_SIT_[CF]_0008_0038_Validate Time_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where (length(a.Time) <> 1 and a.Time!= '') or a.time != '1'
+    EDM_Compare Result    @{Result[0]}    0    Time
+
+EDM4_SIT_[CF]_0008_0039_Validate Time_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.Time = '' or a.Time = 'blank' or a.Time is null
+    EDM_Compare Result    @{Result[0]}    0    Time
+
+EDM4_SIT_[CF]_0008_0040_Validate RequestDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno where (to_number(SUBSTRING(a.RequestDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.RequestDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.RequestDate,7,2),'99') not between 1 and 31) and a.RequestDate!=''
+    EDM_Compare Result    @{Result[0]}    0    RequestDate
+
+EDM4_SIT_[CF]_0008_0041_Validate RequestDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno where a.RequestDate= '' or a.RequestDate= 'blank' or a.RequestDateis null
+    EDM_Compare Result    @{Result[0]}    0    RequestDate
+
+EDM4_SIT_[CF]_0008_0042_Validate SubmitNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.SubmitNo) > 12 and a.SubmitNo!= ''
+    EDM_Compare Result    @{Result[0]}    0    SubmitNo
+
+EDM4_SIT_[CF]_0008_0043_Validate SubmitNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.SubmitNo = '' or a.SubmitNo = 'blank' or a.SubmitNo is null
+    EDM_Compare Result    @{Result[0]}    0    SubmitNo
+
+EDM4_SIT_[CF]_0008_0044_Validate GracePeriod_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where (length(a.GracePeriod) <> 1 and a.GracePeriod!= '') or a.graceperiod != 'P'
+    EDM_Compare Result    @{Result[0]}    0    GracePeriod
+
+EDM4_SIT_[CF]_0008_0045_Validate GracePeriod_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.GracePeriod = '' or a.GracePeriod = 'blank' or a.GracePeriod is null
+    EDM_Compare Result    @{Result[0]}    0    GracePeriod
+
+EDM4_SIT_[CF]_0008_0046_Validate PrintedDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno where (to_number(SUBSTRING(a.PrintedDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.PrintedDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.PrintedDate,7,2),'99') not between 1 and 31) and a.PrintedDate!=''
+    EDM_Compare Result    @{Result[0]}    0    PrintedDate
+
+EDM4_SIT_[CF]_0008_0047_Validate PrintedDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno where a.PrintedDate= '' or a.PrintedDate= 'blank' or a.PrintedDateis null
+    EDM_Compare Result    @{Result[0]}    0    PrintedDate
+
+EDM4_SIT_[CF]_0008_0048_Validate SubmitBranch_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.SubmitBranch) > 3 and a.SubmitBranch!= ''
+    EDM_Compare Result    @{Result[0]}    0    SubmitBranch
+
+EDM4_SIT_[CF]_0008_0049_Validate SubmitBranch_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.SubmitBranch = '' or a.SubmitBranch = 'blank' or a.SubmitBranch is null
+    EDM_Compare Result    @{Result[0]}    0    SubmitBranch
+
+EDM4_SIT_[CF]_0008_0050_Validate UserID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.UserID) <> 7 and a.UserID!= ''
+    EDM_Compare Result    @{Result[0]}    0    UserID
+
+EDM4_SIT_[CF]_0008_0051_Validate UserID_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.UserID = '' or a.UserID = 'blank' or a.UserID is null
+    EDM_Compare Result    @{Result[0]}    0    UserID
+
+EDM4_SIT_[CF]_0008_0052_Validate ReasonCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where length(a.ReasonCode) <> 2 and a.ReasonCode!= ''
+    EDM_Compare Result    @{Result[0]}    0    ReasonCode
+
+EDM4_SIT_[CF]_0008_0053_Validate ReasonCode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.ReasonCode = '' or a.ReasonCode = 'blank' or a.ReasonCode is null
+    EDM_Compare Result    @{Result[0]}    0    ReasonCode
+
+EDM4_SIT_[CF]_0008_0054_Validate MoneyOK_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where (length(a.MoneyOK) <> 2 and a.MoneyOK!= '') or a.moneyok != 'Y'
+    EDM_Compare Result    @{Result[0]}    0    MoneyOK
+
+EDM4_SIT_[CF]_0008_0055_Validate MoneyOK_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrctrl a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ where a.MoneyOK = '' or a.MoneyOK = 'blank' or a.MoneyOK is null
+    EDM_Compare Result    @{Result[0]}    0    MoneyOK
