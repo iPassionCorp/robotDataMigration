@@ -34,14 +34,14 @@ EDM4_SIT_[CF]_0003_0006_Validate preName_length
     @{Result}    Query    select count(0) from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where length(a.preName) > 30;
     EDM_Compare Result    @{Result[0]}    0    preName
 
-EDM4_SIT_[CF]_0003_0007_Validate preNameMapping
+EDM4_SIT_[CF]_0003_0007_Validate preNameMappingTarget
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${preName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.Prename from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where a.Prename <> d.Prefix \ except all \ select d.policyno,d.Prefix from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    ${preName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.Prename from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname\ except all \ select d.policyno,d.Prefix from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     ${preName}=    Convert To String    ${preName}
     Should Be Equal    ${preName}    None
 
@@ -50,14 +50,14 @@ EDM4_SIT_[CF]_0003_0008_Validate firstName_length
     @{Result}    Query    select count(0) from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname \ where length(a.firstName) > 30;
     EDM_Compare Result    @{Result[0]}    0    firstName
 
-EDM4_SIT_[CF]_0003_0009_Validate firstNameMapping
+EDM4_SIT_[CF]_0003_0009_Validate firstNameMappingTarget
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${firstName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.firstName from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where a.firstName <> d.NameTH \ except all \ select d.policyno,d.NameTH from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    ${firstName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.firstName from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname \ and d.surnameth = a.lastname \ except all \ \ select d.policyno,d.NameTH from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     ${firstName}=    Convert To String    ${firstName}
     Should Be Equal    ${firstName}    None
 
@@ -66,18 +66,18 @@ EDM4_SIT_[CF]_0003_0010_Validate lastName_length
     @{Result}    Query    select count(0) from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname \ where length(a.lastName) > 30;
     EDM_Compare Result    @{Result[0]}    0    lastName
 
-EDM4_SIT_[CF]_0003_0011_Validate lastNameMapping
+EDM4_SIT_[CF]_0003_0011_Validate lastNameMappingTarget
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${lastName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.lastName from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where a.lastName <> d.surnameth \ except all \ select d.policyno,d.surnameth from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    ${lastName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.lastName from dm.name a \ \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.nameth = a.firstname \ and d.surnameth = a.lastname \ except all \ select d.policyno,d.surnameth from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     ${lastName}=    Convert To String    ${lastName}
     Should Be Equal    ${lastName}    None
 
-EDM4_SIT_[CF]_0003_0012_Validate startDateMapping
+EDM4_SIT_[CF]_0003_0012_Validate startDateMappingTarget
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
     ...    - amount2 = tlp.CustomerInfo.amount2
     ...
@@ -85,7 +85,7 @@ EDM4_SIT_[CF]_0003_0012_Validate startDateMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM_Connect_DB
-    @{startDate }=    query    select count(0) from (select a.nameid,a.startdate from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where a.startdate <> d.EffectiveDate \ except all \ select d.policyno,d.EffectiveDate from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    @{startDate }=    query    select count(0) from (select a.nameid,a.startdate from dm.name a \ \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.nameth = a.firstname \ and d.surnameth = a.lastname \ \ except all \ select d.policyno,d.EffectiveDate from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     EDM_Compare Result    @{startDate [0]}    0    startDate
 
 EDM4_SIT_[CF]_0003_0013_Validate startDate_NotNull&NotBlank
@@ -112,3 +112,47 @@ EDM4_SIT_[CF]_0003_0017_Validate lastName_NotNull&NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname and d.surnameth = a.lastname where a.lastName= '' or a.lastName in ('NULL', 'Null', 'null') \ or a.lastName= '' or a.lastName= 'blank';
     EDM_Compare Result    @{Result[0]}    0    lastName
+
+EDM4_SIT_[CF]_0003_0018_Validate preNameMappingSource
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${preName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select d.policyno,d.Prefix from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno except all \ select a.nameid,a.Prename from dm.name a \ \ inner join dm.cert b on a.nameid = b.nameid \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.nameth = a.firstname \ and d.surnameth = a.lastname ) tmp
+    ${preName}=    Convert To String    ${preName}
+    Should Be Equal    ${preName}    None
+
+EDM4_SIT_[CF]_0003_0019_Validate firstNameMappingSource
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${firstName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select d.policyno,d.NameTH from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno except all \ \ select a.nameid,a.firstName from dm.name a \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ and d.nameth = a.firstname \ and d.surnameth = a.lastname ) tmp
+    ${firstName}=    Convert To String    ${firstName}
+    Should Be Equal    ${firstName}    None
+
+EDM4_SIT_[CF]_0003_0020_Validate lastNameMappingSource
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${lastName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select d.policyno,d.surnameth from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno except all \ select a.nameid,a.lastName from dm.name a \ \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.nameth = a.firstname \ and d.surnameth = a.lastname ) tmp
+    ${lastName}=    Convert To String    ${lastName}
+    Should Be Equal    ${lastName}    None
+
+EDM4_SIT_[CF]_0003_0021_Validate startDateMappingSource
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{startDate }=    query    select count(0) from (select d.policyno,d.EffectiveDate from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno except all \ select a.nameid,a.startdate from dm.name a \ \ inner join dm.cert b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.nameth = a.firstname \ and d.surnameth = a.lastname ) tmp
+    EDM_Compare Result    @{startDate [0]}    0    startDate

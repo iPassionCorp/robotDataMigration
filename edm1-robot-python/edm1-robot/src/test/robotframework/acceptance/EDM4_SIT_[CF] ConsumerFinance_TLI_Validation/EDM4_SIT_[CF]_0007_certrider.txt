@@ -29,9 +29,9 @@ EDM4_SIT_[CF]_0007_0005_Validate Certno_NotNull&NotBlank
     @{Result}    Query    select count(0) from dm.certrider a \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ and c.customercode = b.certno \ \ where a.certno = '' or a.certno = 'blank' or a.certno is null
     EDM_Compare Result    @{Result[0]}    0    certno
 
-EDM4_SIT_[CF]_0007_0006_Validate Certno_Mapping
+EDM4_SIT_[CF]_0007_0006_Validate Certno_MappingTarget
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.certno from dm.certrider a \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ and c.customercode = b.certno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.CertificateNo = a.certno \ where a.certno <> d.CertificateNo \ except all \ \ select d.policyno,d.CertificateNo from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from (select a.policyno,a.certno from dm.certrider a \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ and c.customercode = b.certno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.CertificateNo = a.certno \ \ except all \ \ select d.policyno,d.CertificateNo from tlp.customerinfo d \ join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    certno
 
 EDM4_SIT_[CF]_0007_0007_Validate riderType_length
@@ -360,3 +360,8 @@ EDM4_SIT_[CF]_0007_0038_Validate effectiveDate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.certrider a \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ and c.customercode = b.certno \ \ where a.effectiveDate = '' or a.effectiveDate = 'blank' or a.effectiveDate is null
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
+
+EDM4_SIT_[CF]_0007_0039_Validate Certno_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select d.policyno,d.CertificateNo from tlp.customerinfo d \ \ join dm.tlpmigration e on d.policyno = e.tlppolicyno except all \ \ \ select a.policyno,a.certno from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ and c.customercode = b.certno \ \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ \ and d.CertificateNo = a.certno) tmp
+    EDM_Compare Result    @{Result[0]}    0    certno

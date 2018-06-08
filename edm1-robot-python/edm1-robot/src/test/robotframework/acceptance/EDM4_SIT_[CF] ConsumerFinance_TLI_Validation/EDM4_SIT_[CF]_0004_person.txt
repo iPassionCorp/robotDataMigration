@@ -25,14 +25,14 @@ EDM4_SIT_[CF]_0004_0004_Validate referenceID_length
     @{referenceID}=    query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.birthdate = a.birthdate \ \ and e.nationid = a.referenceid where \ length(a.referenceID) <> 13
     EDM_Compare Result    @{referenceID[0]}    0    referenceID
 
-EDM4_SIT_[CF]_0004_0005_Validate referenceIDMapping
+EDM4_SIT_[CF]_0004_0005_Validate referenceIDMappingTarget
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
     ...    - certNo = Auto Generate by TLI
     ...
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${referenceID}=    DatabaseLibrary.Execute Sql String    select count(*) \ from (select a.personid,referenceID from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.birthdate = a.birthdate \ \ and e.nationid = a.referenceid where a.referenceID <> e.nationid except all \ select e.policyno,e.nationid from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    ${referenceID}=    DatabaseLibrary.Execute Sql String    select count(*) \ from (select a.personid,referenceID from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.birthdate = a.birthdate \ \ \ and e.nationid = a.referenceid \ except all \ \ select e.policyno,e.nationid from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     ${referenceID}=    Convert To String    ${referenceID}
     Should Be Equal    ${referenceID}    None
 
@@ -51,7 +51,7 @@ EDM4_SIT_[CF]_0004_0008_Validate referenceType_Type
     @{Result}    Query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ where a.referenceType not in ('01','02','03','04','05','06','07','08','09','10','11','12','13','14');
     EDM_Compare Result    @{Result[0]}    0    referenceType
 
-EDM4_SIT_[CF]_0004_0009_Validate birthDateMapping
+EDM4_SIT_[CF]_0004_0009_Validate birthDateMappingTarget
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
     ...    - amount2 = tlp.CustomerInfo.amount2
     ...
@@ -59,7 +59,7 @@ EDM4_SIT_[CF]_0004_0009_Validate birthDateMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM_Connect_DB
-    @{birthDate}=    query    select count(*) \ from (select a.personid,a.birthDate from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.gender = a.sex \ \ and e.nationid = a.referenceid \ \ where a.birthdate \ <> \ e.birthdate \ except all select e.policyno,e.BirthDate from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{birthDate}=    query    select count(*) \ from (select a.personid,a.birthDate from dm.person a \ \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ \ and e.gender = a.sex \ \ \ and e.nationid = a.referenceid \ \ except all \ select e.policyno,e.BirthDate from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     EDM_Compare Result    @{birthDate [0]}    0    birthDate
 
 EDM4_SIT_[CF]_0004_0010_Validate birthDate_NotNull&NotBlank
@@ -87,7 +87,7 @@ EDM4_SIT_[CF]_0004_0014_Validate sex_Type
     @{Result}    Query    select count(*) \ \ from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.gender = a.sex \ \ and e.nationid = a.referenceid \ \ \ \ where a.sex not in ('F','M');
     EDM_Compare Result    @{Result[0]}    0    sex
 
-EDM4_SIT_[CF]_0004_0015_Validate sexMapping
+EDM4_SIT_[CF]_0004_0015_Validate sexMappingTarget
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
     ...    - amount2 = tlp.CustomerInfo.amount2
     ...
@@ -95,7 +95,7 @@ EDM4_SIT_[CF]_0004_0015_Validate sexMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM_Connect_DB
-    @{birthDate}=    query    select count(*) from (select a.personid,a.sex from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.gender = a.sex \ \ and e.nationid = a.referenceid \ where a.sex \ <> \ e.gender except all select e.policyno,e.gender from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{birthDate}=    query    select count(*) from (select a.personid,a.sex from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.gender = a.sex \ \ and e.nationid = a.referenceid \ \ except all select e.policyno,e.gender from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     EDM_Compare Result    @{birthDate [0]}    0    sex
 
 EDM4_SIT_[CF]_0004_0016_Validate customerID_length
@@ -117,3 +117,36 @@ EDM4_SIT_[CF]_0004_0019_Validate reserve_length
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from dm.person a \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ where length(a.reserve) > 6;
     EDM_Compare Result    @{Result[0]}    0    reserve
+
+EDM4_SIT_[CF]_0004_0020_Validate referenceIDMappingSource
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
+    ...    - certNo = Auto Generate by TLI
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count(*) = No row return
+    EDM_Connect_DB
+    ${referenceID}=    DatabaseLibrary.Execute Sql String    select count(*) \ from (select e.policyno,e.nationid from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno except all \ \ select a.personid,referenceID from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno \ and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.birthdate = a.birthdate \ \ \ and e.nationid = a.referenceid ) tmp
+    ${referenceID}=    Convert To String    ${referenceID}
+    Should Be Equal    ${referenceID}    None
+
+EDM4_SIT_[CF]_0004_0021_Validate birthDateMappingSource
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{birthDate}=    query    select count(*) \ from (select e.policyno,e.BirthDate from tlp.customerinfo e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno except all \ select a.personid,a.birthDate from dm.person a \ \ inner join dm.name b on a.personid = b.personid inner join dm.cert c on b.personid = c.nameid \ \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ \ and e.gender = a.sex \ \ \ and e.nationid = a.referenceid \ ) tmp
+    EDM_Compare Result    @{birthDate [0]}    0    birthDate
+
+EDM4_SIT_[CF]_0004_0022_Validate sexMappingSource
+    [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
+    ...    - amount2 = tlp.CustomerInfo.amount2
+    ...
+    ...
+    ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
+    ...    - count (*) = 0
+    EDM_Connect_DB
+    @{birthDate}=    query    select count(*) from (select e.policyno,e.gender from tlp.customerinfo e \ \ join dm.tlpmigration f on e.policyno = f.tlppolicyno \ \ \ except all select a.personid,a.sex from dm.person a \ inner join dm.name b on a.personid = b.personid \ inner join dm.cert c on b.personid = c.nameid \ inner join dm.tlpmigration d on d.tlipolicyno = c.policyno and d.customercode = c.certno \ \ \ inner join tlp.customerinfo e on e.policyno = d.tlppolicyno \ and e.gender = a.sex \ \ and e.nationid = a.referenceid ) tmp
+    EDM_Compare Result    @{birthDate [0]}    0    sex
