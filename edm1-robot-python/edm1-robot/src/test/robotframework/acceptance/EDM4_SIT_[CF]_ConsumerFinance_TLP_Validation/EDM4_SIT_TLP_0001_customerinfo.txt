@@ -535,5 +535,5 @@ EDM_SIT_TLP_customerinfo_0001_0104_Validate Mode_Default
 
 EDM_SIT_TLP_customerinfo_0001_0105_Validate Check_Policyno_notin_Customersa
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ ( (SELECT policyno, customercode FROM tlp.customersa) \ except all (SELECT info.policyno, info.customercode FROM tlp.customerinfo info \ inner join \ \ (SELECT policyno as policyno FROM tlp.customerinfo \ except \ \ select tlpplancode as policyno from lookup.tlpppi) x \ on x.policyno = info.policyno inner join lookup.tlppolicystatus status on status.customerstatus = info.customerstatus) \ )tmp
+    @{Result}    Query    	select count(0) from \ ( (SELECT sa.policyno, sa.customercode FROM tlp.customersa sa JOIN tlp.customerinfo info ON sa.policyno = info.policyno AND sa.customercode = info.customercode WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus)) except all (SELECT info.policyno, info.customercode FROM tlp.customerinfo info \ inner join \ \ (SELECT policyno as policyno \ \ FROM tlp.customerinfo except select tlpplancode as policyno from lookup.tlpppi) x \ \ on x.policyno = info.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus)) )tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
