@@ -101,17 +101,17 @@ EDM4_SIT_[CF]_0005_0019_Validate Smi_MappingTarget
 
 EDM4_SIT_[CF]_0005_0020_Validate Lifesum_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ where length(a.lifesum) > 9 and a.lifesum != ''
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.customersa e on e.policyno = d.policyno \ \ \	where length(a.lifesum) > 9 and a.lifesum != ''
     EDM_Compare Result    @{Result[0]}    0    lifesum
 
 EDM4_SIT_[CF]_0005_0021_Validate Lifesum_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ where a.lifepremium = '' or a.lifepremium = 'blank' or a.lifepremium is null
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.customersa e on e.policyno = d.policyno \ \ \	where a.lifepremium = '' or a.lifepremium = 'blank' or a.lifepremium is null
     EDM_Compare Result    @{Result[0]}    0    lifesum
 
 EDM4_SIT_[CF]_0005_0022_Validate Lifesum_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.smi from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all select policyno,sa from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.customersa e on e.policyno = d.policyno \ \ \	where a.lifesum <> concat('000',e.sa_life)
     EDM_Compare Result    @{Result[0]}    0    lifesum
 
 EDM4_SIT_[CF]_0005_0023_Validate AccidentSum_length
@@ -171,17 +171,17 @@ EDM4_SIT_[CF]_0005_0033_Validate Loanterm_MappingTarget
 
 EDM4_SIT_[CF]_0005_0034_Validate LifePremium_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ where length(a.lifepremium) <> 10 and a.lifepremium != ''
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ \ \	where length(a.lifepremium) <> 10 and a.lifepremium != ''
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
 EDM4_SIT_[CF]_0005_0035_Validate LifePremium_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ where a.lifepremium = '' or a.lifepremium = 'blank' or a.lifepremium is null
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ \ \	where a.lifepremium = '' or a.lifepremium = 'blank' or a.lifepremium is null
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
 EDM4_SIT_[CF]_0005_0036_Validate LifePremium_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.lifepremium from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode \ except all \ select d.grouppolicyno,d.lifepremium from tlp.splitpremiumamount d \ inner join tlp.customerinfo e on d.grouppolicyno = e.policyno inner join dm.tlpmigration f on e.policyno = f.tlppolicyno and e.certificateno = f.tlpcertno)tmp
+    @{Result}    Query    	select count(0) from dm.cert a \ \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and d.certificateno = c.tlpcertno \ \	inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ \ \	where a.lifepremium <> concat('0000000',e.lifepremium)
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
 EDM4_SIT_[CF]_0005_0037_Validate ExtraPremium_length
@@ -261,37 +261,37 @@ EDM4_SIT_[CF]_0005_0051_Validate TPD_Mapping
 
 EDM4_SIT_[CF]_0005_0052_Validate EffectiveDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where (to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31) and a.effectivedate !=''
+    @{Result}    Query    	select count(0) from dm.cert a \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode \ \	where (to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 and 3000 \ \ \ \	or to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12 \ \ \ \	or to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31) and a.effectivedate!=''
     EDM_Compare Result    @{Result[0]}    0    effectivedate
 
 EDM4_SIT_[CF]_0005_0053_Validate EffectiveDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.splitpremiumamount d on d.grouppolicyno = c.tlppolicyno and c.customercode = d.customercode where a.effectivedate = '' or a.effectivedate = 'blank' or a.effectivedate is null
+    @{Result}    Query    	select count(0) from dm.cert a \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode \ \	where a.effectivedate= '' or a.effectivedate = 'blank' or a.effectivedate is null
     EDM_Compare Result    @{Result[0]}    0    effectivedate
 
 EDM4_SIT_[CF]_0005_0054_Validate EffectiveDate_MappingSource
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all select a.policyno,a.effectivedate from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
+    @{Result}    Query    select count(0) from ( select d.policyno,d.effectivedate from tlp.customerinfo d \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno \ except all \ select a.policyno,a.effectivedate from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
     EDM_Compare Result    @{Result[0]}    0    effectivedate
 
 EDM4_SIT_[CF]_0005_0055_Validate EffectiveDate_MappingTarget
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.effectivedate from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    @{Result}    Query    select count(0) from ( \ select a.policyno,a.effectivedate from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all \ select d.policyno,d.effectivedate from tlp.customerinfo d \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno )tmp
     EDM_Compare Result    @{Result[0]}    0    effectivedate
 
 EDM4_SIT_[CF]_0005_0056_Validate MatureDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.effectivedate from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    @{Result}    Query    	select count(0) from dm.cert a \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode \ \	where (to_number(SUBSTRING(a.maturedate,1,4),'9999') not between 0 and 3000 \ \ \ \	or to_number(SUBSTRING(a.maturedate,5,2),'99') not between 1 and 12 \ \ \ \	or to_number(SUBSTRING(a.maturedate,7,2),'99') not between 1 and 31) and a.maturedate !=''
     EDM_Compare Result    @{Result[0]}    0    maturedate
 
 EDM4_SIT_[CF]_0005_0057_Validate MatureDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.effectivedate from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    @{Result}    Query    	select count(0) from dm.cert a \ \	inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ \ \	inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode \ \	where a.maturedate = '' or a.maturedate = 'blank' or a.maturedate is null
     EDM_Compare Result    @{Result[0]}    0    maturedate
 
 EDM4_SIT_[CF]_0005_0058_Validate MatureDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.effectivedate from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all select d.policyno,d.effectivedate from tlp.customerinfo d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno)tmp
+    @{Result}    Query    select count(0) from ( \ select a.policyno,a.maturedate from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode except all \ select d.policyno,d.expireddate from tlp.customerinfo d \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno )tmp
     EDM_Compare Result    @{Result[0]}    0    maturedate
 
 EDM4_SIT_[CF]_0005_0059_Validate certyyyymm_Default
@@ -466,7 +466,7 @@ EDM4_SIT_[CF]_0005_0092_Validate DeadDate_NotNull
 
 EDM4_SIT_[CF]_0005_0093_Validate DeadDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.statcer ='T' and (a.DeadDate = '' or a.DeadDate = '00000000')
+    @{Result}    Query    select count(0) from dm.cert a inner join dm.tlpmigration c on c.tlipolicyno = a.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno and c.customercode = d.customercode where a.deaddate <> d.deaddate
     EDM_Compare Result    @{Result[0]}    0    DeadDate
 
 EDM4_SIT_[CF]_0005_0094_Validate EndownmentYear_Default
