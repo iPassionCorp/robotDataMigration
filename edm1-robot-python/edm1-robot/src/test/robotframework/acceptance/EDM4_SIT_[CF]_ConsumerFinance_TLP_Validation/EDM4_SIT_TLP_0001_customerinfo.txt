@@ -13,9 +13,9 @@ EDM4_SIT_TLP_customerinfo_0001_0001_Validate Gender F&M
 
 EDM4_SIT_TLP_customerinfo_0001_0002_Validate CertificateNo_Null
     [Documentation]    2.set CertificateNo โดยเช็คว่า \ \ เป็นว่าง ให้ write error
-    ...    - Case: Set CertificateNo ตรวจสอบค่าว่าง
+    ...    - Case: Set CertificateNo ตรวจสอบค่าว่าง ยกเว้น Policy No ที่เป็น Free PA
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and a.certificateno = '' or a.certificateno = 'blank' and a.policy not in ('00026009','00026010')
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and a.certificateno = '' or a.certificateno = 'blank' and a.policyno not in ('00026009','00026010')
     EDM_Compare Result    @{Result[0]}    0    CertificateNo
 
 EDM4_SIT_TLP_customerinfo_0001_0003_Validate PercentOfBenefitciary2_isNotChar
@@ -535,5 +535,5 @@ EDM_SIT_TLP_customerinfo_0001_0104_Validate Mode_Default
 
 EDM_SIT_TLP_customerinfo_0001_0105_Validate Check_Policyno_notin_Customersa
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.policyno,a.customercode from tlp.customersa a \ except all \ select b.policyno,b.customercode from tlp.customerinfo b where b.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and b.customerstatus not in (select customerstatus from lookup.tlpppi) )tmp
+    @{Result}    Query    select count(0) from \ ( (SELECT policyno, customercode FROM tlp.customersa) \ except all (SELECT info.policyno, info.customercode FROM tlp.customerinfo info \ inner join \ \ (SELECT policyno as policyno FROM tlp.customerinfo \ except \ \ select tlpplancode as policyno from lookup.tlpppi) x \ on x.policyno = info.policyno inner join lookup.tlppolicystatus status on status.customerstatus = info.customerstatus) \ )tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
