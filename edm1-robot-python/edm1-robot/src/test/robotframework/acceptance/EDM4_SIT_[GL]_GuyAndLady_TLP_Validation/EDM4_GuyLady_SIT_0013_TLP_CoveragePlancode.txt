@@ -1,3 +1,8 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
 *** Test Cases ***
 EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_CoverageForGuy
     EDM_Connect_DB
