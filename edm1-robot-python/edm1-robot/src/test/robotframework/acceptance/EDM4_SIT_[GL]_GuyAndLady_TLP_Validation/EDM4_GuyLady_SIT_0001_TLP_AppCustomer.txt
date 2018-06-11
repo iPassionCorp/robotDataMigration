@@ -231,5 +231,5 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0045_Validate Relation_length
 
 EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0046_Validate CustOccupation_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.appcustomer a where to_number((a.custoccupation),'99') not between 1 and 50
+    @{Result}    Query    select \ count(0) \ from tlp.appcustomer a where (a.custoccupation < '01' or a.custoccupation > '50') and a.custoccupation <> ''
     EDM_Compare Result    @{Result[0]}    0    custoccupation
