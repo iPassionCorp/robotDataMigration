@@ -413,3 +413,8 @@ EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0082_NextDueDate_Default
     EDM_Connect_DB
     @{Result}    Query    select \ count(0) from tlp.policymaster a where nextduedate \ not between '0000-00-00' and '3000-12-31' and length(nextduedate) <> 8 and nextduedate != ''
     EDM_Compare Result    @{Result[0]}    0    nextduedate
+
+EDM4_GuyLady_SIT_TLP_PolicyMaster_0004_0083_PolicyNo_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (SELECT policyno,count(0) \ FROM tlp.policymaster \ group by policyno having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    nextduedate

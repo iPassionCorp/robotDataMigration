@@ -163,3 +163,8 @@ EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0031_Validate CheckPaidDate_Equal_CreateDat
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM ( SELECT a.policyno AS policymaster, b.policyno AS paid_policy, a.nextduedate, b.paiddate, a.statusnew FROM tlp.policymaster a \ JOIN tlp.policypaid b ON a.policyno = b.policyno WHERE a.nextduedate = b.paiddate AND a.statusnew NOT IN ('W', 'K', 'D', 'X', 'L', '*')) tmp
     EDM_Compare Result    @{Result[0]}    0    paiddate
+
+EDM4_GuyLady_SIT_TLP_PolicyPaid_0006_0032_Validate CheckPrimaryKey_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (SELECT receiptno, policyno, count(0) \ FROM tlp.policypaid \ group by receiptno, policyno having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    receiptno
