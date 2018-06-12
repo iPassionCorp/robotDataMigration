@@ -283,3 +283,8 @@ EDM4_SIT_[CF]_0008_0055_Validate MoneyOK_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.clrctrl a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ where a.MoneyOK = '' or a.MoneyOK = 'blank' or a.MoneyOK is null
     EDM_Compare Result    @{Result[0]}    0    MoneyOK
+
+EDM4_SIT_[CF]_0008_0056_Validate CheckPrimaryKey_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (SELECT policyNo,certNo,rpNo,count(0) \ FROM dm.cert \ group by policyNo,certNo,rpNo having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno

@@ -6,22 +6,22 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_SIT_[CF]_0009_0001_Validate Rpno_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode \ \ where length(a.rpno) > 12 and a.rpno != ''
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.splitpremiumamount d on d.grouppolicyno = c.tlppolicyno \ and c.customercode = d.customercode \ where length(a.rpno) > 12 and a.rpno != ''
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_SIT_[CF]_0009_0002_Validate Rpno_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode \ \ \ \ where a.rpno = '' or a.rpno = 'blank' or a.rpno is null
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.splitpremiumamount d on d.grouppolicyno = c.tlppolicyno and c.customercode = d.customercode \ \ where a.rpno = '' or a.rpno = 'blank' or a.rpno is null
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_SIT_[CF]_0009_0003_Validate Rpno_MappingSource
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select f.grouppolicyno,f.receiptno from tlp.splitpremiumamount f \ inner join dm.tlpmigration g on f.grouppolicyno = g.tlppolicyno \ \ except all \ \ select b.policyno,a.rpno from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode)tmp
+    @{Result}    Query    select count(0) from ( \ select d.grouppolicyno,d.receiptno from tlp.splitpremiumamount d \ inner join dm.tlpmigration e on d.grouppolicyno = e.tlppolicyno \ except all \ select b.policyno,a.rpno from dm.clrprider a \ inner join dm.cert b on a.rpno = b.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.certno = c.tlpcertno)tmp
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_SIT_[CF]_0009_0004_Validate Rpno_MappingTarget
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select b.policyno,a.rpno from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.customerinfo d on d.policyno = c.tlppolicyno \ inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode except all \ \ select f.grouppolicyno,f.receiptno from tlp.splitpremiumamount f \ inner join dm.tlpmigration g on f.grouppolicyno = g.tlppolicyno)tmp
+    @{Result}    Query    select count(0) from ( \ select b.policyno,a.rpno from dm.clrprider a \ inner join dm.cert b on a.rpno = b.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.certno = c.tlpcertno except all \ select d.grouppolicyno,d.receiptno from tlp.splitpremiumamount d \ inner join dm.tlpmigration e on d.grouppolicyno = e.tlppolicyno )tmp
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_SIT_[CF]_0009_0005_Validate RiderType_length
