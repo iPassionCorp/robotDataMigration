@@ -233,3 +233,15 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0046_Validate CustOccupation_Default
     EDM_Connect_DB
     @{Result}    Query    select \ count(0) \ from tlp.appcustomer a where (a.custoccupation < '01' or a.custoccupation > '50') and a.custoccupation <> ''
     EDM_Compare Result    @{Result[0]}    0    custoccupation
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Duplicated
+    [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Duplicated
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(tmp.plancode) from( SELECT b.plancode, a.creditno, count(a.creditno) FROM tlp.appcustomer a \ JOIN tlp.policymaster b ON a.appno = b.appno GROUP BY b.plancode, a.creditno HAVING count(a.creditno) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    creditno
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
+    [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(a.creditno) FROM tlp.appcustomer a \ WHERE a.creditno = '';
+    EDM_Compare Result    @{Result[0]}    0    creditno
