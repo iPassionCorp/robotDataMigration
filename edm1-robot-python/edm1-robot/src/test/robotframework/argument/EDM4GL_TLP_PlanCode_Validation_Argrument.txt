@@ -1,0 +1,60 @@
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_Plan1_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0007_Plan2_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0008_Plan2_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0003_Plan1_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0011_Plan3_CB&CP
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0005_Plan2_LIFE
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0006_Plan2_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_CoverageForGuy
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0012_Plan3_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0004_Plan1_CS
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0013 TLP CoveragePlancode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0002_CoverageForLady
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0010_Plan3_CI
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0001_Plan1_LIFE
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0013_LIFE_tlp.policymaster.SA
+--suite
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode
+--test
+Edm1-Robot.Src.Test.Robotframework.Acceptance.EDM4 SIT [GL] GuyAndLady TLP Validation.EDM4 GuyLady SIT 0012 TLP BenefitWithPlanCode.EDM4_GuyLady_SIT_SMI_GuyLadyBenefit_0009_Plan3_LIFE
