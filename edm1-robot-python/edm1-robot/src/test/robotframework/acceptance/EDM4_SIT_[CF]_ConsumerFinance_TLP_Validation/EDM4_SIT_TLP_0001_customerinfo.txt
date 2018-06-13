@@ -537,3 +537,29 @@ EDM_SIT_TLP_customerinfo_0001_0105_Validate Check_Policyno_notin_Customersa
     EDM_Connect_DB
     @{Result}    Query    	select count(0) from \ ( (SELECT sa.policyno, sa.customercode FROM tlp.customersa sa JOIN tlp.customerinfo info ON sa.policyno = info.policyno AND sa.customercode = info.customercode WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus)) except all (SELECT info.policyno, info.customercode FROM tlp.customerinfo info \ inner join \ \ (SELECT policyno as policyno \ \ FROM tlp.customerinfo except select tlpplancode as policyno from lookup.tlpppi) x \ \ on x.policyno = info.policyno WHERE info.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus)) )tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM_SIT_TLP_customerinfo_0001_0106_Validate AyCapPolicyGroup_CreditCardDuplicate
+    [Documentation]    ตรวจสอบ กรณีที่ Policy อยู่ในกลุ่ม Aycap Fix
+    ...    จะต้องมี CreditCardNo ไม่ซ้ำกัน
+    ...
+    ...    - Aycap Fix Policy
+    ...    - '00603900','00604000','00604200','01006014',
+    ...    - '01006023','00603500','01006015','01006024',
+    ...    - '00603700','00603600','00600600','00600601',
+    ...    - '00600602','01006020','00604100','00604300'
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(tmp.creditcardno) FROM ( SELECT creditcardno ,count(creditcardno) FROM tlp.customerinfo \ WHERE customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ policyno IN ( '00603900','00604000','00604200','01006014', '01006023','00603500','01006015','01006024', '00603700','00603600','00600600','00600601', '00600602','01006020','00604100','00604300') AND creditcardno <> '' GROUP BY creditcardno HAVING count(creditcardno) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM_SIT_TLP_customerinfo_0001_0107_Validate AyCapPolicyGroup_CreditCard_Null
+    [Documentation]    ตรวจสอบ กรณีที่ Policy อยู่ในกลุ่ม Aycap Fix
+    ...    จะต้องมี CreditCardNo เสมอ
+    ...
+    ...    - Aycap Fix Policy
+    ...    - '00603900','00604000','00604200','01006014',
+    ...    - '01006023','00603500','01006015','01006024',
+    ...    - '00603700','00603600','00600600','00600601',
+    ...    - '00600602','01006020','00604100','00604300'
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(creditcardno) FROM tlp.customerinfo \ WHERE customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ policyno IN ( '00603900','00604000','00604200','01006014', '01006023','00603500','01006015','01006024', '00603700','00603600','00600600','00600601', '00600602','01006020','00604100','00604300') AND creditcardno = '';
+    EDM_Compare Result    @{Result[0]}    0    policyno
