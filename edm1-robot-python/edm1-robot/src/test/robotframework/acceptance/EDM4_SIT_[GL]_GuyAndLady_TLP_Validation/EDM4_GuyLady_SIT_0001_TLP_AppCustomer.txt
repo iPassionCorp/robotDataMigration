@@ -237,7 +237,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0046_Validate CustOccupation_Default
 EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Duplicated
     [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Duplicated
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(tmp.plancode) from( SELECT b.plancode, a.creditno, count(a.creditno) FROM tlp.appcustomer a \ JOIN tlp.policymaster b ON a.appno = b.appno GROUP BY b.plancode, a.creditno HAVING count(a.creditno) > 1) tmp;
+    @{Result}    Query    SELECT count(tmp.plancode) from( SELECT b.plancode, a.creditno,a.appno, count(a.creditno) FROM tlp.appcustomer a \ JOIN tlp.policymaster b ON a.appno = b.appno GROUP BY b.plancode, a.creditno,a.appno HAVING count(a.creditno) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    creditno
 
 EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
