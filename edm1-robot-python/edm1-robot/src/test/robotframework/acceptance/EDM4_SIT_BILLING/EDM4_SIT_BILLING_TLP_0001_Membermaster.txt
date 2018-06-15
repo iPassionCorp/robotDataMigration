@@ -114,7 +114,7 @@ EDM4_SIT_BILLING_TLP_MemberMaster_0001_0013_Validate mobile_Length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlpbilling.membermaster a \ where SUBSTRING(a.mobile,1,2)in('02','03','04','05','07') \ \ or SUBSTRING(a.mobile,1,3)in('032','033','034','035','036','037','038','039','042','043','044','045','053','054','055','056','073','074','075','076','077'); \ \ \
     EDM_Compare Result    @{Result[0]}    0    mobile
-    
+
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0014_Validate CardNo_Null
     [Documentation]    Validated CardNo - Null
     EDM_Connect_DB
@@ -124,5 +124,5 @@ EDM4_SIT_BILLING_TLP_MemberMaster_0001_0014_Validate CardNo_Null
 EDM4_SIT_BILLING_TLP_MemberMaster_0001_0015_Validate CardNo_Duplicated
     [Documentation]    Validated CardNo - Null
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(tmp.cardno) FROM ( SELECT a.cardno, count(a.cardno) FROM tlpbilling.membermaster a GROUP BY a.cardno HAVING count(a.cardno) > 1) tmp;
+    @{Result}    Query    SELECT count(tmp.cardno) FROM ( SELECT a.cardno,certificateno,policyno, count(a.cardno) FROM tlpbilling.membermaster a GROUP BY a.cardno,certificateno,policyno HAVING count(a.cardno) > 1) tmp;
     EDM_Compare Result    @{Result[0]}    0    CardNo
