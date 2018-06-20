@@ -245,3 +245,22 @@ EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0048_Validate CreditNo_Null
     EDM_Connect_DB
     @{Result}    Query    SELECT count(a.creditno) FROM tlp.appcustomer a \ WHERE a.creditno = '';
     EDM_Compare Result    @{Result[0]}    0    creditno
+    
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0049_Validate_CreditExpired_Length
+    [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(a.*) FROM tlp.appcustomer a WHERE length(a.creditexpire) <> 4;
+    EDM_Compare Result    @{Result[0]}    0    creditExpired
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0050_Validate_CreditExpired_Year
+    [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.appcustomer \ where substring (creditexpire, 3, 2) <> '77' \ and to_number (substring (creditexpire, 3, 2), '99') > (18 + 6);
+    EDM_Compare Result    @{Result[0]}    0    creditExpired_Year
+
+EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0051_Validate_CreditExpired_Month
+    [Documentation]    EDM4_GuyLady_SIT_TLP_AppCustomer_0001_0047_Validate CreditNo_Null
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.appcustomer \ where creditexpire <> '0777' \ and to_number (substring (creditexpire, 1, 2), '99') not between 1 and 12;
+    EDM_Compare Result    @{Result[0]}    0    creditExpired_Month
+
