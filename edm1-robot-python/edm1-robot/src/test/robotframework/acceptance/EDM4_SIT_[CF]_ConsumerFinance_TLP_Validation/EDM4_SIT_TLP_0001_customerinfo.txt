@@ -566,10 +566,25 @@ EDM_SIT_TLP_customerinfo_0001_0107_Validate AyCapPolicyGroup_CreditCard_Null
 
 EDM_SIT_TLP_customerinfo_0001_0108_Validate incorrect LastReceiptNo_format(000000000000[12 digits])
     EDM_Connect_DB
-    @{Result}    Query    SELECT a.lastreceiptno, a.customerstatus FROM tlp.customerinfo a \ WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ a.lastreceiptno = '000000000000' GROUP BY a.lastreceiptno, a.customerstatus;
+    @{Result}    Query    SELECT count(0) FROM ( SELECT a.customercode, a.accountno, a.lastreceiptno FROM tlp.customerinfo a JOIN tlp.payment b ON (a.accountno = b.accno) WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ a.policyno NOT IN ('00026009','00026010') AND \ a.lastreceiptno = '000000000000') tmp ;
     EDM_Compare Result    @{Result[0]}    0    lastreceiptno
 
 EDM_SIT_TLP_customerinfo_0001_0109_Validate lastPayPeriod_in_Payment.PayPeriod
     EDM_Connect_DB
-    @{Result}    Query    SELECT a.customercode, a.mode, a.lastpayperiod FROM tlp.customerinfo a JOIN tlp.payment b ON a.customercode = b.customercode WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) EXCEPT SELECT b.customercode, b.mode, b.payperiod FROM tlp.payment b
+    @{Result}    Query    select count(0) from (SELECT a.customercode, a.mode, a.lastpayperiod \ FROM tlp.customerinfo a JOIN tlp.payment b ON a.customercode = b.customercode WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) \ EXCEPT SELECT b.customercode, b.mode, b.payperiod FROM tlp.payment b)tmp
     EDM_Compare Result    @{Result[0]}    0    lastpayperiod
+
+EDM_SIT_TLP_customerinfo_0001_0110_Validate ExpiredCreditCard_Check_Number
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) --and expiredcreditcard <> '0000' \ and to_number (substring (expiredcreditcard, 3, 2), '99') > (18 + 6);
+    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
+
+EDM_SIT_TLP_customerinfo_0001_0111_Validate ExpiredCreditCard_Check_Year
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) --and expiredcreditcard <> '0000' \ and to_number (substring (expiredcreditcard, 1, 2), '99') not between 1 and 12;
+    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
+
+EDM_SIT_TLP_customerinfo_0001_0111_Validate ExpiredCreditCard_Check_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) and length(expiredcreditcard) <> 4
+    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
