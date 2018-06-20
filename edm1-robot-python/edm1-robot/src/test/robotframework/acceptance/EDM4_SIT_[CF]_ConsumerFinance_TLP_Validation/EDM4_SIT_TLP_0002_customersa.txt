@@ -516,17 +516,17 @@ EDM4_SIT_TLP_customersa_0002_0102_Expiry_MC_CheckMonth
 
 EDM4_SIT_TLP_customersa_0002_0103_CheckPolicynotinCustomerinfo
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ \ (select customerstatus from lookup.tlppolicystatus) \ except all \ select b.policyno, b.customercode \ from tlp.customersa b where policyno not in ('00006001','00006002','00006003' ,'00006008','00006009','01006012','01006013','BC00600100','BC00600200','BC00600300','BC00600500','BC00600500','BC00600800' ,'BC00601100','BC00601200','BC00601300','BC00601301','BC00601400','BC00601500','BC00601501','BC00601600','BC00601700','BC00601701','BC00601800' ,'BC00601801','BC00601900','BC00602000','BC00602101','BC00602200','BC00603200','BC00603300','BC00603400')) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_SIT_TLP_customersa_0002_0104_CheckPolicynotinsplitamount
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.grouppolicyno, a.customercode FROM tlp.splitpremiumamount a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
+    @{Result}    Query    select count(0) from \ \ (select a.grouppolicyno, a.customercode FROM tlp.splitpremiumamount a \ group by grouppolicyno,customercode except all \ select b.policyno, b.customercode \ from tlp.customersa b where policyno not in ('00006001','00006002','00006003' ,'00006008','00006009','01006012','01006013','BC00600100','BC00600200','BC00600300','BC00600500','BC00600500','BC00600800' ,'BC00601100','BC00601200','BC00601300','BC00601301','BC00601400','BC00601500','BC00601501','BC00601600','BC00601700','BC00601701','BC00601800' ,'BC00601801','BC00601900','BC00602000','BC00602101','BC00602200','BC00603200','BC00603300','BC00603400')) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_SIT_TLP_customersa_0002_0105_CheckPolicynotinpayment
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.policyno, b.customercode \ from tlp.customersa b) tmp
+    @{Result}    Query    select count(0) from \ \ (select a.policyno, a.customercode FROM tlp.payment a \ group by policyno,customercode except all \ select b.policyno, b.customercode \ from tlp.customersa b where policyno not in ('00006001','00006002','00006003' ,'00006008','00006009','01006012','01006013','BC00600100','BC00600200','BC00600300','BC00600500','BC00600500','BC00600800' ,'BC00601100','BC00601200','BC00601300','BC00601301','BC00601400','BC00601500','BC00601501','BC00601600','BC00601700','BC00601701','BC00601800' ,'BC00601801','BC00601900','BC00602000','BC00602101','BC00602200','BC00603200','BC00603300','BC00603400')) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_SIT_TLP_customersa_0002_0106_CheckPolicynoDuplicate

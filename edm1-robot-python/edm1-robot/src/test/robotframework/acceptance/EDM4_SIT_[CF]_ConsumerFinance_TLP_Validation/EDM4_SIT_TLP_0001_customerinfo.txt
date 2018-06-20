@@ -568,3 +568,8 @@ EDM_SIT_TLP_customerinfo_0001_0108_Validate incorrect LastReceiptNo_format(00000
     EDM_Connect_DB
     @{Result}    Query    SELECT a.lastreceiptno, a.customerstatus FROM tlp.customerinfo a \ WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) AND \ a.lastreceiptno = '000000000000' GROUP BY a.lastreceiptno, a.customerstatus;
     EDM_Compare Result    @{Result[0]}    0    lastreceiptno
+
+EDM_SIT_TLP_customerinfo_0001_0109_Validate lastPayPeriod_in_Payment.PayPeriod
+    EDM_Connect_DB
+    @{Result}    Query    SELECT a.customercode, a.mode, a.lastpayperiod FROM tlp.customerinfo a JOIN tlp.payment b ON a.customercode = b.customercode WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) EXCEPT SELECT b.customercode, b.mode, b.payperiod FROM tlp.payment b
+    EDM_Compare Result    @{Result[0]}    0    lastpayperiod
