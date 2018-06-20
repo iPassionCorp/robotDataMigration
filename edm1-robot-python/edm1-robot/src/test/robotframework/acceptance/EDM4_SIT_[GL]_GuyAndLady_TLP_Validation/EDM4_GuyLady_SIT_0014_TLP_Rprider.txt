@@ -1,0 +1,25 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLP_Rprider_0014_0001_Validate PrimaryKey_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (SELECT receiptno, receiptdetail, count(0) FROM tlp.rprider \ group by receiptno, receiptdetail \ having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    receiptno
+
+EDM4_GuyLady_SIT_TLP_Rprider_0014_0002_Validate ReceiptDetail_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.rprider \ where length (receiptdetail) <> 123;
+    EDM_Compare Result    @{Result[0]}    0    receiptdetail
+
+EDM4_GuyLady_SIT_TLP_Rprider_0014_0003_Validate Receiptno_Notin_PolicyPaid
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select receiptno from tlp.rprider except all \ select receiptno FROM tlp.policypaid) tmp;
+    EDM_Compare Result    @{Result[0]}    0    receiptno
+
+EDM4_GuyLady_SIT_TLP_Rprider_0014_0004_Validate Receiptno_Notin_Rprider
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (select receiptno from tlp.policypaid except all \ select receiptno FROM tlp.rprider) tmp;
+    EDM_Compare Result    @{Result[0]}    0    receiptno
