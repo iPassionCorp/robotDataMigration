@@ -574,12 +574,7 @@ EDM_SIT_TLP_customerinfo_0001_0109_Validate lastPayPeriod_in_Payment.PayPeriod
     @{Result}    Query    select count(0) from (SELECT a.customercode, a.mode, a.lastpayperiod \ FROM tlp.customerinfo a JOIN tlp.payment b ON a.customercode = b.customercode WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) \ EXCEPT SELECT b.customercode, b.mode, b.payperiod FROM tlp.payment b)tmp
     EDM_Compare Result    @{Result[0]}    0    lastpayperiod
 
-EDM_SIT_TLP_customerinfo_0001_0110_Validate ExpiredCreditCard_Check_Month
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) and substring (expiredcreditcard, 1, 2) not between '00' and '12';
-    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
-
-EDM_SIT_TLP_customerinfo_0001_0111_Validate ExpiredCreditCard_Check_length
+EDM_SIT_TLP_customerinfo_0001_0110_Validate ExpiredCreditCard_Check_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) and length(expiredcreditcard) <> 4
     EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
