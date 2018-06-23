@@ -530,7 +530,7 @@ EDM_SIT_TLP_customerinfo_0001_0103_Validate Mode_NotBlank
 
 EDM_SIT_TLP_customerinfo_0001_0104_Validate Mode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and (a.mode not in ('9','1','2','4','0','') or length(a.mode) > 1);
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and (a.mode not in ('8','9','1','2','4','0','') or length(a.mode) > 1);
     EDM_Compare Result    @{Result[0]}    0    Mode
 
 EDM_SIT_TLP_customerinfo_0001_0105_Validate Check_Policyno_notin_Customersa
