@@ -1,0 +1,76 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_BILLING_TLI_0006_0001_Validate policyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a where length(a.policyno) > 4;
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0006_0002_Validate policyNo_NotBlank&Notnull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.policyno = '' or a.policyno in ('NULL', 'Null', 'null') \ or a.policyno = '' or a.policyno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0006_0003_Validate policyNo_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0006_0004_Validate certNo_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.certno) > 8;
+    EDM_Compare Result    @{Result[0]}    0    certNo
+
+EDM4_SIT_BILLING_TLI_0006_0005_Validate certNo_NotBlank&Notnull
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.certno = '' or a.certno in ('NULL', 'Null', 'null') \ or a.certno = '' or a.certno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    certNo
+
+EDM4_SIT_BILLING_TLI_0006_0006_Validate certNo_Mapping
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    certNo
+
+EDM4_SIT_BILLING_TLI_0006_0007_Validate riderType_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.ridertype) > 3;
+    EDM_Compare Result    @{Result[0]}    0    riderType
+
+EDM4_SIT_BILLING_TLI_0006_0008_Validate riderType_NotBlank&Notnull
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.ridertype = '' or a.ridertype in ('NULL', 'Null', 'null') \ or a.ridertype = '' or a.ridertype = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    riderType
+
+EDM4_SIT_BILLING_TLI_0006_0009_Validate riderType_Mapping
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    riderType
+
+EDM4_SIT_BILLING_TLI_0006_0010_Validate oldSum_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.oldsum) > 9;
+    EDM_Compare Result    @{Result[0]}    0    oldSum
+
+EDM4_SIT_BILLING_TLI_0006_0011_Validate oldSum_NotBlank
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.oldsum = '' or a.oldsum = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    oldSum
+
+EDM4_SIT_BILLING_TLI_0006_0012_Validate newSum_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.newsum) > 9;
+    EDM_Compare Result    @{Result[0]}    0    newSum
+
+EDM4_SIT_BILLING_TLI_0006_0013_Validate newSum_NotBlank
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.newsum = '' or a.newsum = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    newSum
+
+EDM4_SIT_BILLING_TLI_0006_0014_Validate oldPremium_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.oldpremium) > 9;
+    EDM_Compare Result    @{Result[0]}    0    oldPremium
+
+EDM4_SIT_BILLING_TLI_0006_0015_Validate oldPremium_NotBlank
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.oldpremium = '' or a.oldpremium = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    oldPremium
+
+EDM4_SIT_BILLING_TLI_0006_0016_Validate newPremium_length
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail where length(a.newpremium) > 9;
+    EDM_Compare Result    @{Result[0]}    0    newPremium
+
+EDM4_SIT_BILLING_TLI_0006_0017_Validate newPremium_NotBlank
+    @{Result}    Query    select count(0) \ from tlibilling.downplandetail a \ where a.newpremium = '' or a.newpremium = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    newPremium
