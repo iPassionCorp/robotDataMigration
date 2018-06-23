@@ -41,7 +41,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0003_Validate BillingDate_Default
     ...
     ...    - [20180510] พี่รองจะหา table เพื่อทำการ mapping อีกที
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where ((to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31) \ or length(a.billingdate) <> 8) or a.billingdate = '00000000'    #พบข้อมูล 00000000
+    @{Result}    Query    select count(0) from tlpbilling.historyexport a \ where ((to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 0 and 12 \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 0 and 31) \ \ or length(a.billingdate) <> 8)     #พบข้อมูล 00000000
     EDM_Compare Result    @{Result[0]}    0    billingdate
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0004_Validate BillingDate_NotNull
@@ -224,7 +224,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0029_Validate RespondCode_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0030_Validate exfileOut_length
     [Documentation]    Validate exfileOut_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfileout) > 30 and a.exfileout <> ''
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfileout) > 70 and a.exfileout <> ''
     EDM_Compare Result    @{Result[0]}    0    exfileout
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
@@ -236,7 +236,7 @@ EDM4_SIT_Billing_TLP_HistoryExport_0002_0031_Validate exfileOut_NotNull
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0032_Validate exfileReturn_Length
     [Documentation]    Validate exfileReturn_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfilereturn) > 30 and a.exfilereturn <> ''
+    @{Result}    Query    select count(0) \ from tlpbilling.historyexport a \ \ where length(a.exfilereturn) > 70 and a.exfilereturn <> ''
     EDM_Compare Result    @{Result[0]}    0    exfilereturn
 
 EDM4_SIT_Billing_TLP_HistoryExport_0002_0033_Validate exfileReturn_NotNull
