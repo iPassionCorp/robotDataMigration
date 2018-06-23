@@ -31,7 +31,7 @@ EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0005_Validate AddPlace_length
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0006_Validate AddNumber_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addnumber) > 255;
+    @{Result}    Query    select count(0) \ \ \ from tlp.appcustomeraddress a \ \ where length(a.addnumber) > 128;
     EDM_Compare Result    @{Result[0]}    0    AddNumber
 
 EDM4_GuyLady_SIT_TLP_AppCustomerAddress_0002_0007_Validate AddMoo_length
