@@ -1,0 +1,7 @@
+*** Variables ***
+${port}           5432
+${host}           206.1.2.61
+${user}           postgres
+${password}       123456
+${databaseName}    edm4pp
+${dbapi}          psycopg2
