@@ -6,17 +6,17 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0001_Validate Partnercode_Default
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0002_Validate Partnercode_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.partnercode = '' or a.partnercode = 'blank' or a.partnercode is null
+    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.partnercode is null
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0003_Validate Partnercode_Mapping
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0003_Validate Partnercode_NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.partnercode = '' or a.partnercode = 'blank' or a.partnercode is null
+    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.partnercode = '' or a.partnercode = 'blank'
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0004_Validate BillingType_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.partnercode = '' or a.partnercode = 'blank' or a.partnercode is null
+    @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.billingtype not in ('01','02','03','04','05','06','07')
     EDM_Compare Result    @{Result[0]}    0    billingtype
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0005_Validate BillingType_NotNull
@@ -114,72 +114,72 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0023_Validate Relationtype_NotNull
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.relationtype = '' or a.relationtype = 'blank' or a.relationtype is null
     EDM_Compare Result    @{Result[0]}    0    relationtype
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0024_Validate \ OwnerName_length
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0024_Validate OwnerName_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where length(a.ownername) > 150 \ and a.ownername != ''
     EDM_Compare Result    @{Result[0]}    0    ownername
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0025_Validate \ OwnerName_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0025_Validate OwnerName_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.ownername = '' or a.ownername = 'blank' or a.ownername is null
     EDM_Compare Result    @{Result[0]}    0    ownername
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0026_Validate \ ExpireDate_Default
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0026_Validate ExpireDate_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where (length(a.expiredate) <> 4 and a.expiredate != '') \ or substring(a.expiredate,1,2) not between '00' and '12'
     EDM_Compare Result    @{Result[0]}    0    expiredate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0027_Validate \ ExpireDate_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0027_Validate ExpireDate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.expiredate = '' or a.expiredate = 'blank' or a.expiredate is null
     EDM_Compare Result    @{Result[0]}    0    expiredate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0028_Validate \ EntryDate_Default
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0028_Validate EntryDate_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a \ where to_number(SUBSTRING(a.entrydate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.entrydate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.entrydate,7,2),'99') not between 1 and 31 \ \ \ or length(a.entrydate) <> 8 \ and a.entrydate <> ''
     EDM_Compare Result    @{Result[0]}    0    entrydate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0029_Validate \ EntryDate_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0029_Validate EntryDate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.entrydate = '' or a.entrydate = 'blank' or a.entrydate is null
     EDM_Compare Result    @{Result[0]}    0    entrydate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0030_Validate \ EntryTime_Default
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0030_Validate EntryTime_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a \ where to_number(SUBSTRING(a.entrytime,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.entrytime,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.entrytime,7,2),'99') not between 1 and 31 \ \ \ or length(a.entrytime) <> 8 \ and a.entrydate <> '' \
     EDM_Compare Result    @{Result[0]}    0    entrytime
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0031_Validate \ EntryTime_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0031_Validate EntryTime_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.entrydate = '' or a.entrydate = 'blank' or a.entrydate is null
     EDM_Compare Result    @{Result[0]}    0    entrytime
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0032_Validate \ Status_Default
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0032_Validate Status_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.status not in ('N','C','W','E')
     EDM_Compare Result    @{Result[0]}    0    status
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0033_Validate \ Status_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0033_Validate Status_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.status = '' or a.status = 'blank' or a.status is null
     EDM_Compare Result    @{Result[0]}    0    status
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0034_Validate \ StatusDate_Default
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0034_Validate StatusDate_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a \ where to_number(SUBSTRING(a.statusdate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.statusdate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.statusdate,7,2),'99') not between 1 and 31 \ \ \ or length(a.statusdate) <> 8 \ and a.statusdate <> ''
     EDM_Compare Result    @{Result[0]}    0    statusdate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0035_Validate \ StatusDate_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0035_Validate StatusDate_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.statusdate = '' or a.statusdate = 'blank' or a.statusdate is null
     EDM_Compare Result    @{Result[0]}    0    statusdate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0036_Validate \ UserID_length
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0036_Validate UserID_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where length(a.userid) <> 7 \ and a.userid != ''
     EDM_Compare Result    @{Result[0]}    0    userid
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0037_Validate \ UserID_NotNull
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0037_Validate UserID_NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlibilling.creditmortgate \ a where a.userid = '' or a.userid = 'blank' or a.userid is null
     EDM_Compare Result    @{Result[0]}    0    userid
