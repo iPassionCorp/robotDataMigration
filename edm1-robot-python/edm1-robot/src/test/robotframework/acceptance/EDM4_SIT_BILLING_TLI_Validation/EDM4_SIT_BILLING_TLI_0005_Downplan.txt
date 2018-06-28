@@ -1,0 +1,115 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0001_Validate Policy in TLPmigration
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT a.certno, a.policyno FROM dm.downplan a EXCEPT \ SELECT b.tlpcertno, b.tlipolicyno FROM dm.tlpmigration b) tmp;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0002_Validate Policy_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.downplan a WHERE length(a.policyno) <> 4;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0003_Validate CertNo in TLPmigration
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT a.certno, a.policyno FROM dm.downplan a EXCEPT \ SELECT b.tlpcertno, b.tlipolicyno FROM dm.tlpmigration b) tmp;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0004_Validate CertNo_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.downplan a WHERE length(a.certno) <> 8;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0005_Validate Old Package_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp WHERE length(dp.oldpackage) <> 2;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0006_Validate Old Package_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE dp.oldpackage <> his.oldproductcode; \
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0007_Validate New Package_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0008_Validate New Package_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0009_Validate PayPeriod_Length&Format
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0010_Validate PayPeriod_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0011_Validate NewPremium_Length&Decimal
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0012_Validate NewPremium_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0013_Validate UserID_Default
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0014_Validate UserID_Length&Null
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0015_Validate TransactionDate_Format
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0016_Validate TransactionDate_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE dp.transactiondate <> his.createdate;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0017_Validate TransactionDate_Length
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0018_Validate Status_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE dp.status <> his.status;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0019_Validate Status_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE length(dp.status) <> 1;
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0020_Validate StatusDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE dp.statusdate <> '00000000' OR dp.statusdate = '';
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0021_Validate EndoresDate_Status W&F_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE his.status IN ('W', 'F') AND \ dp.status <> '00000000'
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0005_0022_Validate EndoresDate_Status S_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * FROM dm.downplan dp JOIN dm.tlpmigration mig ON dp.certno = mig.tlpcertno \ JOIN tlpbilling.historydownplan his ON his.certno = dp.certno \ WHERE his.status = 'S';
+    EDM_Compare Result    @{Result[0]}    0    ContactTelNo_Format
