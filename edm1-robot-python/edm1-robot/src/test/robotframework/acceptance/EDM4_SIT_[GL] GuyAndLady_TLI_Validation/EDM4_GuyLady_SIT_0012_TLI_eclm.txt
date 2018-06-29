@@ -1,0 +1,220 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_GuyLady_SIT_TLI_Person_0012_0001_Recconcile
+    EDM_Connect_DB
+    @{Result}    Query    select count (*) from ( select count (*) from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select count (*) from ( select a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno ) source ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    Table eclm
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0002_PK
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from ( SELECT a.sectioncode, a.orderno, a.claimtype FROM dm.eclm a \ \ \ join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode GROUP BY a.sectioncode, a.orderno, a.claimtype HAVING \ count (*) > 1 ) as t
+    EDM_Compare Result    @{Result[0]}    0    Table eclm
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0003_sectionCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.sectioncode <> '95';
+    EDM_Compare Result    @{Result[0]}    0    sectionCode
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0004_orderNo_Direct Move
+    EDM_Connect_DB
+    @{Result}    Query    select count (*) from ( select c.migrateplancode as policy, a.regdtlclaimno as orderno from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlclaimno except all select b.policyno as policyno, a.orderno as orderno from dm.eclm a \ join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode) tmp; \ select count (*) from ( select b.policyno as policyno, a.orderno as orderno from dm.eclm a \ join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select c.migrateplancode as policy, a.regdtlclaimno as orderno from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlclaimno ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    orderNo
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0005_claimType_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) from ( SELECT c.migrateplancode as policyno, CASE WHEN a.regdtldateofdeath = '00000000' \ THEN 'A' WHEN length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]' THEN 'D' ELSE 'error' end as claimtype FROM tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode, a.regdtldateofdeath except all \ select b.policyno as policyno, a.claimtype from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode ) tmp; select count (0) from ( select b.policyno as policyno, a.claimtype from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all \ SELECT c.migrateplancode as policyno, CASE WHEN a.regdtldateofdeath = '00000000' and length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]' THEN 'A' ELSE 'D' end as claimtype FROM tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode, a.regdtldateofdeath ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    claimType
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0006_receiveTime_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.receivetime <> '000000';
+    EDM_Compare Result    @{Result[0]}    0    receiveTime
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0007_causeCode1_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) from ( select c.migrateplancode as policyno, \ CASE WHEN length (a.regdtlclaimcausecode) between '1' and '6' THEN a.regdtlclaimcausecode ELSE 'TLP' end as causecode1 from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno,c.migrateplancode,a.regdtlclaimcausecode except all select b.policyno as policyno, a.causecode1 as causecode1 from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode) tmp; select count (0) from ( select b.policyno as policyno, a.causecode1 as causecode1 from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select c.migrateplancode as policyno, \ CASE WHEN length (a.regdtlclaimcausecode) between '1' and '6' and a.regdtlclaimcausecode <> '' THEN a.regdtlclaimcausecode ELSE 'TLP' end as causecode1 from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno,c.migrateplancode,a.regdtlclaimcausecode ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    causeCode1
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0008_causeDetail1_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) from ( select d.migrateplancode as policyno, \ CASE WHEN length (a.RegDtlClaimCauseCode) > 1 and b.code is not null THEN b.detail1 ELSE substring(a.regdtlclaimcauseen,1,50) end as causedetail1 FROM tlp.claimregisterdetail a left join dm.icd10 b on a.regdtlclaimcausecode = b.illnesscode join tlp.claimregisterheader c on a. registerseq = c.registerseq join dm.tlpmigration d on c.regcustomercode = d.customercode and c.regcustomercertificateno = d.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, c.regcustomercode, c.regcustomercertificateno,d.migrateplancode,a.regdtlclaimcauseen,a.regdtlclaimcausecode,b.isicd10,b.detail1,b.code except all select b.policyno as policyno, a.causedetail1 as causedetail1 from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode) tmp; select count (0) from ( select b.policyno as policyno, a.causedetail1 as causedetail1 from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select d.migrateplancode as policyno, \ CASE WHEN b.isicd10 is not null THEN b.detail1 ELSE substring(a.regdtlclaimcauseen,1,50) end as causedetail1 FROM tlp.claimregisterdetail a left join dm.icd10 b on a.regdtlclaimcausecode = b.illnesscode join tlp.claimregisterheader c on a. registerseq = c.registerseq join dm.tlpmigration d on c.regcustomercode = d.customercode and c.regcustomercertificateno = d.tlpcertno where \ ((a.regdtldateofdeath = '00000000' \ and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, c.regcustomercode, c.regcustomercertificateno,d.migrateplancode,a.regdtlclaimcauseen,a.regdtlclaimcausecode,b.isicd10,b.detail1,b.code ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    causeDetail1
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0009_causeCode2_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where substring(a.causecode2,1,2) <> '30' and substring(a.causecode2,3,6) <> '' and length(a.causecode2) = 6;
+    EDM_Compare Result    @{Result[0]}    0    causeCode2
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0010_causeDetail2_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) from ( select d.migrateplancode as policyno, a.regdtlclaimcauseth as causedetail2 from tlp.claimregisterdetail a \ left join dm.icd10 b on a.regdtlclaimcauseth = b.detail1 JOIN tlp.claimregisterheader c ON a.registerseq = c.registerseq JOIN dm.tlpmigration d ON c.regcustomercertificateno = d.tlpcertno and c.regcustomercode = d.customercode where \ ((a.regdtldateofdeath = '0' or a.regdtldateofdeath > '0' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 1 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, c.regcustomercode, c.regcustomercertificateno, d.migrateplancode,a.regdtlclaimcauseth,b.detail1 except all select c.migrateplancode as policyno, a.causedetail2 as causedetail2 FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    causeDetail2
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0011_specialCauseFlag_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.specialcauseflag <> 'N';
+    EDM_Compare Result    @{Result[0]}    0    specialCauseFlag
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0012_psysicianCertificate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.psysiciancertificate <> '000000';
+    EDM_Compare Result    @{Result[0]}    0    psysicianCertificate
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0013_admitFlag_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) \ from( SELECT \ CASE WHEN a.regdtldateofadmission <> '0' THEN 'Y' ELSE 'N' end as admitflag, c.migrateplancode FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode where \ ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtldateofadmission EXCEPT ALL \ SELECT a.admitflag, c.migrateplancode FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode ) tmp; \ \ \ \ \ \ \ \ \ select count (0) \ from( SELECT a.admitflag, c.migrateplancode FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode EXCEPT ALL \ SELECT \ CASE WHEN a.regdtldateofadmission <> '0' THEN 'Y' ELSE 'N' end as admitflag, c.migrateplancode FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode where \ ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtldateofadmission ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    admitFlag
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0014_admitStartDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (*) from ( select c.migrateplancode as policyno, \ CASE WHEN a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '' then '00000000' ELSE 'admitstartdate' end as admitstartdate \ \ from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno,c.migrateplancode,a.regdtldateofadmission except all select b.policyno as policyno, a.admitstartdate as admitstartdate from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode ) tmp; select count (*) from ( select b.policyno as policyno, a.admitstartdate as admitstartdate from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select c.migrateplancode as policyno, \ CASE WHEN a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '' then '00000000' ELSE 'admitstartdate' end as admitstartdate \ from tlp.claimregisterdetail a join tlp.claimregisterheader b on a. registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno,c.migrateplancode,a.regdtldateofadmission ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    admitStartDate
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0015_investigationCode1_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.investigationcode1 <> '00';
+    EDM_Compare Result    @{Result[0]}    0    investigationCode1
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0016_investigationCode2_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.investigationcode2 <> '00';
+    EDM_Compare Result    @{Result[0]}    0    investigationCode2
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0017_investigationCode3_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.investigationcode3 <> '00';
+    EDM_Compare Result    @{Result[0]}    0    investigationCode3
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0018_treatmentCode1_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.treatmentcode1 <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    treatmentCode1
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0019_treatmentCode2_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.treatmentcode2 <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    treatmentCode2
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0020_treatmentCode3_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) \ FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.treatmentcode3 <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    treatmentCode3
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0021_notation_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where notation <>'';
+    EDM_Compare Result    @{Result[0]}    0    notation
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0022_receiverID_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) \ from( SELECT c.migrateplancode as policyno, CASE WHEN a.regdtlregister = '' and \ length(a.regdtlregister) = 7 THEN a.regdtlregister ELSE '0000000' end as receiverid FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode \ where \ ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlregister EXCEPT ALL \ SELECT c.migrateplancode as policyno , a.receiverid as receiverid FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode) tmp; select count (0) \ from( SELECT c.migrateplancode as policyno , a.receiverid as receiverid FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode EXCEPT ALL \ SELECT c.migrateplancode as policyno, CASE WHEN a.regdtlregister = '' and \ length(a.regdtlregister) = 7 THEN a.regdtlregister ELSE '0000000' end as receiverid FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode \ where \ ((a.regdtldateofdeath = '0' or a.regdtldateofdeath > '0' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 1 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlregister ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    receiverID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0023_precertConsiderID_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.precertconsiderid <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    precertConsiderID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0024_considerID_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) \ from( SELECT c.migrateplancode as policyno, CASE WHEN a.regdtlapproval = '' and \ length(a.regdtlapproval) = 7 THEN a.regdtlapproval ELSE '0000000' end as considerid FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode \ where \ ((a.regdtldateofdeath = '0' or a.regdtldateofdeath > '0' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 1 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlapproval EXCEPT ALL \ SELECT c.migrateplancode as policyno , a.considerid as considerid FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode) tmp; select count (0) \ from( SELECT c.migrateplancode as policyno , a.considerid as considerid FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode EXCEPT ALL \ SELECT c.migrateplancode as policyno, CASE WHEN a.regdtlapproval = '' and \ length(a.regdtlapproval) = 7 THEN a.regdtlapproval ELSE '0000000' end as considerid FROM tlp.claimregisterdetail a JOIN tlp.claimregisterheader b ON a.registerseq = b.registerseq JOIN dm.tlpmigration c ON b.regcustomercertificateno = c.tlpcertno and c.customercode = b.regcustomercode \ where \ ((a.regdtldateofdeath = '0' or a.regdtldateofdeath > '0' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 1 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtlapproval ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    considerID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0025_linkSectionOrder_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.linksectionorder <> '';
+    EDM_Compare Result    @{Result[0]}    0    linkSectionOrder
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0026_marketAmount_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.marketamount <> '0.00';
+    EDM_Compare Result    @{Result[0]}    0    marketAmount
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0027_saveAmount_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.saveamount <> '0.00';
+    EDM_Compare Result    @{Result[0]}    0    saveAmount
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0028_provinceCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.provincecode <> '00';
+    EDM_Compare Result    @{Result[0]}    0    provinceCode
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0029_payLimit_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.paylimit <> '0.00';
+    EDM_Compare Result    @{Result[0]}    0    payLimit
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0030_interestClaim_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.interestclaim <> '0.00';
+    EDM_Compare Result    @{Result[0]}    0    interestClaim
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0031_interestPayStart_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.interestpaystart <> '00000000';
+    EDM_Compare Result    @{Result[0]}    0    interestPayStart
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0032_interestPolicy_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.interestpolicy <> '00000000';
+    EDM_Compare Result    @{Result[0]}    0    interestPolicy
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0033_branchConsiderID_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.branchconsiderid <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    branchConsiderID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0034_branchUserID_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.branchuserid <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    branchUserID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0035_pureAccidentFlag_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.pureaccidentflag <> 'N';
+    EDM_Compare Result    @{Result[0]}    0    pureAccidentFlag
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0036_severeAccidentFlag_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.severeaccidentflag <> 'N';
+    EDM_Compare Result    @{Result[0]}    0    severeAccidentFlag
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0037_medicalProcedure_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.medicalprocedure <> '';
+    EDM_Compare Result    @{Result[0]}    0    medicalProcedure
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0038_screeningAssessor_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.screeningassessor <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    screeningAssessor
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0039_checkerID_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.checkerid <> '0000000';
+    EDM_Compare Result    @{Result[0]}    0    checkerID
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0040_automateFlag_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.automateflag <> 'N';
+    EDM_Compare Result    @{Result[0]}    0    automateFlag
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0041_rbDays_DirectMove
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) \ from( select c.migrateplancode as policyno,a.regdtldurationdays as rbdays \ from tlp.claimregisterdetail a join tlp.claimregisterheader b on a.registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '00000000' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 8 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtldurationdays except all select b.policyno as policyno, a.rbdays as rbdays from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode ) tmp; select count (0) \ from( select b.policyno as policyno, a.rbdays as rbdays from dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode except all select c.migrateplancode as policyno,a.regdtldurationdays as rbdays \ from tlp.claimregisterdetail a join tlp.claimregisterheader b on a.registerseq = b.registerseq join dm.tlpmigration c on b.regcustomercode = c.customercode and b.regcustomercertificateno = c.tlpcertno where \ ((a.regdtldateofdeath = '0' or a.regdtldateofdeath > '0' and a.regdtldateofdeath <> '') or (length(a.regdtldateofdeath) = 1 and a.regdtldateofdeath !~* '[a-zก-ฮ]')) \ and ((a.regdtldateofadmission = '00000000' or a.regdtldateofadmission = '') or (length(a.regdtldateofadmission) = 8 and a.regdtldateofadmission !~* '[a-zก-ฮ]')) \ \ group by a.regdtlregisterdate, a.registerseq, b.regcustomercode, b.regcustomercertificateno, c.migrateplancode,a.regdtldurationdays ) tmp;
+    EDM_Compare Result    @{Result[0]}    0    rbDays
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0042_icuDays_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode WHERE a.icudays <> '0';
+    EDM_Compare Result    @{Result[0]}    0    icuDays
+
+EDM4_GuyLady_SIT_TLI_Person_0012_0043_isVip_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count (*) FROM dm.eclm a join dm.claim b on a.sectioncode = b.sectioncode and a.orderno = b.orderno join dm.tlpmigration c on b.policyno = c.migrateplancode where a.isvip <> '0';
+    EDM_Compare Result    @{Result[0]}    0    isVip
