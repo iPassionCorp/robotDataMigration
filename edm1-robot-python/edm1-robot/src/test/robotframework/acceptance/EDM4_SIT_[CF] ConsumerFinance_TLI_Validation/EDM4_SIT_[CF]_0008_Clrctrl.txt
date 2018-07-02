@@ -206,7 +206,7 @@ EDM4_SIT_[CF]_0008_0039_Validate Time_NotNull
 
 EDM4_SIT_[CF]_0008_0040_Validate RequestDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.clrctrl a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ where (to_number(SUBSTRING(a.RequestDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.RequestDate,5,2),'99') \ not between 1 and 12 \ \ or to_number(SUBSTRING(a.RequestDate,7,2),'99') not between 1 and 31) and a.RequestDate!=''
+    @{Result}    Query    select count(0) from dm.clrctrl a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ where SUBSTRING(a.RequestDate,1,4) not between '0000' and '3000' \ \ \ or SUBSTRING(a.RequestDate,5,2) \ not between '01' and '12' \ or SUBSTRING(a.RequestDate,7,2) not between '01' and '31' and a.RequestDate!=''
     EDM_Compare Result    @{Result[0]}    0    RequestDate
 
 EDM4_SIT_[CF]_0008_0041_Validate RequestDate_NotNull
@@ -236,7 +236,7 @@ EDM4_SIT_[CF]_0008_0045_Validate GracePeriod_NotNull
 
 EDM4_SIT_[CF]_0008_0046_Validate PrintedDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.clrctrl a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ where (to_number(SUBSTRING(a.PrintedDate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.PrintedDate,5,2),'99') not between 1 and 12 \ \ \ or to_number(SUBSTRING(a.PrintedDate,7,2),'99') not between 1 and 31) and a.PrintedDate!=''
+    @{Result}    Query    select count(0) from dm.clrctrl a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ where SUBSTRING(a.PrintedDate,1,4) not between '0000' and '3000' \ \ \ or SUBSTRING(a.PrintedDate,5,2) \ not between '01' and '12' \ or SUBSTRING(a.PrintedDate,7,2) not between '01' and '31' and a.PrintedDate!=''
     EDM_Compare Result    @{Result[0]}    0    PrintedDate
 
 EDM4_SIT_[CF]_0008_0047_Validate PrintedDate_NotNull
