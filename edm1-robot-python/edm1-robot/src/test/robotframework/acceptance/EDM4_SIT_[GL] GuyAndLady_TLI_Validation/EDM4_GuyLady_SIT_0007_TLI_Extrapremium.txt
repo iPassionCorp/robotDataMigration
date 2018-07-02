@@ -4,60 +4,164 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0001_Validate PolicyNo
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0001_Validate PolicyNo_length
     [Documentation]    ตรวจสอบข้อมูล policyNo (เลขกรมธรรม์)
     ...    - policyNo \ = TLI จะทำการ mapping เป็นเลข running ของ TLI เอง
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM tlitext.ordmast a WHERE length(a.policyno) > 8;
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE length(a.policyno) <> 8;
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0002_Validate ExtraType
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0011_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE a.policyno = '' or a.policyno = 'blank' or a.policyno is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0002_Validate ExtraType_length
     [Documentation]    ตรวจสอบข้อมูล policyNo (เลขกรมธรรม์)
     ...    - policyNo \ = TLI จะทำการ mapping เป็นเลข running ของ TLI เอง
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM tlitext.ordmast a WHERE length(a.extratype) > 3;
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE length(a.extratype) > 3;
     EDM_Compare Result    @{Result[0]}    0    extratype
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0003_Validate StartYear
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0012_Validate ExtraType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE a.extratype = '' or a.extratype = 'blank' or a.extratype is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0003_Validate StartYear_Default
     [Documentation]    ตรวจสอบข้อมูล startYear (ปีที่เริ่มเรียกเก็บ)
     ...    - startYear = default "01"
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.startyear <> '01';
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.startyear <> '01';
     EDM_Compare Result    @{Result[0]}    0    StartYear
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0004_Validate NoOfYear
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0015_Validate StartYear_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.startyear ='' or a.startyear ='blank' or a.startyear is null
+    EDM_Compare Result    @{Result[0]}    0    startyear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0004_Validate NoOfYear_Default
     [Documentation]    ตรวจสอบข้อมูล noOfYear (จำนวนปีที่เรียกเก็บ)
     ...    - noOfYear = tlp.PolicyMaster.PayPeriod
     ...    - [Format : '05', '07' (2 digits)]
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.noofyear NOT IN ('05', '07');
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno WHERE a.noofyear NOT IN ('05', '07');
     EDM_Compare Result    @{Result[0]}    0    NoOfYear
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0016_Validate NoOfYear_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.noofyear ='' or a.noofyear ='blank' or a.noofyear is null
+    EDM_Compare Result    @{Result[0]}    0    noofyear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0017_Validate NoOfYear_MappingOnlyMigration
+    [Documentation]    ตรวจสอบเฉพาะข้อมูลที่นำเข้าเท่านั้น
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno inner join tlp.policymaster d on c.tlppolicyno = d.policyno and d.premexta <> '0' where to_number(a.noofyear,'99') <> to_number(d.payperiod,'99')
+    EDM_Compare Result    @{Result[0]}    0    noofyear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0018_Validate NoOfYear_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from( select d.customercode,d.payperiod \ from tlp.policymaster d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all SELECT c.customercode,a.noofyear FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    noofyear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0019_Validate NoOfYear_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from( SELECT c.customercode,a.noofyear FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno except all select d.customercode,d.payperiod \ from tlp.policymaster d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    noofyear
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.startdate not between '0000-00-00' and '3000-12-31' and startdate <> ''
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0006_Validate StartDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.startdate ='' or a.startdate ='blank' or a.startdate is null
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate_MappingOnlyMigration
     [Documentation]    ตรวจสอบข้อมูล startDate (วันเริ่มมีผล)
     ...    - startDate = tlp.PolicyMaster.EffectiveDate
     ...
     ...    - Format: YYYYMMDD โดยที่ YYYY คือ พ.ศ.2560
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.startdate <> c.payperiod
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno and d.premexta <> '0' WHERE a.startdate <> c.payperiod
     EDM_Compare Result    @{Result[0]}    0    StartDate
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0006_Validate_ExtraPremium
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate_MappingSource
+    [Documentation]    \
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from( select d.customercode,d.effectivedate \ from tlp.policymaster d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno except all SELECT c.customercode,a.startdate FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0005_Validate StartDate_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from( SELECT c.customercode,a.startdate FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno except all select d.customercode,d.effectivedate \ from tlp.policymaster d inner join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    StartDate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate_ExtraPremium_length
+    [Documentation]    \
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ left join tlp.policymaster d on d.policyno = c.tlppolicyno and d.premexta <> '0' WHERE length(a.extrapremium) <> 8 and a.extrapremium <> ''
+    EDM_Compare Result    @{Result[0]}    0    ExtraPremium
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0006_Validate_ExtraPremium_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ left join tlp.policymaster d on d.policyno = c.tlppolicyno and d.premexta <> '0' WHERE length(a.extrapremium) <> 8 and a.extrapremium <> ''
+    EDM_Compare Result    @{Result[0]}    0    ExtraPremium
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0006_Validate_ExtraPremium_MappingOnlyMigration
     [Documentation]    ตรวจสอบข้อมูล extraPremium (เบี้ยเพิ่มพิเศษ)
     ...    - extraPremium = tlp.PolicyMaster.PremExta
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.premexta
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ and d.premexta <> '0' where to_number(a.extrapremium,'99999999') <> to_number(d.premexta,'99999999')
     EDM_Compare Result    @{Result[0]}    0    ExtraPremium
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate Mode
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate_ExtraPremium_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.premexta
+    EDM_Compare Result    @{Result[0]}    0    ExtraPremium
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate_ExtraPremium_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.premexta
+    EDM_Compare Result    @{Result[0]}    0    ExtraPremium
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate Mode_Default
     [Documentation]    ตรวจสอบข้อมูล mode (วิธีการชำระเบี้ยเมื่อเริ่มทำประกัน)
     ...    - mode = tlp.PolicyMaster.Mode
     ...    - GuyLady มีแค่ 0,1
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.mode NOT IN ('0','1');
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.mode NOT IN ('0','1','2','4');
     EDM_Compare Result    @{Result[0]}    0    Mode
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate Mode_NotNull
+    [Documentation]    ตรวจสอบข้อมูล mode (วิธีการชำระเบี้ยเมื่อเริ่มทำประกัน)
+    ...    - mode = tlp.PolicyMaster.Mode
+    ...    - GuyLady มีแค่ 0,1
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.mode ='' or a.mode ='blank' or a.mode is null
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0007_Validate Mode_MappingOnlyMigration
+    [Documentation]    ตรวจสอบข้อมูล mode (วิธีการชำระเบี้ยเมื่อเริ่มทำประกัน)
+    ...    - mode = tlp.PolicyMaster.Mode
+    ...    - GuyLady มีแค่ 0,1
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno inner join tlp.policymaster d on c.tlppolicyno = d.policyno where (a.mode = '0' and d.mode != 'M') or (a.mode = '1' and d.mode != 'A') \ or (a.mode = '2' and d.mode != 'H') or (a.mode = '4' and d.mode != 'Q')
+    EDM_Compare Result    @{Result[0]}    0    Mode
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate_length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE length(a.emrate) <> 4 and a.emrate <> ''
+    EDM_Compare Result    @{Result[0]}    0    EmRate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno WHERE a.emrate ='' or a.emrate ='blank' or a.emrate is null
+    EDM_Compare Result    @{Result[0]}    0    EmRate
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate_Mapping
     [Documentation]    ตรวจสอบข้อมูล emRate (เป็นจำนวนเท่า ยกเว้น ชว.และฉพ. เป็นจำนวนค่าของ %EM)
     ...    - emRate = tlp.PolicyMaster.ExtraRate
     ...
@@ -73,24 +177,34 @@ EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0008_Validate EmRate
     ...    - ex_age = 0
     ...    - ex_value = 0.46
     EDM_Connect_DB
-    @{Result}    Query    SELECT * FROM dm.extrapremium a \ JOIN dm.tlpmigration b \ ON a.policyno = b.tlppolicyno JOIN tlp.policymaster c \ ON b.tlppolicyno = c.policyno WHERE a.extrapremium <> c.extraRate
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno inner join tlp.policymaster d on c.tlppolicyno = d.policyno where to_number(a.emrate,'99999999') <> to_number(d.extrarate,'99999999')
     EDM_Compare Result    @{Result[0]}    0    EmRate
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0009_Validate EPformEM
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0009_Validate EPfromEM_length
     [Documentation]    ตรวจสอบข้อมูล epFromEM (ค่า EP ที่คำนวนจาก EM rate)
     ...    - epFromEM = confirm
     ...
     ...    - [20180224] เดี๋ยวพี่ตรองจะไปตรวจสอบลักษณะการเก็บข้อมูลของ field นี้อีกครั้งหนึ่ง
     ...    - [20180224 พี่ซ่า] ค่านี้เป็นค่าที่คำนวณมาได้จาก EM ที่เป็น % จาก Table เพื่อเอาไปคำนวณต่อทุนประกัน
     EDM_Connect_DB
-    @{Result}    Query
-    EDM_Compare Result    @{Result[0]}    0    EPformEM
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE length(a.epfromem) > 6;
+    EDM_Compare Result    @{Result[0]}    0    epfromem
 
-EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0010_Validate EPUnderWRT
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0013_Validate EPformEM_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE a.epfromem = '' or a.epfromem = 'blank' or a.epfromem is null
+    EDM_Compare Result    @{Result[0]}    0    epfromem
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0010_Validate EPUnderWRT_length
     [Documentation]    ตรวจสอบข้อมูล epUnderwrt (ค่า EP ที่underwrite คิดเอง)
     ...    - epUnderwrt = confirm
     ...    - [20180224] เดี๋ยวพี่ตรองจะไปตรวจสอบลักษณะการเก็บข้อมูลของ field นี้อีกครั้งหนึ่ง
     ...    - [20180224 พี่ซ่า] ค่านี้เป็นค่าที่ีทาง UNW charge เบี้ยเพิ่มเพื่ยงระยะเวลาหนึ่งเท่านั้น จะคิดต่อทุนประกัน 1000
     EDM_Connect_DB
-    @{Result}    Query
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE length(a.epunderwrt) > 6;
     EDM_Compare Result    @{Result[0]}    0    EPUnderWRT
+
+EDM4_GuyLady_SIT_TLI_ExtraPremium_0007_0014_Validate EPUnderWRT_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.extrapremium a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE a.epunderwrt = '' or a.epunderwrt = 'blank' or a.epunderwrt is null
+    EDM_Compare Result    @{Result[0]}    0    epfromem
