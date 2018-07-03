@@ -1,0 +1,170 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_BILLING_TLI_billingpost_0003_0001_Validate policyNo_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.policyno) <> 4
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0002_Validate policyNo_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.policyno ISNULL OR a.policyno = '' OR a.policyno = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0003_Validate cert_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.cert) <> 8
+    EDM_Compare Result    @{Result[0]}    0    cert
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0004_Validate cert_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.cert \ ISNULL OR a.cert = '' OR a.cert = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    cert
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0005_Validate policyType_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.cert) <> 1
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0006_Validate policyType_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.policytype \ ISNULL OR a.policytype = '' OR a.policytype = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0007_Validate policyType_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.policytype \ not in ('O','M')
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0008_Validate payStatus_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.paystatus) <> 1
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0009_Validate paystatus_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.paystatus \ ISNULL OR a.paystatus = '' OR a.paystatus = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0010_Validate payStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.paystatus \ not in ('N','F','R')
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0011_Validate dueDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.duedate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    dueDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0012_Validate dueDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.duedate \ ISNULL OR a.duedate = '' OR a.duedate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    dueDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0013_Validate payPeriod_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.payperiod) <> 4
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0014_Validate payPeriod_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.payperiod \ ISNULL OR a.payperiod = '' OR a.payperiod = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0015_Validate postDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.postdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    postDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0016_Validate postDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.postdate \ ISNULL OR a.postdate = '' OR a.postdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    postDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0017_Validate billingDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.billingdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    billingDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0018_Validate billingDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.billingdate \ ISNULL OR a.billingdate = '' OR a.billingdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    billingDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0019_Validate paymentDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.paymentdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0020_Validate paymentDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.paymentdate \ ISNULL OR a.paymentdate = '' OR a.paymentdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0021_Validate paymentDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.paymentdate \ not in ('00000000')
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0022_Validate premium_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.premium) <> 10
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0023_Validate premium_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.premium \ ISNULL OR a.premium = '' OR a.premium = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0024_Validate mode_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.mode) <> 1
+    EDM_Compare Result    @{Result[0]}    0    mode
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0025_Validate mode_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.mode \ ISNULL OR a.mode = '' OR a.mode = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    mode
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0026_Validate status_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.status) <> 1
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0027_Validate status_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.status \ ISNULL OR a.status = '' OR a.status = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0028_Validate statusDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.statusdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    statusDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0029_Validate statusDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.statusdate \ ISNULL OR a.statusdate = '' OR a.statusdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    statusDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0030_Validate attemp_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.attemp) <> 2
+    EDM_Compare Result    @{Result[0]}    0    attemp
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0031_Validate attemp_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.attemp \ ISNULL OR a.attemp = '' OR a.attemp = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    attemp
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0032_Validate attempDate_Length
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE length(a.attempdate) <> 8
+    EDM_Compare Result    @{Result[0]}    0    attempDate
+
+EDM4_SIT_BILLING_TLI_billingpost_0003_0033_Validate attempDate_Not null
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.billingpost a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode \ and a.cert = b.tlipolicyno WHERE a.attempdate \ ISNULL OR a.attempdate = '' OR a.attempdate = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    attempDate

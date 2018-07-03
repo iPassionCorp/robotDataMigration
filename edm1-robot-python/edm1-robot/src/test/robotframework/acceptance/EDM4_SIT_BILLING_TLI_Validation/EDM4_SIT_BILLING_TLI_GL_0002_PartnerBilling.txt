@@ -1,0 +1,115 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0001_Validate Partnercode_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.partnercode not in ('888','889','890')
+    EDM_Compare Result    @{Result[0]}    0    partnercode
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0002_Validate Partnercode_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.partnercode = '' or a.partnercode = 'blank' or a.partnercode is null
+    EDM_Compare Result    @{Result[0]}    0    partnercode
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0003_Validate PartnerAbb_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where length(a.partnerabb) > 30 \ and a.partnerabb != ''
+    EDM_Compare Result    @{Result[0]}    0    partnerabb
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0004_Validate PartnerAbb_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.partnerabb = '' or a.partnerabb = 'blank' or a.partnerabb is null
+    EDM_Compare Result    @{Result[0]}    0    partnerabb
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0005_Validate BillingType_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.billingtype not in ('01','02','03','04','05','06','07')
+    EDM_Compare Result    @{Result[0]}    0    billingtype
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0006_Validate BillingType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.billingtype = '' or a.billingtype = 'blank' or a.billingtype is null
+    EDM_Compare Result    @{Result[0]}    0    billingtype
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0007_Validate BillingDue_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.billingdue not in ('01','02','03')
+    EDM_Compare Result    @{Result[0]}    0    billingdue
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0008_Validate BillingDue_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.billingdue = '' or a.billingdue = 'blank' or a.billingdue is null
+    EDM_Compare Result    @{Result[0]}    0    billingdue
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0009_Validate BillingDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a \ where (to_number(SUBSTRING(a.billingdate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.billingdate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.billingdate,7,2),'99') not between 1 and 31 \ \ \ or length(a.billingdate) <> 8 \ )and a.billingdate <> '' and a.billingdate <> '9999999'
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0010_Validate BillingDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.billingdate = '' or a.billingdate = 'blank' or a.billingdate is null
+    EDM_Compare Result    @{Result[0]}    0    billingdate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0011_Validate StartDueDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a \ where (to_number(SUBSTRING(a.startduedate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.startduedate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.startduedate,7,2),'99') not between 1 and 31 \ \ \ or length(a.startduedate) <> 8 \ )and a.startduedate <> ''
+    EDM_Compare Result    @{Result[0]}    0    startduedate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0012_Validate StartDueDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.startduedate = '' or a.startduedate = 'blank' or a.startduedate is null
+    EDM_Compare Result    @{Result[0]}    0    startduedate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0013_Validate LastDueDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a \ where (to_number(SUBSTRING(a.lastduedate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.lastduedate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.lastduedate,7,2),'99') not between 1 and 31 \ \ \ or length(a.lastduedate) <> 8 \ )and a.lastduedate <> ''
+    EDM_Compare Result    @{Result[0]}    0    lastduedate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0014_Validate LastDueDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.lastduedate = '' or a.lastduedate = 'blank' or a.lastduedate is null
+    EDM_Compare Result    @{Result[0]}    0    lastduedate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0015_Validate Status_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.status not in ('N','C')
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0016_Validate Status_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.status = '' or a.status = 'blank' or a.status is null
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0017_Validate TransactionDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a \ where (to_number(SUBSTRING(a.transactiondate,1,4),'9999') not between 0 and 3000 \ \ \ \ or to_number(SUBSTRING(a.transactiondate,5,2),'99') not between 1 and 12 \ \ \ \ or to_number(SUBSTRING(a.transactiondate,7,2),'99') not between 1 and 31 \ \ \ or length(a.transactiondate) <> 8 \ )and a.transactiondate <> ''
+    EDM_Compare Result    @{Result[0]}    0    transactiondate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0018_Validate TransactionDate_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.transactiondate = '' or a.transactiondate = 'blank' or a.transactiondate is null
+    EDM_Compare Result    @{Result[0]}    0    transactiondate
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0019_Validate UserID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where length(a.userid) <> 7 \ and a.userid != ''
+    EDM_Compare Result    @{Result[0]}    0    userid
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0020_Validate UserID_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.userid = '' or a.userid = 'blank' or a.userid is null
+    EDM_Compare Result    @{Result[0]}    0    userid
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0021_Validate AccountNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where length(a.accountno) >20 \ and a.accountno != ''
+    EDM_Compare Result    @{Result[0]}    0    accountno
+
+EDM4_SIT_BILLING_TLI_PartnerBilling_0002_0022_Validate AccountNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.partnerbilling \ a where a.accountno = '' or a.accountno = 'blank' or a.accountno is null
+    EDM_Compare Result    @{Result[0]}    0    accountno

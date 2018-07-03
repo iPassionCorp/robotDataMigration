@@ -1,0 +1,435 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM4_SIT_BILLING_TLI_0004_0001_Validate partnerCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.partnercode) > 3;
+    EDM_Compare Result    @{Result[0]}    0    partnerCode
+
+EDM4_SIT_BILLING_TLI_0004_0002_Validate partnerCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ where a.partnercode = '' or a.partnercode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    partnerCode
+
+EDM4_SIT_BILLING_TLI_0004_0003_Validate partnerCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.partnercode not in ('888');
+    EDM_Compare Result    @{Result[0]}    0    partnerCode
+
+EDM4_SIT_BILLING_TLI_0004_0004_Validate billingType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.billingType) > 2;
+    EDM_Compare Result    @{Result[0]}    0    billingType
+
+EDM4_SIT_BILLING_TLI_0004_0005_Validate billingType_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ where \ a.billingType = '' or a.billingType = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    billingType
+
+EDM4_SIT_BILLING_TLI_0004_0006_Validate billingType_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.billingType not in ('01','02','03','04','05','06','07');
+    EDM_Compare Result    @{Result[0]}    0    billingType
+
+EDM4_SIT_BILLING_TLI_0004_0007_Validate billingType_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    billingType
+
+EDM4_SIT_BILLING_TLI_0004_0008_Validate policyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM dm.consumerhist a inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ where length(a.policyno) > 4;
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0004_0009_Validate policyNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where \ a.policyno = '' or a.policyno = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0004_0010_Validate policyNo_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    policyNo
+
+EDM4_SIT_BILLING_TLI_0004_0011_Validate cert_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.cert) > 8;
+    EDM_Compare Result    @{Result[0]}    0    cert
+
+EDM4_SIT_BILLING_TLI_0004_0012_Validate cert_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.cert = '' or a.cert = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    cert
+
+EDM4_SIT_BILLING_TLI_0004_0013_Validate cert_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    cert
+
+EDM4_SIT_BILLING_TLI_0004_0014_Validate policyType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.policyType) = 1;
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_0004_0015_Validate policyType_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where \ a.policyType = '' or a.policyType = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_0004_0016_Validate policyType_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.policyType not in ('O','M');
+    EDM_Compare Result    @{Result[0]}    0    policyType
+
+EDM4_SIT_BILLING_TLI_0004_0017_Validate seqNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.seqNo) > 6;
+    EDM_Compare Result    @{Result[0]}    0    seqNo
+
+EDM4_SIT_BILLING_TLI_0004_0018_Validate seqNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ \ where \ a.seqNo = '' or a.seqNo = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    seqNo
+
+EDM4_SIT_BILLING_TLI_0004_0019_Validate seqNo_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    seqNo
+
+EDM4_SIT_BILLING_TLI_0004_0020_Validate marchantCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.marchantCode) > 30;
+    EDM_Compare Result    @{Result[0]}    0    marchantCode
+
+EDM4_SIT_BILLING_TLI_0004_0021_Validate marchantCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ \ where \ a.marchantCode = '' or a.marchantCode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    marchantCode
+
+EDM4_SIT_BILLING_TLI_0004_0022_Validate payStatus_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.payStatus) = 1;
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_0004_0023_Validate payStatus_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.payStatus = '' or a.payStatus = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_0004_0024_Validate payStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.payStatus not in ('N','F','R');
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_0004_0025_Validate payStatus_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    payStatus
+
+EDM4_SIT_BILLING_TLI_0004_0026_Validate dueDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.dueDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.dueDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.dueDate,7,2),'99') not between 1 and 31) \ \ or length(a.dueDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    dueDate
+
+EDM4_SIT_BILLING_TLI_0004_0027_Validate dueDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.dueDate = '' or a.dueDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    dueDate
+
+EDM4_SIT_BILLING_TLI_0004_0028_Validate dueDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    dueDate
+
+EDM4_SIT_BILLING_TLI_0004_0029_Validate payPeriod_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.payPeriod) > 6;
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLI_0004_0030_Validate payPeriod_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.payPeriod = '' or a.payPeriod = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLI_0004_0031_Validate payPeriod_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    payPeriod
+
+EDM4_SIT_BILLING_TLI_0004_0032_Validate sysDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.sysDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.sysDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.sysDate,7,2),'99') not between 1 and 31) \ \ or length(a.sysDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_BILLING_TLI_0004_0033_Validate sysDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.sysDate = '' or a.sysDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_BILLING_TLI_0004_0034_Validate sysDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    sysDate
+
+EDM4_SIT_BILLING_TLI_0004_0035_Validate creditNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.creditNo) > 16;
+    EDM_Compare Result    @{Result[0]}    0    creditNo
+
+EDM4_SIT_BILLING_TLI_0004_0036_Validate creditNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.creditNo = '' or a.creditNo = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    creditNo
+
+EDM4_SIT_BILLING_TLI_0004_0037_Validate creditNo_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    creditNo
+
+EDM4_SIT_BILLING_TLI_0004_0038_Validate ownerName_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.ownerName) > 150;
+    EDM_Compare Result    @{Result[0]}    0    ownerName
+
+EDM4_SIT_BILLING_TLI_0004_0039_Validate ownerName_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.ownerName = '' or a.ownerName = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ownerName
+
+EDM4_SIT_BILLING_TLI_0004_0040_Validate expireDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.expireDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.expireDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.expireDate,7,2),'99') not between 1 and 31) \ \ or length(a.expireDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    expireDate
+
+EDM4_SIT_BILLING_TLI_0004_0041_Validate expireDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.expireDate = '' or a.expireDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    expireDate
+
+EDM4_SIT_BILLING_TLI_0004_0042_Validate expireDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    expireDate
+
+EDM4_SIT_BILLING_TLI_0004_0043_Validate approvalCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.approvalCode) > 6;
+    EDM_Compare Result    @{Result[0]}    0    approvalCode
+
+EDM4_SIT_BILLING_TLI_0004_0044_Validate approvalCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.approvalCode = '' or a.approvalCode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    approvalCode
+
+EDM4_SIT_BILLING_TLI_0004_0045_Validate approvalCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.approvalCode <> '000000');
+    EDM_Compare Result    @{Result[0]}    0    approvalCode
+
+EDM4_SIT_BILLING_TLI_0004_0046_Validate billingDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.billingDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.billingDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.billingDate,7,2),'99') not between 1 and 31) \ \ or length(a.billingDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    billingDate
+
+EDM4_SIT_BILLING_TLI_0004_0047_Validate billingDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.billingDate = '' or a.billingDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    billingDate
+
+EDM4_SIT_BILLING_TLI_0004_0048_Validate billingDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    billingDate
+
+EDM4_SIT_BILLING_TLI_0004_0049_Validate paymentDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.paymentDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.paymentDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.paymentDate,7,2),'99') not between 1 and 31) \ \ or length(a.paymentDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_0004_0050_Validate paymentDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.paymentDate = '' or a.paymentDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_0004_0051_Validate paymentDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    paymentDate
+
+EDM4_SIT_BILLING_TLI_0004_0052_Validate premium_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.premium) > 10;
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_BILLING_TLI_0004_0053_Validate premium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.premium = '' or a.premium = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_BILLING_TLI_0004_0054_Validate premium_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_BILLING_TLI_0004_0055_Validate mode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.mode) > 1;
+    EDM_Compare Result    @{Result[0]}    0    mode
+
+EDM4_SIT_BILLING_TLI_0004_0056_Validate mode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.mode = '' or a.mode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    mode
+
+EDM4_SIT_BILLING_TLI_0004_0057_Validate status_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.status) > 1;
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_0004_0058_Validate status_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.status = '' or a.status = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_0004_0059_Validate status_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.status not in ('S','L');
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_0004_0060_Validate status_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    status
+
+EDM4_SIT_BILLING_TLI_0004_0061_Validate statusDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.statusDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.statusDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.statusDate,7,2),'99') not between 1 and 31) \ \ or length(a.statusDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    statusDate
+
+EDM4_SIT_BILLING_TLI_0004_0062_Validate statusDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.statusDate = '' or a.statusDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    statusDate
+
+EDM4_SIT_BILLING_TLI_0004_0063_Validate statusDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    statusDate
+
+EDM4_SIT_BILLING_TLI_0004_0064_Validate responseCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.responseCode) > 2;
+    EDM_Compare Result    @{Result[0]}    0    responseCode
+
+EDM4_SIT_BILLING_TLI_0004_0065_Validate responseCode_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.responseCode = '' or a.responseCode = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    responseCode
+
+EDM4_SIT_BILLING_TLI_0004_0066_Validate responseCode_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    responseCode
+
+EDM4_SIT_BILLING_TLI_0004_0067_Validate responseDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist a \ \ where ((to_number(SUBSTRING(a.responseDate,1,4),'9999') not between 0 and 3000 \ \ or to_number(SUBSTRING(a.responseDate,5,2),'99') not between 1 and 12 \ or to_number(SUBSTRING(a.responseDate,7,2),'99') not between 1 and 31) \ \ or length(a.responseDate) <> 8)
+    EDM_Compare Result    @{Result[0]}    0    responseDate
+
+EDM4_SIT_BILLING_TLI_0004_0068_Validate responseDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.responseDate = '' or a.responseDate = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    responseDate
+
+EDM4_SIT_BILLING_TLI_0004_0069_Validate responseDate_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    responseDate
+
+EDM4_SIT_BILLING_TLI_0004_0070_Validate attemp_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.attemp) > 2;
+    EDM_Compare Result    @{Result[0]}    0    attemp
+
+EDM4_SIT_BILLING_TLI_0004_0071_Validate attemp_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.attemp = '' or a.attemp = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    attemp
+
+EDM4_SIT_BILLING_TLI_0004_0072_Validate attemp_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    attemp
+
+EDM4_SIT_BILLING_TLI_0004_0073_Validate rpNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.rpNo) > 12;
+    EDM_Compare Result    @{Result[0]}    0    rpNo
+
+EDM4_SIT_BILLING_TLI_0004_0074_Validate rpNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.rpNo = '' or a.rpNo = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    rpNo
+
+EDM4_SIT_BILLING_TLI_0004_0075_Validate submitNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.submitNo) > 12;
+    EDM_Compare Result    @{Result[0]}    0    submitNo
+
+EDM4_SIT_BILLING_TLI_0004_0076_Validate submitNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.submitNo = '' or a.submitNo = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    submitNo
+
+EDM4_SIT_BILLING_TLI_0004_0077_Validate submitNo_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.submitNo <> '000000000000');
+    EDM_Compare Result    @{Result[0]}    0    submitNo
+
+EDM4_SIT_BILLING_TLI_0004_0078_Validate userID_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.userID ) > 7;
+    EDM_Compare Result    @{Result[0]}    0    userID
+
+EDM4_SIT_BILLING_TLI_0004_0079_Validate userID_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ \ where a.userID \ = '' or a.userID \ = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    userID
+
+EDM4_SIT_BILLING_TLI_0004_0080_Validate userID_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where a.userID <> '0000000');
+    EDM_Compare Result    @{Result[0]}    0    userID
+
+EDM4_SIT_BILLING_TLI_0004_0081_Validate exfileOut_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.exfileOut ) > 30;
+    EDM_Compare Result    @{Result[0]}    0    exfileOut
+
+EDM4_SIT_BILLING_TLI_0004_0082_Validate exfileOut_NotBlank&NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ where a.exfileOut = '' \ or a.exfileOut \ in ('NULL', 'Null', 'null') \ \ or a.exfileOut = '' or a.exfileOut = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    exfileOut
+
+EDM4_SIT_BILLING_TLI_0004_0084_Validate exfileOut_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    exfileOut
+
+EDM4_SIT_BILLING_TLI_0004_0085_Validate exfileReturn_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ where length(a.exfileReturn ) > 30;
+    EDM_Compare Result    @{Result[0]}    0    exfileReturn
+
+EDM4_SIT_BILLING_TLI_0004_0086_Validate exfileReturn_NotBlank&NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlibilling.consumerhist \ a \ \ where a.exfileReturn = '' \ or a.exfileReturn \ in ('NULL', 'Null', 'null') \ \ or a.exfileReturn = '' or a.exfileReturn = 'blank';
+    EDM_Compare Result    @{Result[0]}    0    exfileReturn
+
+EDM4_SIT_BILLING_TLI_0004_0087_Validate exfileReturn_Mapping
+    EDM_Connect_DB
+    @{Result}    Query
+    EDM_Compare Result    @{Result[0]}    0    exfileReturn
