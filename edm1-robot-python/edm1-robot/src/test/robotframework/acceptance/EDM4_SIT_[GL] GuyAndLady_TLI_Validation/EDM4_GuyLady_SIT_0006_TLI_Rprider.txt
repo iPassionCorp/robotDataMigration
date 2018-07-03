@@ -12,17 +12,17 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0006_0001_Validate RpNo_Default
     ...    APL:
     ...    A (1 หลัก)+Running (11 หลัก)
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno inner join tlp.policypaid e on d.policyno = e.policyno and e.seqno = a.seqno where substring(a.rpno,1,3) !~* '[a-zก-ฮ]' and substring(a.rpno,1,1) not like 'A' and length(a.rpno) <> 11 \ or to_number(substring(a.rpno,4,2),'99') not between 1 and 12    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno inner join tlp.policypaid f on e.policyno = f.policyno where (substring(a.rpno,1,3) ~* '[a-zก-ฮ]' \ and to_number(substring(a.rpno,4,2),'99') not between 1 and 12 and substring(a.rpno,6,7) ~* '[a-zก-ฮ]') \ or (substring(a.rpno,1,1) not like 'A' \ and substring(a.rpno,2,11) ~* '[a-zก-ฮ]')    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0002_Validate RpNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno inner join tlp.policypaid e on d.policyno = e.policyno \ and e.seqno = a.seqno where a.rpno = '' or a.rpno ='blank' or a.rpno is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno inner join tlp.policypaid f on e.policyno = f.policyno where a.rpno = '' or a.rpno ='blank' or a.rpno is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0003_Validate RpNo_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.rpno from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno inner join tlp.policypaid e on d.policyno = e.policyno \ \ and e.seqno = a.seqno group by a.rpno having count(0) > 1) tmp    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from (select a.rpno from dm.rprider a \ \ inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno inner join tlp.policypaid f on e.policyno = f.policyno \ group by a.rpno having count(0) > 1) tmp    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0004_Validate RpNo_Mapping
@@ -32,20 +32,26 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0006_0004_Validate RpNo_Mapping
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0005_Validate seqNo_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.seqNo) > 1    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where length(a.seqNo) > 1    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    seqNo
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0006_Validate seqNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.seqNo = '' or a.seqNo is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where a.seqNo = '' or a.seqNo is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    seqNo
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0007_Validate riderText _Length
+    [Documentation]    ตัวอย่างข้อมูลของ field นี้
+    ...    Life(9)+extraLife(6)+riderType(3)+riderPrem(9)+extraPrem(6)
+    ...
+    ...    ตัวอย่างที่ 1
+    ...    000009000000500ทพ 000000000000010อพ3000000200000010
+    ...    ที่เหลือต้องใส่ 0 มาให้ length ครบ 123 characters
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno inner join tlp.policypaid e on d.policyno = e.policyno \ and e.seqno = a.seqno where length(a.riderText ) > 123    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where length(a.riderText ) <> 123    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    riderText
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0008_Validate riderText _NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rprider a \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno inner join tlp.policypaid e on d.policyno = e.policyno \ \ and e.seqno = a.seqno where a.riderText = '' or a.riderText is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where a.riderText = '' or a.riderText is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    riderText
