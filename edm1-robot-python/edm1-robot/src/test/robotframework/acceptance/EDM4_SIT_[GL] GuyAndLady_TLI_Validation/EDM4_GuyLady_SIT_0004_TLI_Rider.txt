@@ -15,10 +15,10 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0002_Validate PolicyNo_NotNull&NotBlank
     EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0003_Validate PolicyNoDuplicate
-    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
-    EDM_Connect_DB
-    @{Result}    Query     select count(0) from (select a.policyno from dm.rider a \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ group by a.policyno having count(0) > 1)tmp
-    EDM_Compare Result    @{Result[0]}    0    policyno
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล "PolicyNo" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) from (select a.policyno from dm.rider a \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ group by a.policyno having count(0) > 1)tmp
+    Comment    EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "certNo"
@@ -27,9 +27,8 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${PolicyNo}=    DatabaseLibrary.Execute Sql String    select count(0) from dm.rider a \ \ join dm.ordmast b \ \ on a.policyno = b.policyno \ \ join dm.certmapping c \ on b.policyno = c.policyno \ join tlp.PolicyRider d on d.policyno = c.rpolicyno \ where a.policyno <> d.policyno;
-    ${PolicyNo}=    Convert To String    ${PolicyNo}
-    Should Be Equal    ${PolicyNo}    None
+    @{Result}    Query    SELECT count(0) FROM ( SELECT rid.policyno from dm.rider rid \ \ \ \ \ join dm.ordmast ord on rid.policyno = ord.policyno \ \ \ \ \ join dm.tlpmigration mig on ord.policyno = mig.tlipolicyno GROUP BY rid.policyno EXCEPT ALL SELECT mig.tlipolicyno \ FROM tlp.policyrider rider JOIN dm.tlpmigration mig ON rider.policyno = mig.tlpcertno GROUP BY mig.tlipolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    riderType
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0005_Validate riderType_length
     EDM_Connect_DB
@@ -41,10 +40,10 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0006_Validate riderType_NotNull&NotBlank
     @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderType= '' or a.riderType in ('NULL', 'Null', 'null') or a.riderType= '' or a.riderType= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderType
 
-EDM4_GuyLady_SIT_TLI_Name_0004_0007_Validate riderTypeDuplicate
+EDM4_GuyLady_SIT_TLI_Name_0004_0007_Validate riderType_In ordMast
     [Documentation]    Run SQL Script ตรวจสอบข้อมูล "nameID" เป็นข้อมูล Auto Generate by TLI และต้องไม่มีข้อมูล duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.riderType from dm.rider a \ \ \ join dm.ordmast b \ on a.policyno = b.policyno \ \ \ join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ group by a.riderType having count(0) > 1)tmp
+    @{Result}    Query    SELECT count(0) FROM ( SELECT ord.policyno \ FROM dm.ordmast ord \ JOIN dm.tlpmigration mig ON ord.policyno = mig.tlipolicyno GROUP bY ord.policyno EXCEPT SELECT rider.policyno FROM dm.rider rider JOIN dm.tlpmigration mig ON rider.policyno = mig.tlipolicyno GROUP BY rider.policyno) tmp
     EDM_Compare Result    @{Result[0]}    0    ridertype
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0008_Validate riderSum_length
@@ -161,3 +160,22 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0029_Validate marker_Default
     EDM_Connect_DB
     @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.marker <> 'M' ;
     EDM_Compare Result    @{Result[0]}    0    marker
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0030_Validate RiderType Group with Sex
+    [Documentation]    ตรวจสอบ กลุ่มของ RiderType ตามเพศ ที่ถือกรรมธรรม์ โดยเงื่อนไข
+    ...
+    ...    - Person.Sex = 'F' จะต้องประกอบไปด้วย RiderType : C17, C18, C06
+    ...    - Person.Sex = 'M' จะต้องประกอบไปด้วย RiderType : C19, C20, C06
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT na.nameid, mast.policyno, person.sex \ FROM dm.ordmast mast JOIN dm.tlpmigration mig ON mast.policyno = mig.tlipolicyno JOIN dm.rider rider ON mast.policyno = rider.policyno JOIN dm."name" na ON mast.nameid = na.nameid JOIN dm.person person ON na.personid = person.personid WHERE (person.sex = 'F' AND rider.ridertype NOT IN ('C17', 'C18', 'C06')) OR \ (person.sex = 'M' AND rider.ridertype NOT IN ('C19', 'C20', 'C06'))) tmp;
+    EDM_Compare Result    @{Result[0]}    0    marker
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0030_Validate RiderPolicyNo_in ordmast
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( SELECT mast.policyno FROM dm.ordmast mast \ JOIN dm.tlpmigration mg ON mast.policyno = mg.tlipolicyno EXCEPT SELECT rider.policyno FROM dm.rider rider JOIN dm.tlpmigration mg ON rider.policyno = mg.tlipolicyno) tmp
+    EDM_Compare Result    @{Result[0]}    0    ordmast except rider

@@ -47,12 +47,12 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0009_Validate EffectiveDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0010_Validate EffectiveDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from(select a.policyno,a.effectivedate from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno where length(a.effectivedate) > 8 \ or to_number(SUBSTRING(a.effectivedate,1,4),'9999') not between 0 \ and 3000 \ \ or to_number(SUBSTRING(a.effectivedate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.effectivedate,7,2),'99') not between 1 and 31 \ \ except all \ select e.policyno,e.effectivedate from tlp.policymaster e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}    Query    SELECT count(0) FROM ( select a.policyno, a.effectivedate, d.effectivedate \ from dm.orctrl a \ \ \ \ \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ \ \ \ \ INNER join dm.tlpmigration c on b.policyno = c.tlipolicyno INNER JOIN tlp.policymaster d ON c.tlpcertno = d.policyno WHERE a.effectivedate <> d.effectivedate) tmp
     EDM_Compare Result    @{Result[0]}    0    effectivedate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0011_Validate PayPeriod_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ where length(a.payperiod) > 4
+    @{Result}    Query    SELECT count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ \ \ where length(a.payperiod) > 4
     EDM_Compare Result    @{Result[0]}    0    payperiod
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0012_Validate PayPeriod_NotNull
@@ -62,7 +62,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0012_Validate PayPeriod_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0013_Validate PayDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ inner join tlp.policypaid e on d.policyno = e.policyno where to_number(SUBSTRING(a.paydate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.paydate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.paydate,7,2),'99') not between 1 and 31 \ \ or length(a.paydate) <> 8
+    @{Result}    Query    select count(*) from dm.orctrl a inner join dm.ordmast b on a.rpno = b.rpno inner join dm.tlpmigration c on b.policyno = c.tlipolicyno inner join tlp.policymaster d on c.tlppolicyno = d.policyno inner join tlp.policypaid e on d.policyno = e.policyno where length(a.paydate) <> 8 or \ (to_number(SUBSTRING(a.paydate,1,4),'9999') not between 0 and 3000 or \ to_number(SUBSTRING(a.paydate,5,2),'99') not between 1 and 12 or \ to_number(SUBSTRING(a.paydate,7,2),'99') not between 1 and 31);
     EDM_Compare Result    @{Result[0]}    0    paydate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0014_Validate PayDate_NotNull
@@ -72,7 +72,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0014_Validate PayDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0015_Validate PayDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.paydate from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ inner join tlp.policypaid e on d.policyno = e.policyno \ \ \ where to_number(SUBSTRING(a.paydate,1,4),'9999') not between 0 and 3000 \ \ \ or to_number(SUBSTRING(a.paydate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.paydate,7,2),'99') not between 1 and 31 \ except all \ \ select j.policyno,j.paiddate from tlp.policypaid j \ join tlp.policymaster k on j.policyno = k.policyno \ join dm.tlpmigration l on k.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    SELECT count(orc.paydate) FROM dm.ordmast mast \ JOIN dm.orctrl orc ON mast.policyno = orc.policyno JOIN dm.tlpmigration mg ON mast.policyno = mg.tlipolicyno JOIN tlp.policymaster mas ON mas.plancode = mg.tlppolicyno JOIN tlp.policypaid paid ON mas.policyno = paid.policyno WHERE orc.paydate <> paid.paiddate;
     EDM_Compare Result    @{Result[0]}    0    paydate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0016_Validate Premium_length
@@ -87,7 +87,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0017_Validate Premium_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0018_Validate Premium_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.premium from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ except all \ \ \ select j.policyno,j.premtotal from tlp.policypaid j \ join tlp.policymaster k on j.policyno = k.policyno \ join dm.tlpmigration l on k.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ \ \ inner join tlp.policypaid e on d.policyno = e.policyno WHERE a.premium <> e.premtotal;
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0019_Validate ExtraPrem_length
@@ -102,7 +102,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0020_Validate ExtraPrem_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0021_Validate ExtraPrem_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.extraprem from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ \ except all \ \ select j.policyno,j.premexta from tlp.policymaster j \ join dm.tlpmigration l on j.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ \ \ WHERE a.extraprem <> d.premtotal;
     EDM_Compare Result    @{Result[0]}    0    extraprem
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0022_Validate SysDate_Default
@@ -117,7 +117,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0023_Validate SysDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0024_Validate SysDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.sysdate from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ except all \ \ select j.policyno,j.statusdate from tlp.policymaster j \ join dm.tlpmigration l on j.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ \ \ WHERE a.sysdate <> d.statusdate;
     EDM_Compare Result    @{Result[0]}    0    sysdate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0025_Validate CerrentStatus_Default
@@ -132,7 +132,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0026_Validate CerrentStatus_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0028_Validate OriginalStatus_N
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ where a.originalstatus not in ('M') or length(a.originalstatus) > 1
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ WHERE a.originalstatus <> 'N';
     EDM_Compare Result    @{Result[0]}    0    originalstatus
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0029_Validate OriginalStatus_NotNull
@@ -177,7 +177,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0036_Validate RequestDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0037_Validate RequestDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.requestdate from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ except all \ \ \ select j.policyno,j.createdate from tlp.policypaid j \ join tlp.policymaster k on j.policyno = k.policyno join dm.tlpmigration l on k.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ \ \ inner join tlp.policypaid e on d.policyno = e.policyno WHERE a.requestdate <> e.createdate;
     EDM_Compare Result    @{Result[0]}    0    requestdate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0038_Validate SubmitNo_length
@@ -212,7 +212,7 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0043_Validate PrintedDate_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0044_Validate PrintedDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.policyno,a.printeddate from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ except all \ \ \ select j.policyno,j.createdate from tlp.policypaid j \ join tlp.policymaster k on j.policyno = k.policyno join dm.tlpmigration l on k.policyno = l.tlppolicyno) tmp
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.policyno \ \ \ \ inner join tlp.policypaid e on d.policyno = e.policyno WHERE a.printeddate <> e.createdate;
     EDM_Compare Result    @{Result[0]}    0    printeddate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0045_Validate SubmitBreanch_length
@@ -255,7 +255,12 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0052_Validate MoneyOK_NotNull
     @{Result}    Query    select count(*) from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ where a.moneyok = '' or a.moneyok ='blank' or a.moneyok is null
     EDM_Compare Result    @{Result[0]}    0    reasoncode
 
-EDM4_GuyLady_SIT_TLI_Orctrl_0005_0053_Validate Payperiod_Default
+EDM4_GuyLady_SIT_TLI_Orctrl_0005_0053_Validate Payperiod_Mapping
     EDM_Connect_DB
     @{Result}    Query    select count(0) from (select a.policyno,a.payperiod from dm.orctrl a \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ except all \ \ \ select j.policyno,j.yearpay from tlp.policypaid j \ join tlp.policymaster k on j.policyno = k.policyno join dm.tlpmigration l on k.policyno = l.tlppolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    payperiod
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0005_0054_Validate MoneyOK_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) from dm.orctrl a \ \ \ \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ WHERE a.moneyok <> 'Y';
+    EDM_Compare Result    @{Result[0]}    0    reasoncode
