@@ -6,7 +6,7 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0001_Validate Partnercode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) --a.policyno,a.partnercode,c.partnercode,a.* FROM dm.creditmortgage a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where a.partnercode <> c.partnercode
+    @{Result}    Query    select count(0) from ( select a.policyno,a.partnercode,c.partnercode FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where a.partnercode <> c.partnercode) tmp
     EDM_Compare Result    @{Result[0]}    0    partnercode
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0002_Validate Partnercode_NotNullNotBlank
@@ -21,7 +21,7 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0003_Validate Partnercode_Length
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0004_Validate BillingType_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) --a.policyno,a.billingtype,c.billingtype FROM dm.creditmortgage a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where a.billingtype <> c.billingtype
+    @{Result}    Query    select count(0) from ( select a.policyno,a.billingtype,c.billingtype FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where a.billingtype <> c.billingtype) tmp
     EDM_Compare Result    @{Result[0]}    0    billingtype
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0005_Validate BillingType_NotNullNotBlank
@@ -86,7 +86,7 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0016_Validate CardType_NotNullNotBlank
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0017_Validate MerchantCode_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM dm.creditmortgage a inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ where length(a.merchantcode) > 30 \ and a.merchantcode != ''
+    @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where length(a.merchantcode) > 30 \ and a.merchantcode != ''
     EDM_Compare Result    @{Result[0]}    0    merchantcode
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0018_Validate MerchantCode_NotNullNotBlank
@@ -96,7 +96,7 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0018_Validate MerchantCode_NotNullNotBl
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0019_Validate MerchantCode_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ --a.policyno,c.tlpplncode, a.merchantcode ,c.merchantcode \ \ FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ \ where a.merchantcode <> c.merchantcode
+    @{Result}    Query    select count(0) from ( select a.policyno,c.tlpplncode, a.merchantcode ,c.merchantcode \ \ FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ \ \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ \ where a.merchantcode <> c.merchantcode) tmp
     EDM_Compare Result    @{Result[0]}    0    merchantcode
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0020_Validate CreditNo_length
@@ -119,14 +119,14 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0023_Validate Relationtype_NotNullNotBl
     @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ where a.relationtype = '' or a.relationtype = 'blank' or a.relationtype is null
     EDM_Compare Result    @{Result[0]}    0    relationtype
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0024_Validate OwnerName_length
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0024_Validate OwnerName_Check
     EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ where length(a.ownername) > 150 \ and a.ownername != ''
+    @{Result}    Query    select count(0) from (select csh.policyno, csh.cert, csh.ownername, mast.prename || mast.frstname || ' ' || mast.surname as expected \ from dm.creditmortgage csh inner join dm.tlpmigration mig \ \ \ on mig.migrateplancode = csh.policyno and mig.tlipolicyno = csh.cert inner join tlp.policymaster mast \ \ on mig.tlpcertno = mast.policyno \ and mig.tlppolicyno = mast.plancode \ \ where csh.ownername <> mast.prename || mast.frstname || ' ' || mast.surname) tmp;
     EDM_Compare Result    @{Result[0]}    0    ownername
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0025_Validate OwnerName_NotNullNotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ where a.ownername = '' or a.ownername = 'blank' or a.ownername is null
+    @{Result}    Query    select count(0) \ \ \ \ from dm.creditmortgage \ csh inner join dm.tlpmigration mig \ \ \ on mig.migrateplancode = csh.policyno and mig.tlipolicyno = csh.cert inner join tlp.policymaster mast \ \ on mig.tlpcertno = mast.policyno \ and mig.tlppolicyno = mast.plancode \ \ where csh.ownername = '' or csh.ownername = 'blank' or csh.ownername is null
     EDM_Compare Result    @{Result[0]}    0    ownername
 
 EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0026_Validate ExpireDate_length
@@ -194,22 +194,27 @@ EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0038_Validate BillingType_length
     @{Result}    Query    select count(0) \ FROM dm.creditmortgage a \ inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno \ inner join lookup.billingmapping c on b.tlppolicyno = c.tlpplncode \ where length (a.billingtype) <> 2 and a.billingtype != ''
     EDM_Compare Result    @{Result[0]}    0    billingtype
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0039_Validate PolicyNo_NotNull
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM dm.creditmortgage a inner join dm.tlpmigration b on a.policyno = b.migrateplancode and a.cert = b.tlipolicyno where a.policyno = '' or a.policyno = 'blank' or a.policyno is null
-    EDM_Compare Result    @{Result[0]}    0    policyno
-
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0040_Validate CreditNo_Mapping
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0039_Validate CreditNo_Mapping
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.ordmast b on a.cert = b.policyno inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlpbilling.membermaster d on d.policyno = c.tlppolicyno \ \ where a.creditno <> d.cardno    #รอถามพี่เอ๋
     EDM_Compare Result    @{Result[0]}    0    creditno
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0041_Validate ExpireDate_Mapping
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0040_Validate ExpireDate_Mapping
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.ordmast b on a.cert = b.policyno inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlpbilling.membermaster d on d.policyno = c.tlppolicyno \ where a.expiredate <> d.cardexpired    #รอถามพี่เอ๋
     EDM_Compare Result    @{Result[0]}    0    expiredate
 
-EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0042_Validate StatusDate_Mapping
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0041_Validate StatusDate_Mapping
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM dm.creditmortgage a \ \ inner join dm.ordmast b on a.cert = b.policyno inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ inner join tlpbilling.membermaster d on d.policyno = c.tlppolicyno \ \ where a.statusdate <> d.effectivedate
     EDM_Compare Result    @{Result[0]}    0    statusdate
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0042_Validate reconcile_policymaster
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) as expected from (SELECT mig.tlpcertno \ FROM tlp.policymaster mast inner join dm.tlpmigration mig \ \ on mig.tlppolicyno = mast.plancode and mig.tlpcertno = mast.policyno \ except all select mig.tlpcertno \ from dm.creditmortgage cdm inner join dm.tlpmigration mig \ \ on mig.migrateplancode = cdm.policyno and mig.tlipolicyno = cdm.cert) tmp;
+    EDM_Compare Result    @{Result[0]}    0    reconcile_policymaster
+
+EDM4_SIT_BILLING_TLI_CreditMortgate_0001_0043_Validate reconcile_ordmast
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) as expected from (SELECT mast.policyno as cnt FROM dm.ordmast mast inner join dm.tlpmigration mig \ \ on mig.tlipolicyno = mast.policyno except all select cdm.cert as cnt from dm.creditmortgage cdm inner join dm.tlpmigration mig \ \ on mig.migrateplancode = cdm.policyno and mig.tlipolicyno = cdm.cert) tmp;
+    EDM_Compare Result    @{Result[0]}    0    reconcile_policymaster
