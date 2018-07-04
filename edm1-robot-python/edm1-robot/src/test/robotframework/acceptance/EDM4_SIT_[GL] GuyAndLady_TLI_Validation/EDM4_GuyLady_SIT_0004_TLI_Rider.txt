@@ -30,9 +30,10 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0004_Validate PolicyNoMapping
     @{Result}    Query    SELECT count(0) FROM ( SELECT rid.policyno from dm.rider rid \ \ \ \ \ join dm.ordmast ord on rid.policyno = ord.policyno \ \ \ \ \ join dm.tlpmigration mig on ord.policyno = mig.tlipolicyno GROUP BY rid.policyno EXCEPT ALL SELECT mig.tlipolicyno \ FROM tlp.policyrider rider JOIN dm.tlpmigration mig ON rider.policyno = mig.tlpcertno GROUP BY mig.tlipolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    riderType
 
-EDM4_GuyLady_SIT_TLI_Name_0004_0005_Validate riderType_length
+EDM4_GuyLady_SIT_TLI_Name_0004_0005_Validate riderType_3 Type only
+    [Documentation]    ตรวจสอบ Policy GuyLady จะต้องมี Group RiderType ทั้ง 3 Type อยู่เสมอ
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where length(a.riderType) > 3;
+    @{Result}    Query    SELECT count(0) FROM ( SELECT rd.policyno FROM dm.ordmast mast JOIN dm.rider rd ON mast.policyno = rd.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno GROUP BY rd.policyno HAVING count(rd.ridertype) <> '3') tmp;
     EDM_Compare Result    @{Result[0]}    0    riderType
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0006_Validate riderType_NotNull&NotBlank
@@ -77,11 +78,10 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0013_Validate riderPremium_NotNull&NotBlank
     @{Result}    Query    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderPremium= '' or a.riderPremium in ('NULL', 'Null', 'null') or a.riderPremium= '' or a.riderPremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    riderPremium
 
-EDM4_GuyLady_SIT_TLI_Name_0004_0014_Validate riderPremiumMapping
+EDM4_GuyLady_SIT_TLI_Name_0004_0014_Validate riderPremium_C06_Default
     EDM_Connect_DB
-    ${riderPremium}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderPremium <> f.PremRider;
-    ${riderPremium}=    Convert To String    ${riderPremium}
-    Should Be Equal    ${riderPremium}    None
+    @{Result}    Query    SELECT count(0) FROM dm.rider rider JOIN dm.tlpmigration mg ON rider.policyno = mg.tlipolicyno WHERE rider.ridertype = 'C06' AND rider.riderpremium <> '000000000'
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0015_Validate riderPremium_NotChar
     EDM_Connect_DB
@@ -100,9 +100,8 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0017_Validate riderStatus_NotBlank
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0018_Validate riderStatusMapping
     EDM_Connect_DB
-    ${riderStatus}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatus<> f.StatusNew;
-    ${riderStatus}=    Convert To String    ${riderStatus}
-    Should Be Equal    ${riderStatus}    None
+    @{Result}=    query    SELECT count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno JOIN tlp.policyrider pr ON mig.tlpcertno = pr.policyno WHERE rd.riderstatus <> pr.statusnew
+    EDM_Compare Result    @{Result[0]}    0    riderStatus
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0019_Validate riderStatusDate_length
     EDM_Connect_DB
@@ -116,9 +115,8 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0020_Validate riderStatusDate_NotNull&NotBlank
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0021_Validate riderStatusDateMapping
     EDM_Connect_DB
-    ${riderStatusDate}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.riderStatusDate<> f.StatusDate;
-    ${riderStatusDate}=    Convert To String    ${riderStatusDate}
-    Should Be Equal    ${riderStatusDate}    None
+    @{Result}    Query    SELECT count(0) from dm.rider rd \ JOIN dm.ordmast mast ON rd.policyno = mast.policyno \ JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno \ JOIN tlp.policyrider pr ON mig.tlpcertno = pr.policyno \ WHERE rd.riderstatusdate <> pr.statusdate;
+    EDM_Compare Result    @{Result[0]}    0    riderStatusDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0022_Validate riderStatusDate_Default
     EDM_Connect_DB
@@ -137,9 +135,8 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0024_Validate effectiveDate_NotNull&NotBlank
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0025_Validate effectiveDateMapping
     EDM_Connect_DB
-    ${effectiveDate}=    DatabaseLibrary.Execute Sql String    select count(*) from dm.rider a \ \ \ inner join dm.ordmast b on a.policyno = b.policyno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster e on e.policyno = c.tlppolicyno inner join tlp.policyrider f on e.policyno = f.policyno where a.effectiveDate<> f.EffectiveDate;
-    ${effectiveDate}=    Convert To String    ${effectiveDate}
-    Should Be Equal    ${effectiveDate}    None
+    @{Result}    Query    SELECT count(0) from dm.rider rd \ JOIN dm.ordmast mast ON rd.policyno = mast.policyno \ JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno \ JOIN tlp.policyrider pr ON mig.tlpcertno = pr.policyno \ WHERE rd.effectivedate <> pr.effectivedate;
+    EDM_Compare Result    @{Result[0]}    0    riderStatusDate
 
 EDM4_GuyLady_SIT_TLI_Name_0004_0026_Validate effectiveDate_Default
     EDM_Connect_DB
@@ -170,7 +167,7 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0030_Validate RiderType Group with Sex
     @{Result}    Query    SELECT count(0) FROM ( SELECT na.nameid, mast.policyno, person.sex \ FROM dm.ordmast mast JOIN dm.tlpmigration mig ON mast.policyno = mig.tlipolicyno JOIN dm.rider rider ON mast.policyno = rider.policyno JOIN dm."name" na ON mast.nameid = na.nameid JOIN dm.person person ON na.personid = person.personid WHERE (person.sex = 'F' AND rider.ridertype NOT IN ('C17', 'C18', 'C06')) OR \ (person.sex = 'M' AND rider.ridertype NOT IN ('C19', 'C20', 'C06'))) tmp;
     EDM_Compare Result    @{Result[0]}    0    marker
 
-EDM4_GuyLady_SIT_TLI_Name_0004_0030_Validate RiderPolicyNo_in ordmast
+EDM4_GuyLady_SIT_TLI_Name_0004_0031_Validate RiderPolicyNo_in ordmast
     [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
     ...
     ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
@@ -179,3 +176,103 @@ EDM4_GuyLady_SIT_TLI_Name_0004_0030_Validate RiderPolicyNo_in ordmast
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM ( SELECT mast.policyno FROM dm.ordmast mast \ JOIN dm.tlpmigration mg ON mast.policyno = mg.tlipolicyno EXCEPT SELECT rider.policyno FROM dm.rider rider JOIN dm.tlpmigration mg ON rider.policyno = mg.tlipolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    ordmast except rider
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0032_Validate SUM of C17&C19 Plan 1
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C17', 'C19') AND mast.planpa = '1' \ AND to_number(rd.ridersum,'999999999') <> 200000;
+    EDM_Compare Result    @{Result[0]}    0    C17&C18 Plan-1
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0033_Validate SUM of C17&C19 Plan 2
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C17', 'C18') AND mast.planpa = '2' \ AND to_number(rd.ridersum,'999999999') <> 375000;
+    EDM_Compare Result    @{Result[0]}    0    C17&C18 Plan-2
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0034_Validate SUM of C17&C19 Plan 3
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C17', 'C18') AND mast.planpa = '3' AND to_number(rd.ridersum,'999999999') <> 500000;
+    EDM_Compare Result    @{Result[0]}    0    C17&C18 Plan-3
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0035_Validate SUM of C18&C20 Plan 1
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C18', 'C20') AND mast.planpa = '1' \ AND to_number(rd.ridersum,'999999999') <> 200000;
+    EDM_Compare Result    @{Result[0]}    0    C18&C20 Plan-1
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0036_Validate SUM of C18&C20 Plan 2
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C18', 'C20') AND mast.planpa = '2' \ AND to_number(rd.ridersum,'999999999') <> 375000;
+    EDM_Compare Result    @{Result[0]}    0    C18&C20 Plan-2
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0037_Validate SUM of C18&C20 Plan 3
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype IN ('C18', 'C20') AND mast.planpa = '3' \ \ AND to_number(rd.ridersum,'999999999') <> 500000;
+    EDM_Compare Result    @{Result[0]}    0    C18&C20 Plan-3
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0038_Validate SUM of C06 Plan 1
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype = 'C06' AND mast.planpa = '1' \ AND to_number(rd.ridersum,'999999999') <> 40000;
+    EDM_Compare Result    @{Result[0]}    0    C06 Plan-1
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0039_Validate SUM of C06 Plan 2
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype = 'C06' AND mast.planpa = '2' \ AND to_number(rd.ridersum,'999999999') <> 75000;
+    EDM_Compare Result    @{Result[0]}    0    C06 Plan-2
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0040_Validate SUM of C06 Plan 3
+    [Documentation]    ตรวจสอบ Policy No. ของ ordmast ทุก ๆ Policyno ต้องมีอยู่ใน \ Table : Rider
+    ...
+    ...    ** หมายเหตุ ไม่สามารถ ตรวจสอบ Rider Except ordmast ได้
+    ...    เนื่องจาก Rider จะเก็บ policyno ที่เป็นกรรมธรรม์แนบท้าย ทำให้พบ policy ที่มากกว่า ordmast
+    #ordmast except rider
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from dm.rider rd JOIN dm.ordmast mast ON rd.policyno = mast.policyno JOIN dm.tlpmigration mig ON rd.policyno = mig.tlipolicyno WHERE rd.ridertype = 'C06' AND mast.planpa = '3' \ \ AND to_number(rd.ridersum,'999999999') <> 100000;
+    EDM_Compare Result    @{Result[0]}    0    C06 Plan-3
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0041_Validate riderPremium_C17&C19_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.rider rider JOIN dm.tlpmigration mg ON rider.policyno = mg.tlipolicyno JOIN tlp.policyrider pr ON mg.tlpcertno = pr.policyno WHERE rider.ridertype in ('C17','C19') AND pr.ridertype = 'CI' AND \ to_char(to_number(rider.riderpremium,'999999999'), '000000000') <> to_char(to_number(pr.premrider, '999999.999'), '000000000');
+    EDM_Compare Result    @{Result[0]}    0    riderPremium_C17&C19_CI
+
+EDM4_GuyLady_SIT_TLI_Name_0004_0041_Validate riderPremium_C18&C20 CB&CP
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM dm.rider rider JOIN dm.tlpmigration mg ON rider.policyno = mg.tlipolicyno JOIN tlp.policyrider pr ON mg.tlpcertno = pr.policyno WHERE rider.ridertype in ('C18','C20') AND pr.ridertype in ('CB','CP') AND \ to_char(to_number(rider.riderpremium,'999999999'), '000000000') <> to_char(to_number(pr.premrider, '999999.999'), '000000000');
+    EDM_Compare Result    @{Result[0]}    0    riderPremium_C18&C20 CB&CP
