@@ -68,3 +68,23 @@ EDM4_GuyLady_SIT_TLI_Remark_0008_0013_Validate Message_Mapping
     EDM_Connect_DB
     @{Result}    Query    select count(*) \ from (select a.policyno,a.message from dm.remark a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ inner join tlp.historystatus e on e.policyno = d.policyno \ \ where a.message <> e.statusdescription except all select e.policyno, e.statusdescription from tlp.historystatus e join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
     EDM_Compare Result    @{Result[0]}    0    sequence
+
+EDM4_GuyLady_SIT_TLI_Remark_0008_0014_Reconcile number of record in remark
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM ( select tlipolicyno from dm.tlpmigration \ except all \ select policyno from dm.remark) tmp;
+    EDM_Compare Result    @{Result[0]}    0    Remark
+
+EDM4_GuyLady_SIT_TLI_Remark_0008_0015_Validate mapping remark.department
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from dm.remark r \ inner join dm.tlpmigration m \ \ on r.policyno = m.tlipolicyno where r.department <> '88';
+    EDM_Compare Result    @{Result[0]}    0    Remark.Department
+
+EDM4_GuyLady_SIT_TLI_Remark_0008_0016_Validate mapping remark.sequence
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from dm.remark r \ inner join dm.tlpmigration m \ \ on r.policyno = m.tlipolicyno where r."sequence" <> '001';
+    EDM_Compare Result    @{Result[0]}    0    Remark.Seqence
+
+EDM4_GuyLady_SIT_TLI_Remark_0008_0017_Validate mapping remark.message
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.remark r \ inner join dm.tlpmigration m \ \ on r.policyno = m.tlipolicyno where r.message <> 'มีการจ่ายสินไหมและหักเบี้ยครบรอบปีแล้วแต่ไม่มีการ generate ใบเสร็จในระบบ TLP';
+    EDM_Compare Result    @{Result[0]}    0    Remark.Message
