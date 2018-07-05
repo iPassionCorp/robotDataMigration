@@ -5,34 +5,28 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0001_Validate RpNo_Default
-    [Documentation]    Format ของ ReceiptNo ของ TLI:
-    ...    ทุกแบบ:
-    ...    รหัสสาขา (3 หลัก)+ปี (2 หลัก)+Running (7 หลัก)
-    ...
-    ...    APL:
-    ...    A (1 หลัก)+Running (11 หลัก)
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno and d.tlppolicyno = e.plancode inner join tlp.policypaid f on e.policyno = f.policyno where (substring(a.rpno,1,3) ~* '[a-zก-ฮ]' \ and to_number(substring(a.rpno,4,2),'99') not between 1 and 12 and substring(a.rpno,6,7) ~* '[a-zก-ฮ]') \ or (substring(a.rpno,1,1) not like 'A' \ and substring(a.rpno,2,11) ~* '[a-zก-ฮ]')    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate where length(a.rpno) <> 12    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0002_Validate RpNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno and d.tlppolicyno = e.plancode inner join tlp.policypaid f on e.policyno = f.policyno where a.rpno = '' or a.rpno ='blank' or a.rpno is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate where a.rpno = '' or a.rpno ='blank' or a.rpno is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0003_Validate RpNo_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno inner join tlp.policymaster e on d.tlpcertno = e.policyno and d.tlppolicyno = e.plancode inner join tlp.policypaid f on e.policyno = f.policyno where a.rpno <> f.receiptno    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate where a.rpno <> f.receiptno;    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0004_Validate seqNo_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where length(a.seqNo) > 1    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate where length(a.seqNo) > 1    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    seqNo
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0005_Validate seqNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno inner join dm.tlpmigration d on c.policyno = d.tlipolicyno where a.seqNo = '' or a.seqNo is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate where a.seqNo = '' or a.seqNo is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    seqNo
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0006_Validate riderText _Length
@@ -43,10 +37,40 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0006_0006_Validate riderText _Length
     ...    000009000000500ทพ 000000000000010อพ3000000200000010
     ...    ที่เหลือต้องใส่ 0 มาให้ length ครบ 123 characters
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.rprider a \ inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno \ inner join dm.tlpmigration d on c.policyno = d.tlipolicyno \ inner join tlp.policymaster e on d.tlpcertno = e.policyno inner join tlp.policypaid f on e.policyno = f.policyno inner join tlp.rprider g on f.receiptno = g.receiptno where length(a.riderText ) <> 123    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    @{Result}    Query    select count(0) from dm.rprider a \ \ inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno where length(a.riderText ) <> 123    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    riderText
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0006_0007_Validate riderText _NotNull
     EDM_Connect_DB
     @{Result}    Query    select count(0) from dm.rprider a \ inner join dm.orctrl b on a.rpno = b.rpno inner join dm.ordmast c on b.policyno = c.policyno \ inner join dm.tlpmigration d on c.policyno = d.tlipolicyno \ inner join tlp.policymaster e on d.tlpcertno = e.policyno inner join tlp.policypaid f on e.policyno = f.policyno inner join tlp.rprider g on f.receiptno = g.receiptno where a.riderText = '' or a.riderText is null    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0008_Validate riderText _Mappingloop1
+    EDM_Connect_DB
+    @{Result}    Query    select count(0)--,substring(a.ridertext,19,18) ,substring(f.receiptdescription,21,15) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,1,15) <> substring(g.receiptdetail,4,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0009_Validate riderText _Mappingloop2
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,19,15) <> substring(g.receiptdetail,23,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0010_Validate riderText _Mappingloop3
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,38,15) <> substring(g.receiptdetail,42,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0011_Validate riderText _Mappingloop4
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,57,15) <> substring(g.receiptdetail,61,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0012_Validate riderText _Mappingloop5
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,76,15) <> substring(g.receiptdetail,80,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
+    EDM_Compare Result    @{Result[0]}    0    riderText
+
+EDM4_GuyLady_SIT_TLI_Orctrl_0006_0013_Validate riderText _Mappingloop6
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.rprider a inner join dm.orctrl b on a.rpno = b.rpno inner join dm.tlpmigration d on b.policyno = d.tlipolicyno inner join tlp.policypaid f on d.tlpcertno = f.policyno \ and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = b.payperiod and f.paiddate = b.paydate inner join tlp.rprider g on f.receiptno = g.receiptno where substring(a.ridertext,95,15) <> substring(g.receiptdetail,99,15)    #อาจจะต้องแก้ รอพี่เอ๋เอาDataเข้า
     EDM_Compare Result    @{Result[0]}    0    riderText

@@ -4,7 +4,7 @@ Resource          ../../keywords/edm.txt
 Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 
 *** Test Cases ***
-EDM4_GuyLady_SIT_TLI_Orctrl_0005_0001_Validate RpNo_Default
+EDM4_GuyLady_SIT_TLI_Orctrl_0005_0001_Validate RpNo_length
     [Documentation]    Format ของ ReceiptNo ของ TLI:
     ...    ทุกแบบ:
     ...    รหัสสาขา (3 หลัก)+ปี (2 หลัก)+Running (7 หลัก)
@@ -12,22 +12,22 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0001_Validate RpNo_Default
     ...    APL:
     ...    A (1 หลัก)+Running (11 หลัก)
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno \ \ where (substring(a.rpno,1,3) ~* '[a-zก-ฮ]' \ \ \ and to_number(substring(a.rpno,4,2),'99') not between 1 and 12 \ \ and substring(a.rpno,6,7) ~* '[a-zก-ฮ]') \ \ \ or (substring(a.rpno,1,1) not like 'A' \ \ \ and substring(a.rpno,2,11) ~* '[a-zก-ฮ]')
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where length(a.rpno) <> 12
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0002_Validate RpNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno \ where a.rpno = '' or a.rpno ='blank' or a.rpno is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.rpno = '' or a.rpno ='blank' or a.rpno is null
     EDM_Compare Result    @{Result[0]}    0    rpno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0003_Validate PolicyNo_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno \ where length(a.policyno) > 8
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where length(a.policyno) > 8
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0004_Validate PolicyNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno \ where a.policyno = '' or a.policyno ='blank' or a.policyno is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.policyno = '' or a.policyno ='blank' or a.policyno is null
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0005_Validate EffectiveDate_Default
@@ -67,27 +67,27 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0011_Validate PayPeriod_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0013_Validate PayDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where length(a.paydate) <> 8 or \ (to_number(SUBSTRING(a.paydate,1,4),'9999') not between 0 and 3000 or \ to_number(SUBSTRING(a.paydate,5,2),'99') not between 1 and 12 or \ to_number(SUBSTRING(a.paydate,7,2),'99') not between 1 and 31);
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where length(a.paydate) <> 8 or \ (to_number(SUBSTRING(a.paydate,1,4),'9999') not between 0 and 3000 or \ to_number(SUBSTRING(a.paydate,5,2),'99') not between 1 and 12 or \ to_number(SUBSTRING(a.paydate,7,2),'99') \ not between 1 and 31);
     EDM_Compare Result    @{Result[0]}    0    paydate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0014_Validate PayDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.paydate = '' or a.paydate ='blank' or a.paydate is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.paydate = '' or a.paydate ='blank' or a.paydate is null
     EDM_Compare Result    @{Result[0]}    0    paydate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0015_Validate PayDate_MappingOnlyMigration
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.paydate <> e.paiddate
+    @{Result}    Query    select count(0)from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.paydate <> f.paiddate
     EDM_Compare Result    @{Result[0]}    0    paydate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0016_Validate Premium_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where length(a.premium) > 9
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where length(a.premium) > 9
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0017_Validate Premium_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.premium = '' or a.premium ='blank' or a.premium is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.premium = '' or a.premium ='blank' or a.premium is null
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0018_Validate Premium_MappingOnlyMigration
@@ -127,12 +127,12 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0024_Validate SysDate_MappingOnlyMigration
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0025_Validate CerrentStatus_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.currentstatus not in ('P','B','E','C','Y') or length(a.currentstatus) > 1
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.currentstatus not in ('P','B','E','C','Y') or length(a.currentstatus) > 1
     EDM_Compare Result    @{Result[0]}    0    currentstatus
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0026_Validate CerrentStatus_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.currentstatus = '' or a.currentstatus ='blank' or a.currentstatus is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.currentstatus = '' or a.currentstatus ='blank' or a.currentstatus is null
     EDM_Compare Result    @{Result[0]}    0    currentstatus
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0028_Validate OriginalStatus_N
@@ -147,17 +147,17 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0029_Validate OriginalStatus_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0030_Validate Mode_0,1,4,2
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.mode not in ('0','1','2','4') or length(a.mode) > 1
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.mode not in ('0','1','2','4') or length(a.mode) > 1
     EDM_Compare Result    @{Result[0]}    0    mode
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0031_Validate Mode_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.mode ='' or a.mode ='blank' or a.mode is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.mode ='' or a.mode ='blank' or a.mode is null
     EDM_Compare Result    @{Result[0]}    0    mode
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0032_Validate Mode_MappingOnlyMigration
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.mode <> e.mode
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.mode <> f.mode
     EDM_Compare Result    @{Result[0]}    0    mode
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0033_Validate Time_Default
@@ -172,17 +172,17 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0034_Validate Time_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0035_Validate RequestDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where to_number(SUBSTRING(a.requestdate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.requestdate,5,2),'99') not between 0 and 12 \ or to_number(SUBSTRING(a.requestdate,7,2),'99') not between 0 and 31 \ or length(a.requestdate) <> 8
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where to_number(SUBSTRING(a.requestdate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.requestdate,5,2),'99') not between 0 and 12 \ \ or to_number(SUBSTRING(a.requestdate,7,2),'99') not between 0 and 31 \ or length(a.requestdate) <> 8
     EDM_Compare Result    @{Result[0]}    0    requestdate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0036_Validate RequestDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.requestdate = '' or a.requestdate ='blank' or a.requestdate is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.requestdate = '' or a.requestdate ='blank' or a.requestdate is null
     EDM_Compare Result    @{Result[0]}    0    requestdate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0037_Validate RequestDate_MappingOnlyMigration
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.requestdate <> e.createdate
+    @{Result}    Query    select count(0)from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.requestdate <> f.createdate
     EDM_Compare Result    @{Result[0]}    0    requestdate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0038_Validate SubmitNo_length
@@ -207,17 +207,17 @@ EDM4_GuyLady_SIT_TLI_Orctrl_0005_0041_Validate GracePeriod_NotNull
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0042_Validate PrintedDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where to_number(SUBSTRING(a.printeddate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.printeddate,5,2),'99') not between 0 and 12 \ or to_number(SUBSTRING(a.printeddate,7,2),'99') not between 0 and 31 \ or length(a.printeddate) <> 8
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where to_number(SUBSTRING(a.printeddate,1,4),'9999') not between 0 and 3000 \ or to_number(SUBSTRING(a.printeddate,5,2),'99') not between 0 and 12 \ \ or to_number(SUBSTRING(a.printeddate,7,2),'99') not between 0 and 31 \ or length(a.printeddate) <> 8
     EDM_Compare Result    @{Result[0]}    0    printeddate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0043_Validate PrintedDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.printeddate = '' or a.printeddate ='blank' or a.printeddate is null
+    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.printeddate = '' or a.printeddate ='blank' or a.printeddate is null
     EDM_Compare Result    @{Result[0]}    0    printeddate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0044_Validate PrintedDate_MappingOnlyMigration
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.orctrl a \ \ \ \ inner join dm.ordmast b on a.rpno = b.rpno \ \ \ inner join dm.tlpmigration c on b.policyno = c.tlipolicyno \ \ \ inner join tlp.policymaster d on c.tlppolicyno = d.plancode and d.policyno = c.tlpcertno \ inner join tlp.policypaid e on d.policyno = e.policyno where a.printeddate <> e.createdate
+    @{Result}    Query    select count(0)from dm.orctrl a \ \ \ \ inner join dm.tlpmigration d on a.policyno = d.tlipolicyno \ inner join tlp.policypaid f on d.tlpcertno = f.policyno and trim (substring (f.yearpay, 1, 2) || substring (f.yearpay, 4, 2)) = a.payperiod and f.paiddate = a.paydate where a.printeddate <> f.createdate
     EDM_Compare Result    @{Result[0]}    0    printeddate
 
 EDM4_GuyLady_SIT_TLI_Orctrl_0005_0045_Validate SubmitBreanch_length
