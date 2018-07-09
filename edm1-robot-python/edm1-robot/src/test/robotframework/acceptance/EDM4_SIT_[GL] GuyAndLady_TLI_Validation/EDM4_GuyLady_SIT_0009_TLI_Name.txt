@@ -6,32 +6,32 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLI_Name_0009_0001_Validate nameID_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.nameID) > 13;
+    @{Result}    Query    select count (0) \ from \ (select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.nameid \ \ from dm.name a \ \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ \ where length(a.nameid) <> 13) tmp;
     EDM_Compare Result    @{Result[0]}    0    nameID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0002_Validate nameID_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.nameID = '' or a.nameID \ in ('NULL', 'Null', 'null') or a.nameID = '' or a.nameID = 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.nameid from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.nameid = '' or a.nameid = 'blank' or a.nameid in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    nameID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0003_Validate nameIDDuplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.nameID from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.nameID having count(0) > 1) tmp
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,a.policyno,a.plancode,c.migrateplancode,a.nameid from dm.ordmast a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.plancode = c.migrateplancode \ \ \ left join dm.name b on a.nameid = b.nameid \ \ where b.nameid is null or b.nameid = '') tmp;
     EDM_Compare Result    @{Result[0]}    0    nameID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0004_Validate personID_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.personID) > 13;
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.personid from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where length (personid) <> 13) tmp;
     EDM_Compare Result    @{Result[0]}    0    personID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0005_Validate personID_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.personid = '' or a.personid \ in ('NULL', 'Null', 'null') or a.personid = '' or a.personid = 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.personid from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.personid = '' or a.personid = 'blank' or a.personid in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    personID
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0006_Validate preName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ where length(a.preName) > 30;
+    @{Result}    Query    select count (0) \ from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.prename from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ \ \ where length(a.prename) > 30) tmp;
     EDM_Compare Result    @{Result[0]}    0    preName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0007_Validate preNameMapping
@@ -41,13 +41,12 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0007_Validate preNameMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${preName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.Prename from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ where a.Prename <> d.Prename except all select d.policyno,d.Prename from tlp.policymaster d join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
-    ${preName}=    Convert To String    ${preName}
-    Should Be Equal    ${preName}    None
+    @{Result}    Query    select count (0) \ from \ (select a.nameid,b.nameid,c.tlipolicyno,b.policyno,d.plancode,c.tlppolicyno,a.prename,d.prename from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ inner join tlp.policymaster d on d.plancode = c.tlppolicyno \ and c.tlpcertno = d.policyno \ \ where a.prename <> d.prename) tmp;
+    EDM_Compare Result    @{Result[0]}    0    preName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0008_Validate firstName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ where length(a.firstName) > 30;
+    @{Result}    Query    select count (0) \ from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.firstname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ \ \ where length(a.firstname) > 30) tmp;
     EDM_Compare Result    @{Result[0]}    0    firstName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0009_Validate firstNameMapping
@@ -57,13 +56,12 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0009_Validate firstNameMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${firstName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.firstName \ from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.firstName <> d.FrstName except all select d.policyno,d.FrstName from tlp.policymaster d join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
-    ${firstName}=    Convert To String    ${firstName}
-    Should Be Equal    ${firstName}    None
+    @{Result}    Query    select count (0) \ from \ (select a.nameid,b.nameid,c.tlipolicyno,b.policyno,d.plancode,c.tlppolicyno,a.firstname,d.frstname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ inner join tlp.policymaster d on d.plancode = c.tlppolicyno \ and c.tlpcertno = d.policyno \ \ where a.firstname <> d.frstname) tmp;
+    EDM_Compare Result    @{Result[0]}    0    firstName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0010_Validate lastName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where length(a.lastName) > 30;
+    @{Result}    Query    select count (0) \ from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.lastname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ \ \ where length(a.lastname) > 30) tmp;
     EDM_Compare Result    @{Result[0]}    0    lastName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0011_Validate lastNameMapping
@@ -73,9 +71,8 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0011_Validate lastNameMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count(*) = No row return
     EDM_Connect_DB
-    ${lastName}=    DatabaseLibrary.Execute Sql String    select count(0) from (select a.nameid,a.lastName from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.lastName <> d.Surname except all select d.policyno,d.Surname from tlp.policymaster d join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
-    ${lastName}=    Convert To String    ${lastName}
-    Should Be Equal    ${lastName}    None
+    @{Result}    Query    select count (0) \ from \ (select a.nameid,b.nameid,c.tlipolicyno,b.policyno,d.plancode,c.tlppolicyno,a.lastname,d.surname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ inner join tlp.policymaster d on d.plancode = c.tlppolicyno \ and c.tlpcertno = d.policyno \ \ where a.lastname <> d.surname) tmp;
+    EDM_Compare Result    @{Result[0]}    0    lastName
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0012_Validate startDateMapping
     [Documentation]    Run SQL Script เพื่อตรวจสอบข้อมูล amount2
@@ -85,30 +82,30 @@ EDM4_GuyLady_SIT_TLI_Name_0009_0012_Validate startDateMapping
     ...    หลัง run SQL Script ต้องแสดงค่าดังนี้
     ...    - count (*) = 0
     EDM_Connect_DB
-    @{startDate }=    query    select count(0) from (select a.nameid,a.startdate from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.startdate \ <> \ d.EffectiveDate except all select d.policyno,d.EffectiveDate from tlp.policymaster d join dm.tlpmigration e on d.policyno = e.tlppolicyno) tmp
-    EDM_Compare Result    @{startDate [0]}    0    startDate
+    @{Result}    Query    select count (0) \ from \ (select a.nameid,b.nameid,c.tlipolicyno,b.policyno,d.plancode,c.tlppolicyno,a.startdate,d.effectivedate from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ inner join tlp.policymaster d on d.plancode = c.tlppolicyno \ and c.tlpcertno = d.policyno \ \ where a.startdate <> d.effectivedate) tmp;
+    EDM_Compare Result    @{Result[0]}    0    startDate
 
 EDM4_GuyLady_SIT_TLI_Name_0009_0013_Validate startDate_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.startDate = '' or a.startDate in ('NULL', 'Null', 'null') or a.startDate= '' or a.startDate= 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.startdate from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.startdate = '' or a.startdate = 'blank' or a.startdate in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    startDate
 
-EDM4_GuyLady_SIT_TLI_Name_0009_0014_Validate startDate_Default
+EDM4_GuyLady_SIT_TLI_Name_0009_0014_Validate preName_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ \ where a.startdate \ not between '0000-00-00' and '3000-12-31' and length(a.startdate) <> 8
-    EDM_Compare Result    @{Result[0]}    0    startDate
-
-EDM4_GuyLady_SIT_TLI_Name_0009_0015_Validate preName_NotNull&NotBlank
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.preName = '' or a.preName in ('NULL', 'Null', 'null') or a.preName= '' or a.preName= 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.prename from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.prename = '' or a.prename = 'blank' or a.prename in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    preName
 
-EDM4_GuyLady_SIT_TLI_Name_0009_0016_Validate firstName_NotNull&NotBlank
+EDM4_GuyLady_SIT_TLI_Name_0009_0015_Validate firstName_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.firstName = '' or a.firstName in ('NULL', 'Null', 'null') or a.firstName = '' or a.firstName = 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.firstname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.firstname = '' or a.firstname = 'blank' or a.firstname in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    firstName
 
-EDM4_GuyLady_SIT_TLI_Name_0009_0017_Validate lastName_NotNull&NotBlank
+EDM4_GuyLady_SIT_TLI_Name_0009_0016_Validate lastName_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.name a \ inner join dm.ordmast b on a.nameid = b.nameid inner join dm.tlpmigration c on c.tlipolicyno = b.policyno inner join tlp.policymaster d on d.policyno = c.tlppolicyno \ \ where a.lastName = '' or a.lastName in ('NULL', 'Null', 'null') or a.lastName = '' or a.lastName = 'blank';
+    @{Result}    Query    select count (0) from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.lastname from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ where a.lastname = '' or a.lastname = 'blank' or a.lastname in ('NULL', 'Null', 'null')) tmp;
     EDM_Compare Result    @{Result[0]}    0    lastName
+
+EDM4_GuyLady_SIT_TLI_Name_0009_0017_Validate startDate_length
+    EDM_Connect_DB
+    @{Result}    Query    select count (0) \ from ( select a.nameid,b.nameid,c.tlipolicyno,b.policyno,b.plancode,c.migrateplancode,a.startdate from dm.name a \ \ \ inner join dm.ordmast b on a.nameid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.plancode = c.migrateplancode \ \ \ where length(a.startdate) <> 8) tmp;
+    EDM_Compare Result    @{Result[0]}    0    startDate
