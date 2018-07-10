@@ -6,150 +6,150 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0001_Validate PolicyType_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.policytype) > 1
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.policytype, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.policytype) > 1 ) tem
     EDM_Compare Result    @{Result[0]}    0    policytype
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0002_Validate PolicyType_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.policytype ='' or a.policytype = 'blank'
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.policytype, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.policytype ='' or bene.policytype = 'blank' ) tem
     EDM_Compare Result    @{Result[0]}    0    policytype
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0003_Validate PolicyType_Duplicate
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ group by a.policytype \ having count(0) > 1) tmp
-    EDM_Compare Result    @{Result[0]}    0    policytype
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select \ count(0) from ( SELECT bene."sequence",bene.policyno,bene.policytype,count(bene.policyno) from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno group by bene."sequence",bene.policyno,bene.policytype having count(0) > 1) tmp
+    Comment    EDM_Compare Result    @{Result[0]}    0    policytype
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0004_Validate PolicyNo_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno where length(a.policyno) > 8
+    @{Result}    Query    SELECT count(0) FROM ( select mig.tlipolicyno , mast.policyno , mast.policyno , bene.policyno , mig.tlpcertno , mt.policyno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policymaster mt on mig.tlpcertno = mt.policyno and mig.tlppolicyno = mt.plancode where length(bene.policyno) > 8 ) tem
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0005_Validate PolicyNo_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno where a.policyno ='' or a.policyno = 'blank' or a.policyno is null
+    @{Result}    Query    SELECT count(0) FROM ( select mig.tlipolicyno , mast.policyno , mast.policyno , bene.policyno , mig.tlpcertno , mt.policyno from dm.ordmast mast \ inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policymaster mt on mig.tlpcertno = mt.policyno and mig.tlppolicyno = mt.plancode where bene.policyno ='' or bene.policyno = 'blank' or bene.policyno is NULL ) tem
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0006_Validate PolicyNo_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno group by a.policyno \ having count(0) > 1) tmp
+    @{Result}    Query    select count (0) from ( SELECT bene."sequence",bene.policytype,bene.policyno,count(bene.policyno) \ from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policymaster mt on mig.tlpcertno = mt.policyno and mig.tlppolicyno = mt.plancode group by bene.policyno,bene.policytype,bene."sequence" having count(0) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0007_Validate PolicyNo_Mapping
-    EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno where a.policyno <> m.policyno
-    EDM_Compare Result    @{Result[0]}    0    policyno
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    SELECT count (0) FROM ( select mig.tlipolicyno , mast.policyno , mast.policyno , bene.policyno , mig.tlpcertno , mt.policyno, mig.tlppolicyno , mt.plancode from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policymaster mt on mig.tlpcertno = mt.policyno and mig.tlppolicyno = mt.plancode where bene.policyno <> mt.policyno ) tem
+    Comment    EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0008_Validate Sequence_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.sequence) <> 1
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene."sequence") <> 1 ) tem
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0009_Validate Sequence_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno \ inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.sequence ='' or a.sequence = 'blank' or a.sequence is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno WHERE bene."sequence" <> tb.seqno ) tem
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0010_Validate Sequence_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select count(0) from \ dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno \ inner join tlp.policybeneficiary e on m.policyno = e.policyno \ group by a.sequence \ having count(0) > 1) tmp
+    @{Result}    Query    select count(0) from ( SELECT bene.policyno,bene.policytype,bene."sequence",count(bene."sequence") from \ dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno group by bene.policyno,bene.policytype,bene."sequence" \ having count(0) > 1) tem
     EDM_Compare Result    @{Result[0]}    0    sequence
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0011_Validate PreName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.preName) > 30
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.prename, tb.beneficiaryprename, bene."sequence", tb.seqno \ from dm.ordmast mast \ inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno \ \ where length(bene.prename) > 30 ) tem
     EDM_Compare Result    @{Result[0]}    0    preName
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0012_Validate PreName_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno and a.preName = d.BeneficiaryPreName where a.preName ='' or a.preName = 'blank' or a.preName is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.prename, tb.beneficiaryprename, bene."sequence", tb.seqno \ from dm.ordmast mast \ inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno \ where bene.prename ='' or bene.prename = 'blank' or bene.prename is null ) tem
     EDM_Compare Result    @{Result[0]}    0    preName
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0013_Validate PreName_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.preName <> e.beneficiaryprename
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.firstname, tb.beneficiaryname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.firstname ='' or bene.firstname = 'blank' or bene.firstname is null ) tem
     EDM_Compare Result    @{Result[0]}    0    preName
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0014_Validate FirstName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.firstname) > 30
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.firstname, tb.beneficiaryname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.firstname) > 30 ) tem
     EDM_Compare Result    @{Result[0]}    0    firstname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0015_Validate FirstName_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.firstname ='' or a.firstname = 'blank' or a.firstname is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.prename, tb.beneficiaryprename, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.prename ='' or bene.prename = 'blank' or bene.prename is null ) tem
     EDM_Compare Result    @{Result[0]}    0    firstname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0016_Validate FirstName_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.firstname <> e.beneficiaryname
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.firstname, tb.beneficiaryname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.firstname <> tb.beneficiaryname ) tem
     EDM_Compare Result    @{Result[0]}    0    firstname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0017_Validate LastName_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.lastname) > 30
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.lastname, tb.beneficiarylastname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.lastname) > 30 ) tem
     EDM_Compare Result    @{Result[0]}    0    lastname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0018_Validate LastName_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.lastname ='' or a.lastname = 'blank' or a.lastname is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.lastname, tb.beneficiarylastname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.lastname ='' or bene.lastname = 'blank' or bene.lastname is null ) tem
     EDM_Compare Result    @{Result[0]}    0    lastname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0019_Validate LastName_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.lastname <> e.beneficiarylastname
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.lastname, tb.beneficiarylastname, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.lastname <> tb.beneficiarylastname ) tem
     EDM_Compare Result    @{Result[0]}    0    lastname
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0020_Validate RelationshipCode_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.relationshipcode) > 2
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.relationshipcode, tb.relationship, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.relationshipcode) > 2 ) tem
     EDM_Compare Result    @{Result[0]}    0    relationshipcode
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0021_Validate RelationshipCode_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.relationshipcode ='' or a.relationshipcode = 'blank' or a.relationshipcode is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.relationshipcode, tb.relationship, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.relationshipcode ='' or bene.relationshipcode = 'blank' or bene.relationshipcode is null ) tem
     EDM_Compare Result    @{Result[0]}    0    relationshipcode
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0022_Validate RelationshipCode_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where a.relationshipcode <> e.relationship
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.relationshipcode, tb.relationship, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.relationshipcode <> tb.relationship ) tem
     EDM_Compare Result    @{Result[0]}    0    relationshipcode
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0023_Validate RelationshipCode_01-76
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where to_number(SUBSTRING(a.relationshipcode,1,2),'99') not between 1 and 76
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.relationshipcode, tb.relationship, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where to_number(bene.relationshipcode,'99') not between 1 and 76 ) tem
     EDM_Compare Result    @{Result[0]}    0    relationshipcode
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0024_Validate PercentShare_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ where length(a.percentshare) > 5
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.percentshare, tb.percentage, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.percentshare) > 5 ) tem
     EDM_Compare Result    @{Result[0]}    0    percentshare
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0025_Validate PercentShare_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ inner join dm.ordmast b on a.policyno = b.policyno inner join dm.certmapping c on b.policyno = c.policyno \ inner join tlp.policybeneficiary d on c.rpolicyno = d.policyno \ where a.percentshare ='' or a.percentshare = 'blank' or a.percentshare is null
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.percentshare, tb.percentage, bene."sequence", tb.seqno \ from dm.ordmast mast \ inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno \ where bene.percentshare ='' or bene.percentshare = 'blank' or bene.percentshare is null ) tem
     EDM_Compare Result    @{Result[0]}    0    percentshare
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0026_Validate PercentShare_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ inner join tlp.policymaster m on m.policyno = c.tlppolicyno inner join tlp.policybeneficiary e on m.policyno = e.policyno \ and a.firstname = e.beneficiaryname \ and a.lastname = e.beneficiarylastname where a.percentshare <> e.percentage
+    @{Result}    Query    SELECT count (0) \ FROM ( \ select mast.policyno, bene.percentshare as target, tb.percentage as src, \ trim (to_char(to_number (tb.percentage,'999.99')*100,'09999')) as expected from dm.ordmast mast \ \ inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno \ \ inner join dm.beneficiary bene on mast.policyno = bene.policyno \ \ inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno \ \ where bene.percentshare <> trim (to_char(to_number (tb.percentage, '999.99') * 100, '09999')) ) temp
     EDM_Compare Result    @{Result[0]}    0    percentshare
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0027_Validate PersonFlag_length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.personflag) <> 1
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.personflag, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where length(bene.personflag) <> 1 ) tem
     EDM_Compare Result    @{Result[0]}    0    personflag
 
 EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0028_Validate PersonFlag_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where a.personflag ='' or a.personflag = 'blank'
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.personflag, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.personflag ='' or bene.personflag = 'blank' ) tem
     EDM_Compare Result    @{Result[0]}    0    personflag
 
-EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0029_Validate idNo_length
+EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0029_Validate idNo_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.idno) > 13
+    @{Result}    Query    SELECT count (0) FROM ( SELECT mig.tlipolicyno , mast.policyno , bene.idno, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.idno <>'' ) tem
     EDM_Compare Result    @{Result[0]}    0    idno
 
-EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0030_Validate BirthDate_length
+EDM4_GuyLady_SIT_TLI_Beneficiary_0001_0030_Validate BirthDate_Default
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.beneficiary a \ \ inner join dm.ordmast b on a.policyno = b.policyno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ where length(a.birthdate) <> 8
+    @{Result}    Query    SELECT count (0) FROM ( select mast.policyno, bene.birthdate, bene."sequence", tb.seqno from dm.ordmast mast inner join dm.tlpmigration mig on mig.tlipolicyno = mast.policyno inner join dm.beneficiary bene on mast.policyno = bene.policyno inner join tlp.policybeneficiary tb on mig.tlpcertno = tb.policyno and bene."sequence" = tb.seqno where bene.birthdate <> '00000000' ) tem
     EDM_Compare Result    @{Result[0]}    0    birthdate
