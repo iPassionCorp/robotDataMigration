@@ -6,15 +6,15 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_SIT_[CF]_0001_0001_Validate compensateID_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.compensateid a \ \ inner join dm.cert b on a.compensateid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.compensateID) > 13;
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.compensateid com ON com.referenceid = person.referenceid INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno where length(com.compensateid) > 13;
     EDM_Compare Result    @{Result[0]}    0    compensateID
 
-EDM4_SIT_[CF]_0001_0002_Validate compensateID_Validate compensateIDDuplicate
+EDM4_SIT_[CF]_0001_0002_Validate compensateID_Validate compensateID_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.compensateID from dm.compensateid a \ \ inner join dm.cert b on a.compensateid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ group by a.compensateID having count(0) > 1) tmp
+    @{Result}    Query    SELECT count (0) FROM (SELECT count (0) FROM dm.compensateid GROUP BY compensateid HAVING count(compensateid) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    compensateID
 
 EDM4_SIT_[CF]_0001_0003_Validate referenceID_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.compensateid a \ \ inner join dm.cert b on a.compensateid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.referenceID) > 13;
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.compensateid com ON com.referenceid = person.referenceid INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE length(com.referenceid) > 13;
     EDM_Compare Result    @{Result[0]}    0    referenceID

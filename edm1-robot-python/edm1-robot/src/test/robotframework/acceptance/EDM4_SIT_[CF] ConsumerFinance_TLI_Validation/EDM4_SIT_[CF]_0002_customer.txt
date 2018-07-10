@@ -6,65 +6,65 @@ Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
 *** Test Cases ***
 EDM4_SIT_[CF]_0002_0001_Validate customerID_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.customerid) > 13;
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE length(cus.customerid) > 13;
     EDM_Compare Result    @{Result[0]}    0    customerID
 
 EDM4_SIT_[CF]_0002_0002_Validate customerID_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ \ where a.customerid = '' or a.customerid in ('NULL', 'Null', 'null')
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.customerid = '' or cus.customerid IS NULL
     EDM_Compare Result    @{Result[0]}    0    customerID
 
-EDM4_SIT_[CF]_0002_0003_Validate customerID_Validate customerIDDuplicate
+EDM4_SIT_[CF]_0002_0003_Validate customerID_Validate customerID_Duplicate
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from (select a.customerid from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ \ group by a.customerid having count(0) > 1) tmp
+    @{Result}    Query    SELECT count (0) FROM (SELECT count (0) FROM dm.customer GROUP BY customerid HAVING count(customerid) > 1) tmp
     EDM_Compare Result    @{Result[0]}    0    customerID
 
 EDM4_SIT_[CF]_0002_0004_Validate referenceType_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.referenceType) > 2;
+    @{Result}    Query    SELECT count (0) \ \ FROM dm.cert cert \ \ INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno \ \ \ WHERE length(cus.referencetype) > 2;
     EDM_Compare Result    @{Result[0]}    0    referenceType
 
 EDM4_SIT_[CF]_0002_0005_Validate referenceType_CheckType
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ where a.referenceID not in ('1','2','3','4','5','6','7','8','9','10','11','12','13','14');
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.referencetype NOT IN ('01','02','03','04','05','06','07','08','09','10','11','12','13','14');
     EDM_Compare Result    @{Result[0]}    0    referenceType
 
 EDM4_SIT_[CF]_0002_0006_Validate birthDate_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ \ where length(a.birthDate) > 8 \ or to_number(SUBSTRING(a.birthDate,1,4),'9999') not between 0 \ and 3000 \ \ or to_number(SUBSTRING(a.birthDate,5,2),'99') not between 1 and 12 \ \ or to_number(SUBSTRING(a.birthDate,7,2),'99') not between 1 and 31
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno where length(cus.birthdate) > 8 \ or to_number(SUBSTRING(cus.birthdate,1,4),'9999') not between 0 \ and 3000 or to_number(SUBSTRING(cus.birthdate,5,2),'99') not between 1 and 12 or to_number(SUBSTRING(cus.birthdate,7,2),'99') not between 1 and 31
     EDM_Compare Result    @{Result[0]}    0    birthDate
 
 EDM4_SIT_[CF]_0002_0007_Validate birthDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) from dm.customer a \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ where a.birthDate= '' or a.birthDate in ('NULL', 'Null', 'null')
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.birthdate = '' OR cus.birthdate IS NULL
     EDM_Compare Result    @{Result[0]}    0    birthDate
 
 EDM4_SIT_[CF]_0002_0008_Validate sex_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.sex) > 1;
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE length(cus.sex) > 1;
     EDM_Compare Result    @{Result[0]}    0    sex
 
 EDM4_SIT_[CF]_0002_0009_Validate sex_CheckType
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ where a.sex not in ('F','M');
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.sex NOT IN ('F','M');
     EDM_Compare Result    @{Result[0]}    0    sex
 
 EDM4_SIT_[CF]_0002_0010_Validate contactNameID_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.contactNameID) > 13;
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE length(cus.contactnameid) > 13;
     EDM_Compare Result    @{Result[0]}    0    contactNameID
 
 EDM4_SIT_[CF]_0002_0011_Validate contactNameID_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ \ where a.contactNameID= '' or a.contactNameID in ('NULL', 'Null', 'null')
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.contactnameid = '' OR cus.contactnameid IS NULL
     EDM_Compare Result    @{Result[0]}    0    contactNameID
 
 EDM4_SIT_[CF]_0002_0012_Validate contactAddressID_Length
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ where length(a.contactAddressID) > 10;
+    @{Result}    Query    SELECT count(*) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE length(cus.contactaddressid) > 10;
     EDM_Compare Result    @{Result[0]}    0    contactAddressID
 
 EDM4_SIT_[CF]_0002_0013_Validate contactAddressID_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(*) \ from dm.customer a \ \ inner join dm.cert b on a.customerid = b.nameid \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ and c.customercode = b.certno \ \ \ \ where a.contactAddressID= '' or a.contactAddressID in ('NULL', 'Null', 'null')
+    @{Result}    Query    SELECT count (0) FROM dm.cert cert INNER JOIN dm."name" name ON name.nameid = cert.nameid INNER JOIN dm.person person ON person.personid = name.personid INNER JOIN dm.customer cus ON cus.referenceid \ = person.referenceid AND cus.referencetype = person.referencetype INNER JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno WHERE cus.contactaddressid = '' OR cus.contactaddressid IS NULL
     EDM_Compare Result    @{Result[0]}    0    contactAddressID
