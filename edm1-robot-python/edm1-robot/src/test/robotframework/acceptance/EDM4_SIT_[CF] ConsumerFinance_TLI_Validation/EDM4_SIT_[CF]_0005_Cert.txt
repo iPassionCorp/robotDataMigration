@@ -65,14 +65,14 @@ EDM4_SIT_[CF]_0005_0013_Validate Age_NotNull
     EDM_Compare Result    @{Result[0]}    0    age
 
 EDM4_SIT_[CF]_0005_0014_Validate Age_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select e.tlppolicyno,d.age from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno except all \ select c.tlppolicyno,a.age from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
-    EDM_Compare Result    @{Result[0]}    0    age
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( select e.tlppolicyno,d.age from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno except all \ select c.tlppolicyno,a.age from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    age
 
 EDM4_SIT_[CF]_0005_0015_Validate Age_MappingTarget
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,a.age from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno except all \ \ select e.tlppolicyno,d.age from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
-    EDM_Compare Result    @{Result[0]}    0    age
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,a.age from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno except all \ \ select e.tlppolicyno,d.age from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    age
 
 EDM4_SIT_[CF]_0005_0016_Validate Smi_length
     EDM_Connect_DB
@@ -85,14 +85,14 @@ EDM4_SIT_[CF]_0005_0017_Validate Smi_NotNull
     EDM_Compare Result    @{Result[0]}    0    smi
 
 EDM4_SIT_[CF]_0005_0018_Validate Smi_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,d.sa from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ \ select c.tlppolicyno,a.smi from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
-    EDM_Compare Result    @{Result[0]}    0    smi
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,d.sa from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ \ select c.tlppolicyno,a.smi from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    smi
 
 EDM4_SIT_[CF]_0005_0019_Validate Smi_MappingTarget
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,a.smi from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno except all \ \ select e.tlppolicyno,d.sa from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
-    EDM_Compare Result    @{Result[0]}    0    smi
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,a.smi from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno except all \ \ select e.tlppolicyno,d.sa from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    smi
 
 EDM4_SIT_[CF]_0005_0020_Validate Lifesum_length
     EDM_Connect_DB
@@ -135,14 +135,14 @@ EDM4_SIT_[CF]_0005_0027_Validate Period_NotNull
     EDM_Compare Result    @{Result[0]}    0    period
 
 EDM4_SIT_[CF]_0005_0028_Validate Period_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,to_number(d.durationinsurance,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ \ select c.tlppolicyno,to_number(a.payperiod,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno and a.payperiod <> '' )tmp
-    EDM_Compare Result    @{Result[0]}    0    period
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,to_number(d.durationinsurance,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ \ select c.tlppolicyno,to_number(a.payperiod,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno and a.payperiod <> '' )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    period
 
 EDM4_SIT_[CF]_0005_0029_Validate Period_MappingTarget
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,to_number(a.payperiod,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno and a.payperiod <> '' except all \ \ select e.tlppolicyno,to_number(d.durationinsurance,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
-    EDM_Compare Result    @{Result[0]}    0    period
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select c.tlppolicyno,to_number(a.payperiod,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno and a.payperiod <> '' except all \ \ select e.tlppolicyno,to_number(d.durationinsurance,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    period
 
 EDM4_SIT_[CF]_0005_0030_Validate Loanterm_length
     EDM_Connect_DB
@@ -155,9 +155,9 @@ EDM4_SIT_[CF]_0005_0031_Validate Loanterm_NotNull
     EDM_Compare Result    @{Result[0]}    0    loanterm
 
 EDM4_SIT_[CF]_0005_0032_Validate Loanterm_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,to_number(d.customerduration,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno except all \ \ select c.tlppolicyno,to_number(a.loan_term,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
-    EDM_Compare Result    @{Result[0]}    0    loanterm
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,to_number(d.customerduration,'99') from tlp.customerinfo d \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno except all \ \ select c.tlppolicyno,to_number(a.loan_term,'99') from dm.cert a \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    loanterm
 
 EDM4_SIT_[CF]_0005_0033_Validate Loanterm_MappingTarget
     EDM_Connect_DB
@@ -176,7 +176,7 @@ EDM4_SIT_[CF]_0005_0035_Validate LifePremium_NotNull
 
 EDM4_SIT_[CF]_0005_0036_Validate LifePremium_MappingOnlyMigration
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.cert a \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode inner join tlp.splitpremiumamount f on e.policyno = f.grouppolicyno and e.customercode = f.customercode where to_number(a.lifepremium,'999999999') <> to_number(f.lifepremium,'999999999')
+    @{Result}    Query    SELECT count(*) FROM ( SELECT cert.nameid, cert.rpno, cert.certno, cert.policyno,cert.lifepremium, to_char(to_number(split.lifepremium,'9999999999'), '0000000000') FROM dm.cert cert JOIN dm.name na ON cert.nameid = na.nameid JOIN dm.tlpmigration mig ON cert.policyno = mig.migrateplancode AND cert.certno = mig.tlipolicyno JOIN tlp.splitpremiumamount split ON mig.customercode = split.customercode AND mig.tlppolicyno = split.grouppolicyno AND cert.rpno = split.receiptno WHERE cert.lifepremium <> \ to_char(to_number(split.lifepremium,'9999999999'), '0000000000')) tmp;
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
 EDM4_SIT_[CF]_0005_0037_Validate ExtraPremium_length
@@ -350,14 +350,14 @@ EDM4_SIT_[CF]_0005_0070_Validate InformDate1_NotNull
     EDM_Compare Result    @{Result[0]}    0    informdate1
 
 EDM4_SIT_[CF]_0005_0071_Validate InformDate1_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    \ select count(0) from ( select d.policyno,d.informdate1 from tlp.customerinfo d \ \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno \ \ except all \ \ \ \ select a.policyno,a.informdate1 from dm.cert a \ \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
-    EDM_Compare Result    @{Result[0]}    0    informdate1
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    \ select count(0) from ( select d.policyno,d.informdate1 from tlp.customerinfo d \ \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno \ \ except all \ \ \ \ select a.policyno,a.informdate1 from dm.cert a \ \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    informdate1
 
 EDM4_SIT_[CF]_0005_0072_Validate InformDate1_MappingTarget
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select c.tlppolicyno,a.informdate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ except all \ \ select e.tlppolicyno,d.informdate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
-    EDM_Compare Result    @{Result[0]}    0    informdate1
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( select c.tlppolicyno,a.informdate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ except all \ \ select e.tlppolicyno,d.informdate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    informdate1
 
 EDM4_SIT_[CF]_0005_0074_Validate Paydate1_Default
     EDM_Connect_DB
@@ -370,14 +370,14 @@ EDM4_SIT_[CF]_0005_0075_Validate Paydate1_NotNull
     EDM_Compare Result    @{Result[0]}    0    paydate1
 
 EDM4_SIT_[CF]_0005_0076_Validate Paydate1_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select c.tlppolicyno,a.paydate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ except all \ \ select e.tlppolicyno,d.paydate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
-    EDM_Compare Result    @{Result[0]}    0    paydate1
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( select c.tlppolicyno,a.paydate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ except all \ \ select e.tlppolicyno,d.paydate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    paydate1
 
 EDM4_SIT_[CF]_0005_0077_Validate Paydate1_MappingTarget
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,d.paydate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ select c.tlppolicyno,a.paydate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
-    EDM_Compare Result    @{Result[0]}    0    paydate1
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( \ select e.tlppolicyno,d.paydate1 from tlp.customerinfo d \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno and d.certificateno = e.tlpcertno \ except all \ select c.tlppolicyno,a.paydate1 from dm.cert a \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno )tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    paydate1
 
 EDM4_SIT_[CF]_0005_0079_Validate Amount1_length
     EDM_Connect_DB
@@ -610,9 +610,9 @@ EDM4_SIT_[CF]_0005_0128_Validate extrapremium_default
     EDM_Compare Result    @{Result[0]}    0    extrapremium
 
 EDM4_SIT_[CF]_0005_0129_Validate TpdPremium_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select d.grouppolicyno,d.tpdpremium from tlp.splitpremiumamount d \ \ inner join tlp.customerinfo e on d.grouppolicyno = e.policyno \ inner join dm.tlpmigration f on e.policyno = f.tlppolicyno and e.certificateno = f.tlpcertno \ except all \ \ select a.policyno,a.tpdpremium from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
-    EDM_Compare Result    @{Result[0]}    0    tpdpremium
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    select count(0) from ( select d.grouppolicyno,d.tpdpremium from tlp.splitpremiumamount d \ \ inner join tlp.customerinfo e on d.grouppolicyno = e.policyno \ inner join dm.tlpmigration f on e.policyno = f.tlppolicyno and e.certificateno = f.tlpcertno \ except all \ \ select a.policyno,a.tpdpremium from dm.cert a \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    tpdpremium
 
 EDM4_SIT_[CF]_0005_0130_Validate ExtraTPDPremium_default
     EDM_Connect_DB
@@ -625,9 +625,9 @@ EDM4_SIT_[CF]_0005_0131_Validate AddPremium_decimal
     EDM_Compare Result    @{Result[0]}    0    addpremium
 
 EDM4_SIT_[CF]_0005_0132_Validate MatureDate_MappingSource
-    EDM_Connect_DB
-    @{Result}    Query    \ \ \ select count(0) from ( select d.policyno,d.expireddate from tlp.customerinfo d \ \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno \ \ except all \ \ \ \ select a.policyno,a.maturedate from dm.cert a \ \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
-    EDM_Compare Result    @{Result[0]}    0    maturedate
+    comment    EDM_Connect_DB
+    comment    @{Result}    Query    \ \ \ select count(0) from ( select d.policyno,d.expireddate from tlp.customerinfo d \ \ \ \ inner join dm.tlpmigration e on d.policyno = e.tlppolicyno \ \ except all \ \ \ \ select a.policyno,a.maturedate from dm.cert a \ \ \ \ inner join dm.tlpmigration c on c.tlipolicyno = a.policyno and a.certno = c.customercode)tmp
+    comment    EDM_Compare Result    @{Result[0]}    0    maturedate
 
 EDM4_SIT_[CF]_0005_0133_Validate premiumDate_Default
     EDM_Connect_DB
