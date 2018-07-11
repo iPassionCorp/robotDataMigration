@@ -86,7 +86,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0016_Validate payStatus_Default
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0017_Validate payStatus_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.payStatus, d.installmentpolyear FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ where a.payStatus <> d.installmentpolyear)tmp
+    @{Result}    Query    select count(0)from (select a.policyno, a.payStatus, d.installmentpolyear FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno and d.payperiod = a.payperiod \ \ where a.payStatus <> d.installmentpolyear)tmp
     EDM_Compare Result    @{Result[0]}    0    payStatus
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0018_Validate dueDate_length
@@ -116,7 +116,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0022_Validate payPeriod_NotBlank
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0023_Validate payPeriod_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.payperiod, d.payperiod FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ where a.payperiod <> d.payperiod)tmp
+    @{Result}    Query    select count(0)from (select a.policyno, a.payperiod, d.payperiod FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno and d.payperiod = a.payperiod \ where a.payperiod <> d.payperiod)tmp
     EDM_Compare Result    @{Result[0]}    0    payPeriod
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0024_Validate postDate_Length
@@ -141,7 +141,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0027_Validate billingDate_NotBlank
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0028_Validate billingDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.billingdate, d.partnerBillingDate \ FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno \ inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ \ where a.billingdate <> d.partnerBillingDate) tmp
+    @{Result}    Query    select count(0)from (select a.policyno, a.billingdate, d.partnerBillingDate \ FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno \ inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno and d.payperiod = a.payperiod \ \ \ where a.billingdate <> d.partnerBillingDate) tmp
     EDM_Compare Result    @{Result[0]}    0    billingDate
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0029_Validate paymentDate_Default
@@ -166,7 +166,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0032_Validate premium_NotBlank
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0033_Validate premium_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.premium, d.totalpremium FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ \ where a.premium <> d.totalpremium) tmp
+    @{Result}    Query    select count(0)from (select a.policyno,a.cert,a.premium, c.tlpcertno, d.totalpremium, trim(to_char(to_number(to_char(to_number(d.totalpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000')) \ \ FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno \ inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ and d.payperiod = a.payperiod \ where a.premium <> trim(to_char(to_number(to_char(to_number(d.totalpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))) tmp
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0034_Validate mode_Check
@@ -196,7 +196,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0038_Validate status_Default
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0039_Validate status_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.status, d.status FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ \ \ where a.status <> d.status)tmp
+    @{Result}    Query    select count(0)from (select a.policyno, a.status, d.status FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno and d.payperiod = a.payperiod \ \ \ \ where a.status <> d.status)tmp
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0040_Validate statusDate_length
@@ -211,7 +211,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0041_Validate statusDate_NotBlank
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0042_Validate statusDate_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.statusdate, d.returndate FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ \ where a.statusdate <> d.returndate)tmp
+    @{Result}    Query    select count(0)from (select a.policyno, a.statusdate, d.returndate FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno and d.payperiod = a.payperiod \ \ where a.statusdate <> d.returndate)tmp
     EDM_Compare Result    @{Result[0]}    0    statusDate
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0043_Validate attemp_length
@@ -226,7 +226,7 @@ EDM4_SIT_BILLING_TLI_billingpost_0003_0044_Validate attemp_NotBlank
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0045_Validate attemp_Mapping
     EDM_Connect_DB
-    @{Result}    Query    select count(0)from (select a.policyno, a.attemp, d.attempttime FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno and a.policyno = b.policyno inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ where a.attemp <> d.attempttime)tmp
+    @{Result}    Query    select count(0)from (select a.policyno,a.cert, c.tlpcertno, a.attemp, d.attempttime, to_number(a.attemp, '99'), to_number (d.attempttime,'99') FROM dm.billingpost a \ \ inner join dm.cert b on a.cert = b.certno \ inner join dm.tlpmigration c on b.certno = c.tlipolicyno \ and b.policyno = c.migrateplancode inner join tlpbilling.historyexport d on d.certno = c.tlpcertno \ and d.payperiod = a.payperiod \ where to_number(a.attemp, '99') <> to_number (d.attempttime,'99') )tmp
     EDM_Compare Result    @{Result[0]}    0    attemp
 
 EDM4_SIT_BILLING_TLI_billingpost_0003_0046_Validate attempDate_Length
