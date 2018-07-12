@@ -236,7 +236,7 @@ EDM4_SIT_[CF]_0007_0026_Validate RiderStatus_A_RiderExpired
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ left join lookup.migratedate d on c.tlipolicyno = d.policyno WHERE to_date(tmplookup.migratedate,'YYYYMMDD') >= to_date(b.maturedate,'YYYYMMDD')
+    @{Result}=    Query    select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ left join lookup.migratedate d on c.tlipolicyno = d.policyno WHERE to_date(d.migratedate,'YYYYMMDD') >= to_date(b.maturedate,'YYYYMMDD')
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0027_Validate RiderStatus_N_RiderType_E01_NotOver1Y
@@ -279,23 +279,23 @@ EDM4_SIT_[CF]_0007_0030_Validate RiderStatus_A_RiderType_M01_Over1Y
     @{Result}=    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ left join lookup.migratedate d on c.tlipolicyno = d.policyno \ where a.ridertype= 'M01' and (extract(year from to_date(b.maturedate,'YYYYMMDD')) - extract(year from to_date(b.effectivedate,'YYYYMMDD'))) <= 7 and to_date(d.migratedate, 'YYYYMMDD') < to_date(b.maturedate,'YYYYMMDD') and a.riderstatus <> 'N'
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
-EDM4_SIT_[CF]_0007_0031_Validate RiderStatus_N_RiderTypeNotIn_E01M01
+EDM4_SIT_[CF]_0007_0031_Validate RiderStatus_N
     [Documentation]    ตรวจสอบข้อมูล riderStatusDate \ กรณี riderStatus = N กรณี RiderType ไม่ใช่ E01, M01
     ...    riderStatusDate = cert.effectiveDate
     ...
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where (a.ridertype not in ('E01','M01')) and (a.riderstatus = 'N') and (a.riderstatusdate <> b.effectivedate)
+    @{Result}=    Query    SELECT count(0) \ from dm.certrider a \ \ \ \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ and a.certno = b.certno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno INNER JOIN tlp.customerinfo info ON c.customercode = info.customercode AND info.policyno = c.tlppolicyno AND info.certificateno = c.tlpcertno where (a.riderstatus = 'N' and a.riderstatusdate <> info.effectivedate)
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
-EDM4_SIT_[CF]_0007_0032_Validate RiderStatus_A_RiderTypeNotIn_E01M01
+EDM4_SIT_[CF]_0007_0032_Validate RiderStatus_A
     [Documentation]    ตรวจสอบข้อมูล riderStatusDate \ กรณี riderStatus = A กรณี RiderType ไม่ใช่ E01, M01
     ...    riderStatusDate = \ cert.maturedate
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.ridertype not in ('E01','M01') and a.riderstatus = 'A' and a.riderstatusdate = b.maturedate
+    @{Result}=    Query    SELECT count(0) \ from dm.certrider a \ \ \ \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ and a.certno = b.certno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno INNER JOIN tlp.customerinfo info ON c.customercode = info.customercode AND info.policyno = c.tlppolicyno AND info.certificateno = c.tlpcertno where (a.riderstatus = 'A' and a.riderstatusdate <> info.expireddate)
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0033_Validate RiderStatusDate_E01_RiderStatus_N
