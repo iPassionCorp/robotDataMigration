@@ -92,7 +92,7 @@ EDM4_SIT_[CF]_0007_0010_Validate sumMapping_SAtpd
     ...    expect ::
     ...    - หลังจาก Run Script count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode \ where a.policyno = 'LE29' and a.ridertype in ('P01', 'P02', 'P03', 'P04', 'P05', \ 'P07', 'P08', 'P09', 'P10', 'P11', 'P12', 'P13', 'P14', \ 'P15', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', \ 'P27', 'P28', 'P35') and a.sum <> lpad(e.sa_tpd,9,'0') \ \ except all \ \ \ select e.policyno,e.SA_TPD from tlp.customersa e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'TPD' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_tpd,'99999999'), '00000000.00'), '999999999'),'000000000'))
     EDM_Compare Result    @{Result[0]}    0    sum
 
 EDM4_SIT_[CF]_0007_0011_Validate sumMapping_SAtd
@@ -103,7 +103,7 @@ EDM4_SIT_[CF]_0007_0011_Validate sumMapping_SAtd
     ...    expect ::
     ...    - หลังจาก Run Script count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode \ \ where a.ridertype in ('E01','E02','E03','E05','E06','E07','E11','E16') \ and a.sum <> lpad(e.sa_td, 9, '0') \ except all \ \ \ select e.policyno,e.sa_td from tlp.customersa e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}=    Query    \ \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'TD' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_td,'99999999'), '00000000.00'), '999999999'),'000000000'))
     EDM_Compare Result    @{Result[0]}    0    sum_Equal_tlp.customerinfo.SA_TPD
 
 EDM4_SIT_[CF]_0007_0012_Validate sumMapping_SAadd
@@ -113,7 +113,7 @@ EDM4_SIT_[CF]_0007_0012_Validate sumMapping_SAadd
     ...    expect ::
     ...    - หลังจาก Run Script count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode \ where a.ridertype in ('B01','B02','B03','B05','B06','B07','B09','B15','B16', 'B17','B19','B24','B26','B27','B28','B29','B30','B31') \ and a.sum <> trim(to_char(to_number(e.sa_add,'99999999D99'),'000000000')) \ except all \ \ \ select e.policyno,e.sa_add from tlp.customersa e \ \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}=    Query    \ \ \ \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ADD' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_add,'99999999'), '00000000.00'), '999999999'),'000000000'))
     EDM_Compare Result    @{Result[0]}    0    sum
 
 EDM4_SIT_[CF]_0007_0013_Validate sumMapping_SAadb
@@ -123,7 +123,7 @@ EDM4_SIT_[CF]_0007_0013_Validate sumMapping_SAadb
     ...    expect ::
     ...    - หลังจาก Run Script ต้องไม่มี Record แสดง
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode \ where e.sa_adb <> '0' \ except all \ \ select e.policyno,e.sa_adb from tlp.customersa e \ \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}=    Query    \ \ \ \ \ \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ADB' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_adb,'99999999'), '00000000.00'), '999999999'),'000000000'))
     EDM_Compare Result    @{Result[0]}    0    sum
 
 EDM4_SIT_[CF]_0007_0014_Validate sumMapping_SAme
@@ -133,7 +133,7 @@ EDM4_SIT_[CF]_0007_0014_Validate sumMapping_SAme
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ inner join tlp.customersa e on d.policyno = e.policyno and d.customercode = e.customercode \ where a.ridertype in ('M01','M02','M03','M04','M05','M06','M07') and a.sum <> trim(to_char(to_number(e.sa_me,'99999999D99'),'000000000')) \ except all \ \ select e.policyno,e.sa_me from tlp.customersa e \ join dm.tlpmigration f on e.policyno = f.tlppolicyno) tmp
+    @{Result}=    query    \ \ \ \ \ \ \ \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ME' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_me,'99999999'), '00000000.00'), '999999999'),'000000000'))
     EDM_Compare Result    @{Result[0]}    0    sum
 
 EDM4_SIT_[CF]_0007_0015_Validate sum_length
@@ -153,7 +153,7 @@ EDM4_SIT_[CF]_0007_0017_Validate PremiumMapping_TPDPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ where a.ridertype \ in ('P01','P02','P03','P04','P05','P07','P08','P09','P10','P11','P12','P15','P20','P21','P22','P23','P24','P25','P26','P27','P28','P35') \ and a.premium = trim(to_char(to_number(f.tpdpremium,'9999999999'),'000999999')) \ except all \ \ select e.grouppolicyno,e.tpdpremium from tlp.SplitPremiumAmount e \ \ join dm.tlpmigration f on e.grouppolicyno = f.tlppolicyno) tmp
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'TPD' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.tpdpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
     EDM_Compare Result    @{Result[0]}    0    premium
     log    Not in P13 & P14
 
@@ -164,7 +164,7 @@ EDM4_SIT_[CF]_0007_0018_Validate PremiumMapping_TDPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ where a.ridertype in ('E01','E02','E03','E05','E06','E07','E11','E16') and a.premium <> trim(to_char(to_number(f.tdpremium,'9999999999'),'0000000000')) except all \ select e.grouppolicyno,e.tdpremium from tlp.SplitPremiumAmount e \ join dm.tlpmigration f on e.grouppolicyno = f.tlppolicyno) tmp
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'TD' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.tdpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_[CF]_0007_0019_Validate PremiumMapping_ADDPremium
@@ -174,7 +174,7 @@ EDM4_SIT_[CF]_0007_0019_Validate PremiumMapping_ADDPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ where a.ridertype in ('B01','B02','B03','B05','B06','B07','B09','B15','B16','B17','B19','B24','B26','B27','B28','B29','B30','B31' ) \ and a.premium <> trim(to_char(round(to_number(f.addpremium,'00000000.0000'),2),'00000009V99')) except all \ select e.grouppolicyno,e.addpremium from tlp.SplitPremiumAmount e \ join dm.tlpmigration f on e.grouppolicyno = f.tlppolicyno) tmp \
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ADD' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.addpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_[CF]_0007_0020_Validate PremiumMapping_ADBPremium
@@ -184,7 +184,7 @@ EDM4_SIT_[CF]_0007_0020_Validate PremiumMapping_ADBPremium
     ...    expect ::
     ...    - หลังจาก Run Script ต้องไม่มี Record แสดง
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ where f.adbpremium <> '0.00' except all \ select e.grouppolicyno,e.adbpremium from tlp.SplitPremiumAmount e \ join dm.tlpmigration f on e.grouppolicyno = f.tlppolicyno) tmp
+    @{Result}=    Query    \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ADB' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.adbpremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_[CF]_0007_0021_Validate PremiumMapping_MEPremium
@@ -194,12 +194,12 @@ EDM4_SIT_[CF]_0007_0021_Validate PremiumMapping_MEPremium
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(*) from (select a.policyno,a.ridertype \ from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ WHERE a.premium <> trim(to_char(round(to_number(f.mepremium,'00000000.0000'),2),'00000009V99')) \ AND a.policyno IN ('LE29', 'LE33', 'LE34', 'LE36', 'LE49', 'LE50', 'LE38', 'LE39' ,'LE41', 'LE42','ML40','ML41','OD09','LE47','LE47') AND a.ridertype in ('M01','M02','M03','M04','M05','M06','M07') except all \ select e.grouppolicyno,e.mepremium from tlp.SplitPremiumAmount e \ join dm.tlpmigration f on e.grouppolicyno = f.tlppolicyno) tmp
+    @{Result}=    Query    \ \ \ \ select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'ME' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.mepremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_[CF]_0007_0022_Validate premium_NotNull&NotBlank
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from dm.certrider a \ \ \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ \ \ \ inner join tlp.splitpremiumamount f on d.policyno = f.grouppolicyno and d.customercode = f.customercode \ \ \ where a.premium= '' or a.premium = 'blank' or a.premium is null
+    @{Result}    Query     \ \ select count(0) \ from dm.certrider a \ \ \ \ \ \ inner join dm.cert b on a.policyno = b.policyno and a.certno = b.certno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ \ INNER JOIN \ (select grouppolicyno, customercode from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g on c.tlppolicyno = g.grouppolicyno AND c.customercode = g.customercode \ where a.premium= '' or a.premium = 'blank' or a.premium is null \
     EDM_Compare Result    @{Result[0]}    0    premium
 
 EDM4_SIT_[CF]_0007_0023_Validate extraPremium_Default
@@ -286,7 +286,7 @@ EDM4_SIT_[CF]_0007_0031_Validate RiderStatus_N_RiderTypeNotIn_E01M01
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno left join lookup.migratedate d on c.tlipolicyno = d.policyno \ where a.ridertype not in ('E01','M01') and a.riderstatus = 'N' and a.riderstatusdate <> b.effectivedate
+    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where (a.ridertype not in ('E01','M01')) and (a.riderstatus = 'N') and (a.riderstatusdate <> b.effectivedate)
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0032_Validate RiderStatus_A_RiderTypeNotIn_E01M01
@@ -295,7 +295,7 @@ EDM4_SIT_[CF]_0007_0032_Validate RiderStatus_A_RiderTypeNotIn_E01M01
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.ridertype not in ('E01','M01') and a.riderstatus = 'A' and a.riderstatusdate = b.maturedate
+    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.ridertype not in ('E01','M01') and a.riderstatus = 'A' and a.riderstatusdate = b.maturedate
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0033_Validate RiderStatusDate_E01_RiderStatus_N
@@ -305,7 +305,7 @@ EDM4_SIT_[CF]_0007_0033_Validate RiderStatusDate_E01_RiderStatus_N
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno where a.ridertype not in ('E01','M01') \ and a.riderstatus = 'A' and a.riderstatusdate = b.maturedate
+    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.ridertype not in ('E01','M01') \ and a.riderstatus = 'A' and a.riderstatusdate = b.maturedate
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0034_Validate RiderStatusDate_M01_RiderStatus_N
@@ -315,7 +315,7 @@ EDM4_SIT_[CF]_0007_0034_Validate RiderStatusDate_M01_RiderStatus_N
     ...    expect ::
     ...    - หลัง Run Script Count = '0'
     EDM_Connect_DB
-    @{Result}=    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno where a.ridertype = 'M01' and a.riderstatus = 'N' and a.riderstatusdate <> b.effectivedate
+    @{Result}=    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.ridertype = 'M01' and a.riderstatus = 'N' and a.riderstatusdate <> b.effectivedate
     EDM_Compare Result    @{Result[0]}    0    Expected Result
 
 EDM4_SIT_[CF]_0007_0035_Validate RiderStatusDate_E01_RiderStatus_A
@@ -343,10 +343,30 @@ EDM4_SIT_[CF]_0007_0036_Validate RiderStatusDate_M01_RiderStatus_A
 
 EDM4_SIT_[CF]_0007_0037_Validate effectiveDate_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.certrider a \ \ inner join dm.cert b on a.policyno = b.policyno \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ \ \ where length(a.effectiveDate) <> 8 \ or (to_number(SUBSTRING(a.effectiveDate,1,4),'9999') not between 0 and 3000) \ or (to_number(SUBSTRING(a.effectiveDate,5,2),'99') not between 1 and 12) \ \ \ or (to_number(SUBSTRING(a.effectiveDate,7,2),'99') not between 1 and 31);
+    @{Result}    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where length(a.effectiveDate) <> 8 \ or (to_number(SUBSTRING(a.effectiveDate,1,4),'9999') not between 0 and 3000) \ or (to_number(SUBSTRING(a.effectiveDate,5,2),'99') not between 1 and 12) \ \ \ or (to_number(SUBSTRING(a.effectiveDate,7,2),'99') not between 1 and 31);
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
 
 EDM4_SIT_[CF]_0007_0038_Validate effectiveDate_NotNull
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from dm.certrider a \ inner join dm.cert b on a.policyno = b.policyno \ \inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ \ where a.effectiveDate = '' or a.effectiveDate = 'blank' or a.effectiveDate is null
+    @{Result}    Query     select count(0) from dm.certrider a \ \ \ inner join dm.cert b on a.policyno = b.policyno \ and a.certno = b.certno \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.effectiveDate = '' or a.effectiveDate = 'blank' or a.effectiveDate is null
     EDM_Compare Result    @{Result[0]}    0    effectiveDate
+
+EDM4_SIT_[CF]_0007_0039_Validate PremiumMapping_LifePremium
+    [Documentation]    - Run SQL Script ตรวจสอบข้อมูล premium กรณี riderType เท่ากับ \ \ P01,P02,P03,P04,P05,P07,P08,P09,P10,P11,P12,P13,P14,P15,P20,P21,P22,P23,P24,P25,P26,P27,P28,P35 [ทุพพลภาพถาวรสิ้น \ เชิง(TPD)]
+    ...    - premium = tlp.SplitPremiumAmount.TPDPremium
+    ...
+    ...    expect ::
+    ...    - หลัง Run Script Count = '0'
+    EDM_Connect_DB
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ INNER JOIN \ (select grouppolicyno, customercode, max(duedate) as max_duedate from tlp.splitpremiumamount \ \ \ \ \ \ group by grouppolicyno, customercode) g \ \ \ on c.tlppolicyno = g.grouppolicyno \ \ AND c.customercode = g.customercode \ inner join tlp.splitpremiumamount f \ \ on g.grouppolicyno = f.grouppolicyno and g.customercode = f.customercode and g.max_duedate = f.duedate \ \ \ \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'LIFE' and ridertype <> '0') \ \ and a.premium <> trim(to_char(to_number(to_char(to_number(f.lifepremium,'99999999999'), '00000000.00'), '99999999999'),'0000000000'))
+    EDM_Compare Result    @{Result[0]}    0    premium
+
+EDM4_SIT_[CF]_0007_0040_Validate sumMapping_SALife
+    [Documentation]    Run SQL Script ตรวจสอบข้อมูล sum กรณี riderType เท่ากับ P01,P02,P03,P04,P05,P07,P08,P09,P10,P11,P12,P13,P14,P15,P20,P21,P22,P23,P24,P25,P26,P27,P28,P35 [ทุพพลภาพถาวรสิ้นเชิง(TPD)]
+    ...    - sum = tlp.customerinfo.SA_TPD
+    ...
+    ...    expect ::
+    ...    - หลังจาก Run Script count = '0'
+    EDM_Connect_DB
+    @{Result}=    Query    select count(0) \ from dm.certrider a \ INNER JOIN dm.cert b ON \ \ a.policyno = b.policyno \ \ \ and a.certno = b.certno \ INNER JOIN dm.tlpmigration c ON \ \ a.policyno = c.migrateplancode \ \ AND a.certno = c.tlipolicyno \ inner join tlp.customersa sa on \ \ \ c.tlppolicyno = sa.policyno \ \ \ and c.customercode = sa.customercode \ \ where a.ridertype IN (select distinct ridertype from lookup.smi where coverage = 'Life' and ridertype <> '0') \ \ \ and a.sum <> trim(to_char(to_number(to_char(to_number(sa.sa_life,'99999999'), '00000000.00'), '999999999'),'000000000'))
+    EDM_Compare Result    @{Result[0]}    0    sum
