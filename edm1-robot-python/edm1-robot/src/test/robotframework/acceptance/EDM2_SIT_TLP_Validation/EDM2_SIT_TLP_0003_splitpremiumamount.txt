@@ -4,332 +4,517 @@ Resource          ../../keywords/edm.txt
 Library           DatabaseLibrary
 
 *** Test Cases ***
-EDM2_SIT_TLP_split_premium_amount_0003_0001_Validate GroupPolicyNo_notNull
+EDM4_SIT_TLP_split_premium_amount_0003_0001_Validate GroupPolicyNo_notNull
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.GroupPolicyNo= '' and a.GroupPolicyNo= 'blank';
     EDM_Compare Result    @{Result[0]}    0    GroupPolicyNo
 
-EDM2_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
+EDM4_SIT_TLP_split_premium_amount_0003_0002_Validate CustomerCode_notNull
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CustomerCode= '' and a.CustomerCode= 'blank';
     EDM_Compare Result    @{Result[0]}    0    GroupPolicyNo
 
-EDM2_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
+EDM4_SIT_TLP_split_premium_amount_0003_0003_Validate PolicyNo&CusCode_Duplicated
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from ( select a.grouppolicyno, a.customercode, count(a.grouppolicyno) from tlp.splitpremiumamount a group by a.grouppolicyno, a.customercode having count(a.grouppolicyno) > 1 ) tmp
+    @{Result}    Query    select count(0) from ( select a.grouppolicyno, a.customercode, a.receiptno, a.duedate, count(a.grouppolicyno) from tlp.splitpremiumamount a group by a.grouppolicyno, a.customercode, a.receiptno, a.duedate having count(a.grouppolicyno) > 1 ) tmp
     EDM_Compare Result    @{Result[0]}    0    PolicyDuplicate
 
-EDM2_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
+EDM4_SIT_TLP_split_premium_amount_0003_0004_Validate LifePremium_mapping
     EDM_Connect_DB
     @{Result}    Query    select \ count(0) from tlp.splitpremiumamount a \ where a.lifepremium = '0' and a.lifepremium <> a.deathpremium
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0005_Validate LifePremium_notNull
+EDM4_SIT_TLP_split_premium_amount_0003_0005_Validate LifePremium_notNull
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium= '' or a.lifepremium= 'blank';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium= '' and a.lifepremium= 'blank';
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0006_Validate ProductID_IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0006_Validate ProductID_IsNotChar
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a where a.productid ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    productid
 
-EDM2_SIT_TLP_split_premium_amount_0003_0007_Validate ProductID_LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0007_Validate ProductID_LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.productid < '0'
     EDM_Compare Result    @{Result[0]}    0    productid
 
-EDM2_SIT_TLP_split_premium_amount_0003_0008_Validate GroupPolicyNo.length
+EDM4_SIT_TLP_split_premium_amount_0003_0008_Validate GroupPolicyNo.length
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ where length(a.grouppolicyno) > 20
     EDM_Compare Result    @{Result[0]}    0    grouppolicyno
 
-EDM2_SIT_TLP_split_premium_amount_0003_0009_Validate CustomerCode.length
+EDM4_SIT_TLP_split_premium_amount_0003_0009_Validate CustomerCode.length
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ where length(a.customercode) > 50
     EDM_Compare Result    @{Result[0]}    0    customercode
 
-EDM2_SIT_TLP_split_premium_amount_0003_0010_Validate TotPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0010_Validate TotPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.totpremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    totpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0011_Validate TotPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0011_Validate TotPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.totpremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.totpremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    totpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0012_Validate TotPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0012_Validate TotPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.totpremium < '0'
     EDM_Compare Result    @{Result[0]}    0    totpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0013_Validate Lifepremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0013_Validate Lifepremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.lifepremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0014_Validate Lifepremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0014_Validate Lifepremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0015_Validate Lifepremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0015_Validate Lifepremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.lifepremium < '0'
     EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0016_Validate Deathpremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0016_Validate Deathpremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.deathpremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    deathpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0017_Validate Deathpremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0017_Validate Deathpremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.deathpremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.deathpremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    deathpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0018_Validate Deathpremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0018_Validate Deathpremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.deathpremium < '0'
     EDM_Compare Result    @{Result[0]}    0    deathpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0019_Validate TPDpremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0019_Validate TPDpremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.tpdpremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    tpdpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0020_Validate TPDpremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0020_Validate TPDpremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.tpdpremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.tpdpremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    tpdpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0021_Validate TPDpremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0021_Validate TPDpremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.tpdpremium < '0'
     EDM_Compare Result    @{Result[0]}    0    tpdpremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0022_Validate TTDPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0022_Validate TTDPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.TTDPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    TTDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0023_Validate TTDPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0023_Validate TTDPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TTDPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TTDPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    TTDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0024_Validate TTDPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0024_Validate TTDPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TTDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    TTDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0025_Validate TDPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0025_Validate TDPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.TDPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    TDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0026_Validate TDPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0026_Validate TDPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TDPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TDPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    TDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0027_Validate TDPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0027_Validate TDPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.TDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    TDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0028_Validate PAPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0028_Validate PAPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.PAPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    PAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0029_Validate PAPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0029_Validate PAPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.PAPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.PAPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    PAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0030_Validate PAPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0030_Validate PAPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.PAPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    PAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0031_Validate ADBPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0031_Validate ADBPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.ADBPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0032_Validate ADBPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0032_Validate ADBPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0033_Validate ADBPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0033_Validate ADBPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0034_Validate ADBPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0034_Validate ADBPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.ADBPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0035_Validate ADBPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0035_Validate ADBPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0036_Validate ADBPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0036_Validate ADBPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ADBPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    ADBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0037_Validate RCCPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0037_Validate RCCPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.RCCPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    RCCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0038_Validate RCCPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0038_Validate RCCPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.RCCPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.RCCPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    RCCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0039_Validate RCCPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0039_Validate RCCPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.RCCPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    RCCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0040_Validate MAPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0040_Validate MAPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.MAPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    MAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0041_Validate MAPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0041_Validate MAPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MAPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MAPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    MAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0042_Validate MAPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0042_Validate MAPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MAPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    MAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0043_Validate MCPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0043_Validate MCPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.MCPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    MCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0044_Validate MCPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0044_Validate MCPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MCPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MCPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    MCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0045_Validate MCPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0045_Validate MCPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MCPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    MCPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0046_Validate MEPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0046_Validate MEPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.MEPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    MEPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0047_Validate MEPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0047_Validate MEPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MEPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MEPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    MEPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0048_Validate MEPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0048_Validate MEPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.MEPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    MEPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0049_Validate HBPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0049_Validate HBPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.HBPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    HBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0050_Validate HBPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0050_Validate HBPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HBPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HBPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    HBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0051_Validate HBPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0051_Validate HBPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HBPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    HBPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0052_Validate HAPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0052_Validate HAPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.HAPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    HAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0053_Validate HAPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0053_Validate HAPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HAPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HAPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    HAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0054_Validate HAPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0054_Validate HAPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HAPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    HAPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0055_Validate HSPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0055_Validate HSPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.HSPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    HSPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0056_Validate HSPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0056_Validate HSPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HSPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HSPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    HSPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0057_Validate HSPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0057_Validate HSPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.HSPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    HSPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0058_Validate DDPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0058_Validate DDPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.DDPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    DDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0059_Validate DDPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0059_Validate DDPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.DDPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.DDPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    DDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0060_Validate DDPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0060_Validate DDPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.DDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    DDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0061_Validate LifeTPDPremium.decimal
+EDM4_SIT_TLP_split_premium_amount_0003_0061_Validate LifeTPDPremium.decimal
     EDM_Connect_DB
     @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.LifeTPDPremium ~* '^(\d*\.\d+)';
     EDM_Compare Result    @{Result[0]}    0    LifeTPDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0062_Validate LifeTPDPremium.IsNotChar
+EDM4_SIT_TLP_split_premium_amount_0003_0062_Validate LifeTPDPremium.IsNotChar
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LifeTPDPremium~* '[a-zA-Z,]';
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LifeTPDPremium ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    LifeTPDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0063_Validate LifeTPDPremium.LessThanZero
+EDM4_SIT_TLP_split_premium_amount_0003_0063_Validate LifeTPDPremium.LessThanZero
     EDM_Connect_DB
     @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LifeTPDPremium < '0'
     EDM_Compare Result    @{Result[0]}    0    LifeTPDPremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0064_CheckPolicynotinCustomerinfo
+EDM4_SIT_TLP_split_premium_amount_0003_0064_CheckPolicynotinPayment
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customerinfo a \ where a.customerstatus in \ (select customerstatus from lookup.tlppolicystatus) \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
+    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ group by a.policyno,a.customercode except all \ \ select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b where b.grouppolicyno not in \ ('00026009','00026010','01016001','01016002', '01016003','01016004','01016005','01016006','01016007','01016023','01016025','01016026', '01016027','01016028', 'BC00600600','BC00600601','BC00603500','BC00603600','BC00603700','BC00603900','BC00604000','BC00604100','BC00604200', 'BC00604300','BC01600000', 'BC01600001','BC01600100','BC01600200','BC01600201','BC01600300','BC01600400','BC01600401','BC01600500','BC01600700', 'BC01600800') group by b.grouppolicyno,b.customercode) tmp
     EDM_Compare Result    @{Result[0]}    0    grouppolicyno
 
-EDM2_SIT_TLP_split_premium_amount_0003_0065_CheckPolicynotinCustomersa
+EDM4_SIT_TLP_split_premium_amount_0003_0065_Validate LifePremium.Benefit_Life
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.customersa a \ \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
-    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ \ on prem.grouppolicyno = info.policyno \ \ and prem.customercode = info.customercode \ \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LIFE') smi \ \ on prem.grouppolicyno = smi.tlpplancode where prem.lifepremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    lifepremium
 
-EDM2_SIT_TLP_split_premium_amount_0003_0066_CheckPolicynotinPayment
+EDM4_SIT_TLP_split_premium_amount_0003_0066_Validate TPDPremium.Benefit_TPD
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ except all select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b) tmp
-    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.tpdpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    tpdpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0067_Validate TDPremium.Benefit_TD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'TDP') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.tdpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    tdpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0068_Validate ADDPremium.Benefit_ADD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ADD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.addpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    addpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0069_Validate ADBPremium.Benefit_ADB
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ADB') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.adbpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    adbpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0070_Validate MCPremium.Benefit_MC
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'MC') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.mcpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    mcpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0071_Validate HAPremium.Benefit_HA
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'HA') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.hapremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    hapremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0072_Validate HAPremium.Benefit_HB
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ \ join tlp.customerinfo info \ on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'HB') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.hbpremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    hbpremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0073_Validate ICUPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.ICUPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0074_Validate ICUPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ICUPremium ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0075_Validate ICUPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.ICUPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0076_Validate ICUPremium.Benefit_ICU
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'ICU') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.ICUPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    ICUPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0077_Validate CIPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.CIPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0078_Validate CIPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CIPremium ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0079_Validate CIPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.CIPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0080_Validate CIPremium.Benefit_CI
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'CI') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.CIPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    CIPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0081_Validate FI_Deathlum.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.FI_Deathlum ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0082_Validate FI_Deathlum.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_Deathlum ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0083_Validate FI_Deathlum.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_Deathlum < '0'
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0084_Validate FI_Deathlum.Benefit_FID
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FID') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_Deathlum = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    FI_Deathlum
+
+EDM4_SIT_TLP_split_premium_amount_0003_0085_Validate FI_TPDPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.FI_TPDPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0086_Validate FI_TPDPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_TPDPremium ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0087_Validate FI_TPDPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.FI_TPDPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0088_Validate FI_TPDPremium.Benefit_FIT
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'FIT') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.FI_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    FI_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0089_Validate LS_DeathPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.LS_DeathPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0090_Validate LS_DeathPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_DeathPremium ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0091_Validate LS_DeathPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_DeathPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0092_Validate LS_DeathPremium.Benefit_LS_Death
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LS_Death') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.LS_DeathPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    LS_DeathPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0093_Validate LS_TPDPremium.decimal
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) FROM tlp.splitpremiumamount a \ where a.LS_TPDPremium ~* '^(\d*\.\d+)';
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0094_Validate LS_TPDPremium.IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_TPDPremium ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0095_Validate LS_TPDPremium.LessThanZero
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount a \ WHERE a.LS_TPDPremium < '0'
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0096_Validate LS_TPDPremium.Benefit_LS_TPD
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) \ FROM tlp.splitpremiumamount prem \ join tlp.customerinfo info on prem.grouppolicyno = info.policyno \ and prem.customercode = info.customercode \ and prem.productid = info.productcode \ left join (select distinct smi.tlpplancode from lookup.smi where coverage = 'LS_TPD') smi \ on prem.grouppolicyno = smi.tlpplancode where prem.LS_TPDPremium = '0.00' \ and customerstatus in (select customerstatus from lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    LS_TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0097_Validate LifePremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.LifePremium= '' or a.LifePremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    LifePremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0098_Validate TPDPremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.TPDPremium= '' or a.TPDPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    TPDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0099_Validate ADDPremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.ADDPremium= '' or a.ADDPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ADDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0100_Validate TDPremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.TDPremium= '' or a.TDPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    TDPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0101_Validate MEPremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.MEPremium= '' or a.MEPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    MEPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0102_Validate ADBPremium_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.ADBPremium= '' or a.ADBPremium= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ADBPremium
+
+EDM4_SIT_TLP_split_premium_amount_0003_0103_Validate receiptNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.receiptNo= '' or a.receiptNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    receiptNo
