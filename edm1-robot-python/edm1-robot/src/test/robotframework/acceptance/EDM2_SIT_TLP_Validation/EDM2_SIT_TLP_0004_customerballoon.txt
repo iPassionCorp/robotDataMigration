@@ -4,37 +4,37 @@ Resource          ../../keywords/edm.txt
 Library           DatabaseLibrary
 
 *** Test Cases ***
-EDM4_SIT_TLP_CustomerBalloon_005_0001_CheckCertnonotinCustomerinfo
+EDM2_SIT_TLP_CustomerBalloon_0005_0001_CheckCertnonotinCustomerinfo
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    select count(0) from \ (select a.policyno, a.certificateno \ FROM tlp.customerinfo a \ where 1=1 \ and a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and policyno in ('00029007', '00029008', '00029017', '00029018', '00029013', '00029014', '00029019', '00029020','00029021') except \ (select b.policyno, b.certno \ from tlp.customerballoon b union all \ select c.policynoballoon, c.certnobolloon \ from tlp.customerballoon c)) tmp;
     Comment    EDM_Compare Result    @{Result[0]}    0    CertNo
 
-EDM4_SIT_TLP_CustomerBalloon_005_0002_PolicyNo_length
+EDM2_SIT_TLP_CustomerBalloon_0005_0002_Mapping_Validate PolicyNo_length
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    SELECT count(0) FROM tlp.customerballoon a \ where length(a.policyno) > 30
     Comment    EDM_Compare Result    @{Result[0]}    0    policyno
 
-EDM4_SIT_TLP_CustomerBalloon_005_0003_CertNo_length
+EDM2_SIT_TLP_CustomerBalloon_0005_0003_CertNo_length
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    SELECT count(0) FROM tlp.customerballoon a \ where length(a.certno) > 30
     Comment    EDM_Compare Result    @{Result[0]}    0    certno
 
-EDM4_SIT_TLP_CustomerBalloon_0005_0004_PolicyNoBalloon_length
+EDM2_SIT_TLP_CustomerBalloon_0005_0004_Check PolicyNoBalloon_length
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    SELECT count(0) FROM tlp.customerballoon a \ where length(a.policynoballoon) > 30
     Comment    EDM_Compare Result    @{Result[0]}    0    policynoballoon
 
-EDM4_SIT_TLP_CustomerBalloon_0005_0006_certNoBolloon_length
+EDM2_SIT_TLP_CustomerBalloon_0005_0005_DataDict_Validate certNoBolloon_length
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    SELECT count(0) FROM tlp.customerballoon a \ where length(a.certnobolloon) > 30
     Comment    EDM_Compare Result    @{Result[0]}    0    certnobolloon
 
-EDM4_SIT_TLP_CustomerBalloon_0005_0007_loancontractno_length
+EDM2_SIT_TLP_CustomerBalloon_0005_0006_DataDict_Validate loancontractno_length
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    SELECT count(0) FROM tlp.customerballoon a \ where length(a.loancontractno) > 30
     Comment    EDM_Compare Result    @{Result[0]}    0    loancontractno
 
-EDM4_SIT_TLP_CustomerBalloon_0005_0007_CheckPolicynoDuplicate
+EDM2_SIT_TLP_CustomerBalloon_0005_0007_Check PolicynoDuplicate
     Comment    EDM_Connect_DB
     Comment    @{Result}    Query    select count(0) from (select policyno, certno, count(0) \ from tlp.customerballoon tlp \ where policyno <> '00029019' group by policyno, certno \ having count(0) > 1 union all select policyno, certno, count(0) \ from tlp.customerballoon tlp \ where policyno = '00029019' group by policyno, certno \ having count(0) > 2) tmp;
     Comment    EDM_Compare Result    @{Result[0]}    0    policyno
