@@ -320,9 +320,9 @@ EDM2_SIT_TLP_split_premium_amount_0003_0063_DataDict_Validate LifeTPDPremium.Les
     EDM_Compare Result    @{Result[0]}    0    LifeTPDPremium
 
 EDM2_SIT_TLP_split_premium_amount_0003_0064_CheckPolicynotinPayment
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ group by a.policyno,a.customercode except all \ \ select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b where b.grouppolicyno not in \ ('00026009','00026010','01016001','01016002', '01016003','01016004','01016005','01016006','01016007','01016023','01016025','01016026', '01016027','01016028', 'BC00600600','BC00600601','BC00603500','BC00603600','BC00603700','BC00603900','BC00604000','BC00604100','BC00604200', 'BC00604300','BC01600000', 'BC01600001','BC01600100','BC01600200','BC01600201','BC01600300','BC01600400','BC01600401','BC01600500','BC01600700', 'BC01600800') group by b.grouppolicyno,b.customercode) tmp
-    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) from \ (select a.policyno, a.customercode FROM tlp.payment a \ group by a.policyno,a.customercode except all \ \ select b.grouppolicyno , b.customercode \ from tlp.splitpremiumamount b where b.grouppolicyno not in \ ('00026009','00026010','01016001','01016002', '01016003','01016004','01016005','01016006','01016007','01016023','01016025','01016026', '01016027','01016028', 'BC00600600','BC00600601','BC00603500','BC00603600','BC00603700','BC00603900','BC00604000','BC00604100','BC00604200', 'BC00604300','BC01600000', 'BC01600001','BC01600100','BC01600200','BC01600201','BC01600300','BC01600400','BC01600401','BC01600500','BC01600700', 'BC01600800') group by b.grouppolicyno,b.customercode) tmp
+    Comment    EDM_Compare Result    @{Result[0]}    0    grouppolicyno
 
 EDM2_SIT_TLP_split_premium_amount_0003_0065_Mapping_Validate LifePremium.Benefit_Life
     EDM_Connect_DB
@@ -517,4 +517,9 @@ EDM2_SIT_TLP_split_premium_amount_0003_0102_Mapping_Validate ADBPremium_NotBlank
 EDM2_SIT_TLP_split_premium_amount_0003_0103_DataDict_Validate receiptNo_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.splitpremiumamount a \ where a.receiptNo= '' or a.receiptNo= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    receiptNo
+
+EDM2_SIT_TLP_split_premium_amount_0003_0104_TotalPremium_Sum Correct
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.splitpremiumamount split JOIN tlp.customerinfo info ON split.customercode = info.customercode AND split.grouppolicyno = info.policyno INNER JOIN lookup.tlppolicystatus sta ON info.customerstatus = sta.customerstatus WHERE to_number(split.totpremium, '9999999') <> (to_number(split.lifepremium, '9999999') + to_number(split.tpdpremium, '9999999') + \ to_number(split.tdpremium, '9999999') + to_number(split.adbpremium, '9999999') + to_number(split.addpremium, '9999999') + \ to_number(split.mepremium, '9999999'))
     EDM_Compare Result    @{Result[0]}    0    receiptNo
