@@ -1,0 +1,255 @@
+*** Settings ***
+Resource          ../../keywords/edm.txt
+Library           DatabaseLibrary
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM1_SIT_0015_0001_VerifyMgHisColumn
+    [Documentation]    ตรวจจำนวน column ที่เก็บใน Table "mghis" มีจำนวน 10 column ดังนี้
+    ...    1. certNo
+    ...    2. accidentDate
+    ...    3. receiveDate
+    ...    4. claimType
+    ...    5. seqNo
+    ...    6. remarkDate
+    ...    7. remarkNo
+    ...    8. remark
+    ...    9. employeeID
+    ...    10. recTime
+    EDM_Connect_DB
+    #---- Default ----
+    ${TotalColumn}    EDM_Count by query    SELECT count (c.column_name) FROM information_schema.columns c WHERE c.table_name = 'mghis' AND c.table_schema = 'dm'
+    Should Be Equal As Integers    ${TotalColumn}    10
+    log    Column of MGOrder table is ${TotalColumn}
+
+EDM1_SIT_0015_0002_VerifyLengthOfMgHisColumn
+    [Documentation]    Run SQL scrip ในการตรวจความยาว (Length) ของแต่ละฟิลด์ \ (column) ที่ระบุในเอกสาร Mapping \ ดังนี้
+    ...    1. certNo = 8
+    ...    2. accidentDate = 8
+    ...    3. receiveDate = 8
+    ...    4. claimType = 1
+    ...    5. seqNo = 2
+    ...    6. remarkDate = 8
+    ...    7. remarkNo = 2
+    ...    8. remark = 100
+    ...    9. employeeID = 7
+    ...    10. recTime = 6
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{columnCount}=    Query    SELECT count(a.column_name) FROM information_schema.columns a WHERE a.table_name = 'mghis' AND a.data_type = 'character varying'
+    ${TotalColumn}=    Convert To Integer    @{columnCount[0]}
+    #----Get Column Size----
+    ${lenOfColumn}=    query    SELECT a.column_name,a.character_maximum_length FROM information_schema.columns a WHERE a.table_name = 'mghis' AND a.data_type = 'character varying'
+    ${i}=    Set Variable    0
+    : FOR    ${i}    IN RANGE    ${i}    ${TotalColumn}
+    \    Log Many    ${lenOfColumn[${i}]}
+    \    Exit For Loop If    '${i}' == '${TotalColumn}'
+
+EDM1_SIT_0015_0003_VerifyCertNoAutoGen
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ \ certNo
+    ...    - certNo = auto generate by TLI โดยนำ tlp.claimRegisterHeader.RegCustomerCertificateNo ไปหาเลข CertNo ที่ gen โดย TLI สร้างขึ้นในแฟ้มหรือ method ที่ TLI สร้างขึ้น"
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ \ \ \ \ \ \ where (ch.regcustomercertificateno = cm.rcertno) and (mgh.certno <> cm.certno)
+    EDM_Compare Result    @{result[0]}    0    CertNoOfMgHis
+
+EDM1_SIT_0015_0004_VerifyAccidentDateMapping
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ accidentDate ดังนี้
+    ...    - accidentDate \ = tlp.ClaimRegisterDetail.RegDtlDateOfOccurred
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ from dm.mghis mgh \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ join dm.certmapping cm on (cm.certno = mgc.certno) \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ join tlp.claimregisterdetail cd \ \ on (cd.registerseq = ch.registerseq \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ where mgh.accidentDate <> cd.RegDtlDateOfOccurred or substring(mgh.accidentDate,1,4) < '2018'
+    EDM_Compare Result    @{result[0]}    0    AccidentDate
+    #หลัง run SQL Script ต้องได้ count(*) = 0
+    @{result}    Query    select count(0) \ from dm.mghis mgh \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ join dm.certmapping cm on (cm.certno = mgc.certno) \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ join tlp.claimregisterdetail cd \ \ on (cd.registerseq = ch.registerseq \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ where mgh.accidentDate = '' or \ mgh.accidentDate = '00000000'
+    EDM_Compare Result    @{result[0]}    0    AccidentDate
+
+EDM1_SIT_0015_0005_VerifyReceiveDateMapping
+    [Documentation]    "Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ receiveDate ดังนี้
+    ...    - receiveDate \ = tlp.ClaimRegisterDetail.RegDtlRegisterDate
+    ...
+    ...    *แสดงเป็น พศ และเอาเวลาออก"
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ \ \ \ \ \ \ where mgh.receiveDate <> cd.RegDtlRegisterDate or substring(mgh.receiveDate,1,4) < '2018'
+    EDM_Compare Result    @{result[0]}    0    receiveDate \
+
+EDM1_SIT_0015_0006_VerifyclaimType_A
+    [Documentation]    "Run SQL script ตรวจสอบข้อมูลในฟิลด์ \ claimType
+    ...    - กรณีtlp.ClaimRegisterDetai.ClaimTypeSeq \ = 11 : TTD , 4 : AME , 40 : GME
+    ...    - claimType = "A"
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ \ \ \ \ \ WHERE (mgh.claimtype = 'A' AND cd.claimtypeseq NOT IN ('11','4','40'))
+    EDM_Compare Result    @{result[0]}    0    claimType_A
+
+EDM1_SIT_0015_0007_VerifyclaimType_D
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ claimType
+    ...    - กรณี tlp.ClaimRegisterDetail.ClaimTypeSeq = 3 : Death , S : Suicide
+    ...    - claimType = \ "D"
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ \ \ \ \ \ WHERE (mgh.claimtype = 'D' AND cd.claimtypeseq NOT IN ('3','S'))
+    EDM_Compare Result    @{result[0]}    0    claimType_D
+
+EDM1_SIT_0015_0008_VerifyclaimType_T
+    [Documentation]    "Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ claimType
+    ...    - กรณี \ tlp.ClaimRegisterDetail.ClaimTypeSeq = 10 : TPD
+    ...    - claimType = "T"
+    ...
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) \ \ \ \ \ \ WHERE (mgh.claimtype = 'T' AND cd.claimtypeseq NOT IN ('10','2'))
+    EDM_Compare Result    @{result[0]}    0    claimType_T
+
+EDM1_SIT_0015_0009_VerifySeqNoAutogen
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ seqNo
+    ...    - โดย generate ขึ้นมาจาก TLI ค่าเริ่มเป็น 01
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    ${result}    Query    SELECT count(0) \ FROM \ dm.mghis GROUP BY certno, seqno HAVING count(certno) > 1 and COUNT(seqno) = 1
+    Should Be Empty    ${result}
+
+EDM1_SIT_0015_0010_VerifyRemarkDateAndRemarkNoMapping_01
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์
+    ...    - remarkDate และ \ remarkNo
+    ...
+    ...    - กรณีมีวันที่ได้รับเอกสารครบ
+    ...    - ถ้า mgorder.receiveDocDate
+    ...    - มีค่าถูกต้อง ให้ insert sequence 02 และ 03
+    ...    - ตามนี้ seqNo = "02" \ remarkNo = "20" remarkDate = mgclaim.receiveDate
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count (*) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgc.isMigration <> '0' \ and mgh.remarkNo = '02' and Seqno = '02' and mgh.remarkDate <> o.receiveDocDate
+    EDM_Compare Result    @{result[0]}    0    RemarkDateAndRemarkNo_01
+
+EDM1_SIT_0015_0011_VerifyRemarkDateAndRemarkNoMapping_02
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ remarkDate และ \ remarkNo
+    ...    - กรณีมีวันที่ได้รับเอกสารครบ
+    ...    - ถ้า mgorder.receiveDocDate มีค่าถูกต้อง ให้ insert sequence 02 และ 03 ตามนี้
+    ...    - seqNo = "02" remarkNo = "20" remarkDate = mgclaim.receiveDate
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count (*) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgc.isMigration <> '0' \ and mgh.remarkNo = '02' and Seqno = '02' and mgh.remarkDate <> o.receiveDocDate
+    EDM_Compare Result    @{result[0]}    0    RemarkDateAndRemarkNo_02
+
+EDM1_SIT_0015_0012_VerifyRemarkDateAndRemarkNoMapping_03
+    [Documentation]    "Run SQL scrip
+    ...    - ตรวจสอบข้อมูลในฟิลด์ remarkDate และ \ remarkNo
+    ...    - กรณี seqNo = ""03""
+    ...    - remarkNo = ""02""
+    ...
+    ...    - remarkDate = mgorder.receiveDocDate"
+    ...
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(*) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgc.isMigration <> '0' \ and mgh.remarkNo = '02' and Seqno = '03' and (mgh.remarkDate <> o.receiveDocDate)
+    EDM_Compare Result    @{result[0]}    0    RemarkDateAndRemarkNo_03
+
+EDM1_SIT_0015_0013_VerifyRemarkNoInMethod
+    [Documentation]    Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ remark ดังนี้
+    ...
+    ...    - นำ remarkNo ไปหาค่าใน String s = method Data.searchRemarkDetail(remarkNo) เอาค่า s มาใส่
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    log    Pending    #นำ remarkNo ไปหาค่าใน String s = method Data.searchRemarkDetail(remarkNo) เอาค่า s มาใส่
+    Comment    EDM_Connect_DB
+    Comment    #---- Get Total Column----
+    Comment    @{result}    Query    select count(*) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgc.isMigration <> '0' \ and mgh.remarkNo = '02' and Seqno = '03' and (mgh.remarkDate <> o.receiveDocDate)
+    Comment    EDM_Compare Result    @{result[0]}    0    RemarkDateAndRemarkNo_03
+
+EDM1_SIT_0015_0014_VerifyEmployeeIDMapping_Seq01
+    [Documentation]    "Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ employeeID ดังนี้
+    ...
+    ...    - กรณี sequence 01, employeeID = mgorder####.receiverID
+    ...
+    ...
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgh.seqno = '01' and (mgh.employeeid <> o.receiverid) and mgc.isMigration = '1'
+    EDM_Compare Result    @{result[0]}    0    Emp.Seq_01
+
+EDM1_SIT_0015_0015_VerifyEmployeeIDMapping_Seq02and03
+    [Documentation]    "Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ employeeID ดังนี้
+    ...
+    ...    - กรณี sequence 01, employeeID = mgorder####.receiverID
+    ...
+    ...
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) where mgh.seqno in ('02', '03') and (mgh.employeeid <> o.considerid) and mgc.isMigration = '1'
+    EDM_Compare Result    @{result[0]}    0    Emp.Seq_02 And 03
+
+EDM1_SIT_0015_0015_VerifyRecTimeMapping
+    [Documentation]    - Run SQL scrip ตรวจสอบข้อมูลในฟิลด์ recTime
+    ...
+    ...    - โดยข้อมูลที่แสดงในฟิลด์ recTime จะ default ค่าเป็น "00000000"
+    ...
+    ...
+    ...
+    ...
+    ...
+    ...
+    ...    Expected Result
+    ...    - หลัง run SQL Script ต้องได้ count(*) = 0
+    EDM_Connect_DB
+    #---- Get Total Column----
+    @{result}    Query    select count(0) \ \ \ \ \ \ \ from dm.mghis mgh \ \ \ \ \ \ \ join dm.mgclaim mgc on mgh.certno = mgc.certno and mgh.accidentdate = mgc.accidentdate and \ \ \ \ \ \ \ \ mgh.receivedate = mgc.receivedate and mgh.claimtype = mgc.claimtype \ \ \ \ \ \ \ join dm.certmapping cm on (cm.certno = mgc.certno) \ \ \ \ \ \ \ join tlp.claimregisterheader ch on (ch.regcustomercertificateno = cm.rcertno) \ \ \ \ \ \ \ inner join dm.mgorder o on (mgc.orderNo = o.orderNo) \ \ \ \ \ \ \ join tlp.claimregisterdetail cd \ \ \ \ \ \ \ \ on (cd.registerseq = ch.registerseq \ \ \ \ \ \ \ \ and substring(regdtlclaimno, 1, 2) || 'CP' || substring(regdtlclaimno, 6, 4)= mgc.orderno) WHERE (mgh.rectime <> '000000') and mgc.isMigration = '1'
+    EDM_Compare Result    @{result[0]}    0    Rectime

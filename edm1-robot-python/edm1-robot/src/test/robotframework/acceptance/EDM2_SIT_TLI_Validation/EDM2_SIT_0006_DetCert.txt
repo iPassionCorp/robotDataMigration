@@ -1,0 +1,235 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_[CF]_0006_0001_Validate PolicyNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a.policyno) <> 4 and a.policyno != ''
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_[CF]_0006_0002_Validate PolicyNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.policyno = '' or a.policyno = 'blank' or a.policyno is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_[CF]_0006_0003_Validate CertNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ where length(a.CertNo) > 8 and a.CertNo!= ''
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_[CF]_0006_0004_Validate CertNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. CertNo = '' or a. CertNo = 'blank' or a. CertNo is null
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_[CF]_0006_0005_Validate Code_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.code not in ('TORC000001','TNSN0HQ001','TTCRB00001','TTLT0HQ001','TCIMB00001','TWLC000001','TAMN0HQ001','TCOOP00001','TBAF000001' ,'TJMT000001','TAYCA0L001','TCAL000001','TCFG000001','TRATCH0001','TTANAB0001','THIWAY0001','TTHAI00001','TTMB000001','TKTC000001' ,'TAEON00001','TAYCAP0001')
+    EDM_Compare Result    @{Result[0]}    0    code
+
+EDM2_SIT_[CF]_0006_0006_Validate Code_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.code = '' or a.code ='blank' or a.code is null
+    EDM_Compare Result    @{Result[0]}    0    code
+
+EDM2_SIT_[CF]_0006_0007_Validate Address1_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. Address1) > 120 and a. Address1 <> ''
+    EDM_Compare Result    @{Result[0]}    0    Address1
+
+EDM2_SIT_[CF]_0006_0008_Validate Address1_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.Address1 is null
+    EDM_Compare Result    @{Result[0]}    0    Address1
+
+EDM2_SIT_[CF]_0006_0009_Validate Address1_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.policyno = b.policyno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where trim(a.address1) <> trim (d.address1)
+    EDM_Compare Result    @{Result[0]}    0    Address1
+
+EDM2_SIT_[CF]_0006_0010_Validate Address2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. Address2) > 120 and a. Address2!= ''
+    EDM_Compare Result    @{Result[0]}    0    Address2
+
+EDM2_SIT_[CF]_0006_0011_Validate Address2_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.Address2 is null
+    EDM_Compare Result    @{Result[0]}    0    Address2
+
+EDM2_SIT_[CF]_0006_0012_Validate Address2_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a.Address2) != length(d.Address2) and a.Address2 != ''
+    EDM_Compare Result    @{Result[0]}    0    Address2
+
+EDM2_SIT_[CF]_0006_0013_Validate TelephoneNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. TelephoneNo) > 60 and a. TelephoneNo!= ''
+    EDM_Compare Result    @{Result[0]}    0    TelephoneNo
+
+EDM2_SIT_[CF]_0006_0014_Validate TelephoneNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.TelephoneNo is null
+    EDM_Compare Result    @{Result[0]}    0    TelephoneNo
+
+EDM2_SIT_[CF]_0006_0017_Validate MariageStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where (length(a.mariagestatus) <> 1 and a.mariagestatus != '' ) or a.mariagestatus not in ('1','2','3','4','')
+    EDM_Compare Result    @{Result[0]}    0    MariageStatus
+
+EDM2_SIT_[CF]_0006_0018_Validate MariageStatus_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.mariagestatus is null
+    EDM_Compare Result    @{Result[0]}    0    MariageStatus
+
+EDM2_SIT_[CF]_0006_0019_Validate MariageStatus_Mapping
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where (a.mariagestatus = '1' and d.status != 'S') \ or (a.mariagestatus != '1' and d.status = 'S') \ or (a.mariagestatus = '2' and d.status != 'M') or (a.mariagestatus != '2' and d.status = 'M') or (a.mariagestatus = '3' and d.status != 'D') or (a.mariagestatus != '3' and d.status = 'D') \ or (a.mariagestatus = '4' and d.status != 'W') or (a.mariagestatus != '4' and d.status = 'W') \ or (a.mariagestatus = '' and d.status != '') or (a.mariagestatus != '' and d.status = '') \ \ \
+    EDM_Compare Result    @{Result[0]}    0    MariageStatus
+
+EDM2_SIT_[CF]_0006_0020_Validate RecName1_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RecName1) > 100 and a. RecName1!=''
+    EDM_Compare Result    @{Result[0]}    0    RecName1
+
+EDM2_SIT_[CF]_0006_0021_Validate RecName1_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ where (a. RecName1 is null or a. RecName1 = '' or a. RecName1 = 'blank') and d.nameofbenefit2 <> ''
+    EDM_Compare Result    @{Result[0]}    0    RecName1
+
+EDM2_SIT_[CF]_0006_0022_Validate Percent1_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where (length(a. Percent1) <> 5 and a. Percent1!= '' )
+    EDM_Compare Result    @{Result[0]}    0    Percent1
+
+EDM2_SIT_[CF]_0006_0023_Validate Percent1_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. Percent1 is null or a. Percent1 = '' or a. Percent1 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    Percent1
+
+EDM2_SIT_[CF]_0006_0024_Validate RelationshipCode1_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RelationshipCode1) <> 2 and a. RelationshipCode1 != ''
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode1
+
+EDM2_SIT_[CF]_0006_0025_Validate RelationshipCode1_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. RelationshipCode1 is null or a. RelationshipCode1 = '' or a. RelationshipCode1 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode1
+
+EDM2_SIT_[CF]_0006_0026_Validate RecName2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RecName2) > 100 and a. RecName2!= ''
+    EDM_Compare Result    @{Result[0]}    0    RecName2
+
+EDM2_SIT_[CF]_0006_0027_Validate RecName2_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ where (a. RecName2 is null or a. RecName2 = '' or a. RecName2 = 'blank') and d.nameofbenefit3 <> ''
+    EDM_Compare Result    @{Result[0]}    0    RecName2
+
+EDM2_SIT_[CF]_0006_0030_Validate Percent2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. Percent2) <> 5 and a. Percent2!= ''
+    EDM_Compare Result    @{Result[0]}    0    Percent2
+
+EDM2_SIT_[CF]_0006_0031_Validate Percent2_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. Percent2 is null or a. Percent2 = '' or a. Percent2 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    Percent2
+
+EDM2_SIT_[CF]_0006_0034_Validate RelationshipCode2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RelationshipCode2) <> 2 and a. RelationshipCode2!= ''
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode2
+
+EDM2_SIT_[CF]_0006_0035_Validate RelationshipCode2_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. RelationshipCode2 is null or a. RelationshipCode2 = '' or a. RelationshipCode2 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode2
+
+EDM2_SIT_[CF]_0006_0038_Validate RecName3_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RecName3) > 100 and a. RecName3!= ''
+    EDM_Compare Result    @{Result[0]}    0    RecName3
+
+EDM2_SIT_[CF]_0006_0039_Validate RecName3_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ where (a. RecName3 is null or a. RecName3 = '' or a. RecName3 = 'blank') and d.nameofbenefit4 <> ''
+    EDM_Compare Result    @{Result[0]}    0    RecName3
+
+EDM2_SIT_[CF]_0006_0040_Validate Percent3_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. Percent3) <> 5 and a. Percent3!= ''
+    EDM_Compare Result    @{Result[0]}    0    Percent3
+
+EDM2_SIT_[CF]_0006_0041_Validate Percent3_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. Percent3 is null or a. Percent3 = '' or a. Percent3 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    Percent3
+
+EDM2_SIT_[CF]_0006_0042_Validate RelationshipCode3_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. RelationshipCode3) <> 2 and a. RelationshipCode3!= ''
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode3
+
+EDM2_SIT_[CF]_0006_0043_Validate RelationshipCode3_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a. RelationshipCode3 is null or a. RelationshipCode3 = '' or a. RelationshipCode3 = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RelationshipCode3
+
+EDM2_SIT_[CF]_0006_0044_Validate Analist_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.analist is null
+    EDM_Compare Result    @{Result[0]}    0    analist
+
+EDM2_SIT_[CF]_0006_0045_Validate PrmiseNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where length(a. PrmiseNo) > 12 and a. PrmiseNo!= ''
+    EDM_Compare Result    @{Result[0]}    0    PrmiseNo
+
+EDM2_SIT_[CF]_0006_0046_Validate PrmiseNo_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ \ inner join dm.cert b on a.certno = b.certno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode \ where (a. PrmiseNo is null or a. PrmiseNo = '' or a. PrmiseNo = 'blank') and d.loanno <>''
+    EDM_Compare Result    @{Result[0]}    0    PrmiseNo
+
+EDM2_SIT_[CF]_0006_0049_Validate LoanType_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where (length(a. LoanType) <> 1 and a. LoanType!= '' ) or LoanType != '1'
+    EDM_Compare Result    @{Result[0]}    0    LoanType
+
+EDM2_SIT_[CF]_0006_0050_Validate LoanType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a. LoanType is null or a. LoanType = '' or a. LoanType = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    LoanType
+
+EDM2_SIT_[CF]_0006_0051_Validate Med_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where (length(a.Med) <> 1 and a.Med!= '' ) or a.Med not in ('Y','N')
+    EDM_Compare Result    @{Result[0]}    0    Med
+
+EDM2_SIT_[CF]_0006_0052_Validate Med_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where a.Med is null or a.Med= '' or a.Med= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    Med
+
+EDM2_SIT_[CF]_0006_0053_Validate Reserve_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ \ inner join dm.cert b on a.certno = b.certno \ \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ \ where \ a.Reserve!= ''
+    EDM_Compare Result    @{Result[0]}    0    Reserve
+
+EDM2_SIT_[CF]_0006_0054_Validate Reserve_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ where a.Reserve is null or a.Reserve= '' or a.Reserve= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    Reserve
+
+EDM2_SIT_[CF]_0006_0055_Validate CheckPrimaryKey_Duplicate
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from (SELECT a.policyNo,a.certNo,count(0) \ from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode group by a.policyNo,a.certNo having count(0) > 1) tmp;
+    EDM_Compare Result    @{Result[0]}    0    policyno
+
+EDM2_SIT_[CF]_0006_0056_Validate PrmiseNo2_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.detcert a \ inner join dm.cert b on a.certno = b.certno \ \ \ \ inner join dm.tlpmigration c on a.policyno = c.migrateplancode and a.certno = c.tlipolicyno \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno and d.certificateno = c.tlpcertno and d.customercode = c.customercode where \ a.PrmiseNo2 != ''
+    EDM_Compare Result    @{Result[0]}    0    PrmiseNo

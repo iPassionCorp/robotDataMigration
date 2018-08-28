@@ -1,0 +1,55 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_[CF]_0009_0001_Validate Rpno_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode \ \ where length(a.rpno) > 12 and a.rpno != ''
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM2_SIT_[CF]_0009_0002_Validate Rpno_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ \ inner join dm.cert b on b.rpno = a.rpno \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ inner join tlp.customerinfo d on c.tlppolicyno = d.policyno inner join tlp.splitpremiumamount e on e.grouppolicyno = d.policyno \ and c.customercode = d.customercode \ \ \ where a.rpno = '' or a.rpno = 'blank' or a.rpno is null
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM2_SIT_[CF]_0009_0003_Validate Rpno_MappingSource
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) from ( \ select d.grouppolicyno,d.receiptno from tlp.splitpremiumamount d \ \ \ inner join tlp.customerinfo f on d.grouppolicyno = f.policyno \ inner join dm.tlpmigration e on f.policyno = e.tlppolicyno \ except all \ \ \ select b.policyno,a.rpno from dm.clrprider a \ \ inner join dm.cert b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.certno = c.tlpcertno)tmp
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM2_SIT_[CF]_0009_0004_Validate Rpno_MappingTarget
+    EDM_Connect_DB
+    @{Result}    Query     select count(0) from ( \ \ \ \ select b.policyno,a.rpno from dm.clrprider a \ \ inner join dm.cert b on a.rpno = b.rpno \ \ inner join dm.tlpmigration c on c.tlipolicyno = b.policyno and b.certno = c.tlpcertno \ except all \ \ select d.grouppolicyno,d.receiptno from tlp.splitpremiumamount d \ \ \ inner join tlp.customerinfo f on d.grouppolicyno = f.policyno \ inner join dm.tlpmigration e on f.policyno = e.tlppolicyno)tmp
+    EDM_Compare Result    @{Result[0]}    0    rpno
+
+EDM2_SIT_[CF]_0009_0005_Validate RiderType_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ \ \ where length(a.ridertype) <> 3 and a.ridertype != ''
+    EDM_Compare Result    @{Result[0]}    0    ridertype
+
+EDM2_SIT_[CF]_0009_0006_Validate RiderType_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where a.ridertype = '' or a.ridertype = 'blank' or a.ridertype is null
+    EDM_Compare Result    @{Result[0]}    0    ridertype
+
+EDM2_SIT_[CF]_0009_0007_Validate RiderPremium_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where length(a.riderPremium) <> 3 and a.riderPremium != ''
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
+
+EDM2_SIT_[CF]_0009_0008_Validate RiderPremium_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where a.riderPremium = '' or a.riderPremium = 'blank' or a.riderPremium is null
+    EDM_Compare Result    @{Result[0]}    0    riderPremium
+
+EDM2_SIT_[CF]_0009_0009_Validate ExtraPremium_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where length(a.extraPremium) <> 9 and a.extraPremium != ''
+    EDM_Compare Result    @{Result[0]}    0    extrapremium
+
+EDM2_SIT_[CF]_0009_0010_Validate ExtraPremium_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from dm.clrprider a \ inner join dm.cert b on b.rpno = a.rpno inner join dm.tlpmigration c on c.tlipolicyno = b.policyno \ \ where a.extraPremium = '' or a.extraPremium = 'blank' or a.extraPremium is null
+    EDM_Compare Result    @{Result[0]}    0    extrapremium
