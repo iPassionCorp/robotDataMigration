@@ -441,10 +441,15 @@ EDM2_SIT_TLP_customerinfo_0001_0080_Validate ExpiredCreditCard_Check_length
 
 EDM2_SIT_TLP_customerinfo_0001_0081_Validate customerinfo_Except_customersa
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM ( select a.policyno,a.customercode from tlp.customerinfo a \ INNER JOIN lookup.tlppolicystatus st ON st.customerstatus = a.customerstatus except all select b.policyno,b.customercode from tlp.customersa b) tmp
+    @{Result}    Query    SELECT count(0) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT SELECT sa.policyno, sa.customercode \ FROM tlp.customersa sa JOIN tlp.customerinfo info ON info.policyno = sa.policyno AND info.customercode = sa.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp ;
     EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_customersa
 
 EDM2_SIT_TLP_customerinfo_0001_0082_Validate customerinfo_Except_splitpremiumamount
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM ( select a.policyno,a.customercode from tlp.customerinfo a \ INNER JOIN lookup.tlppolicystatus st ON st.customerstatus = a.customerstatus except all select b.grouppolicyno,b.customercode from tlp.splitpremiumamount b) tmp
+    @{Result}    Query    SELECT count(0) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT ALL \ SELECT sp.grouppolicyno, sp.customercode FROM tlp.splitpremiumamount sp JOIN tlp.customerinfo info ON info.policyno = sp.grouppolicyno AND info.customercode = sp.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp
     EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_splitpremiumamount
+
+EDM2_SIT_TLP_customerinfo_0001_0083_Validate customerinfo_Except_payment
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(*) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT SELECT p.policyno, p.customercode FROM tlp.payment p JOIN tlp.customerinfo info ON info.policyno = p.policyno AND info.customercode = p.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp;
+    EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_payment
