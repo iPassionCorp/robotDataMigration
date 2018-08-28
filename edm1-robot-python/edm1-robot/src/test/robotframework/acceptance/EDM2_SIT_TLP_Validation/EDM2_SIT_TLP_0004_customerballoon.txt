@@ -4,9 +4,9 @@ Resource          ../../keywords/edm.txt
 Library           DatabaseLibrary
 
 *** Test Cases ***
-EDM2_SIT_TLP_CustomerBalloon_0005_0001_CheckCertnonotinCustomerinfo
+EDM2_SIT_TLP_CustomerBalloon_0005_0001_CheckCertNo_NotIn_Customerinfo
     EDM_Connect_DB
-    @{Result}    Query    select count(0) from \ (select a.policyno, a.certificateno \ FROM tlp.customerinfo a \ where 1=1 \ and a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and policyno in ('00029007', '00029008', '00029017', '00029018', '00029013', '00029014', '00029019', '00029020','00029021') except \ (select b.policyno, b.certno \ from tlp.customerballoon b union all \ select c.policynoballoon, c.certnobolloon \ from tlp.customerballoon c)) tmp;
+    @{Result}    Query    SELECT count(*) FROM ( SELECT ball.policyno, ball.certno FROM tlp.customerballoon ball EXCEPT SELECT info.policyno, info.certificateno FROM tlp.customerinfo info \ INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp;
     EDM_Compare Result    @{Result[0]}    0    Certno
 
 EDM2_SIT_TLP_CustomerBalloon_0005_0002_Mapping_Validate PolicyNo_length
@@ -27,4 +27,24 @@ EDM2_SIT_TLP_CustomerBalloon_0005_0004_DataDict_Validate certNoBolloon_length
 EDM2_SIT_TLP_CustomerBalloon_0005_0005_Check PolicynoDuplicate
     EDM_Connect_DB
     @{Result}    Query    select count(0) from (select policyno, certno, count(0) \ from tlp.customerballoon tlp \ where policyno <> '00029019' group by policyno, certno \ having count(0) > 1 union all select policyno, certno, count(0) \ from tlp.customerballoon tlp \ where policyno = '00029019' group by policyno, certno \ having count(0) > 2) tmp;
+    EDM_Compare Result    @{Result[0]}    0    Policyno
+
+EDM2_SIT_TLP_CustomerBalloon_0005_0006_Balloon Match - 00029007 & 00029008
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(ball.*) FROM tlp.customerballoon ball JOIN tlp.customerinfo info ON info.policyno = ball.policyno AND info.certificateno = ball.certno INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus WHERE ball.policyno = '00029007' AND ball.policynoballoon <> '00029008';
+    EDM_Compare Result    @{Result[0]}    0    Policyno
+
+EDM2_SIT_TLP_CustomerBalloon_0005_0007_Balloon Match - 00029013 & 00029014
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(ball.*) FROM tlp.customerballoon ball JOIN tlp.customerinfo info ON info.policyno = ball.policyno AND info.certificateno = ball.certno INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus WHERE ball.policyno = '00029013' AND ball.policynoballoon <> '00029014';
+    EDM_Compare Result    @{Result[0]}    0    Policyno
+
+EDM2_SIT_TLP_CustomerBalloon_0005_0008_Balloon Match - 00029017 & 00029018
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(ball.*) FROM tlp.customerballoon ball JOIN tlp.customerinfo info ON info.policyno = ball.policyno AND info.certificateno = ball.certno INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus WHERE ball.policyno = '00029017' AND ball.policynoballoon <> '00029018';
+    EDM_Compare Result    @{Result[0]}    0    Policyno
+
+EDM2_SIT_TLP_CustomerBalloon_0005_0009_Balloon Match - 00029019 & 00029020 & 00029021
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(ball.*) FROM tlp.customerballoon ball JOIN tlp.customerinfo info ON info.policyno = ball.policyno AND info.certificateno = ball.certno INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus WHERE (ball.policyno = '00029019' AND ball.policynoballoon <> '00029020') AND \ \ (ball.policyno = '00029019' AND ball.policynoballoon <> '00029021');
     EDM_Compare Result    @{Result[0]}    0    Policyno
