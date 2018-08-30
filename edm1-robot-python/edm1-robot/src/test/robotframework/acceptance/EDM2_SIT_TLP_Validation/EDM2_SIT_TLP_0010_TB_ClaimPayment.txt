@@ -1,0 +1,30 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_TLP_TB_ClaimPayment_0010_0001_Validate PAID_DATE_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpayment a \ where a.paid_date= '' or a.paid_date= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PAID_DATE
+
+EDM2_SIT_TLP_TB_ClaimPayment_0010_0002_Validate PAID_DATE_IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.claimpayment a \ WHERE a.PAID_DATE~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    PAID_DATE
+
+EDM2_SIT_TLP_TB_ClaimPayment_0010_0003_Validate PAID_DATE_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select PAID_DATE from tlp.claimpayment where PAID_DATE \ not between '0000-00-00' and '3000-12-31' and PAID_DATE <> '00000000') tmp
+    EDM_Compare Result    @{Result[0]}    0    PAID_DATE
+
+EDM2_SIT_TLP_TB_ClaimPayment_0010_0004_Validate CREATEDATE_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpayment a \ where a.CREATEDATE= '' or a.CREATEDATE= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    CREATEDATE
+
+EDM2_SIT_TLP_TB_ClaimPayment_0010_0005_Validate payRate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpayment a \ where a.payRate= '' or a.payRate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    payRate

@@ -1,0 +1,270 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0001_Validate RegDtlDateOfOccurred_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlDateOfOccurred from tlp.ClaimRegisterDetail where RegDtlDateOfOccurred \ \ not between '0000-00-00' and '3000-12-31' or RegDtlDateOfOccurred = '00000000') tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfOccurred
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0002_Validate RegDtlDateOfOccurred_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlDateOfOccurred = '' or a.RegDtlDateOfOccurred is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfOccurred
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0003_Validate RegDtlRegisterDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlRegisterDate from tlp.ClaimRegisterDetail \ where RegDtlRegisterDate \ not between '0000-00-00' and '3000-12-31' and length(RegDtlRegisterDate) <> 8) tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegisterDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0004_Validate RegDtlRegisterDate_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlRegisterDate = '' or a.RegDtlRegisterDate is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegisterDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0005_Validate ClaimTypeSeq_CheckType
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq \ not in \ ('3' ,'S ','1', '46', '48', '32 ','31', '2','4','40', '10','11', '5','6' ,'21', '47','49')
+    EDM_Compare Result    @{Result[0]}    0    ClaimTypeSeq
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0006_Validate ClaimTypeSeq_NotNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.ClaimTypeSeq = '' or a.ClaimTypeSeq is null
+    EDM_Compare Result    @{Result[0]}    0    ClaimTypeSeq
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0007_Validate RegDtlClaimNo_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimNo) > 12;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0008_Validate RegDtlClaimNo_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimNo = '' or a.RegDtlClaimNo is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0009_Validate RegDtlClaimNo_CheckYear
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlClaimNo from tlp.claimregisterdetail where to_number(substring(RegDtlClaimNo ,1,2),'99') \ not between 1 and 99) tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0010_Validate RegDtlClaimNo_CheckP,T
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail where substring(RegDtlClaimNo ,3,1) \ not in ('P','T');
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0011_Validate RegDtlClaimNo_CheckNo.
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select SUBSTRING(RegDtlClaimNo, 4, 5) from tlp.ClaimRegisterDetail where to_number(SUBSTRING(RegDtlClaimNo,4,5),'99999') \ not between 00000 and 99999) tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimNo
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0012_Validate RegDtlApproveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlApproveDate from tlp.ClaimRegisterDetail where RegDtlApproveDate \ not between '0000-00-00' and '3000-12-31' and RegDtlApproveDate not like '00000000') tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0013_Validate RegDtlApproveDate_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate = '' or a.RegDtlApproveDate is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0014_Validate RegDtlClaimCauseCode_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimCauseCode= ''
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimCauseCode
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0015_Validate RRegDtlClaimCauseCode_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimCauseCode) > 50;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimCauseCode
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0016_Validate RegDtlClaimCauseEN_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimCauseEN) > 100;
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimCauseEN
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0017_Validate RegDtlClaimCauseEN_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimCauseEN = ''
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimCauseEN
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0018_Validate RegDtlRegister_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlRegister) < 7
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegister
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0019_Validate RegDtlRegister_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlRegister= '' or a.RegDtlRegister= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegister
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0020_Validate RegDtlApproval_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlApproval) < 7
+    EDM_Compare Result    @{Result[0]}    0    RegDtlApproval
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0021_Validate RegDtlApproval_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlRegister= '' or a.RegDtlRegister= 'blank' or a.RegDtlRegister is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlRegister
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0022_Validate RegDtlDateOfAdmission_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlDateOfAdmission from tlp.ClaimRegisterDetail where RegDtlDateOfAdmission \ not between '0000-00-00' and '3000-12-31' and length(RegDtlDateOfAdmission) <> 8) tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfAdmission
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0023_Validate RegDtlDateOfAdmission_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlDateOfAdmission = '' or a.RegDtlDateOfAdmission = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfAdmission
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0024_Validate RegDtlHospitalCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlHospitalCode) <> 4 and RegDtlHospitalCode <> '' \ and length(RegDtlHospitalCode) <> 3 and \ SUBSTRING(RegDtlHospitalCode,1,1) not in ('A','B','c')
+    EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0025_Validate RegDtlHospitalCode_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlHospitalCode = '' or a.RegDtlHospitalCode is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlHospitalCode
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0026_Validate RegDtlDateOfCompleteDoc_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlDateOfCompleteDoc = '' or a.RegDtlDateOfCompleteDoc ='blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDateOfCompleteDoc
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0027_Validate RegdtlICDten2_notNull
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegdtlICDten2 is Null
+    EDM_Compare Result    @{Result[0]}    0    RegdtlICDten2
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0028_Validate RegdtlICDten2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegdtlICDten2) > 10;
+    EDM_Compare Result    @{Result[0]}    0    RegdtlICDten2
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0028_Validate RegdtlICDtenEng2_length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegdtlICDtenEng2) > 350;
+    EDM_Compare Result    @{Result[0]}    0    RegdtlICDtenEng2
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0029_Validate RegdtlICDtenEng2_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegdtlICDtenEng2= '' or a.RegdtlICDtenEng2= 'blank' or a.RegdtlICDtenEng2 is null
+    EDM_Compare Result    @{Result[0]}    0    RegdtlICDtenEng2
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_I,D,C
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ where a.RegDtlPolicyStatus not in ('I','D','C','M','S')
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPolicyStatus= '' or a.RegDtlPolicyStatus= 'blank' or a.RegDtlPolicyStatus is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0031_Validate PayType_0-8
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ where a.payType not in ('0','1','2','3','4','5','6','7','8')
+    EDM_Compare Result    @{Result[0]}    0    payType
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0032_Validate PayType_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.payType= '' or a.payType= 'blank' or a.payType is null
+    EDM_Compare Result    @{Result[0]}    0    payType
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlVoidAmount_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlVoidAmount= '' or a.RegDtlVoidAmount = 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlVoidAmount
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _NotChar
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where t.RegDtlAdjustPayment ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlAdjustPayment _notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlAdjustPayment= '' or a.RegDtlAdjustPayment= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) >3 or RegDtlDurationDays ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationDays_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlDurationDays= '' or a.RegDtlDurationDays= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationFrom_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlDurationFrom from tlp.ClaimRegisterDetail \ where RegDtlDurationFrom \ \ not between '0000-00-00' and '3000-12-31' \ and length(RegDtlDurationFrom)<> 8 ) tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0039_Validate RegDtlDurationFrom_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where RegDtlDurationFrom= '' or RegDtlDurationFrom is null
+    EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0040_Validate RegDtlApproveDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select RegDtlApproveDate from tlp.ClaimRegisterDetail where RegDtlApproveDate \ not between '0000-00-00' and '3000-12-31' and RegDtlApproveDate<> '00000000') tmp
+    EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0041_Validate RegDtlApproveDate_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate= '' or a.RegDtlApproveDate= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlClaimExpense_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimExpense= '' or a.RegDtlClaimExpense= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimExpense
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimStatus_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus \ not in ('Deny','0','1','Closed','Void','Paid','Pending','Register')
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ \ \ JOIN tlp.claimregisterheader b ON a.regdtlseq = b.registerseq where (a.RegDtlClaimStatus= '' or a.RegDtlClaimStatus= 'blank') AND b.regcustomerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus);
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimRemark_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimRemark= '' or a.RegDtlClaimRemark= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0046_Validate RegDtlClaimRemark_length_200
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimRemark) > 200
+    EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlInterest_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlInterest= '' or a.RegDtlInterest= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlInterest
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlPaidToPartner_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToPartner= '' or a.RegDtlPaidToPartner= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToPartner
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlPaidToBeneficiary_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToBeneficiary= '' or a.RegDtlPaidToBeneficiary= 'blank'
+    EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToBeneficiary
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate PartnerCode_Default
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ where partnercode \ not in ('787','789','791','889','892','786','788','784', '780','794','883','777','881','882');
+    EDM_Compare Result    @{Result[0]}    0    partnercode
+
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate PartnerCode_notBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.partnercode= '' or a.partnercode= 'blank' or a.partnercode is null
+    EDM_Compare Result    @{Result[0]}    0    partnercode

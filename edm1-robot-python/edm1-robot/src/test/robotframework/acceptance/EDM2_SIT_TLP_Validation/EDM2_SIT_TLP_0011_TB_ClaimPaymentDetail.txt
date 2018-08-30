@@ -1,0 +1,120 @@
+*** Settings ***
+Library           DatabaseLibrary
+Resource          ../../keywords/edm.txt
+Resource          ../../Repositories/${env}/${dbname}_${env}_Connection.txt
+
+*** Test Cases ***
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0001_Validate PAYEENAME_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.PAYEENAME) > 150;
+    EDM_Compare Result    @{Result[0]}    0    PAYEENAME
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0002_Validate PAYEENAME_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.PAYEENAME= '' or a.PAYEENAME= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PAYEENAME
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0003_Validate ZIPCODE_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ZIPCODE) > 50;
+    EDM_Compare Result    @{Result[0]}    0    ZIPCODE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0004_Validate ZIPCODE_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ZIPCODE= '' or a.ZIPCODE= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ZIPCODE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0005_Validate PAYMENTTYPE_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.PAYMENTTYPE) > 50;
+    EDM_Compare Result    @{Result[0]}    0    PAYMENTTYPE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0006_Validate PAYMENTTYPE_LBC,ACH
+    EDM_Connect_DB
+    @{Result}    Query    select count(*) \ from tlp.claimpaymentdetail a \ where a.PAYMENTTYPE not in ('LBC','ACH');
+    EDM_Compare Result    @{Result[0]}    0    PAYMENTTYPE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0007_Validate PAYMENTTYPE_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.PAYMENTTYPE= '' or a.PAYMENTTYPE= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PAYMENTTYPE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0008_Validate BANKID_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.BANKID) > 50;
+    EDM_Compare Result    @{Result[0]}    0    BANKID
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0009_Validate BANKID_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.BANKID= '' or a.BANKID= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    BANKID
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0010_Validate ACCNO_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ACCNO) > 50;
+    EDM_Compare Result    @{Result[0]}    0    ACCNO
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0011_Validate ACCNO_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ACCNO= '' or a.ACCNO= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ACCNO
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0012_Validate ADDRESS1_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ADDRESS1) > 200;
+    EDM_Compare Result    @{Result[0]}    0    ADDRESS1
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0013_Validate ADDRESS1_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ADDRESS1= '' or a.ADDRESS1= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ADDRESS1
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0014_Validate ADDRESS2_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.ADDRESS2) > 200;
+    EDM_Compare Result    @{Result[0]}    0    ADDRESS2
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0015_Validate TUMBON_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.TUMBON) > 50;
+    EDM_Compare Result    @{Result[0]}    0    TUMBON
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0016_Validate TUMBON_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.TUMBON= '' or a.TUMBON= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    TUMBON
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0017_Validate AMPHOR_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.AMPHOR) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AMPHOR
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0018_Validate AMPHOR_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.AMPHOR= '' or a.AMPHOR= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    AMPHOR
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0019_Validate PROVINCE_Length
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) from tlp.claimpaymentdetail a \ where length(a.PROVINCE) > 50;
+    EDM_Compare Result    @{Result[0]}    0    AMPHOR
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0020_Validate PROVINCE_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.PROVINCE= '' or a.PROVINCE= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    PROVINCE
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0021_Validate ReceiveChequeDate_NotBlank
+    EDM_Connect_DB
+    @{Result}    Query    select count(0) \ from tlp.claimpaymentdetail a \ where a.ReceiveChequeDate= '' or a.ReceiveChequeDate= 'blank';
+    EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0022_Validate ReceiveChequeDate_Default
+    EDM_Connect_DB
+    @{Result}    Query    SELECT \ count(0) from (select ReceiveChequeDate from tlp.claimpaymentdetail where ReceiveChequeDate \ not between '0000-00-00' and '3000-12-31' and ReceiveChequeDate <> '00000000') tmp
+    EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
+
+EDM2_SIT_TLP_TB_ClaimPaymentDetail_0011_0023_Validate ReceiveChequeDate_IsNotChar
+    EDM_Connect_DB
+    @{Result}    Query    SELECT count(0) FROM tlp.claimpaymentdetail a WHERE a.ReceiveChequeDate ~* '[a-zก-ฮ]';
+    EDM_Compare Result    @{Result[0]}    0    ReceiveChequeDate
