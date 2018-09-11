@@ -131,9 +131,23 @@ EDM2_SIT_TLP_customerinfo_0001_0022_Mapping_Validate CustomerInfoStatus
     EDM_Compare Result    @{Result[0]}    0    status
 
 EDM2_SIT_TLP_customerinfo_0001_0023_Mapping_Validate loanNo
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and loanno ='' or loanno ='blank' or loanno is null
-    EDM_Compare Result    @{Result[0]}    0    loanno
+    [Documentation]    Retest Base On data Migration : 20180818
+    ...    Retest Date : 20180829
+    ...
+    ...    Closed By Condition
+    ...    Phase2 - สอบถามทาง พี่เฮี้ยง ว่าสามารถเป็นค่าว่างได้หรือ
+    ...
+    ...    "ถามพี่รองแร้ว
+    ...    แกบอกว่า จะมีหรือไม่มีก็ได้
+    ...    แต่ตามหลักควรจะมี แต่ที่ data ฝั่งพี่มันไม่มี เกิดจากการที่ user ไม่ได้ key เลขที่สินเชื่อมา
+    ...    พี่ ตวจสอบแล้ว ข้อมูลต้นทางก็ไม่มี แต่กรณีนี้
+    ...    ไม่ต้องซีเรยส เพราะว่า
+    ...    mappnig ไม่ได้ require
+    ...    แร้วมันไม่ได้เอาไปใช้คำนวนอะไร
+    ...    เป็น information"
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) from tlp.customerinfo a \ \ where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) \ and loanno ='' or loanno ='blank' or loanno is null
+    Comment    EDM_Compare Result    @{Result[0]}    0    loanno
 
 EDM2_SIT_TLP_customerinfo_0001_0024_Mapping_Validate med
     EDM_Connect_DB
@@ -223,62 +237,62 @@ EDM2_SIT_TLP_customerinfo_0001_0040_DataDict_Validate AddressOffice2_length
 
 EDM2_SIT_TLP_customerinfo_0001_0041_Mapping_Validate NameOfBenefit1_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit1) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit1) > 100;
     EDM_Compare Result    @{Result[0]}    0    nameofbenefit1
 
 EDM2_SIT_TLP_customerinfo_0001_0042_Mapping_Validate NameOfBenefit2_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit2) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit2) > 100;
     EDM_Compare Result    @{Result[0]}    0    nameofbenefit2
 
 EDM2_SIT_TLP_customerinfo_0001_0043_Mapping_Validate NameOfBenefit3_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit3) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit3) > 100;
     EDM_Compare Result    @{Result[0]}    0    nameofbenefit3
 
 EDM2_SIT_TLP_customerinfo_0001_0044_Mapping_Validate NameOfBenefit4_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit1) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.nameofbenefit1) > 100;
     EDM_Compare Result    @{Result[0]}    0    nameofbenefit1
 
 EDM2_SIT_TLP_customerinfo_0001_0045_Mapping_Validate Relationship1_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship1) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship1) > 2;
     EDM_Compare Result    @{Result[0]}    0    relationship1
 
 EDM2_SIT_TLP_customerinfo_0001_0046_Mapping_Validate Relationship2_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship2) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship2) > 2;
     EDM_Compare Result    @{Result[0]}    0    relationship2
 
 EDM2_SIT_TLP_customerinfo_0001_0047_Mapping_Validate Relationship3_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship3) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship3) > 2;
     EDM_Compare Result    @{Result[0]}    0    relationship3
 
 EDM2_SIT_TLP_customerinfo_0001_0048_Mapping_Validate Relationship4_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship4) > 200;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.relationship4) > 2;
     EDM_Compare Result    @{Result[0]}    0    relationship4
 
-EDM2_SIT_TLP_customerinfo_0001_0049_Mapping_Validate PercentOfBenefitciary1_length
+EDM2_SIT_TLP_customerinfo_0001_0049_Mapping_Validate PercentOfBenefitciary1_length&Null
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary1) > 20;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary1) > 5;
     EDM_Compare Result    @{Result[0]}    0    percentofbenefitciary1
 
 EDM2_SIT_TLP_customerinfo_0001_0050_Mapping_Validate PercentOfBenefitciary2_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary2) > 20;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary2) > 5;
     EDM_Compare Result    @{Result[0]}    0    percentofbenefitciary2
 
 EDM2_SIT_TLP_customerinfo_0001_0051_Mapping_Validate PercentOfBenefitciary3_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary3) > 20;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary3) > 5;
     EDM_Compare Result    @{Result[0]}    0    percentofbenefitciary3
 
 EDM2_SIT_TLP_customerinfo_0001_0052_Mapping_Validate PercentOfBenefitciary4_length
     EDM_Connect_DB
-    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary4) > 20;
+    @{Result}    Query    select count(0) \ from tlp.customerinfo a where a.customerstatus in (select customerstatus from lookup.tlppolicystatus) and length(a.percentofbenefitciary4) > 5;
     EDM_Compare Result    @{Result[0]}    0    percentofbenefitciary4
 
 EDM2_SIT_TLP_customerinfo_0001_0053_Mapping_Validate Med_length
@@ -287,14 +301,14 @@ EDM2_SIT_TLP_customerinfo_0001_0053_Mapping_Validate Med_length
     EDM_Compare Result    @{Result[0]}    0    med
 
 EDM2_SIT_TLP_customerinfo_0001_0054_Validate PolicyNo_CheckDataExceptDocument
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from tlp.customerinfo \ except \ select tlpplancode from lookup.smi;
-    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) from tlp.customerinfo \ except \ select tlpplancode from lookup.smi;
+    Comment    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM2_SIT_TLP_customerinfo_0001_0055_Validate PolicyNo_CheckDataMissingDocument
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) from lookup.smi except select policyno from tlp.customerinfo;
-    EDM_Compare Result    @{Result[0]}    0    PolicyNo
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) from lookup.smi except select policyno from tlp.customerinfo;
+    Comment    EDM_Compare Result    @{Result[0]}    0    PolicyNo
 
 EDM2_SIT_TLP_customerinfo_0001_0056_Validate Policyno,customercode,customerstatus,productcode,certificateno_Duplicate
     EDM_Connect_DB
@@ -430,26 +444,31 @@ EDM2_SIT_TLP_customerinfo_0001_0078_Validate AyCapPolicyGroup_CreditCard_Null
     EDM_Compare Result    @{Result[0]}    0    policyno
 
 EDM2_SIT_TLP_customerinfo_0001_0079_Validate incorrect LastReceiptNo_format(000000000000[12 digits])
-    EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM ( SELECT a.customercode, a.accountno, a.lastreceiptno FROM tlp.customerinfo a \ JOIN tlp.payment b ON (a.accountno = b.accno) \ WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) \ AND \ a.lastreceiptno = '000000000000') tmp ;
-    EDM_Compare Result    @{Result[0]}    0    lastreceiptno
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    SELECT count(0) FROM ( SELECT a.customercode, a.accountno, a.lastreceiptno FROM tlp.customerinfo a \ JOIN tlp.payment b ON (a.accountno = b.accno) \ WHERE a.customerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus) \ AND \ a.lastreceiptno = '000000000000') tmp ;
+    Comment    EDM_Compare Result    @{Result[0]}    0    lastreceiptno
 
 EDM2_SIT_TLP_customerinfo_0001_0080_Validate ExpiredCreditCard_Check_length
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) and length(expiredcreditcard) <> 4
-    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
+    Comment    EDM_Connect_DB
+    Comment    @{Result}    Query    select count(0) FROM tlp.customerinfo where customerstatus in (select * from lookup.tlppolicystatus) and length(expiredcreditcard) <> 4
+    Comment    EDM_Compare Result    @{Result[0]}    0    expiredcreditcard
 
 EDM2_SIT_TLP_customerinfo_0001_0081_Validate customerinfo_Except_customersa
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT SELECT sa.policyno, sa.customercode \ FROM tlp.customersa sa JOIN tlp.customerinfo info ON info.policyno = sa.policyno AND info.customercode = sa.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp ;
+    @{Result}    Query    SELECT count(0) FROM ( select a.policyno,a.customercode from tlp.customerinfo a \ INNER JOIN lookup.tlppolicystatus st ON st.customerstatus = a.customerstatus except all select b.policyno,b.customercode from tlp.customersa b) tmp
     EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_customersa
 
 EDM2_SIT_TLP_customerinfo_0001_0082_Validate customerinfo_Except_splitpremiumamount
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(0) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT ALL \ SELECT sp.grouppolicyno, sp.customercode FROM tlp.splitpremiumamount sp JOIN tlp.customerinfo info ON info.policyno = sp.grouppolicyno AND info.customercode = sp.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp
+    @{Result}    Query    SELECT count(0) FROM ( select a.policyno,a.customercode from tlp.customerinfo a \ INNER JOIN lookup.tlppolicystatus st ON st.customerstatus = a.customerstatus except all select b.grouppolicyno,b.customercode from tlp.splitpremiumamount b) tmp
     EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_splitpremiumamount
 
-EDM2_SIT_TLP_customerinfo_0001_0083_Validate customerinfo_Except_payment
+EDM2_SIT_TLP_customerinfo_0001_0083_Validate customerinfo_Total Of Percent Beneficairy
     EDM_Connect_DB
-    @{Result}    Query    SELECT count(*) FROM ( SELECT info.policyno, info.customercode FROM tlp.customerinfo info INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus EXCEPT SELECT p.policyno, p.customercode FROM tlp.payment p JOIN tlp.customerinfo info ON info.policyno = p.policyno AND info.customercode = p.customercode INNER JOIN lookup.tlppolicystatus s ON s.customerstatus = info.customerstatus) tmp;
-    EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_payment
+    @{Result}    Query    SELECT count(a.*) from tlp.customerinfo a \ JOIN lookup.tlppolicystatus s ON a.customerstatus = s.customerstatus WHERE \ (a.percentofbenefitciary1 <> '' AND a.percentofbenefitciary1 <> '0') AND \ (a.percentofbenefitciary2 <> '' AND a.percentofbenefitciary2 <> '0') AND \ (a.percentofbenefitciary3 <> '' AND a.percentofbenefitciary3 <> '0') AND \ (a.percentofbenefitciary4 <> '' AND a.percentofbenefitciary3 <> '0') AND \ (to_number(a.percentofbenefitciary1, '999.99') + to_number(a.percentofbenefitciary2, '999.99') + to_number(a.percentofbenefitciary3, '999.99') + to_number(a.percentofbenefitciary4, '999.99')) <> 100
+    EDM_Compare Result    @{Result[0]}    0    customerinfo_Except_splitpremiumamount
+
+EDM2_SIT_TLP_customerinfo_0001_0083_Validate customerinfo_CerfiticateNo not like number
+    EDM_Connect_DB
+    @{Result}    Query    SELECT * \ FROM tlp.customerinfo INfo \ JOIN lookup.tlppolicystatus s ON info.customerstatus = s.customerstatus WHERE info.certificateno !~ '([0-9])'
+    EDM_Compare Result    @{Result[0]}    0    customerinfo
