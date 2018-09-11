@@ -144,127 +144,122 @@ EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0028_Validate RegdtlICDten2_length
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegdtlICDten2) > 10;
     EDM_Compare Result    @{Result[0]}    0    RegdtlICDten2
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0028_Validate RegdtlICDtenEng2_length
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0029_Validate RegdtlICDtenEng2_length
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegdtlICDtenEng2) > 350;
     EDM_Compare Result    @{Result[0]}    0    RegdtlICDtenEng2
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0029_Validate RegdtlICDtenEng2_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegdtlICDtenEng2_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegdtlICDtenEng2= '' or a.RegdtlICDtenEng2= 'blank' or a.RegdtlICDtenEng2 is null
     EDM_Compare Result    @{Result[0]}    0    RegdtlICDtenEng2
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_I,D,C
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0031_Validate RegDtlPolicyStatus_I,D,C
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ where a.RegDtlPolicyStatus not in ('I','D','C','M','S')
     EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0030_Validate RegDtlPolicyStatus_NotBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0032_Validate RegDtlPolicyStatus_NotBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPolicyStatus= '' or a.RegDtlPolicyStatus= 'blank' or a.RegDtlPolicyStatus is null
     EDM_Compare Result    @{Result[0]}    0    RegDtlPolicyStatus
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0031_Validate PayType_0-8
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate PayType_0-8
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ where a.payType not in ('0','1','2','3','4','5','6','7','8')
     EDM_Compare Result    @{Result[0]}    0    payType
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0032_Validate PayType_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate PayType_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.payType= '' or a.payType= 'blank' or a.payType is null
     EDM_Compare Result    @{Result[0]}    0    payType
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0033_Validate RegDtlVoidAmount_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlVoidAmount_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlVoidAmount= '' or a.RegDtlVoidAmount = 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlVoidAmount
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0034_Validate RegDtlAdjustPayment _NotChar
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlAdjustPayment _NotChar
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.claimregisterdetail t \ where t.RegDtlAdjustPayment ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0035_Validate RegDtlAdjustPayment _notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlAdjustPayment _notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlAdjustPayment= '' or a.RegDtlAdjustPayment= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlAdjustPayment
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0036_Validate RegDtlDurationDays_Default
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationDays_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail where length(RegDtlDurationDays) >3 or RegDtlDurationDays ~* '[a-zก-ฮ]';
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0037_Validate RegDtlDurationDays_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0039_Validate RegDtlDurationDays_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlDurationDays= '' or a.RegDtlDurationDays= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationDays
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0038_Validate RegDtlDurationFrom_Default
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0040_Validate RegDtlDurationFrom_Default
     EDM_Connect_DB
     @{Result}    Query    SELECT \ count(0) from (select RegDtlDurationFrom from tlp.ClaimRegisterDetail \ where RegDtlDurationFrom \ \ not between '0000-00-00' and '3000-12-31' \ and length(RegDtlDurationFrom)<> 8 ) tmp
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0039_Validate RegDtlDurationFrom_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0041_Validate RegDtlDurationFrom_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where RegDtlDurationFrom= '' or RegDtlDurationFrom is null
     EDM_Compare Result    @{Result[0]}    0    RegDtlDurationFrom
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0040_Validate RegDtlApproveDate_Default
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlApproveDate_Default
     EDM_Connect_DB
     @{Result}    Query    SELECT \ count(0) from (select RegDtlApproveDate from tlp.ClaimRegisterDetail where RegDtlApproveDate \ not between '0000-00-00' and '3000-12-31' and RegDtlApproveDate<> '00000000') tmp
     EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0041_Validate RegDtlApproveDate_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlApproveDate_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlApproveDate= '' or a.RegDtlApproveDate= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlApproveDate
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0042_Validate RegDtlClaimExpense_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimExpense_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimExpense= '' or a.RegDtlClaimExpense= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimExpense
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0043_Validate RegDtlClaimStatus_Default
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimStatus_Default
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ \ where a.RegDtlClaimStatus \ not in ('Deny','0','1','Closed','Void','Paid','Pending','Register')
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0044_Validate RegDtlClaimStatus_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0046_Validate RegDtlClaimStatus_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ from tlp.ClaimRegisterDetail a \ \ \ JOIN tlp.claimregisterheader b ON a.regdtlseq = b.registerseq where (a.RegDtlClaimStatus= '' or a.RegDtlClaimStatus= 'blank') AND b.regcustomerstatus IN (SELECT customerstatus FROM lookup.tlppolicystatus);
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimStatus
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0045_Validate RegDtlClaimRemark_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlClaimRemark_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlClaimRemark= '' or a.RegDtlClaimRemark= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0046_Validate RegDtlClaimRemark_length_200
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlClaimRemark_length_200
     EDM_Connect_DB
     @{Result}    Query    select count(0) \ \ \ from tlp.ClaimRegisterDetail a \ \ where length(a.RegDtlClaimRemark) > 200
     EDM_Compare Result    @{Result[0]}    0    RegDtlClaimRemark
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0047_Validate RegDtlInterest_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlInterest_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlInterest= '' or a.RegDtlInterest= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlInterest
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0048_Validate RegDtlPaidToPartner_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate RegDtlPaidToPartner_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToPartner= '' or a.RegDtlPaidToPartner= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToPartner
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0049_Validate RegDtlPaidToBeneficiary_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate RegDtlPaidToBeneficiary_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.RegDtlPaidToBeneficiary= '' or a.RegDtlPaidToBeneficiary= 'blank'
     EDM_Compare Result    @{Result[0]}    0    RegDtlPaidToBeneficiary
 
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0050_Validate PartnerCode_Default
-    EDM_Connect_DB
-    @{Result}    Query    select count(0) \ \ from tlp.ClaimRegisterDetail a \ where partnercode \ not in ('787','789','791','889','892','786','788','784', '780','794','883','777','881','882');
-    EDM_Compare Result    @{Result[0]}    0    partnercode
-
-EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0051_Validate PartnerCode_notBlank
+EDM2_SIT_TLP_TB_ClaimRegisterDetail_0009_0052_Validate PartnerCode_notBlank
     EDM_Connect_DB
     @{Result}    Query    select count(0) from tlp.ClaimRegisterDetail a \ where a.partnercode= '' or a.partnercode= 'blank' or a.partnercode is null
     EDM_Compare Result    @{Result[0]}    0    partnercode
